@@ -1,3 +1,7 @@
+<!---
+	vim: filetype=html
+-->
+
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
 <style>
