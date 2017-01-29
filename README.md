@@ -43,12 +43,12 @@
 	<form action="/Tell_me_something">
 		<p>How much did you like this page?</p>
 		<p>
-			<label><input type="checkbox" name="page_rating">0<label>
-			<label><input type="checkbox" name="page_rating">1<label>
-			<label><input type="checkbox" name="page_rating">2<label>
-			<label><input type="checkbox" name="page_rating" checked>3<label>
-			<label><input type="checkbox" name="page_rating">4<label>
-			<label><input type="checkbox" name="page_rating">5<label>
+			<label><input type="checkbox" name="page_rating">0</label>
+			<label><input type="checkbox" name="page_rating">1</label>
+			<label><input type="checkbox" name="page_rating">2</label>
+			<label><input type="checkbox" name="page_rating" checked>3</label>
+			<label><input type="checkbox" name="page_rating">4</label>
+			<label><input type="checkbox" name="page_rating">5</label>
 		</p>
 		<input type="text" placeholder="Want to tell me something?">
 		<button type="submit">Submit</button>
