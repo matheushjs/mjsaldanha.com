@@ -4,6 +4,10 @@
 
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
+<head>
+	<title>Mathews' Webpage</title>
+</head>
+
 <style>
 	body{
 		background-color: #CCFFFF;
