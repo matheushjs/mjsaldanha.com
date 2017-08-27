@@ -1,76 +1,8 @@
-<!---
-	vim: filetype=html
--->
+<head>
+	<link rel="stylesheet" href="stylesheet.css">
+</head>
 
-<style>
-	body{
-		background-color: #CCC;
-	}
-</style>
-
-<script>
-	function onSubmit(){
-		var form = document.getElementById("form");
-		var buts = form.getElementsByTagName("input");
-
-		var str = "oh";
-		for(var i = 0; i < buts.length; i++){
-			if(buts[i].checked){
-				str = buts[i].value;
-				break;
-			}
-		}
-
-		var in1 = Number(document.getElementById("in1").value);
-		var in2 = Number(document.getElementById("in2").value);
-		var out = 0;
-
-		switch(str){
-		case "add":
-			out = in1 + in2;
-			break;
-		case "sub":
-			out = in1 - in2;
-			break;
-		case "mult":
-			out = in1 * in2;
-			break;
-		case "div":
-			out = in1 / in2;
-			break;
-		case "pow":
-			out = 1;
-			for(var i = 0; i < in2; i++)
-				out *= in1;
-			break;
-		default:
-		}
-
-		document.getElementById("answer").innerHTML = out.toString();
-
-		return false;
-	}
-</script>
-
-<div>
-	<h2>Matthews' web page</h2>
-	<p>Type 2 numbers and choose an operation:</p>
-	<form id="form" action="javascript:void(0);">
-		<p>
-		<input id="in1" type="text" placeholder="Number A" required/>
-		<input id="in2" type="text" placeholder="Number B" required/>
-		<label id="answer"></label>
-		</p>
-		<label><input type="radio" name="page_rating" value="add" checked>+</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="sub">-</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="mult">*</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="div">/</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="pow">**</label>
-		<br>
-		<p><button type="submit" onClick="onSubmit()">Submit</button><p>
-	</form>
-</div>
+<body>
+	<h2>matheushjs's Web Page</h2>
+	<p><a href="calculator.html">Calculator</a><p>
+<body>
