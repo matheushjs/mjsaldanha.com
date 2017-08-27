@@ -2,59 +2,75 @@
 	vim: filetype=html
 -->
 
-<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-
 <style>
 	body{
-		background-color: #CCFFFF;
-		font-family: Montserrat, sans-serif;
-		padding: 0px, 0px, 0px, 30px;
-	}
-
-	.slim-orange-border{
-		border-color: orange;
-		border-width: 3px;
-		border-style: solid;
-		border-radius: 10%;
-	}
-
-	.medium-image{
-		width: 150px;
-	}
-
-	h2{
-		text-align: center;
-	}
-
-	.white-background{
-		background-color: white;
+		background-color: #CCC;
 	}
 </style>
 
+<script>
+	function onSubmit(){
+		var form = document.getElementById("form");
+		var buts = form.getElementsByTagName("input");
+
+		var str = "oh";
+		for(var i = 0; i < buts.length; i++){
+			if(buts[i].checked){
+				str = buts[i].value;
+				break;
+			}
+		}
+
+		var in1 = Number(document.getElementById("in1").value);
+		var in2 = Number(document.getElementById("in2").value);
+		var out = 0;
+
+		switch(str){
+		case "add":
+			out = in1 + in2;
+			break;
+		case "sub":
+			out = in1 - in2;
+			break;
+		case "mult":
+			out = in1 * in2;
+			break;
+		case "div":
+			out = in1 / in2;
+			break;
+		case "pow":
+			out = 1;
+			for(var i = 0; i < in2; i++)
+				out *= in1;
+			break;
+		default:
+		}
+
+		document.getElementById("answer").innerHTML = out.toString();
+
+		return false;
+	}
+</script>
+
 <div>
 	<h2>Matthews' web page</h2>
-	<p></p>
-	<p>Things I like:</p>
-	<div>
-		<ul>
-			<li>Violins</li>
-		<img class="medium-image slim-orange-border white-background" alt="A violin." src="http://www.elist10.com/wp-content/uploads/2013/10/violin.png">
-			<li>Pianos</li>
-		<img class="medium-image slim-orange-border white-background" alt="A piano." src="http://pngimg.com/upload/small/piano_PNG10885.png">
-		</ul>
-	</div>
-
-	<form action="/Tell_me_something">
-		<p>How much did you like this page?</p>
+	<p>Type 2 numbers and choose an operation:</p>
+	<form id="form" action="javascript:void(0);">
 		<p>
-			<label><input type="checkbox" name="page_rating">0</label>
-			<label><input type="checkbox" name="page_rating">1</label>
-			<label><input type="checkbox" name="page_rating">2</label>
-			<label><input type="checkbox" name="page_rating" checked>3</label>
-			<label><input type="checkbox" name="page_rating">4</label>
-			<label><input type="checkbox" name="page_rating">5</label>
+		<input id="in1" type="text" placeholder="Number A" required/>
+		<input id="in2" type="text" placeholder="Number B" required/>
+		<label id="answer"></label>
 		</p>
-		<input type="text" placeholder="Want to tell me something?">
-		<button type="submit">Submit</button>
+		<label><input type="radio" name="page_rating" value="add" checked>+</label>
+		<br>
+		<label><input type="radio" name="page_rating" value="sub">-</label>
+		<br>
+		<label><input type="radio" name="page_rating" value="mult">*</label>
+		<br>
+		<label><input type="radio" name="page_rating" value="div">/</label>
+		<br>
+		<label><input type="radio" name="page_rating" value="pow">**</label>
+		<br>
+		<p><button type="submit" onClick="onSubmit()">Submit</button><p>
 	</form>
 </div>
