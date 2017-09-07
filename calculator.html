@@ -1,70 +1,86 @@
-<head>
-	<link rel="stylesheet" href="stylesheet.css">
-</head>
+<!DOCTYPE html>
 
-<script>
-	function onSubmit(){
-		var form = document.getElementById("form");
-		var buts = form.getElementsByTagName("input");
-
-		var str = "oh";
-		for(var i = 0; i < buts.length; i++){
-			if(buts[i].checked){
-				str = buts[i].value;
-				break;
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="stylesheet.css">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="stylesheet.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>
+			.navbar-inverse {
+				margin-bottom: 0;
+				border-radius: 0;
 			}
+		</style>
+	</head>
+
+	<script>
+		function onSubmit(){
+			var form = document.getElementById("form");
+			var buts = form.getElementsByTagName("input");
+
+			var str = "oh";
+			for(var i = 0; i < buts.length; i++){
+				if(buts[i].checked){
+					str = buts[i].value;
+					break;
+				}
+			}
+
+			var in1 = Number(document.getElementById("in1").value);
+			var in2 = Number(document.getElementById("in2").value);
+			var out = 0;
+
+			switch(str){
+			case "add":
+				out = in1 + in2;
+				break;
+			case "sub":
+				out = in1 - in2;
+				break;
+			case "mult":
+				out = in1 * in2;
+				break;
+			case "div":
+				out = in1 / in2;
+				break;
+			case "pow":
+				out = 1;
+				for(var i = 0; i < in2; i++)
+					out *= in1;
+				break;
+			default:
+			}
+
+			document.getElementById("answer").innerHTML = out.toString();
+
+			return false;
 		}
+	</script>
 
-		var in1 = Number(document.getElementById("in1").value);
-		var in2 = Number(document.getElementById("in2").value);
-		var out = 0;
-
-		switch(str){
-		case "add":
-			out = in1 + in2;
-			break;
-		case "sub":
-			out = in1 - in2;
-			break;
-		case "mult":
-			out = in1 * in2;
-			break;
-		case "div":
-			out = in1 / in2;
-			break;
-		case "pow":
-			out = 1;
-			for(var i = 0; i < in2; i++)
-				out *= in1;
-			break;
-		default:
-		}
-
-		document.getElementById("answer").innerHTML = out.toString();
-
-		return false;
-	}
-</script>
-
-<body>
-	<h2>matheushjs's Calculator</h2>
-	<p>Type 2 numbers and choose an operation:</p>
-	<form id="form" action="javascript:void(0);">
-		<p>
-		<input id="in1" type="text" placeholder="Number A" required/>
-		<input id="in2" type="text" placeholder="Number B" required/>
-		<label id="answer"></label>
-		</p>
-		<label><input type="radio" name="page_rating" value="add" checked>+</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="sub">-</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="mult">*</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="div">/</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="pow">**</label>
-		<br>
-		<p><button type="submit" onClick="onSubmit()">Submit</button><p>
-	</form>
-</body>
+	<body>
+		<h2>matheushjs's Calculator</h2>
+		<p>Type 2 numbers and choose an operation:</p>
+		<form id="form" action="javascript:void(0);">
+			<p>
+			<input id="in1" type="text" placeholder="Number A" required/>
+			<input id="in2" type="text" placeholder="Number B" required/>
+			<label id="answer"></label>
+			</p>
+			<label><input type="radio" name="page_rating" value="add" checked>+</label>
+			<br>
+			<label><input type="radio" name="page_rating" value="sub">-</label>
+			<br>
+			<label><input type="radio" name="page_rating" value="mult">*</label>
+			<br>
+			<label><input type="radio" name="page_rating" value="div">/</label>
+			<br>
+			<label><input type="radio" name="page_rating" value="pow">**</label>
+			<br>
+			<p><button type="submit" onClick="onSubmit()">Submit</button><p>
+		</form>
+	</body>
+</html>
