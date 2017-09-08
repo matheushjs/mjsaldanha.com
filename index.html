@@ -7,6 +7,10 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<script src="js/index_slideshow.js"></script>
+		<link rel="stylesheet" href="css/index_slideshow.css">
+
 		<link rel="stylesheet" href="css/custom.css">
 		<style>
 			.navbar-inverse {
@@ -54,23 +58,62 @@
 	</div>
 
 	<div class="container-fluid text-center">
-		<div class="row">
-			<div class="col-sm-12">
-				<h2>Things I like:</h2>
+		<div class="page-header">
+			<h2>Things I Like</h2>
+		</div>
+		<div class="slideshow-container">
+			<div class="mySlides myFade">
+				<div class="myNumberText">1 / 4</div>
+				<img class="myImage" src="img/nvidia_cuda.jpg">
+				<div class="myText">Cuda Programming</div>
 			</div>
+
+			<div class="mySlides myFade">
+				<div class="myNumberText">2 / 4</div>
+				<img class="myImage" src="img/mpi_logo.jpg">
+				<div class="myText">MPI Programming</div>
+			</div>
+
+			<div class="mySlides myFade">
+				<div class="myNumberText">3 / 4</div>
+				<img class="myImage" src="img/openmp_logo.jpg">
+				<div class="myText">OpenMP Programming</div>
+			</div>
+
+			<div class="mySlides myFade">
+				<div class="myNumberText">4 / 4</div>
+				<img class="myImage" src="img/linux_logo.jpg">
+				<div class="myText">Linux</div>
+			</div>
+
+			<a class="prevArrow" onClick="incSlide(-1)">&#10094;</a>
+			<a class="nextArrow" onClick="incSlide(1)">&#10095;</a>
+		</div>
+		
+		<div>
+			<span class="myDot" onClick="setSlide(1)"></span>
+			<span class="myDot" onClick="setSlide(2)"></span>
+			<span class="myDot" onClick="setSlide(3)"></span>
+			<span class="myDot" onClick="setSlide(4)"></span>
+		</div>
+	</div>
+
+	<div class="container-fluid text-center">
+		<div class="page-header">
+			<h2>What I've Done Lately:</h2>
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
 				<p><a href="calculator.html">Calculator</a><p>
 			</div>
 			<div class="col-sm-3">
-					<p><a href="#">Something</a><p>
+				<p><a href="#">Something</a><p>
 			</div>
 			<div class="col-sm-3">
-					<p><a href="#">Something</a><p>
+				<p><a href="#">Something</a><p>
 			</div>
 			<div class="col-sm-3">
-					<p><a href="#">Something</a><p>	
+				<p><a href="#">Something</a><p>	
 			</div>
 		</div>
 	</div>

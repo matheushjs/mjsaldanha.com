@@ -1,0 +1,94 @@
+.slideshow-container {
+    max-width: 1000px;
+    height: 300px;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+.myImage {
+    max-height: 300px;
+}
+
+.prevArrow, .nextArrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+.nextArrow {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prevArrow {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prevArrow:hover, .nextArrow:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.myText {
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(130, 130, 130, 0.2);
+}
+
+.myNumberText {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 12px;
+    position: absolute;
+    top: 0;
+}
+
+.myDot {
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.myActive, .myDot:hover {
+    background-color: #717171;
+}
+
+.myFade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes myFade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyFrames myFade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
