@@ -9,6 +9,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/calculator.css">
 		<style>
 			.navbar-inverse {
 				margin-bottom: 0;
@@ -18,44 +19,40 @@
 	</head>
 
 	<script>
-		function onSubmit(){
-			var form = document.getElementById("form");
-			var buts = form.getElementsByTagName("input");
-
-			var str = "oh";
-			for(var i = 0; i < buts.length; i++){
-				if(buts[i].checked){
-					str = buts[i].value;
-					break;
-				}
-			}
-
-			var in1 = Number(document.getElementById("in1").value);
-			var in2 = Number(document.getElementById("in2").value);
+		function onSubmit(operation){
+			var in1 = Number($("#in1").val());
+			var in2 = Number($("#in2").val());
 			var out = 0;
+			var opStr = "";
 
-			switch(str){
+			switch(operation){
 			case "add":
 				out = in1 + in2;
+				opStr = "+";
 				break;
 			case "sub":
 				out = in1 - in2;
+				opStr = "-";
 				break;
 			case "mult":
 				out = in1 * in2;
+				opStr = "*";
 				break;
 			case "div":
 				out = in1 / in2;
+				opStr = "/";
 				break;
 			case "pow":
 				out = 1;
+				opStr = "**";
 				for(var i = 0; i < in2; i++)
 					out *= in1;
 				break;
 			default:
 			}
 
-			document.getElementById("answer").innerHTML = out.toString();
+			$("#answer").text(out.toString());
+			$("#opStr").text(opStr);
 
 			return false;
 		}
@@ -91,25 +88,26 @@
 		</div>
 	</nav>
 
-	<h2>matheushjs's Calculator</h2>
-	<p>Type 2 numbers and choose an operation:</p>
-	<form id="form" action="javascript:void(0);">
-		<p>
-		<input id="in1" type="text" placeholder="Number A" required/>
-		<input id="in2" type="text" placeholder="Number B" required/>
-		<label id="answer"></label>
-		</p>
-		<label><input type="radio" name="page_rating" value="add" checked>+</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="sub">-</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="mult">*</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="div">/</label>
-		<br>
-		<label><input type="radio" name="page_rating" value="pow">**</label>
-		<br>
-		<p><button type="submit" onClick="onSubmit()">Submit</button><p>
-	</form>
+	<div class="container-fluid text-center">
+		<h2>Calculator</h2>
+		<p>Type 2 numbers and choose an operation:</p>
+
+		<div class="form-group">
+			<input id="in1" type="text" placeholder="Number A"/>
+			<span id="opStr">&nbsp;</span>
+			<input id="in2" type="text" placeholder="Number B"/>
+		</div>
+
+		<div class="row" id="answer"></div>
+		
+		<div class="row">
+			<button class="btn btn-primary" onClick="onSubmit('add')">+</button>
+			<button class="btn btn-primary" onClick="onSubmit('sub')">-</button>
+			<button class="btn btn-primary" onClick="onSubmit('mult')">*</button>
+			<button class="btn btn-primary" onClick="onSubmit('div')">/</button>
+			<button class="btn btn-primary" onClick="onSubmit('pow')">**</button>
+		</div>
+
+	</div>
 	</body>
 </html>

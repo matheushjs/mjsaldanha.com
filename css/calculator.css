@@ -1,0 +1,16 @@
+.btn {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0px 10px;
+    width: 60px;
+}
+
+#answer {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#opStr {
+    font-weight: bold;
+    font-size: 16px;
+}
