@@ -49,59 +49,56 @@
 		</div>
 	</nav>
 
-	<div class="container-fluid text-center">
+	<div class="jumbotron">
 		<h2>Calculator</h2>
-		<p>Type 2 numbers and choose an operation:</p>
-
-		<div class="form-group">
-			<input id="in1" type="text" placeholder="Number A"/>
-			<span id="opStr">&nbsp;</span>
-			<input id="in2" type="text" placeholder="Number B"/>
-		</div>
-
-		<div id="answer"></div>
 	</div>
 
 	<div class="row myPad">
+		<div class="myDisplay"></div>
+
 		<div class="col-sm-6 myNumberPad">
 			<div>
-				<button class="btn btn-default">1</button>
-				<button class="btn btn-default">2</button>
-				<button class="btn btn-default">3</button>
+				<button class="btn btn-default" onClick="onNum(1)">1</button>
+				<button class="btn btn-default" onClick="onNum(2)">2</button>
+				<button class="btn btn-default" onClick="onNum(3)">3</button>
 			</div>
 			<div>
-				<button class="btn btn-default">4</button>
-				<button class="btn btn-default">5</button>
-				<button class="btn btn-default">6</button>
+				<button class="btn btn-default" onClick="onNum(4)">4</button>
+				<button class="btn btn-default" onClick="onNum(5)">5</button>
+				<button class="btn btn-default" onClick="onNum(6)">6</button>
 			</div>
 			<div>
-				<button class="btn btn-default">7</button>
-				<button class="btn btn-default">8</button>
-				<button class="btn btn-default">9</button>
+				<button class="btn btn-default" onClick="onNum(7)">7</button>
+				<button class="btn btn-default" onClick="onNum(8)">8</button>
+				<button class="btn btn-default" onClick="onNum(9)">9</button>
 			</div>
 			<div>
 				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
-				<button class="btn btn-default">0</button>
+				<button class="btn btn-default" onClick="onNum(0)">0</button>
 				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
 			</div>
 		</div>
 
 		<div class="col-sm-6 myOpPad">
 			<div>
-				<button class="btn btn-default" onClick="onSubmit('add')">+</button>
-				<button class="btn btn-default" onClick="onSubmit('pow')">**</button>
+				<button class="btn btn-default" onClick="onOp('+')">+</button>
+				<button class="btn btn-default" onClick="onOp('**')">**</button>
+				<button class="btn btn-warning" onClick="onClear()">C</button>
 			</div>
 			<div>
-				<button class="btn btn-default" onClick="onSubmit('sub')">-</button>
+				<button class="btn btn-default" onClick="onOp('-')">-</button>
+				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
 				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
 			</div>
 			<div>
-				<button class="btn btn-default" onClick="onSubmit('mult')">*</button>
+				<button class="btn btn-default" onClick="onOp('*')">*</button>
+				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
 				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
 			</div>
 			<div>
-				<button class="btn btn-default" onClick="onSubmit('div')">/</button>
-				<button class="btn btn-primary" onClick="onSubmit('div')">=</button>
+				<button class="btn btn-default" onClick="onOp('/')">/</button>
+				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
+				<button class="btn btn-primary" onClick="onEqual()">=</button>
 			</div>
 		</div>
 	</div>
