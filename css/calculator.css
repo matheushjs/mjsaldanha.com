@@ -1,7 +1,6 @@
 .btn {
     font-size: 28px;
     font-weight: bold;
-    margin: 0px 10px;
     width: 60px;
 }
 
@@ -13,4 +12,9 @@
 #opStr {
     font-weight: bold;
     font-size: 16px;
+}
+
+.myPad {
+    width: 500px;
+    margin: auto;
 }
