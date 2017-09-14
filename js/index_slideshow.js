@@ -1,5 +1,5 @@
 var slideIdx = 1;
-window.onload = function() { showSlide(1) };
+window.onload = function() { showSlide(1); autoSlide(); };
 
 function incSlide(n){
     slideIdx += n;
@@ -28,4 +28,9 @@ function showSlide(n){
 
     slides[slideIdx - 1].style.display = "block";
     dots[slideIdx - 1].className += " myActive";
+}
+
+function autoSlide() {
+    incSlide(1);
+    setTimeout(autoSlide, 2000);
 }
