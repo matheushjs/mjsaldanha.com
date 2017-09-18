@@ -17,11 +17,15 @@
 }
 
 .myDisplay {
-    height: 38px;
+    height: 60px;
     margin: 5px;
     font-size: 28px;
+    line-height: 60px;
+    vertical-align: center;
     font-weight: bold;
-    background-color: lightgrey;
+    background-color: #CCC;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .myPad, .myDisplay {
