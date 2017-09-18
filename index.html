@@ -4,51 +4,23 @@
 		<title>MatheusHJS's WebPage</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Get Bootstrap-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
 		<script src="js/index_slideshow.js"></script>
 		<link rel="stylesheet" href="css/index_slideshow.css">
-
 		<link rel="stylesheet" href="css/custom.css">
-		<style>
-			.navbar-inverse {
-				margin-bottom: 0;
-				border-radius: 0;
-			}
-		</style>
+
+		<!-- For including html -->
+		<script src="https://www.w3schools.com/lib/w3.js"></script>
 	</head>
 
 	<body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.html">MatHJS</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							Projects <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Proj 1</a></li>
-							<li><a href="#">Proj 2</a></li>
-							<li><a href="#">Proj 3</a></li>
-						</ul>
-					</li>
-					<li><a href="https://www.github.com/matheushjs">GitHub</a></li>
-					<li><a href="#">Three</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+
+	<div w3-include-html="html/navbar.html"></div>
 
 	<div class="jumbotron">
 		<div class="text-center container">
@@ -120,6 +92,12 @@
 
 	<footer class="container-fluid text-left">
 	</footer>
+
+
+	<!-- Let w3include do its magic -->
+	<script>
+		w3.includeHTML();
+	</script>
 
 	<body>
 </html>
