@@ -2,7 +2,6 @@
 
 <html lang="en">
 	<head>
-		<link rel="stylesheet" href="stylesheet.css">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,17 +10,16 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-		<link rel="stylesheet" href="css/custom.css">
-		<link rel="stylesheet" href="css/calculator.css">
-		<script src="js/calculator.js"></script>
-
-		<!-- For including html -->
-		<script src="https://www.w3schools.com/lib/w3.js"></script>
+		<link rel="stylesheet" href="/styles/custom.css">
+		<link rel="stylesheet" href="/styles/calculator.css">
+		<script src="/scripts/calculator.js"></script>
 	</head>
 
 	<body>
-	
-	<div w3-include-html="html/navbar.html"></div>
+
+  <div>
+    <% include ../partials/navbar %>
+  </div>
 
 	<div class="jumbotron">
 		<h2>Calculator</h2>
@@ -76,11 +74,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Let w3include do its magic -->
-	<script>
-		w3.includeHTML();
-	</script>
 
 	</body>
 </html>

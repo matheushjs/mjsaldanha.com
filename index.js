@@ -3,12 +3,19 @@ const path = require('path');
 
 const app = express();
 
-// Serves files in the given folder, as it was an absolute path.
-// so /index.html leads to public/index.html
+// Sets up ejs templating
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'client'));
+
 app.use(express.static(path.join(__dirname, 'client')));
 
-// We can add multiple folders, express will look for due files sequentially
-// app.use(express.static(path.join(__dirname, 'static')));
+app.get("/", (req, res) => {
+  res.render("pages/index");
+});
+
+app.get("/calculator", (req, res) => {
+  res.render("pages/calculator");
+});
 
 // Begin serving
 const port = process.env.PORT || 5000;

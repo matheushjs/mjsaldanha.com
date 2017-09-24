@@ -10,17 +10,16 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
-		<script src="js/index_slideshow.js"></script>
-		<link rel="stylesheet" href="css/index_slideshow.css">
-		<link rel="stylesheet" href="css/custom.css">
-
-		<!-- For including html -->
-		<script src="https://www.w3schools.com/lib/w3.js"></script>
+		<script src="/scripts/index_slideshow.js"></script>
+		<link rel="stylesheet" href="/styles/index_slideshow.css">
+		<link rel="stylesheet" href="/styles/custom.css">
 	</head>
 
 	<body>
 
-	<div w3-include-html="html/navbar.html"></div>
+  <div>
+    <% include ../partials/navbar %>
+  </div>
 
 	<div class="jumbotron">
 		<div class="text-center container">
@@ -36,25 +35,25 @@
 		<div class="slideshow-container">
 			<div class="mySlides myFade">
 				<div class="myNumberText">1 / 4</div>
-				<img class="myImage" src="img/nvidia_cuda.jpg">
+				<img class="myImage" src="/images/nvidia_cuda.jpg">
 				<div class="myText">Cuda Programming</div>
 			</div>
 
 			<div class="mySlides myFade">
 				<div class="myNumberText">2 / 4</div>
-				<img class="myImage" src="img/mpi_logo.jpg">
+				<img class="myImage" src="/images/mpi_logo.jpg">
 				<div class="myText">MPI Programming</div>
 			</div>
 
 			<div class="mySlides myFade">
 				<div class="myNumberText">3 / 4</div>
-				<img class="myImage" src="img/openmp_logo.jpg">
+				<img class="myImage" src="/images/openmp_logo.jpg">
 				<div class="myText">OpenMP Programming</div>
 			</div>
 
 			<div class="mySlides myFade">
 				<div class="myNumberText">4 / 4</div>
-				<img class="myImage" src="img/linux_logo.jpg">
+				<img class="myImage" src="/images/linux_logo.jpg">
 				<div class="myText">Linux</div>
 			</div>
 
@@ -76,7 +75,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-3">
-				<p><a href="calculator.html">Calculator</a><p>
+				<p><a href="/calculator">Calculator</a><p>
 			</div>
 			<div class="col-sm-3">
 				<p><a href="https://frozen-ridge-60603.herokuapp.com/">ShCode</a><p>
@@ -92,12 +91,6 @@
 
 	<footer class="container-fluid text-left">
 	</footer>
-
-
-	<!-- Let w3include do its magic -->
-	<script>
-		w3.includeHTML();
-	</script>
 
 	<body>
 </html>
