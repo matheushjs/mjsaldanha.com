@@ -1,0 +1,48 @@
+Im thinking of using both react apps and normal js/jquery pages, for learning purposes
+We can serve react shit under a directory like /react
+
+The website must have a place where I can share my discoveries. Practicing how to convey knowledge to the outside world is scientific hability
+
+See jekyl and look for other markup / text formatting librariess
+
+
+
+Directory organization proposal
+
+/
+	index.js # Main serving file
+	js/      # Directory containing javascript for the server
+	client/  # Client-side files
+		html/  # html files
+		js/    # javascript/jquery files
+		css/   # CSS files
+		App1/  # Some react application
+			build/  # Location of the react application's bundled html file
+			src/    # Source files for the react app
+			public/ # Static files for the react app
+
+
+
+Directory organization for when the website becomes big:
+
+/
+	index.js # Main serving file
+	js/      # Directory containing javascript for the server
+	users/   # Directory containing user authentication information
+	client/  # Root directory of the website
+		global/  # Some directory that should never be served
+			html/  # Global html files
+			css/   # Global css files
+			js/    # Global js files
+
+		Blog/  # Directory containing stuff for a section of the website
+			documents/  # Documents of the blog
+			index.html  # Blog's root html file
+			css/        # Any needed css files
+			html/       # Any needed html files
+			js/         # Any needed javascript file
+		
+		App1/  # Some react application
+			build/  # Location of the react application's bundled html file
+			src/    # Source files for the react app
+			public/ # Static files for the react app
