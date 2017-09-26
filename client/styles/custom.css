@@ -1,6 +1,7 @@
-
 body {
-	text-align: center;
+  text-align: center;
+  background: cyan;
+  background: linear-gradient(to right, #AFF 0%, white 15%, white 85%, #AFF 100%);
 }
 
 .navbar-inverse {
@@ -12,5 +13,5 @@ body {
 }
 
 .jumbotron {
-	background-color: lightcyan;
+  background-color: transparent;
 }
