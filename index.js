@@ -17,6 +17,10 @@ app.get("/calculator", (req, res) => {
   res.render("pages/calculator");
 });
 
+app.get("*", (req, res) => {
+  res.render("pages/notfound");
+});
+
 // Begin serving
 const port = process.env.PORT || 5000;
 app.listen(port);
