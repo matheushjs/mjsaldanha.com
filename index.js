@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'client'));
 
 app.use(express.static(path.join(__dirname, 'client')));
+app.use("/blog", express.static(path.join(__dirname, 'client/hexo_blog/public')))
 
 app.get("/", (req, res) => {
   res.render("pages/index");
