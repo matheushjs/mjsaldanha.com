@@ -1,15 +1,23 @@
 body {
   text-align: center;
-  background: cyan;
+  background: white; /* Fallback */
   background: linear-gradient(to right, #AFF 0%, white 15%, white 85%, #AFF 100%);
 }
 
-.navbar-inverse {
-	background: linear-gradient(135deg, #000, #666);
+.navbar-default {
+  background: linear-gradient(to bottom, #DDD, #DDD 70%, #BBB);
+  border: 0px;
 }
 
-.navbar-brand {
-	font-weight: bold;
+.navbar-default .navbar-brand {
+  font-family: arial;
+  font-weight: bold;
+  color: black;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #077;
 }
 
 .jumbotron {
