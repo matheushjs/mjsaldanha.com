@@ -1,10 +1,8 @@
 - The website must have a place where I can share my discoveries. Practicing how to convey knowledge to the outside world is scientific hability
-- See jekyl and look for other markup / text formatting librariess
-  - https://hexo.io/
-  - https://coderwall.com/p/ulxefq/get-blogging-with-node-js-and-hexo
 - Make a project to train usage of cookies, local storage and session storage.
-- Beautify your page by customizing bootstrap or getting some template online.
-
+- Design a nice home page, with brief personal story, links to due pages
+- Add 'About me" page
+- Improve your website's CSS theme, e.g. with a background image on the top
 
 Good site for directory org: http://redstarwebdevelopment.com/2012/04/organize-your-web-design-projects/
 
@@ -54,3 +52,19 @@ Directory organization for when the website becomes big:
 			build/  # Location of the react application's bundled html file
 			src/    # Source files for the react app
 			public/ # Static files for the react app
+
+
+Alternative for React directory organization:
+		
+		React/   # A react app that routes through all your react apps
+			build/
+			public/
+			src/
+			App1/
+				src/
+				public/
+			App2/
+				src/
+				public/
+
+Drawbacks: Might generate enormous HTML files
