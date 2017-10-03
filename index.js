@@ -18,6 +18,10 @@ app.get("/calculator", (req, res) => {
   res.render("pages/calculator");
 });
 
+app.get("/aboutme", (req, res) => {
+  res.render("pages/aboutme");
+});
+
 app.get("*", (req, res) => {
   res.render("pages/notfound");
 });
