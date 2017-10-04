@@ -35,8 +35,15 @@
 .myPad {
     width: 500px;
     margin: auto;
-    background-color: #AAA;
     padding: 15px 10px;
+
+    background-color: #AAA;
+    background: radial-gradient(farthest-corner at 15% 130%, #888, #AAA);
+    
+    /* box-shadow: 2px 2px 10px #FFF; */
+
+    border: 5px outset #444;
+    border-radius: 15px;
 }
 
 .myDisplay {
@@ -55,11 +62,11 @@
     
     overflow-x: auto;
     overflow-y: hidden;
+
+    border: 3px inset #444;
+    border-radius: 5px;
 }
 
-.myPad, .myDisplay {
-    border-color: #222;
-    border-style: solid;
-    border-width: 3px;
-    border-radius: 5px;
+.myNumberPad {
+  padding: 10px 0;
 }
