@@ -1,12 +1,35 @@
-.btn {
-    font-size: 28px;
-    font-weight: bold;
-    width: 60px;
+.myPad,
+.myDisplay,
+.myButton {
+  box-sizing: border-box;
 }
 
-#opStr {
-    font-weight: bold;
-    font-size: 16px;
+.myCol-1 {width: 16.66%;}
+.myCol-2 {width: 33.33%;}
+.myCol-3 {width: 50%;}
+.myCol-4 {width: 66.66%;}
+.myCol-5 {width: 83.33%;}
+.myCol-6 {width: 100%;}
+
+[class*="myCol-"] {
+  float: left;
+}
+
+.myRow {
+  width: 100%;
+  padding: 1px 0px;
+}
+
+.myRow::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn {
+  font-size: 28px;
+  font-weight: bold;
+  width: calc(100% - 2px);
 }
 
 .myPad {
@@ -18,12 +41,18 @@
 
 .myDisplay {
     height: 60px;
-    margin: 5px;
-    font-size: 28px;
     line-height: 60px;
+
+    margin-bottom: 5px;
+    font-size: 28px;
+    padding: 0px 10px;
+
     vertical-align: center;
+    text-align: right;
     font-weight: bold;
+    color: black;
     background-color: #CCC;
+    
     overflow-x: auto;
     overflow-y: hidden;
 }

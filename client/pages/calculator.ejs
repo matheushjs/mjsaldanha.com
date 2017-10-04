@@ -18,53 +18,95 @@
 		<h2>Calculator</h2>
 	</div>
 
-	<div class="row myPad">
-		<div class="myDisplay"></div>
+	<div class="myPad">
+		<div class="myRow">
+      <div class="myCol-6 myDisplay"></div>
+    </div>
 
-		<div class="col-sm-6 myNumberPad">
-			<div>
-				<button class="btn btn-default" onClick="onNum(1)">1</button>
-				<button class="btn btn-default" onClick="onNum(2)">2</button>
-				<button class="btn btn-default" onClick="onNum(3)">3</button>
-			</div>
-			<div>
-				<button class="btn btn-default" onClick="onNum(4)">4</button>
-				<button class="btn btn-default" onClick="onNum(5)">5</button>
-				<button class="btn btn-default" onClick="onNum(6)">6</button>
-			</div>
-			<div>
-				<button class="btn btn-default" onClick="onNum(7)">7</button>
-				<button class="btn btn-default" onClick="onNum(8)">8</button>
-				<button class="btn btn-default" onClick="onNum(9)">9</button>
-			</div>
-			<div>
-				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
-				<button class="btn btn-default" onClick="onNum(0)">0</button>
-				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
-			</div>
-		</div>
+		<div class="myNumberPad">
+      <div class="myRow">
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(1)">1</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(2)">2</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(3)">3</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onOp('+')">+</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onOp('**')">**</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-warning" onClick="onClear()">C</button>
+        </div>
+      </div>
 
-		<div class="col-sm-6 myOpPad">
-			<div>
-				<button class="btn btn-default" onClick="onOp('+')">+</button>
-				<button class="btn btn-default" onClick="onOp('**')">**</button>
-				<button class="btn btn-warning" onClick="onClear()">C</button>
-			</div>
-			<div>
-				<button class="btn btn-default" onClick="onOp('-')">-</button>
-				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
-				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
-			</div>
-			<div>
-				<button class="btn btn-default" onClick="onOp('*')">*</button>
-				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
-				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
-			</div>
-			<div>
-				<button class="btn btn-default" onClick="onOp('/')">/</button>
-				<button class="btn btn-default" style="background: rgba(0,0,0,0); border:none;" disabled>&nbsp;</button>
-				<button class="btn btn-primary" onClick="onEqual()">=</button>
-			</div>
+      <div class="myRow">
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(4)">4</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(5)">5</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(6)">6</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onOp('-')">-</button>
+        </div>
+        <div class="myCol-1">
+          &nbsp
+        </div>
+        <div class="myCol-1">
+          &nbsp
+        </div>
+      </div>
+
+      <div class="myRow">
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(7)">7</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(8)">8</button>
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onNum(9)">9</button> 
+        </div>
+        <div class="myCol-1">
+          <button class="btn btn-default" onClick="onOp('*')">*</button>
+        </div>
+        <div class="myCol-1">
+          &nbsp
+        </div>
+        <div class="myCol-1">
+
+        </div>
+      </div>
+      
+      <div class="myRow">
+          <div class="myCol-1">
+            &nbsp
+          </div>
+          <div class="myCol-1">
+            <button class="btn btn-default" onClick="onNum(0)">0</button>
+          </div>
+          <div class="myCol-1">
+            &nbsp
+          </div>
+          <div class="myCol-1">
+            <button class="btn btn-default" onClick="onOp('/')">/</button>
+          </div>
+          <div class="myCol-1">
+            &nbsp
+          </div>
+          <div class="myCol-1">
+            <button class="btn btn-primary" onClick="onEqual()">=</button>
+          </div>
+        </div>
 		</div>
 	</div>
 
