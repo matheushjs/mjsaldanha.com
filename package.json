@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "cd client/hexo_blog && npm install && ./node_modules/.bin/hexo generate",
+    "heroku-postbuild": "cd client/hexo_blog && npm install && cp ./mathjax.html ./node_modules/hexo-renderer-mathjax/mathjax.html && ./node_modules/.bin/hexo generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matheus H. J. Saldanha",
