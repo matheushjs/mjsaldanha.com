@@ -8,7 +8,7 @@ Optimization is a class of problems in computer science that follows a few fixed
 
 For a start, consider that we have the domain space $\mathbb{R}^3$ of points in the space, and $T: \mathbb{R}^3 \rightarrow \mathbb{R}$ a function that returns the temperature of each point. We would like to **find the point of lowest temperature**.
 
-The domain being real prevents us from testing all possibilities. Lets then define $\epsilon := 0.001$ the smallest step to take in each $x, y, z$ coordinate. Also, let's arbitrarily define a starting point $x_0 := (-1e5, -1e5, -1e5)$. Finally, let's try every point of the form $P = x_0 + \epsilon(a,b,c)$ in a way that $P$ is always within the box from $x_0$ to $x_1 = -x_0 = (1e5, 1e5, 1e5)$. We will basically walk around this box of edge length $2e5$ in steps of $0.001$. Your code at this point might look like this:
+The domain being real prevents us from testing all possibilities. Lets then define $\epsilon := 0.001$ the smallest step to take in each $x, y, z$ coordinate. Also, let's arbitrarily define a starting point $x_0 := (-1e5, -1e5, -1e5)$. Finally, let's try every point of the form $P = x_0 + \epsilon \times (n_0,n_1,n_2)$ in a way that $P$ is always within the box from $x_0$ to $x_1 = -x_0 = (1e5, 1e5, 1e5)$. We will basically walk around this box of edge length $2e5$ in steps of $0.001$. Your code at this point might look like this:
 
 ```C
 	minTemp = DOUBLE_MAX; // Arbitrary high double
