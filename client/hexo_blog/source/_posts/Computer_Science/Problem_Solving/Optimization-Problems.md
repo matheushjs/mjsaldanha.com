@@ -2,6 +2,8 @@
 title: Optimization Problems
 date: 2017-10-14 22:27:20
 tags:
+- problem solving
+- computer science
 ---
 
 Optimization is a class of problems in computer science that follows a few fixed characteristics.
