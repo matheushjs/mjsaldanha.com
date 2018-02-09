@@ -1,0 +1,29 @@
+<!--
+Message Page
+  A page to display an information message to the user.
+
+Parameters:
+  'message': The message to display to the user. If it's empty, a standard message is displayed.
+-->
+
+<!DOCTYPE>
+
+<html>
+  <head>
+    <% include ../partials/head_common %>
+  </head>
+
+  <body>
+    <div>
+      <% include ../partials/navbar %>
+    </div>
+
+    <div class="jumbotron text-center">
+      <% if (typeof message !== 'undefined') { %>
+        <h2><%= message %></h2>
+      <% } else { %>
+        <h2>Oops, something went wrong!</h2>
+      <% } %>
+    </div>
+  </body>
+</html>

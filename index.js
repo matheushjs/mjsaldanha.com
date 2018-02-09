@@ -23,7 +23,7 @@ app.get("/aboutme", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.render("pages/notfound");
+  res.render("pages/message_page", {message: "Sorry! The requested page doesn't seem to exist."});
 });
 
 // Begin serving
