@@ -26,6 +26,10 @@ app.get("/login", (req, res) => {
   res.render("pages/login");
 });
 
+app.get("/signup", (req, res) => {
+  res.render("pages/signup");
+});
+
 app.get("*", (req, res) => {
   res.render("pages/message_page", {message: "Sorry! The requested page doesn't seem to exist."});
 });
