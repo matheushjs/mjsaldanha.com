@@ -21,38 +21,8 @@ app.post("*", (req, res, next) => {
   next();
 })
 
-// Set routes
-app.get("/", (req, res) => {
-  res.render("pages/index");
-});
-
-app.get("/calculator", (req, res) => {
-  res.render("pages/calculator");
-});
-
-app.get("/aboutme", (req, res) => {
-  res.render("pages/aboutme");
-});
-
-app.route("/login")
-  .get(function(req, res){
-    res.render("pages/login");
-  })
-  .post(function(req, res){
-    res.render("pages/login");
-  });
-
-app.route("/signup")
-  .get(function(req, res){
-    res.render("pages/signup");
-  })
-  .post(function(req, res){
-    res.render("pages/signup");
-  });
-
-app.get("*", (req, res) => {
-  res.render("pages/message_page", {message: "Sorry! The requested page doesn't seem to exist."});
-});
+// Set up routes
+app.use('/', require('./src/root_routes'));
 
 // Begin serving
 const port = process.env.PORT || 5000;
