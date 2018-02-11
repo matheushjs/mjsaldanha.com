@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -7,9 +8,20 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'client'));
 
+// Set source directories for serving
 app.use(express.static(path.join(__dirname, 'client')));
 app.use("/blog", express.static(path.join(__dirname, 'client/hexo_blog/public')))
 
+// Sets up body parsing
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.post("*", (req, res, next) => {
+  console.log('\n' + req.originalUrl);
+  console.log(JSON.stringify(req.body, null, 2));
+  next();
+})
+
+// Set routes
 app.get("/", (req, res) => {
   res.render("pages/index");
 });
@@ -22,13 +34,21 @@ app.get("/aboutme", (req, res) => {
   res.render("pages/aboutme");
 });
 
-app.get("/login", (req, res) => {
-  res.render("pages/login");
-});
+app.route("/login")
+  .get(function(req, res){
+    res.render("pages/login");
+  })
+  .post(function(req, res){
+    res.render("pages/login");
+  });
 
-app.get("/signup", (req, res) => {
-  res.render("pages/signup");
-});
+app.route("/signup")
+  .get(function(req, res){
+    res.render("pages/signup");
+  })
+  .post(function(req, res){
+    res.render("pages/signup");
+  });
 
 app.get("*", (req, res) => {
   res.render("pages/message_page", {message: "Sorry! The requested page doesn't seem to exist."});
