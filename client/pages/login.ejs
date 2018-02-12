@@ -1,3 +1,10 @@
+<!--
+Log-in page
+
+Options:
+  fail_msg: if this object exists, displays it as a failure message telling the user that login failed.
+-->
+
 <!DOCTYPE>
 
 <html>
@@ -27,6 +34,14 @@
         </div>
         
         <button type="submit" class="btn btn-default">Submit</button>
+
+        <% if(typeof fail_msg !== 'undefined'){ %>
+          <div class="col-sm-12">
+            <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
+              <strong>Info: </strong> <%= fail_msg %>
+            </div>
+          </div>
+        <% } %>
       </form>
     </div>
   </body>

@@ -16,12 +16,6 @@ app.use("/blog", express.static(path.join(__dirname, 'client/hexo_blog/public'))
 // Sets up body parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.all("*", (req, res, next) => {
-  console.log('\n' + req.originalUrl);
-  console.log(req.session);
-  console.log(JSON.stringify(req.body, null, 2));
-  next();
-})
 
 // Set up session handling
 app.use(session({
