@@ -25,7 +25,6 @@ router.route("/login")
     req.session.username = req.body.username;
     res.redirect("/");
   } else {
-    console.log("Failed to log in.");
     res.render("pages/login", {session: req.session, fail_msg: "User does not exist. Please, sign up."});
   }
 });

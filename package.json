@@ -15,7 +15,8 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "hexo-cli": "^1.0.4"
+    "hexo-cli": "^1.0.4",
+    "pg": "7.4.1"
   },
   "devDependencies": {},
   "repository": {
