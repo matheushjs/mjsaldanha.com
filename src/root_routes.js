@@ -21,11 +21,17 @@ router.route("/login")
 .post(function(req, res){
   if(req.session.username){
     res.render("pages/login", {session: req.session, fail_msg: "You're already logged in. Please log out first."});
-  } else if(auth.lookup(req.body.username)){
-    req.session.username = req.body.username;
-    res.redirect("/");
   } else {
-    res.render("pages/login", {session: req.session, fail_msg: "User does not exist. Please, sign up."});
+    auth.authenticate(req.body.username, req.body.password)
+    .then(authUser => {
+      if(!authUser){
+        res.render("pages/login", {session: req.session, fail_msg: "User does not exist. Please, sign up."});
+      } else {
+        req.session.username = req.body.username;
+        res.redirect("/");
+      }
+    })
+    .catch(err => console.log(err.stack));
   }
 });
 
@@ -39,14 +45,20 @@ router.route("/signup")
       message: "Please, log out of your current account before signing up.",
       session: req.session,
     });
-  } else if(auth.sign_up(req.body.username, req.body.password, req.body.name)){
-    req.session.username = req.body.username;
-    res.redirect("/");
   } else {
-    res.render("pages/signup", {
-      session: req.session,
-      fail_msg: "Username already exists. Please, pick another one.",
-    });
+    auth.sign_up(req.body.username, req.body.password, req.body.name)
+    .then(success => {
+      if(success){
+        req.session.username = req.body.username;
+        res.redirect("/");
+      } else {
+        res.render("pages/signup", {
+          session: req.session,
+          fail_msg: "Username already exists. Please, pick another one.",
+        });
+      }
+    })
+    .catch(err => console.log(err.stack));
   }
 });
 
