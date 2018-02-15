@@ -27,7 +27,8 @@ router.route("/login")
       if(!authUser){
         res.render("pages/login", {session: req.session, fail_msg: "User does not exist. Please, sign up."});
       } else {
-        req.session.username = req.body.username;
+        req.session.username = authUser.username;
+        req.session.callname = authUser.callname;
         res.redirect("/");
       }
     })
@@ -47,9 +48,10 @@ router.route("/signup")
     });
   } else {
     auth.sign_up(req.body.username, req.body.password, req.body.name)
-    .then(success => {
-      if(success){
-        req.session.username = req.body.username;
+    .then(authUser => {
+      if(authUser){
+        req.session.username = authUser.username;
+        req.session.callname = authUser.callname;
         res.redirect("/");
       } else {
         res.render("pages/signup", {

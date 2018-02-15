@@ -84,17 +84,17 @@ function add_user(user, pass, name){
 
 /* Attempts to sign up a user with username 'user', password 'pass' and callname 'name.'
  * First, this function checks if a user with given username exists. If it already exists, nothing is done
- *   and the function returns false.
+ *   and the function returns undefined.
  * If the given 'user' is available for usage, then we insert the new user in the database. Function returns
- *   true in this case.
+ *   a filled User in this case.
  */
 function sign_up(user, pass, name){
   return lookup(user)
     .then(found => {
       if(found){
-        return false;
+        return undefined;
       } else {
-        return add_user(user, pass, name).then(() => { return true });
+        return add_user(user, pass, name).then(() => { return new User(user, pass, name); });
       }
     })
 }
