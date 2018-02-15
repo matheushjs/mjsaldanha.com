@@ -4,7 +4,7 @@ Navbar partial
 
 Parameters:
   session: session object
-  session.username: Identifies an authenticated user. If empty, navbar is rendered for an unknown/unauthenticated user.
+  session.callname: Identifies an authenticated user. If empty, navbar is rendered for an unknown/unauthenticated user.
 -->
 
 <nav class="navbar navbar-default" style="margin-bottom: 0; border-radius: 0;">
@@ -35,11 +35,11 @@ Parameters:
 
       </ul>
         <ul class="nav navbar-nav navbar-right">
-        <% if(!session.username){ %>
+        <% if(!session.callname){ %>
           <li><a href="/signup">Sign Up</a></li>
           <li><a href="/login">Login</a></li>
         <% } else { %>
-          <span class="navbar-text">Hello, <%= session.username %></span>
+          <span class="navbar-text">Hello, <%= session.callname %></span>
           <li><a href="/logout">Logout</a></li>
         <% } %>
         </ul>
