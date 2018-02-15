@@ -22,6 +22,18 @@ router.route("/login")
   if(req.session.username){
     res.render("pages/login", {session: req.session, fail_msg: "You're already logged in. Please log out first."});
   } else {
+    // Validate/fix fields
+    // For username and password, we enforce that no trailing/leading whitespace exist
+    tUsername = req.body.username.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed username
+    tPassword = req.body.password.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password
+    if(tUsername.length !== req.body.username.length || tPassword.length !== req.body.password.length){
+      res.render("pages/login", {
+        session: req.session,
+        fail_msg: "Leading/trailing whitespace characters aren't allowed in the password and username fields.",
+      });
+      return;
+    }
+
     auth.authenticate(req.body.username, req.body.password)
     .then(authUser => {
       if(!authUser){
@@ -47,6 +59,21 @@ router.route("/signup")
       session: req.session,
     });
   } else {
+    // Validate/fix fields
+    // For callname, we just remove trailing/leading whitespace
+    req.body.name = req.body.name.replace(/^ */g, '').replace(/ *$/g, '');
+
+    // For username and password, we enforce that no trailing/leading whitespace exist
+    tUsername = req.body.username.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed username
+    tPassword = req.body.password.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password
+    if(tUsername.length !== req.body.username.length || tPassword.length !== req.body.password.length){
+      res.render("pages/signup", {
+        session: req.session,
+        fail_msg: "Please ensure there are no leading/trailing whitespace characters in your password and username.",
+      });
+      return;
+    }
+
     auth.sign_up(req.body.username, req.body.password, req.body.name)
     .then(authUser => {
       if(authUser){

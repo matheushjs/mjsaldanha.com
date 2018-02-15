@@ -5,6 +5,6 @@ TODO
 
 - Add some way to prevent multiple account creation
 
-- Add user management database
-
 - Add TLS encryption
+
+- Add possibility to manage one's account, changing password/name

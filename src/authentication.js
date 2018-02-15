@@ -1,8 +1,8 @@
 /* Authentication module
  * 
- * - No whitespace is to be allowed in usernames, passwords, callnames etc, because postgre fills
- *   these fields with whitespace, so we remove all whitespace from all strings retrieved from the
- *   database.
+ * - No leading/trailing whitespace is to be allowed in usernames, passwords, callnames etc,
+ *   because postgre fills these fields with whitespace, so we remove all whitespace from all
+ *   strings retrieved from the database.
  * 
  * - Since the pg module offers only functions that return Promises, we also implement functions
  *   using this pattern.
@@ -43,9 +43,9 @@ function lookup(user){
       if(!res.rows[0]) return undefined;
       else {
         // Remove whitespace
-        res.rows[0].username = res.rows[0].username.replace(/ /g, '');
-        res.rows[0].password = res.rows[0].password.replace(/ /g, '');
-        res.rows[0].callname = res.rows[0].callname.replace(/ /g, '');
+        res.rows[0].username = res.rows[0].username.replace(/^ */g, '').replace(/ *$/g, '');
+        res.rows[0].password = res.rows[0].password.replace(/^ */g, '').replace(/ *$/g, '');
+        res.rows[0].callname = res.rows[0].callname.replace(/^ */g, '').replace(/ *$/g, '');
 
         return new User(res.rows[0].username, res.rows[0].password, res.rows[0].callname);
       }
