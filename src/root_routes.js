@@ -1,6 +1,18 @@
 var router = require('express').Router();
 var auth = require('./authentication');
 
+// Handle user privilege variables in req.session
+router.use((req, res, next) => {
+  const special_users = ['walwal20', 'teste2'];
+  
+  if(req.session.username && special_users.indexOf(req.session.username) !== -1){
+    req.session.special_user = true;
+  } else {
+    req.session.special_user = false;
+  }
+  next();
+});
+
 // Set routes
 router.get("/", (req, res) => {
   res.render("pages/index", {session: req.session});
@@ -99,6 +111,14 @@ router.route("/logout")
     } else {
       res.redirect('/');
     }
+  });
+});
+
+router.get("/secret", (req, res) => {
+  if(req.session.special_user) res.render("pages/secret", {session: req.session});
+  else res.render("pages/message_page", {
+    session: req.session,
+    message: "Sorry, there is nothing special for you yet.",
   });
 });
 
