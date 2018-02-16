@@ -15,8 +15,6 @@ TODO
 
 - Add some form ot HTML prettification
 
-- Add secret area
-
 - Add administrator area
 
 - Add your IP tracker

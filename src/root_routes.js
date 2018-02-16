@@ -78,10 +78,20 @@ router.route("/signup")
     // For username and password, we enforce that no trailing/leading whitespace exist
     tUsername = req.body.username.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed username
     tPassword = req.body.password.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password
-    if(tUsername.length !== req.body.username.length || tPassword.length !== req.body.password.length){
+    tPassword2 = req.body.password2.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password2
+    if(tUsername.length !== req.body.username.length || tPassword.length !== req.body.password.length || tPassword2.length !== req.body.password2.length){
       res.render("pages/signup", {
         session: req.session,
         fail_msg: "Please ensure there are no leading/trailing whitespace characters in your password and username.",
+      });
+      return;
+    }
+
+    // Check if password match
+    if(req.body.password !== req.body.password2){
+      res.render("pages/signup", {
+        session: req.session,
+        fail_msg: "Passwords didn't match!",
       });
       return;
     }
