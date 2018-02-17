@@ -25,51 +25,116 @@ Options:
 
     <div class="container text-center">
       <form class="form-horizontal" method="post">
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="name">Name:</label>
+        <div class="form-group" id="callname_group">
+          <label class="control-label col-sm-2" for="callname">Name:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" name="name" placeholder="How would you like to be called?">
+            <input type="text" class="form-control" id="callname" name="callname" placeholder="How would you like to be called?" required>
           </div>
         </div>
       
-        <div class="form-group">
+        <div class="form-group" id="username_group">
           <label class="control-label col-sm-2" for="username">Username:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
           </div>
         </div>
         
-        <div class="form-group">
+        <div class="form-group" id="pwd_group">
           <label class="control-label col-sm-2" for="pwd">Password:</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter your password">
+            <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter your password" required>
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="pwd2_group">
           <label class="control-label col-sm-2" for="pwd2">Confirm Password:</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="pwd2" name="password2" placeholder="Enter your password again">
+            <input type="password" class="form-control" id="pwd2" name="password2" placeholder="Enter your password again" required>
           </div>
         </div>
         
         <div class="col-sm-12">
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-default" onclick="return validateForm();">Submit</button>
         </div>
 
-        <% if(typeof fail_msg !== 'undefined'){ %>
-          <div class="col-sm-12">
-            <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
-              <strong>Info: </strong> <%= fail_msg %>
-            </div>
+        <div class="col-sm-12" id="failure_box" style="<%= (typeof(fail_msg) === 'undefined') ? 'display: none;' : '' %>">
+          <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
+            <strong>Info: </strong> <span id="failure_msg"><%= typeof(fail_msg) === 'undefined' ? '' : fail_msg %></span>
           </div>
-        <% } %>
+        </div>
+
       </form>
     </div>
 
     <script>
+      function setFailMessage(str){
+        failure_msg = document.getElementById("failure_msg").innerHTML = str;
+        failure_box = document.getElementById("failure_box").style = "display: ;";
+      }
+
+      // Trim whitespace
+      function trimws(str){
+        return str.replace(/^ */g, '').replace(/ *$/g, '');
+      }
+
+      function setError(elementId){
+        // First clear all errors
+        var all = document.getElementsByClassName("form-group");
+        for(var i = 0; i < all.length; i++)
+          all[i].classList.remove("has-error");
+
+        // Then add error
+        document.getElementById(elementId).classList.add("has-error");
+      }
+
+      function validateForm(){
+        var callname = document.getElementById("callname").value;
+        var username = document.getElementById("username").value;
+        var pwd = document.getElementById("pwd").value;
+        var pwd2 = document.getElementById("pwd2").value;
+        
+        // For callname, we ensure it has at least 1 character and less than 128
+        if(trimws(callname).length <= 0 || trimws(callname).length > 128){
+          setFailMessage("Name must have at least 1 and at most 128 characters.");
+          document.getElementById("callname").value = trimws(callname);
+          setError("callname_group");
+          return false;
+        }
+
+        // For username, we ensure it doesn't have t/l whitespace and has 1-128 characters
+        if(trimws(username).length !== username.length){
+          setFailMessage("Username cannot contain trailing/leading whitespaces.");
+          setError("username_group");
+          return false;
+        } 
+        if(username.length <= 0 || username.length > 128){
+          setFailMessage("Username must have at least 1 and at most 128 characters.");
+          setError("username_group");
+          return false;
+        }
+
+        // For pwd, we ensure it doesn't have t/l whitespace and has 1-128 characters too
+        if(trimws(pwd).length !== pwd.length){
+          setFailMessage("Password cannot contain trailing/leading whitespaces.");
+          setError("pwd_group");
+          return false;
+        } 
+        if(pwd.length <= 0 || pwd.length > 128){
+          setFailMessage("Password must have at least 1 and at most 128 characters.");
+          setError("pwd_group");
+          return false;
+        }
+
+        // For pwd2, we just check if it's equal pwd
+        if(pwd2 !== pwd){
+          setFailMessage("Passwords don't match.");
+          setError("pwd2_group");
+          return false;
+        }
+      }
+
       window.onload = function(){
-        document.getElementById("name").focus();
+        document.getElementById("callname").focus();
       }
     </script>
   </body>
