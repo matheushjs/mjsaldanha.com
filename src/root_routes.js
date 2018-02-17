@@ -46,6 +46,15 @@ router.route("/login")
       return;
     }
 
+    // We also check their lengths
+    if(tUsername.length <= 0 || tUsername.length > 128 || tPassword.length <= 0 || tPassword.length > 128){
+      res.render("pages/login", {
+        session: req.session,
+        fail_msg: "Username and Password should have at least 1 and at most 128 characters.",
+      });
+      return;
+    }
+
     auth.authenticate(req.body.username, req.body.password)
     .then(authUser => {
       if(!authUser){
@@ -73,7 +82,15 @@ router.route("/signup")
   } else {
     // Validate/fix fields
     // For callname, we just remove trailing/leading whitespace
-    req.body.name = req.body.name.replace(/^ */g, '').replace(/ *$/g, '');
+    req.body.callname = req.body.callname.replace(/^ */g, '').replace(/ *$/g, '');
+    // We also check its length
+    if(req.body.callname.length <= 0 || req.body.callname.length > 128){
+      res.render("pages/signup", {
+        session: req.session,
+        fail_msg: "Name should have at least 1 and at most 128 characters.",
+      });
+      return;
+    }
 
     // For username and password, we enforce that no trailing/leading whitespace exist
     tUsername = req.body.username.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed username
@@ -83,6 +100,14 @@ router.route("/signup")
       res.render("pages/signup", {
         session: req.session,
         fail_msg: "Please ensure there are no leading/trailing whitespace characters in your password and username.",
+      });
+      return;
+    }
+    // We also check their lengths
+    if(tUsername.length <= 0 || tUsername.length > 128 || tPassword.length <= 0 || tPassword.length > 128){
+      res.render("pages/signup", {
+        session: req.session,
+        fail_msg: "Username and Password should have at least 1 and at most 128 characters.",
       });
       return;
     }
@@ -96,7 +121,7 @@ router.route("/signup")
       return;
     }
 
-    auth.sign_up(req.body.username, req.body.password, req.body.name)
+    auth.sign_up(req.body.username, req.body.password, req.body.callname)
     .then(authUser => {
       if(authUser){
         req.session.username = authUser.username;
