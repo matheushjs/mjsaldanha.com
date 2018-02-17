@@ -3,11 +3,7 @@ TODO
 
 - Add some way to prevent multiple account creation
 
-- Add TLS encryption
-
 - Add possibility to manage one's account, changing password/name
-
-- On signup, add a second password field for confirmation.
 
 - Add client-side validation for fields on sign up and log in
 
@@ -20,3 +16,5 @@ TODO
 - Add your IP tracker
 
 - Remove hexo blog
+
+- Add unique ID for users and use them to multiplex users into their secret pages
