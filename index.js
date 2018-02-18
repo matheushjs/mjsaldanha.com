@@ -27,10 +27,12 @@ app.use(session({
   saveUninitialized: false,
 }));
 
+/*
 app.use((req, res, next) => {
   console.log(req.url);
   next();
 });
+*/
 
 // Set up routes
 app.use('/', require('./src/root_routes'));
