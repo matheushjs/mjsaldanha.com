@@ -10,7 +10,10 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'client'));
 
 // Set source directories for serving
-app.use(express.static(path.join(__dirname, 'client')));
+app.use('/images', express.static(path.join(__dirname, 'client/images')));
+app.use('/pages', express.static(path.join(__dirname, 'client/pages')));
+app.use('/scripts', express.static(path.join(__dirname, 'client/scripts')));
+app.use('/styles', express.static(path.join(__dirname, 'client/styles')));
 app.use("/blog", express.static(path.join(__dirname, 'client/hexo_blog/public')))
 
 // Sets up body parsing
@@ -23,6 +26,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+
+app.use((req, res, next) => {
+  console.log(req.url);
+  next();
+});
 
 // Set up routes
 app.use('/', require('./src/root_routes'));
