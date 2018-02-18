@@ -14,3 +14,5 @@ TODO
 - Remove hexo blog
 
 - Add unique ID for users and use them to multiplex users into their secret pages
+
+- Add expiration date to session, or some other form of security measure

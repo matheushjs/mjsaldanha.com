@@ -1,17 +1,16 @@
 var router = require('express').Router();
 var auth = require('./authentication');
+var secret_routes = require("./secret_routes");
 
 // Handle user privilege variables in req.session
 router.use((req, res, next) => {
-  const special_users = ['walwal20', 'teste2'];
-  
-  if(req.session.username && special_users.indexOf(req.session.username) !== -1){
+  if(req.session.username && secret_routes.user_has_secret(req.session.userid)){
     req.session.special_user = true;
   } else {
     req.session.special_user = false;
   }
   next();
-});
+});  
 
 // Set routes
 router.get("/", (req, res) => {
@@ -60,6 +59,7 @@ router.route("/login")
       if(!authUser){
         res.render("pages/login", {session: req.session, fail_msg: "User does not exist. Please, sign up."});
       } else {
+        req.session.userid = authUser.id;
         req.session.username = authUser.username;
         req.session.callname = authUser.callname;
         res.redirect("/");
@@ -124,6 +124,7 @@ router.route("/signup")
     auth.sign_up(req.body.username, req.body.password, req.body.callname)
     .then(authUser => {
       if(authUser){
+        req.session.userid = authUser.id;
         req.session.username = authUser.username;
         req.session.callname = authUser.callname;
         res.redirect("/");
@@ -149,14 +150,9 @@ router.route("/logout")
   });
 });
 
-router.get("/secret", (req, res) => {
-  if(req.session.special_user) res.render("pages/secret", {session: req.session});
-  else res.render("pages/message_page", {
-    session: req.session,
-    message: "Sorry, there is nothing special for you yet.",
-  });
-});
+router.use("/secret", secret_routes.router);
 
+// Set up failsafe
 router.get("*", (req, res) => {
   res.render("pages/message_page", {
     message: "Sorry! The requested page doesn't seem to exist.",
