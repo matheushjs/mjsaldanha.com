@@ -22,34 +22,48 @@ const client = new Client({
 client.connect();
 
 // Table schemas
-// client.query("CREATE TABLE users(username CHAR(128) PRIMARY KEY NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))");
+// client.query("CREATE TABLE users(id BIGSERIAL PRIMARY KEY, username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))");
 
 /* User object to represent a user in memory.
  * 'hashpass' receives the hash value stored in the database for the password.
  */
-function User(username, hashpass, callname){
+function User(id, username, hashpass, callname){
+  this.id = Number(id);
   this.username = username;
   this.hashpass = hashpass;
   this.callname = callname;
 }
 
-/* Queries the database for user with username 'user'.
+/* Queries the database for an user.
+ * The argument should be an object with only 1 of the following attributes:
+ *   - username: for looking up an user by their username
+ *   - id: for looking up an user by their id
  * Returns undefined if user was not found.
  * Returns filled User object if found.
  */
-function lookup(user){
-  return client.query("SELECT * FROM users WHERE username = $1", [user])
-    .then(res => {
-      if(!res.rows[0]) return undefined;
-      else {
-        // Remove whitespace
-        res.rows[0].username = res.rows[0].username.replace(/^ */g, '').replace(/ *$/g, '');
-        res.rows[0].password = res.rows[0].password.replace(/^ */g, '').replace(/ *$/g, '');
-        res.rows[0].callname = res.rows[0].callname.replace(/^ */g, '').replace(/ *$/g, '');
+function lookup(obj){
+  var promise;
+  if(obj.username){
+    promise = client.query("SELECT * FROM users WHERE username = $1", [obj.username]);
+  } else if(obj.id){
+    promise = client.query("SELECT * FROM users WHERE id = $1", [obj.id]);
+  } else throw Error("Object given as argument doesn't have recognizable attributes.");
 
-        return new User(res.rows[0].username, res.rows[0].password, res.rows[0].callname);
-      }
-    })
+  // Create user after query is done
+  promise = promise.then(res => {
+    if(!res.rows[0]){
+      return undefined;
+    } else {
+      // Remove whitespace
+      res.rows[0].username = res.rows[0].username.replace(/^ */g, '').replace(/ *$/g, '');
+      res.rows[0].password = res.rows[0].password.replace(/^ */g, '').replace(/ *$/g, '');
+      res.rows[0].callname = res.rows[0].callname.replace(/^ */g, '').replace(/ *$/g, '');
+
+      return new User(res.rows[0].id, res.rows[0].username, res.rows[0].password, res.rows[0].callname);
+    }
+  });
+  
+  return promise;
 }
 
 /* Attempts to authenticate user with username 'user' and textual password 'pass'.
@@ -57,7 +71,7 @@ function lookup(user){
  * If it succeeds, returns a filled User object.
  */
 function authenticate(user, pass){
-  return lookup(user)
+  return lookup({username: user})
     .then(recUser => {
       if(!recUser) return undefined;
 
@@ -79,7 +93,8 @@ function add_user(user, pass, name){
   // TODO: Validation of input here or on root_routes
   const secret = crypto.randomBytes(keyBytes).toString('hex');
   const hash = crypto.createHmac('sha256', secret).update(pass).digest('hex');
-  return client.query("INSERT INTO users(username, password, callname) VALUES ($1, $2, $3)", [user, secret + hash, name]);
+  return client.query("INSERT INTO users(username, password, callname) VALUES ($1, $2, $3)", [user, secret + hash, name])
+    .then(() => { return lookup({username: user}) });
 }
 
 /* Attempts to sign up a user with username 'user', password 'pass' and callname 'name.'
@@ -89,12 +104,14 @@ function add_user(user, pass, name){
  *   a filled User in this case.
  */
 function sign_up(user, pass, name){
-  return lookup(user)
+  return lookup({username: user})
     .then(found => {
       if(found){
         return undefined;
       } else {
-        return add_user(user, pass, name).then(() => { return new User(user, pass, name); });
+        return add_user(user, pass, name).then(authUser => {
+          return new User(authUser.id, authUser.username, authUser.password, authUser.callname);
+        });
       }
     })
 }
