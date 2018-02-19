@@ -16,7 +16,7 @@ function user_has_secret(userid){
 // For the root URL, we unconditionally redirect the user to their index.
 // If it doesn't exist, let the other middlewares handle it.
 router.get("/", (req, res) => {
-  res.redirect("secret/" + (req.session.userid || "not_logged_in"));
+  res.redirect("/secret/" + (req.session.userid || "not_logged_in"));
 });
 
 // Middleware for always checking if the user is authorized
