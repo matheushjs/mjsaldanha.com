@@ -230,4 +230,18 @@ router.route("/logout")
 
 router.use("/secret", secret_routes.router);
 
+var saved_ip = "No IP Yet!";
+router.route("/myip")
+.get((req, res) => {
+  res.render("pages/message_page", {
+    message: saved_ip,
+    session: req.session,
+  });
+})
+.post((req, res) => {
+  if(req.body.ip)
+    saved_ip = req.body.ip;
+  res.send("Ok");
+})
+
 module.exports = router
