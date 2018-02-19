@@ -4,7 +4,7 @@ var fs = require('fs');
 
 // Returns whether user with id 'id' has a secret page.
 function user_has_secret(userid){
-  dirs = fs.readdirSync('./client/secret_pages');
+  dirs = fs.readdirSync('./client/secret');
 
   for(var i = 0; i < dirs.length; i++){
     dirs[i] = Number(dirs[i]);
@@ -36,7 +36,7 @@ router.use((req, res, next) => {
 
 // After the user is authenticated by previous middleware, we serve the desired page.
 router.get("*", (req, res) => {
-  res.render("secret_pages" + req.url, {session: req.session});
+  res.render("secret" + req.url, {session: req.session});
 });
 
 module.exports = {
