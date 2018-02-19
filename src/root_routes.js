@@ -230,18 +230,19 @@ router.route("/logout")
 
 router.use("/secret", secret_routes.router);
 
-var saved_ip = "No IP Yet!";
 router.route("/myip")
 .get((req, res) => {
-  res.render("pages/message_page", {
-    message: saved_ip,
-    session: req.session,
-  });
+  auth.myip_get().then(myip => {
+    res.render("pages/message_page", { message: myip.replace(/ /g, ''), session: req.session });
+  }).catch(err => console.log(err.stack));
 })
 .post((req, res) => {
-  if(req.body.ip)
-    saved_ip = req.body.ip;
-  res.send("Ok");
+  if(req.body.ip && req.body.ip.length <= 20){
+    auth.myip_insert(req.body.ip).catch(err => console.log(err.stack));
+    res.send("Ok");
+  } else {
+    res.send("Error");
+  }
 })
 
 module.exports = router
