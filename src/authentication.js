@@ -90,7 +90,6 @@ function authenticate(user, pass){
  * This function does not check whether the user already exists or not. The caller must make this check.
  */
 function add_user(user, pass, name){
-  // TODO: Validation of input here or on root_routes
   const secret = crypto.randomBytes(keyBytes).toString('hex');
   const hash = crypto.createHmac('sha256', secret).update(pass).digest('hex');
   return client.query("INSERT INTO users(username, password, callname) VALUES ($1, $2, $3)", [user, secret + hash, name])
@@ -116,8 +115,53 @@ function sign_up(user, pass, name){
     })
 }
 
+/* Updates user information in the table for user with ID 'user_id'.
+ * The only information available for updating are the password and the callname.
+ * Password should given in textual form, we encrypt it.
+ * This function always returns the filled User object. Always remember to catch the exception of the promise.
+ * 'user' should be an object with at least the following attributes:
+ *   - id: the id of the user to update (mandatory)
+ *   - callname: the new callname of the user (optional)
+ *   - password: the new textual password of the user (optional)
+ */
+function update_user(user){
+  if(!user.id) throw Error("user must have an id");
+  if(!user.callname && !user.password) return lookup({id: user_id});
+
+  var columns = [];
+  var values = [];
+
+  // Add callname to the query
+  if(user.callname){
+    columns.push("callname");
+    values.push(user.callname);
+  }
+
+  // Add password to the query
+  if(user.password){
+    const secret = crypto.randomBytes(keyBytes).toString('hex');
+    const hash = crypto.createHmac('sha256', secret).update(user.password).digest('hex');
+    columns.push("password");
+    values.push(secret + hash);
+  }
+
+  // Build query
+  var placeholders = ["$1", "$2", "$3"];
+  var query = "UPDATE users SET ";
+  query += "(" + columns.join(',') + ") = ";
+  query += "(" + placeholders.slice(0, columns.length).join(',') + ") ";
+  query += "WHERE id = " + placeholders[columns.length];
+
+  values.push(user.id);
+  return client.query(query, values)
+    .then(() => { return lookup({id: user.id}); });
+}
+
+
+
 module.exports = {
   authenticate: authenticate,
   lookup: lookup,
   sign_up: sign_up,
+  update_user: update_user,
 }

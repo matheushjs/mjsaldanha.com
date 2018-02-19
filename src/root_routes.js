@@ -148,9 +148,6 @@ router.route('/account')
 .post((req, res) => {
   if(!req.session.userid){ res.send("Must be logged in to perform this operation."); return; }
 
-  console.log(req.body);
-  console.log(req.session);
-
   // Validate/fix fields
   // For callname, we just remove trailing/leading whitespace
   req.body.callname = req.body.callname.replace(/^ */g, '').replace(/ *$/g, '');
@@ -181,7 +178,43 @@ router.route('/account')
     }
   }
   
-  res.send("Sorry, I haven't implemented this feature yet.");
+  // Now for matters that involve the database
+  if(!req.body.cur_password){
+    // Only callname to update
+    auth.update_user({id: req.session.userid, callname: req.body.callname})
+    .then(user => {
+      // Update session
+      req.session.callname = user.callname;
+
+      // Signalize a success
+      res.send('');
+    })
+    .catch(err => {
+      res.send('Sorry, something went wrong in our database. Try again later.');
+      console.log(err.stack);
+    });
+  } else {
+    auth.authenticate(req.session.username, req.body.cur_password)
+    .then(user => {
+      if(!user){
+        res.send("Wrong current password!");
+        return;
+      }
+      
+      return auth.update_user({id: req.session.userid, callname: req.body.callname, password: req.body.password});
+    })
+    .then(user => {
+      // Update session
+      req.session.callname = user.callname;
+
+      // Signalize a success
+      res.send("");
+    })
+    .catch(err => {
+      res.send('Sorry, something went wrong in our database. Try again later.');
+      console.log(err.stack);
+    });
+  }
 })
 
 router.route("/logout")
