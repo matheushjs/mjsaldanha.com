@@ -146,9 +146,9 @@ router.route('/account')
   res.render("pages/account", {session: req.session});
 })
 .post((req, res) => {
-  if(!req.session.userid){ res.redirect("/"); return; }
+  if(!req.session.userid){ res.send("Must be logged in to perform this operation."); return; }
 
-  res.render("pages/account", {session: req.session, fail_msg: "Sorry, I haven't implemented this feature yet."});
+  res.send("Sorry, I haven't implemented this feature yet.");
 })
 
 router.route("/logout")

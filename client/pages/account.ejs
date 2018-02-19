@@ -1,9 +1,5 @@
 <!--
 Account Management page
-
-Parameters:
-  fail_msg: if this object exists, displays it as a failure message telling the user that account editing failed.
-  session.callname: current callname of the user
 -->
 
 <!DOCTYPE>
@@ -60,21 +56,38 @@ Parameters:
           <button type="submit" class="btn btn-default" onclick="return validateForm();">Finish Editing</button>
         </div>
 
-        <div class="col-sm-12" id="failure_box" style="<%= (typeof(fail_msg) === 'undefined') ? 'display: none;' : '' %>">
+        <div class="col-sm-12" id="failure_box" style="display: none;">
           <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
-            <strong>Info: </strong> <span id="failure_msg"><%= typeof(fail_msg) === 'undefined' ? '' : fail_msg %></span>
+            <strong>Info: </strong> <span id="failure_msg"></span>
           </div>
         </div>
 
+        <div class="col-sm-12" id="success_box" style="display: none;">
+          <div class="alert alert-success" style="color: darkblue; width: 50%; margin: 30px auto 0;">
+            <strong>Info: </strong> <span id="success_msg"></span>
+          </div>
+        </div>
       </form>
     </div>
 
     <script>
         function setFailMessage(str){
-          failure_msg = document.getElementById("failure_msg").innerHTML = str;
-          failure_box = document.getElementById("failure_box").style = "display: ;";
+          document.getElementById("failure_msg").innerHTML = str;
+          document.getElementById("failure_box").style = "display: ;";
+          document.getElementById("success_box").style = "display: none;";
         }
   
+        function alertSuccess(){
+          document.getElementById("success_msg").innerHTML = "Your changes have been successfully recorded.";
+          document.getElementById("success_box").style = "display: ;";
+          document.getElementById("failure_box").style = "display: none;";
+
+          // Set all form fields to blank
+          var all = document.getElementsByClassName("form-control");
+          for(var i = 0; i < all.length; i++)
+            all[i].value = '';
+        }
+
         // Trim whitespace
         function trimws(str){
           return str.replace(/^ */g, '').replace(/ *$/g, '');
@@ -90,6 +103,22 @@ Parameters:
           document.getElementById(elementId).classList.add("has-error");
         }
   
+        function sendForm(data) {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function(){
+            if (this.readyState == 4){
+              if(this.responseText != ''){
+                setFailMessage(this.responseText);
+              } else {
+                alertSuccess();
+              }
+            }
+          };
+          xhttp.open("POST", "/account", true);
+          xhttp.setRequestHeader('Content-type', 'application/json');
+          xhttp.send(JSON.stringify(data));
+        }
+
         function validateForm(){
           var callname = document.getElementById("callname").value;
           var curpwd = document.getElementById("curpwd").value;
@@ -105,7 +134,12 @@ Parameters:
           }
   
           // If user didn't touch password fields, we end validation here.
-          if(curpwd === '') return true;
+          if(curpwd === ''){
+            sendForm({
+              callname: callname,
+            })
+            return false;
+          }
 
           // For pwd, we ensure it doesn't have t/l whitespace and has 1-128 characters too
           if(trimws(pwd).length !== pwd.length){
@@ -125,6 +159,14 @@ Parameters:
             setError("pwd2_group");
             return false;
           }
+
+          sendForm({
+            callname: callname,
+            cur_password: curpwd,
+            password: pwd,
+            password2: pwd2
+          });
+          return false;
         }
       </script>
   </body>
