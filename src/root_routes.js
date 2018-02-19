@@ -139,6 +139,18 @@ router.route("/signup")
   }
 });
 
+router.route('/account')
+.get((req, res) => {
+  if(!req.session.userid){ res.redirect("/"); return; }
+
+  res.render("pages/account", {session: req.session});
+})
+.post((req, res) => {
+  if(!req.session.userid){ res.redirect("/"); return; }
+
+  res.render("pages/account", {session: req.session, fail_msg: "Sorry, I haven't implemented this feature yet."});
+})
+
 router.route("/logout")
 .get(function(req, res){
   req.session.destroy(function(err) {

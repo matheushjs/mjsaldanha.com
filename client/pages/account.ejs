@@ -1,0 +1,131 @@
+<!--
+Account Management page
+
+Parameters:
+  fail_msg: if this object exists, displays it as a failure message telling the user that account editing failed.
+  session.callname: current callname of the user
+-->
+
+<!DOCTYPE>
+
+<html>
+  <head>
+    <% include ../partials/head_common %>
+  </head>
+
+  <body>
+    <div>
+      <% include ../partials/navbar %>
+    </div>
+
+    <div class="jumbotron">
+      <div class="text-center container">
+        <h2>Edit Account</h2>
+      </div>
+    </div>
+
+    <div class="container text-center">
+      <form class="form-horizontal" method="post">
+
+        <div class="form-group" id="callname_group">
+          <label class="control-label col-sm-2" for="callname">Name:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="callname" name="callname" value='<%= session.callname %>' placeholder="How would you like to be called?">
+          </div>
+        </div>
+
+        <div class="form-group" id="curpwd_group">
+          <label class="control-label col-sm-2" for="curpwd">Current Password:</label>
+          <div class="col-sm-10">
+            <input style="background-color: lightgrey;" type="password" class="form-control" id="curpwd" name="cur_password" placeholder="Enter your current password"
+                  onfocus="this.style=''; ['pwd','pwd2'].filter(id => document.getElementById(id).disabled=false);">
+          </div>
+        </div>
+
+        <div class="form-group" id="pwd_group">
+          <label class="control-label col-sm-2" for="pwd">New Password:</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter new password" disabled>
+          </div>
+        </div>
+
+        <div class="form-group" id="pwd2_group">
+          <label class="control-label col-sm-2" for="pwd2">Confirm New Password:</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="pwd2" name="password2" placeholder="Enter new password again" disabled>
+          </div>
+        </div>
+        
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-default" onclick="return validateForm();">Finish Editing</button>
+        </div>
+
+        <div class="col-sm-12" id="failure_box" style="<%= (typeof(fail_msg) === 'undefined') ? 'display: none;' : '' %>">
+          <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
+            <strong>Info: </strong> <span id="failure_msg"><%= typeof(fail_msg) === 'undefined' ? '' : fail_msg %></span>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <script>
+        function setFailMessage(str){
+          failure_msg = document.getElementById("failure_msg").innerHTML = str;
+          failure_box = document.getElementById("failure_box").style = "display: ;";
+        }
+  
+        // Trim whitespace
+        function trimws(str){
+          return str.replace(/^ */g, '').replace(/ *$/g, '');
+        }
+  
+        function setError(elementId){
+          // First clear all errors
+          var all = document.getElementsByClassName("form-group");
+          for(var i = 0; i < all.length; i++)
+            all[i].classList.remove("has-error");
+  
+          // Then add error
+          document.getElementById(elementId).classList.add("has-error");
+        }
+  
+        function validateForm(){
+          var callname = document.getElementById("callname").value;
+          var curpwd = document.getElementById("curpwd").value;
+          var pwd = document.getElementById("pwd").value;
+          var pwd2 = document.getElementById("pwd2").value;
+          
+          // For callname, we ensure it has at least 1 character and less than 128
+          if(trimws(callname).length <= 0 || trimws(callname).length > 128){
+            setFailMessage("Name must have at least 1 and at most 128 characters.");
+            document.getElementById("callname").value = trimws(callname);
+            setError("callname_group");
+            return false;
+          }
+  
+          // If user didn't touch password fields, we end validation here.
+          if(curpwd === '') return true;
+
+          // For pwd, we ensure it doesn't have t/l whitespace and has 1-128 characters too
+          if(trimws(pwd).length !== pwd.length){
+            setFailMessage("Password cannot contain trailing/leading whitespaces.");
+            setError("pwd_group");
+            return false;
+          } 
+          if(pwd.length <= 0 || pwd.length > 128){
+            setFailMessage("Password must have at least 1 and at most 128 characters.");
+            setError("pwd_group");
+            return false;
+          }
+  
+          // For pwd2, we just check if it's equal pwd
+          if(pwd2 !== pwd){
+            setFailMessage("Passwords don't match.");
+            setError("pwd2_group");
+            return false;
+          }
+        }
+      </script>
+  </body>
+</html>
