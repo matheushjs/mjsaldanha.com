@@ -9,13 +9,6 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'client'));
 
-// Set source directories for serving
-app.use('/images', express.static(path.join(__dirname, 'client/images')));
-app.use('/pages', express.static(path.join(__dirname, 'client/pages')));
-app.use('/scripts', express.static(path.join(__dirname, 'client/scripts')));
-app.use('/styles', express.static(path.join(__dirname, 'client/styles')));
-app.use("/blog", express.static(path.join(__dirname, 'client/hexo_blog/public')))
-
 // Sets up body parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -36,6 +29,18 @@ app.use((req, res, next) => {
 
 // Set up routes
 app.use('/', require('./src/root_routes'));
+
+// Set for serving static files (must come after setting up our routes)
+app.use(express.static(path.join(__dirname, 'client')));
+app.use("/blog", express.static(path.join(__dirname, 'client/hexo_blog/public')))
+
+// Set up failsafe (must come after all other routes)
+app.get("*", (req, res) => {
+  res.render("pages/message_page", {
+    message: "Sorry! The requested page doesn't seem to exist.",
+    session: req.session,
+  });
+});
 
 // Begin serving
 const port = process.env.PORT || 5000;

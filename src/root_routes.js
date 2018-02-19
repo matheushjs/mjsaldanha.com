@@ -10,7 +10,7 @@ router.use((req, res, next) => {
     req.session.special_user = false;
   }
   next();
-});  
+});
 
 // Set routes
 router.get("/", (req, res) => {
@@ -151,13 +151,5 @@ router.route("/logout")
 });
 
 router.use("/secret", secret_routes.router);
-
-// Set up failsafe
-router.get("*", (req, res) => {
-  res.render("pages/message_page", {
-    message: "Sorry! The requested page doesn't seem to exist.",
-    session: req.session,
-  });
-});
 
 module.exports = router
