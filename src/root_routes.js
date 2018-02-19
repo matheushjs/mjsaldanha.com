@@ -93,9 +93,9 @@ router.route("/signup")
     }
 
     // For username and password, we enforce that no trailing/leading whitespace exist
-    tUsername = req.body.username.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed username
-    tPassword = req.body.password.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password
-    tPassword2 = req.body.password2.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password2
+    var tUsername = req.body.username.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed username
+    var tPassword = req.body.password.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password
+    var tPassword2 = req.body.password2.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password2
     if(tUsername.length !== req.body.username.length || tPassword.length !== req.body.password.length || tPassword2.length !== req.body.password2.length){
       res.render("pages/signup", {
         session: req.session,
@@ -148,6 +148,39 @@ router.route('/account')
 .post((req, res) => {
   if(!req.session.userid){ res.send("Must be logged in to perform this operation."); return; }
 
+  console.log(req.body);
+  console.log(req.session);
+
+  // Validate/fix fields
+  // For callname, we just remove trailing/leading whitespace
+  req.body.callname = req.body.callname.replace(/^ */g, '').replace(/ *$/g, '');
+  // We also check its length
+  if(req.body.callname.length <= 0 || req.body.callname.length > 128){
+    res.send("Name should have at least 1 and at most 128 characters.");
+    return;
+  }
+
+  // For the new passwords, we enforce that no trailing/leading whitespace exist
+  if(req.body.cur_password){
+    var tPassword = req.body.password.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password
+    var tPassword2 = req.body.password2.replace(/^ */g, '').replace(/ *$/g, ''); // trimmed password2
+    if(tPassword.length !== req.body.password.length || tPassword2.length !== req.body.password2.length){
+      res.send("Please ensure there are no leading/trailing whitespace characters in your new password.");
+      return;
+    }
+    // We also check their lengths
+    if(tPassword.length <= 0 || tPassword.length > 128){
+      res.send("Password should have at least 1 and at most 128 characters.");
+      return;
+    }
+
+    // Check if password match
+    if(req.body.password !== req.body.password2){
+      res.send("Passwords don't match!");
+      return;
+    }
+  }
+  
   res.send("Sorry, I haven't implemented this feature yet.");
 })
 
