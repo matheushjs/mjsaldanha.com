@@ -128,12 +128,13 @@ function update_user(user){
   if(!user.id) throw Error("user must have an id");
   if(!user.callname && !user.password) return lookup({id: user_id});
 
-  var columns = [];
+  var setEntries = [];
   var values = [];
+  var placeholders = ["$1", "$2", "$3", "$4", "$5"];
 
   // Add callname to the query
   if(user.callname){
-    columns.push("callname");
+    setEntries.push(" callname = " + placeholders.shift() + " ");
     values.push(user.callname);
   }
 
@@ -141,16 +142,13 @@ function update_user(user){
   if(user.password){
     const secret = crypto.randomBytes(keyBytes).toString('hex');
     const hash = crypto.createHmac('sha256', secret).update(user.password).digest('hex');
-    columns.push("password");
+    setEntries.push(" password = " + placeholders.shift() + " ");
     values.push(secret + hash);
   }
 
-  // Build query
-  var placeholders = ["$1", "$2", "$3"];
-  var query = "UPDATE users SET ";
-  query += "(" + columns.join(',') + ") = ";
-  query += "(" + placeholders.slice(0, columns.length).join(',') + ") ";
-  query += "WHERE id = " + placeholders[columns.length];
+  var query = "UPDATE users ";
+  query += "SET " + setEntries.join(',') + " ";
+  query += "WHERE id = " + placeholders.shift() + " ";
 
   values.push(user.id);
   return client.query(query, values)
