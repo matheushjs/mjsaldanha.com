@@ -109,7 +109,7 @@ function sign_up(user, pass, name){
         return undefined;
       } else {
         return add_user(user, pass, name).then(authUser => {
-          return new User(authUser.id, authUser.username, authUser.password, authUser.callname);
+          return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);
         });
       }
     })
