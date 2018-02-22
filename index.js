@@ -32,7 +32,6 @@ app.use('/', require('./src/root_routes'));
 
 // Set for serving static files (must come after setting up our routes)
 app.use(express.static(path.join(__dirname, 'client')));
-app.use("/blog", express.static(path.join(__dirname, 'client/hexo_blog/public')))
 
 // Set up failsafe (must come after all other routes)
 app.get("*", (req, res) => {
