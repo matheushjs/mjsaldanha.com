@@ -10,6 +10,7 @@ Options:
 <html>
   <head>
     <% include ../partials/head_common %>
+    <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
   </head>
 
   <body>
@@ -53,6 +54,10 @@ Options:
           </div>
         </div>
         
+        <div class="form-group">
+          <div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LewBUgUAAAAADgVXdjSgymYSwI7lQsLF1mDgryY"></div>
+        </div>
+
         <div class="col-sm-12">
           <button type="submit" class="btn btn-default" onclick="return validateForm();">Submit</button>
         </div>
@@ -62,7 +67,6 @@ Options:
             <strong>Info: </strong> <span id="failure_msg"><%= typeof(fail_msg) === 'undefined' ? '' : fail_msg %></span>
           </div>
         </div>
-
       </form>
     </div>
 

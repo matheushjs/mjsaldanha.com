@@ -1,6 +1,9 @@
 var router = require('express').Router();
+var reCAPTCHA = require('recaptcha2');
 var auth = require('./authentication');
 var secret_routes = require("./secret_routes");
+
+recaptcha = new reCAPTCHA(require('./private_code').recaptcha_keys);
 
 // Handle user privilege variables in req.session
 router.use((req, res, next) => {
@@ -121,7 +124,15 @@ router.route("/signup")
       return;
     }
 
-    auth.sign_up(req.body.username, req.body.password, req.body.callname)
+    recaptcha.validate(req.body['g-recaptcha-response'])
+    .catch(err => {
+      res.render("pages/signup", {
+        session: req.session,
+        fail_msg: "ReCAPTCHA validation failed. Please try again.",
+      });
+      return Promise.reject(undefined);
+    })
+    .then(() => { return auth.sign_up(req.body.username, req.body.password, req.body.callname); })
     .then(authUser => {
       if(authUser){
         req.session.userid = authUser.id;
@@ -135,7 +146,7 @@ router.route("/signup")
         });
       }
     })
-    .catch(err => console.log(err.stack));
+    .catch(err => err ? console.log(err.stack) : "");
   }
 });
 

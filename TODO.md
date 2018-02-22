@@ -7,6 +7,4 @@ TODO
 
 - Add administrator area
 
-- Remove hexo blog
-
 - Add expiration date to session, or some other form of security measure
