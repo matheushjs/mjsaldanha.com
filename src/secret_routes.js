@@ -54,12 +54,15 @@ router.use((req, res, next) => {
 router.get("*", (req, res, next) => {
   var info = path.parse(req.url);
 
+  // If URL isn't any of the following extensions
   if(['', '.html', '.ejs'].indexOf(info.ext) == -1)
     return next();
 
+  // If extension is blank, assume it is .ejs
   if(info.ext == '')
     req.url += '.ejs'
 
+  // Try to serve the file, else next()
   res.render(path.join("secret" + req.url), {session: req.session}, function(err, html){
     if(err){
       return next(); // By doing next, we will probably fall into the 'page doesnt exist' middleware on index.js
@@ -68,6 +71,9 @@ router.get("*", (req, res, next) => {
     }
   });
 });
+
+// Then we serve all other files statically
+router.use(express.static(path.resolve('./client/secret')));
 
 module.exports = {
   router,
