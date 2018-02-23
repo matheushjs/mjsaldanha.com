@@ -155,6 +155,26 @@ function update_user(user){
     .then(() => { return lookup({id: user.id}); });
 }
 
+/* Returns an array with all users in the database.
+ */
+function all_users(){
+  return client.query("SELECT * FROM users")
+    .then(res => {
+      var users = []
+      for(var i = 0; i < res.rows.length; i++){
+        var row = res.rows[i];
+
+        // Remove whitespace
+        row.username = row.username.replace(/^ */g, '').replace(/ *$/g, '');
+        row.password = row.password.replace(/^ */g, '').replace(/ *$/g, '');
+        row.callname = row.callname.replace(/^ */g, '').replace(/ *$/g, '');
+
+        users.push(new User(row.id, row.username, row.password, row.callname));
+      }
+      return users;
+    });
+}
+
 function myip_get(){
   return client.query("SELECT ip FROM myip WHERE id = 1").then(res => { return res.rows[0].ip; });
 }
@@ -168,6 +188,7 @@ module.exports = {
   lookup: lookup,
   sign_up: sign_up,
   update_user: update_user,
+  all_users: all_users,
   myip_get: myip_get,
   myip_insert: myip_insert,
 }

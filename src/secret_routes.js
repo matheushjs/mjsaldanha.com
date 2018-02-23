@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router();
 var fs = require('fs');
 var path = require('path');
+var auth = require('./authentication');
 
 // Returns whether user with id 'id' has a secret page.
 function user_has_secret(userid){
@@ -37,15 +38,19 @@ router.use((req, res, next) => {
 
 // Middleware for providing req.session with data specific to each user
 router.use((req, res, next) => {
-  req.session.user_data = undefined;
+  if(req.session.user_data) return next();
+  req.session.user_data = {}
 
   if(req.session.username === 'walwal20'){
-    if(req.url === '/' + req.session.userid + '/users_list'){
-      req.session.user_data = "";
-    }
+    auth.all_users()
+    .then(users => {
+      req.session.user_data.all_users = users.sort((a, b) => { return a.id > b.id; });
+      return next();
+    })
+    .catch(err => console.log(err.stack));
+  } else {
+    return next();
   }
-
-  return next();
 });
 
 // Then we serve the desired HTML/EJS page.
