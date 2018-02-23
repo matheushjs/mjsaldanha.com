@@ -26,7 +26,7 @@ router.use((req, res, next) => {
   var id = Number(req.url.split('/').filter(str => { return str !== ''; })[0]);
 
   if(id && user_has_secret(req.session.userid) && Number(req.session.userid) === id){
-    next();
+    return next();
   } else {
     res.render("pages/message_page", {
       session: req.session,
@@ -45,7 +45,7 @@ router.use((req, res, next) => {
     }
   }
 
-  next();
+  return next();
 });
 
 // Then we serve the desired HTML/EJS page.
@@ -55,14 +55,14 @@ router.get("*", (req, res, next) => {
   var info = path.parse(req.url);
 
   if(['', '.html', '.ejs'].indexOf(info.ext) == -1)
-    next();
+    return next();
 
   if(info.ext == '')
     req.url += '.ejs'
 
   res.render(path.join("secret" + req.url), {session: req.session}, function(err, html){
     if(err){
-      next(); // By doing next, we will probably fall into the 'page doesnt exist' middleware on index.js
+      return next(); // By doing next, we will probably fall into the 'page doesnt exist' middleware on index.js
     } else {
       res.send(html);
     }

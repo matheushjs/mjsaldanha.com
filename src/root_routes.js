@@ -12,7 +12,7 @@ router.use((req, res, next) => {
   } else {
     req.session.special_user = false;
   }
-  next();
+  return next();
 });
 
 // Set routes
