@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router();
 var fs = require('fs');
+var path = require('path');
 
 // Returns whether user with id 'id' has a secret page.
 function user_has_secret(userid){
@@ -34,9 +35,38 @@ router.use((req, res, next) => {
   }
 });
 
-// After the user is authenticated by previous middleware, we serve the desired page.
-router.get("*", (req, res) => {
-  res.render("secret" + req.url, {session: req.session});
+// Middleware for providing req.session with data specific to each user
+router.use((req, res, next) => {
+  req.session.user_data = undefined;
+
+  if(req.session.username === 'walwal20'){
+    if(req.url === '/' + req.session.userid + '/users_list'){
+      req.session.user_data = "";
+    }
+  }
+
+  next();
+});
+
+// Then we serve the desired HTML/EJS page.
+// If the required file has no extension, we assume it to be .ejs and try to render it.
+// If it fails to render, we go next().
+router.get("*", (req, res, next) => {
+  var info = path.parse(req.url);
+
+  if(['', '.html', '.ejs'].indexOf(info.ext) == -1)
+    next();
+
+  if(info.ext == '')
+    req.url += '.ejs'
+
+  res.render(path.join("secret" + req.url), {session: req.session}, function(err, html){
+    if(err){
+      next(); // By doing next, we will probably fall into the 'page doesnt exist' middleware on index.js
+    } else {
+      res.send(html);
+    }
+  });
 });
 
 module.exports = {
