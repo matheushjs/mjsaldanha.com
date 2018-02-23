@@ -41,6 +41,15 @@ app.get("*", (req, res) => {
   });
 });
 
+// Set up error handling
+app.use((err, req, res, next) => {
+  res.render("pages/message_page", {
+    session: req.session,
+    message: "Sorry, something went wrong in the server. The maintainer has been notified about this error.",
+  });
+  console.log(err.stack);
+});
+
 // Begin serving
 const port = process.env.PORT || 5000;
 app.listen(port);
