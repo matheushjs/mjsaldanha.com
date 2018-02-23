@@ -17,7 +17,7 @@ function user_has_secret(userid){
 // For the root URL, we unconditionally redirect the user to their index.
 // If it doesn't exist, let the other middlewares handle it.
 router.get("/", (req, res) => {
-  res.redirect("/secret/" + (req.session.userid || "not_logged_in"));
+  res.redirect("/secret/" + (req.session.userid || "not_logged_in") + "/");
 });
 
 // Middleware for always checking if the user is authorized
@@ -58,9 +58,13 @@ router.get("*", (req, res, next) => {
   if(['', '.html', '.ejs'].indexOf(info.ext) == -1)
     return next();
 
+  // If requested path is a directory, serve the index.ejs
+  if(req.url.slice(-1) === '/'){
+    req.url += 'index.ejs';
   // If extension is blank, assume it is .ejs
-  if(info.ext == '')
-    req.url += '.ejs'
+  } else if(info.ext == '') {
+    req.url += '.ejs';
+  }
 
   // Try to serve the file, else next()
   res.render(path.join("secret" + req.url), {session: req.session}, function(err, html){
