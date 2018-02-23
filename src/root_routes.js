@@ -1,4 +1,6 @@
-var router = require('express').Router();
+var express  = require('express');
+var router = express.Router();
+var path = require('path');
 var reCAPTCHA = require('recaptcha2');
 var auth = require('./authentication');
 var secret_routes = require("./secret_routes");
@@ -255,5 +257,16 @@ router.route("/myip")
     res.send("Error");
   }
 })
+
+// Set for serving static files (must come after setting up our routes)
+router.use(express.static(path.resolve('./client')));
+
+// Set up failsafe for non-found pages
+router.get("*", (req, res) => {
+  res.render("pages/message_page", {
+    message: "Sorry! The requested page doesn't seem to exist.",
+    session: req.session,
+  });
+});
 
 module.exports = router
