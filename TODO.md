@@ -9,8 +9,6 @@ TODO
 
 - Devise a nice way of placing react apps in the folder structure.
 
-- Add tictactoe as a project
-
 - Remove the slideshow or change it to something that works on a smartphone
 
 - Page for Aline
