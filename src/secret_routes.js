@@ -53,9 +53,6 @@ router.use((req, res, next) => {
   }
 });
 
-// Set default EJS rendering.
-router.get("*", require('./ejs_default').create(''));
-
 // Then we serve all other files statically
 router.use(express.static(path.resolve('./client/secret')));
 
