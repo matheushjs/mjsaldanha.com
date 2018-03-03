@@ -53,33 +53,8 @@ router.use((req, res, next) => {
   }
 });
 
-// Then we serve the desired HTML/EJS page.
-// If the required file has no extension, we assume it to be .ejs and try to render it.
-// If it fails to render, we go next().
-router.get("*", (req, res, next) => {
-  var info = path.parse(req.url);
-
-  // If URL isn't any of the following extensions
-  if(['', '.html', '.ejs'].indexOf(info.ext) == -1)
-    return next();
-
-  // If requested path is a directory, serve the index.ejs
-  if(req.url.slice(-1) === '/'){
-    req.url += 'index.ejs';
-  // If extension is blank, assume it is .ejs
-  } else if(info.ext == '') {
-    req.url += '.ejs';
-  }
-
-  // Try to serve the file, else next()
-  res.render(path.join("secret" + req.url), {session: req.session}, function(err, html){
-    if(err){
-      return next(); // By doing next, we will probably fall into the 'page doesnt exist' middleware on index.js
-    } else {
-      res.send(html);
-    }
-  });
-});
+// Set default EJS rendering.
+router.get("*", require('./ejs_default').create(''));
 
 // Then we serve all other files statically
 router.use(express.static(path.resolve('./client/secret')));

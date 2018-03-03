@@ -17,11 +17,7 @@ router.use((req, res, next) => {
   return next();
 });
 
-router.route("/login")
-.get(function(req, res){
-  res.render("pages/login", {session: req.session});
-})
-.post(function(req, res){
+router.post('/login', function(req, res){
   if(req.session.username){
     res.render("pages/login", {session: req.session, fail_msg: "You're already logged in. Please log out first."});
   } else {
@@ -61,11 +57,7 @@ router.route("/login")
   }
 });
 
-router.route("/signup")
-.get(function(req, res){
-  res.render("pages/signup", {session: req.session});
-})
-.post(function(req, res){
+router.post('/signup', function(req, res){
   if(req.session.username){
     res.render("pages/message_page", {
       message: "Please, log out of your current account before signing up.",
@@ -245,33 +237,9 @@ router.route("/myip")
   }
 })
 
-// Default EJS file rendering
-// If the required file has no extension, we assume it to be .ejs and try to render it.
-// If it fails to render, we go next().
-router.get("*", (req, res, next) => {
-  var info = path.parse(req.url);
-
-  // If URL isn't any of the following extensions
-  if(['', '.html', '.ejs'].indexOf(info.ext) == -1)
-    return next();
-
-  // If requested path is a directory, serve the index.ejs
-  if(req.url.slice(-1) === '/'){
-    req.url += 'index.ejs';
-  // If extension is blank, assume it is .ejs
-  } else if(info.ext == '') {
-    req.url += '.ejs';
-  }
-
-  // Try to serve the file, else next()
-  res.render(path.join('pages', req.url), {session: req.session}, function(err, html){
-    if(err){
-      return next(); // By doing next, we will probably fall into the 'page doesnt exist' middleware on index.js
-    } else {
-      res.send(html);
-    }
-  });
-});
+// Set default EJS file rendering (First look in 'pages/')
+router.get("*", require('./ejs_default').create('pages'));
+router.get("*", require('./ejs_default').create(''));
 
 // Set for serving static files (must come after setting up our routes)
 router.use(express.static(path.resolve('./client')));

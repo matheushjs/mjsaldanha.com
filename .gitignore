@@ -1,1 +1,3 @@
 node_modules
+heroku/
+src/private_code.js

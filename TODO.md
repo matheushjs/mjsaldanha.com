@@ -16,5 +16,3 @@ TODO
 - Page for Aline
 
 - Find a way to allow multiple users to enter a single secret/X folder
-
-- Add an EJS renderer (that passes req.session to the render method)
