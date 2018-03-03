@@ -17,19 +17,6 @@ router.use((req, res, next) => {
   return next();
 });
 
-// Set routes
-router.get("/", (req, res) => {
-  res.render("pages/index", {session: req.session});
-});
-
-router.get("/calculator", (req, res) => {
-  res.render("pages/calculator", {session: req.session});
-});
-
-router.get("/aboutme", (req, res) => {
-  res.render("pages/aboutme", {session: req.session});
-});
-
 router.route("/login")
 .get(function(req, res){
   res.render("pages/login", {session: req.session});
@@ -257,6 +244,34 @@ router.route("/myip")
     res.send("Error");
   }
 })
+
+// Default EJS file rendering
+// If the required file has no extension, we assume it to be .ejs and try to render it.
+// If it fails to render, we go next().
+router.get("*", (req, res, next) => {
+  var info = path.parse(req.url);
+
+  // If URL isn't any of the following extensions
+  if(['', '.html', '.ejs'].indexOf(info.ext) == -1)
+    return next();
+
+  // If requested path is a directory, serve the index.ejs
+  if(req.url.slice(-1) === '/'){
+    req.url += 'index.ejs';
+  // If extension is blank, assume it is .ejs
+  } else if(info.ext == '') {
+    req.url += '.ejs';
+  }
+
+  // Try to serve the file, else next()
+  res.render(path.join('pages', req.url), {session: req.session}, function(err, html){
+    if(err){
+      return next(); // By doing next, we will probably fall into the 'page doesnt exist' middleware on index.js
+    } else {
+      res.send(html);
+    }
+  });
+});
 
 // Set for serving static files (must come after setting up our routes)
 router.use(express.static(path.resolve('./client')));
