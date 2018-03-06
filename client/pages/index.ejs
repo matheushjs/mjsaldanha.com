@@ -2,84 +2,85 @@
 <html lang="en">
 	<head>
     <% include ../partials/head_common %>
-		
+    
+    
 		<script src="/scripts/index_slideshow.js"></script>
 		<link rel="stylesheet" href="/styles/index_slideshow.css">
 	</head>
 
 	<body>
 
-  <div>
-    <% include ../partials/navbar %>
-  </div>
+    <div>
+      <% include ../partials/navbar %>
+    </div>
 
-	<div class="jumbotron">
-		<div class="text-center container">
-			<h2>Matheus Saldanha's WebPage</h2>
-			<p>Welcome to my humble abode!</p>
-		</div>
-	</div>
-
-	<div class="container-fluid text-center">
-		<div class="page-header">
-			<h2>Things I Like</h2>
-		</div>
-		<div class="slideshow-container">
-			<div class="mySlides myFade">
-				<div class="myNumberText">1 / 4</div>
-				<img class="myImage" src="/images/nvidia_cuda.jpg">
-				<div class="myText">Cuda Programming</div>
-			</div>
-
-			<div class="mySlides myFade">
-				<div class="myNumberText">2 / 4</div>
-				<img class="myImage" src="/images/mpi_logo.jpg">
-				<div class="myText">MPI Programming</div>
-			</div>
-
-			<div class="mySlides myFade">
-				<div class="myNumberText">3 / 4</div>
-				<img class="myImage" src="/images/openmp_logo.jpg">
-				<div class="myText">OpenMP Programming</div>
-			</div>
-
-			<div class="mySlides myFade">
-				<div class="myNumberText">4 / 4</div>
-				<img class="myImage" src="/images/linux_logo.jpg">
-				<div class="myText">Linux</div>
-			</div>
-
-			<a class="prevArrow" onClick="incSlide(-1)">&#10094;</a>
-			<a class="nextArrow" onClick="incSlide(1)">&#10095;</a>
-		</div>
-		
-		<div>
-			<span class="myDot" onClick="setSlide(1)"></span>
-			<span class="myDot" onClick="setSlide(2)"></span>
-			<span class="myDot" onClick="setSlide(3)"></span>
-			<span class="myDot" onClick="setSlide(4)"></span>
-		</div>
-	</div>
-
-	<div class="container-fluid text-center">
-		<div class="page-header">
-			<h2>What I've Done Lately:</h2>
-		</div>
-		<div class="row">
-			<div class="col-sm-4">
-				<p><a href="/calculator">Calculator</a><p>
-			</div>
-			<div class="col-sm-4">
-				<p><a href="//github.com/matheushjs/mjsaldanha.com">This Page</a><p>
+    <div class="jumbotron">
+      <div class="text-center container">
+        <h2>Matheus Saldanha's WebPage</h2>
+        <p>Welcome to my humble abode!</p>
       </div>
-      <div class="col-sm-4">
-				<p><a href="/apps/tictactoe/">Tic Tac Toe (React Hello World)</a><p>
-			</div>
-		</div>
-	</div>
+    </div>
 
-	<footer class="container-fluid text-left">
-	</footer>
+    <div class="container-fluid text-center">
+      <div class="page-header">
+        <h2>Things I Like</h2>
+      </div>
+      <div class="slideshow-container">
+        <div class="mySlides myFade">
+          <div class="myNumberText">1 / 4</div>
+          <img class="myImage" src="/images/nvidia_cuda.jpg">
+          <div class="myText">Cuda Programming</div>
+        </div>
+
+        <div class="mySlides myFade">
+          <div class="myNumberText">2 / 4</div>
+          <img class="myImage" src="/images/mpi_logo.jpg">
+          <div class="myText">MPI Programming</div>
+        </div>
+
+        <div class="mySlides myFade">
+          <div class="myNumberText">3 / 4</div>
+          <img class="myImage" src="/images/openmp_logo.jpg">
+          <div class="myText">OpenMP Programming</div>
+        </div>
+
+        <div class="mySlides myFade">
+          <div class="myNumberText">4 / 4</div>
+          <img class="myImage" src="/images/linux_logo.jpg">
+          <div class="myText">Linux</div>
+        </div>
+
+        <a class="prevArrow" onClick="incSlide(-1)">&#10094;</a>
+        <a class="nextArrow" onClick="incSlide(1)">&#10095;</a>
+      </div>
+      
+      <div>
+        <span class="myDot" onClick="setSlide(1)"></span>
+        <span class="myDot" onClick="setSlide(2)"></span>
+        <span class="myDot" onClick="setSlide(3)"></span>
+        <span class="myDot" onClick="setSlide(4)"></span>
+      </div>
+    </div>
+
+    <div class="container-fluid text-center">
+      <div class="page-header">
+        <h2>What I've Done Lately:</h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <p><a href="/calculator">Calculator</a><p>
+        </div>
+        <div class="col-sm-4">
+          <p><a href="//github.com/matheushjs/mjsaldanha.com">This Page</a><p>
+        </div>
+        <div class="col-sm-4">
+          <p><a href="/apps/tictactoe/">Tic Tac Toe (React Hello World)</a><p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container-fluid text-left">
+    </footer>
 
 	<body>
 </html>
