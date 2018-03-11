@@ -5,8 +5,6 @@ TODO
 
 - Play with different kinds of storage
 
-- Make a heroku-push script that copies the whole folder somewhere else and push it. Remember to erase .git
-
 - Devise a nice way of placing react apps in the folder structure.
 
 - Remove the slideshow or change it to something that works on a smartphone

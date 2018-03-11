@@ -11,18 +11,11 @@
 
 const crypto = require('crypto');
 const keyBytes = 16; // Size of the secret keys to be used with Hmac
-
-const { Client } = require('pg');
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-  password: "password",
-});
-
-client.connect();
+const client = require('./db_client').client;
 
 // Table schemas
 // client.query("CREATE TABLE users(id BIGSERIAL PRIMARY KEY, username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))");
+
 
 /* User object to represent a user in memory.
  * 'hashpass' receives the hash value stored in the database for the password.
