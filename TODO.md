@@ -1,8 +1,6 @@
 TODO
 ===
 
-- Allow admin to access everyone's secret pages
-
 - Play with different kinds of storage
 
 - Devise a nice way of placing react apps in the folder structure.
