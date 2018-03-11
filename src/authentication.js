@@ -168,20 +168,10 @@ function all_users(){
     });
 }
 
-function myip_get(){
-  return client.query("SELECT ip FROM myip WHERE id = 1").then(res => { return res.rows[0].ip; });
-}
-
-function myip_insert(ip){
-  return client.query("UPDATE myip SET ip = $1 WHERE id = 1", [ip]);
-}
-
 module.exports = {
   authenticate: authenticate,
   lookup: lookup,
   sign_up: sign_up,
   update_user: update_user,
   all_users: all_users,
-  myip_get: myip_get,
-  myip_insert: myip_insert,
 }

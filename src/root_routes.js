@@ -3,6 +3,7 @@ var router = express.Router({strict: true});
 var path = require('path');
 var reCAPTCHA = require('recaptcha2');
 var auth = require('./authentication');
+var db_myip = require('./db_myip')
 var secret_routes = require("./secret_routes");
 
 recaptcha = new reCAPTCHA(require('./private_code').recaptcha_keys);
@@ -224,13 +225,13 @@ router.use("/secret", secret_routes.router);
 
 router.route("/myip")
 .get((req, res) => {
-  auth.myip_get().then(myip => {
+  db_myip.get().then(myip => {
     res.render("pages/message_page", { message: myip.replace(/ /g, ''), session: req.session });
   }).catch(err => console.log(err.stack));
 })
 .post((req, res) => {
   if(req.body.ip && req.body.ip.length <= 20){
-    auth.myip_insert(req.body.ip).catch(err => console.log(err.stack));
+    db_myip.insert(req.body.ip).catch(err => console.log(err.stack));
     res.send("Ok");
   } else {
     res.send("Error");
