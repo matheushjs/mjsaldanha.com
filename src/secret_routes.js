@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router({strict: true});
 var fs = require('fs');
 var path = require('path');
-var auth = require('./authentication');
+var db_users = require('./db_users');
 
 // Returns whether user with id 'id' has a secret page.
 function user_has_secret(userid){
@@ -42,7 +42,7 @@ router.use((req, res, next) => {
   req.session.user_data = {}
 
   if(req.session.username === 'walwal20'){
-    auth.all_users()
+    db_users.all_users()
     .then(users => {
       req.session.user_data.all_users = users.sort((a, b) => { return a.id > b.id; });
       return next();

@@ -1,4 +1,4 @@
-/* Authentication module
+/* db_users module
  * 
  * - No leading/trailing whitespace is to be allowed in usernames, passwords, callnames etc,
  *   because postgre fills these fields with whitespace, so we remove all whitespace from all

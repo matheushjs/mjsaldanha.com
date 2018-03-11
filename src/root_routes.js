@@ -2,7 +2,7 @@ var express  = require('express');
 var router = express.Router({strict: true});
 var path = require('path');
 var reCAPTCHA = require('recaptcha2');
-var auth = require('./authentication');
+var db_users = require('./db_users');
 var db_myip = require('./db_myip')
 var secret_routes = require("./secret_routes");
 
@@ -43,7 +43,7 @@ router.post('/login', function(req, res){
       return;
     }
 
-    auth.authenticate(req.body.username, req.body.password)
+    db_users.authenticate(req.body.username, req.body.password)
     .then(authUser => {
       if(!authUser){
         res.render("pages/login", {session: req.session, fail_msg: "User does not exist. Please, sign up."});
@@ -114,7 +114,7 @@ router.post('/signup', function(req, res){
       });
       return Promise.reject(undefined);
     })
-    .then(() => { return auth.sign_up(req.body.username, req.body.password, req.body.callname); })
+    .then(() => { return db_users.sign_up(req.body.username, req.body.password, req.body.callname); })
     .then(authUser => {
       if(authUser){
         req.session.userid = authUser.id;
@@ -174,7 +174,7 @@ router.route('/account')
   // Now for matters that involve the database
   if(!req.body.cur_password){
     // Only callname to update
-    auth.update_user({id: req.session.userid, callname: req.body.callname})
+    db_users.update_user({id: req.session.userid, callname: req.body.callname})
     .then(user => {
       // Update session
       req.session.callname = user.callname;
@@ -187,14 +187,14 @@ router.route('/account')
       console.log(err.stack);
     });
   } else {
-    auth.authenticate(req.session.username, req.body.cur_password)
+    db_users.authenticate(req.session.username, req.body.cur_password)
     .then(user => {
       if(!user){
         res.send("Wrong current password!");
         return;
       }
       
-      return auth.update_user({id: req.session.userid, callname: req.body.callname, password: req.body.password});
+      return db_users.update_user({id: req.session.userid, callname: req.body.callname, password: req.body.password});
     })
     .then(user => {
       // Update session
