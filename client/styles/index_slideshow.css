@@ -11,6 +11,7 @@
 
 .myImage {
     max-height: 300px;
+    max-width: 100%;
 }
 
 .prevArrow, .nextArrow {
