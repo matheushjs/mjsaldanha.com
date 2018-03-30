@@ -5,3 +5,23 @@
   background-repeat: no-repeat;
   color: white;
 }
+
+.footer-fixed {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  background-color: #000409;
+  border-top: solid 1px;
+  border-color: black;
+}
+
+.footer-placeholder {
+  width: 100%;
+  border-top: solid 1px;
+  border-color: black;
+  visibility: hidden;
+}
+
+.footer-content {
+  margin: 10px auto;
+}
