@@ -226,7 +226,7 @@ router.use("/secret", secret_routes.router);
 router.route("/myip")
 .get((req, res) => {
   db_myip.get().then(myip => {
-    res.render("pages/message_page", { message: myip.replace(/ /g, ''), session: req.session });
+    res.send(myip.replace(/ /g, ''));
   }).catch(err => console.log(err.stack));
 })
 .post((req, res) => {

@@ -8,5 +8,3 @@ TODO
 - Find a way to allow multiple users to enter a single secret/X folder
 
 - A react app for managing daily, weekly and all-time tasks using local storage.
-
-- Add footer with your name
