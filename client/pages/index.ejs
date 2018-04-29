@@ -3,8 +3,13 @@
 	<head>
     <% include ../partials/head_common %>
     
-		<script src="/scripts/index_slideshow.js"></script>
-		<link rel="stylesheet" href="/styles/index_slideshow.css">
+    <style>
+      #root {
+
+      }
+    </style>
+
+		<link href="/apps/elf-slideshow/static/css/main.4c818ab6.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -24,42 +29,9 @@
       <div class="page-header">
         <h2>Things I Like</h2>
       </div>
-      <div class="slideshow-container">
-        <div class="mySlides myFade">
-          <div class="myNumberText">1 / 4</div>
-          <img class="myImage" src="/images/nvidia_cuda.jpg">
-          <div class="myText">Cuda Programming</div>
-        </div>
-
-        <div class="mySlides myFade">
-          <div class="myNumberText">2 / 4</div>
-          <img class="myImage" src="/images/mpi_logo.jpg">
-          <div class="myText">MPI Programming</div>
-        </div>
-
-        <div class="mySlides myFade">
-          <div class="myNumberText">3 / 4</div>
-          <img class="myImage" src="/images/openmp_logo.jpg">
-          <div class="myText">OpenMP Programming</div>
-        </div>
-
-        <div class="mySlides myFade">
-          <div class="myNumberText">4 / 4</div>
-          <img class="myImage" src="/images/linux_logo.jpg">
-          <div class="myText">Linux</div>
-        </div>
-
-        <a class="prevArrow" onClick="incSlide(-1)">&#10094;</a>
-        <a class="nextArrow" onClick="incSlide(1)">&#10095;</a>
+      <div id="root" class="slideshow-container">
       </div>
-      
-      <div>
-        <span class="myDot" onClick="setSlide(1)"></span>
-        <span class="myDot" onClick="setSlide(2)"></span>
-        <span class="myDot" onClick="setSlide(3)"></span>
-        <span class="myDot" onClick="setSlide(4)"></span>
-      </div>
-    </div>
+      <script type="text/javascript" src="/apps/elf-slideshow/static/js/main.d6295939.js"></script>
 
     <div class="container-fluid text-center">
       <div class="page-header">
