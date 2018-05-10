@@ -11,6 +11,13 @@
         margin-left: auto;
         margin-right: auto;
       }
+
+      .showbox {
+        height: 100px;
+        background: linear-gradient(150deg, #272b30, black 50%, cyan 150%);
+        padding: 20px;
+        border-radius: 5px;
+      }
     </style>
   </head>
 
@@ -42,13 +49,13 @@
       </div>
       <div class="row">
         <div class="col-sm-4">
-          <p><a href="/calculator">Calculator</a><p>
+          <a href="/calculator"><h3 class="showbox">Calculator</h3></a>
         </div>
         <div class="col-sm-4">
-          <p><a href="//github.com/matheushjs/mjsaldanha.com">This Page</a><p>
+          <a href="//github.com/matheushjs/mjsaldanha.com"><h3 class="showbox">This Page</h3></a>
         </div>
         <div class="col-sm-4">
-          <p><a href="/apps/tictactoe/">Tic Tac Toe (React Hello World)</a><p>
+          <a href="/apps/tictactoe/"><h3 class="showbox">Tic Tac Toe (React Hello World)</h3></a>
         </div>
       </div>
     </div>
@@ -57,5 +64,5 @@
       <% include ../partials/footer %>
     </div>
 
-	<body>
+  </body>
 </html>
