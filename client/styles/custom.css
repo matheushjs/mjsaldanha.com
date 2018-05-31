@@ -11,10 +11,8 @@ body {
 }
 
 .navbar-default {
-  position: relative;
-  top: -40px;
   opacity: 0.6;
-  margin: 0px 5%;
+  margin: -20px 5% 20px;
   border-radius: 10px;
 }
 
