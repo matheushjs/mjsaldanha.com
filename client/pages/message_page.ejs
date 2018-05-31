@@ -14,11 +14,12 @@ Parameters:
   </head>
 
   <body>
-    <div>
-      <% include ../partials/navbar %>
-    </div>
 
     <div class="jumbotron text-center">
+      <div>
+        <% include ../partials/navbar %>
+      </div>
+
       <% if (typeof message !== 'undefined') { %>
         <h2><%= message %></h2>
       <% } else { %>
