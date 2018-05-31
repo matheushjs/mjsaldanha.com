@@ -1,3 +1,7 @@
+body {
+  background: #f8f8f8;
+}
+
 .jumbotron {
   background-image: url(../images/earth_banner.jpg);
   background-position: 0% 0%;
@@ -16,7 +20,7 @@
 
 .footer-container {
   /* background: linear-gradient(175deg, #272b30, #272b30 40%, white 150%); */
-  background: linear-gradient(180deg, #ffffff, #cecece);
+  background: linear-gradient(180deg, #f8f8f8, #c8c8c8);
 }
 
 .footer-inner {
