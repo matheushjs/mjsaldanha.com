@@ -24,3 +24,12 @@ body {
 .footer-inner {
 	margin-top: 30px;
 }
+
+.major-block {
+  padding-top: 8vh;
+  padding-bottom: 8vh;
+}
+
+.major-block2 {
+  background: #00fffe55;
+}
