@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-import { Fade } from 'react-slideshow-image';
+import { Fade } from "react-slideshow-image";
 
 const images = [
-  'images/slideimage-gpucpu.png',
-  'images/slideimage-linux.png',
-  'images/slideimage-parallel.png',
+  "images/slideimage-gpucpu.png",
+  "images/slideimage-linux.png",
+  "images/slideimage-parallel.png",
 ];
 
 class App extends Component {

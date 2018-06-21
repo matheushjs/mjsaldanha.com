@@ -1,12 +1,12 @@
-const path = require('path');
-const bodyParser = require('body-parser');
-const session = require('express-session');
+const path = require("path");
+const bodyParser = require("body-parser");
+const session = require("express-session");
 
-const app = require('express')();
+const app = require("express")();
 
 // Sets up ejs templating
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'client'));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "client"));
 
 // Sets up body parsing
 app.use(bodyParser.json());
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 */
 
 // Set up routes
-app.use('/', require('./src/root_routes'));
+app.use("/", require("./src/root_routes"));
 
 // Set up error handling
 app.use((err, req, res, next) => {
