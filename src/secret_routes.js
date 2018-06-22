@@ -1,18 +1,18 @@
-var express = require('express')
+var express = require("express")
 var router = express.Router({strict: true});
-var fs = require('fs');
-var path = require('path');
-var db_users = require('./db_users');
+var fs = require("fs");
+var path = require("path");
+var db_users = require("./db_users");
 
-// Returns whether user with id 'id' has a secret page.
+// Returns whether user with id "id" has a secret page.
 function user_has_secret(userid){
-  dirs = fs.readdirSync('./client/secret');
+  dirs = fs.readdirSync("./client/secret");
 
   for(var i = 0; i < dirs.length; i++){
     dirs[i] = Number(dirs[i]);
   }
 
-  return dirs.indexOf(Number(userid)) != -1;
+  return dirs.indexOf(Number(userid)) !== -1;
 }
 
 // For the root URL, we unconditionally redirect the user to their index.
@@ -23,10 +23,10 @@ router.get("/", (req, res) => {
 
 // Middleware for always checking if the user is authorized
 router.use((req, res, next) => {
-  // Take the id of the URL. From '/secret/1/...', take 1.
-  var id = Number(req.url.split('/').filter(str => { return str !== ''; })[0]);
+  // Take the id of the URL. From "/secret/1/...", take 1.
+  var id = Number(req.url.split("/").filter(str => { return str !== ""; })[0]);
 
-  if(req.session.username == 'walwal20'){
+  if(req.session.username === "walwal20"){
     return next();
   } else if(id && user_has_secret(req.session.userid) && Number(req.session.userid) === id){
     return next();
@@ -43,7 +43,7 @@ router.use((req, res, next) => {
   if(req.session.user_data) return next();
   req.session.user_data = {}
 
-  if(req.session.username === 'walwal20'){
+  if(req.session.username === "walwal20"){
     db_users.all_users()
     .then(users => {
       req.session.user_data.all_users = users.sort((a, b) => { return a.id > b.id; });
@@ -56,7 +56,7 @@ router.use((req, res, next) => {
 });
 
 // Then we serve all other files statically
-router.use(express.static(path.resolve('./client/secret')));
+router.use(express.static(path.resolve("./client/secret")));
 
 module.exports = {
   router,

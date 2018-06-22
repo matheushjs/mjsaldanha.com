@@ -1,12 +1,12 @@
 var express  = require("express");
 var router = express.Router({strict: true});
 var path = require("path");
-var reCAPTCHA = require("recaptcha2");
+var ReCaptcha = require("recaptcha2");
 var db_users = require("./db_users");
 var db_myip = require("./db_myip");
 var secret_routes = require("./secret_routes");
 
-recaptcha = new reCAPTCHA(require("./private_code").recaptcha_keys);
+var recaptcha = new ReCaptcha(require("./private_code").recaptcha_keys);
 
 // Handle user privilege variables in req.session
 router.use((req, res, next) => {
@@ -24,8 +24,8 @@ router.post("/login", function(req, res){
   } else {
     // Validate/fix fields
     // For username and password, we enforce that no trailing/leading whitespace exist
-    tUsername = req.body.username.replace(/^ */g, "").replace(/ *$/g, ""); // trimmed username
-    tPassword = req.body.password.replace(/^ */g, "").replace(/ *$/g, ""); // trimmed password
+    var tUsername = req.body.username.replace(/^ */g, "").replace(/ *$/g, ""); // trimmed username
+    var tPassword = req.body.password.replace(/^ */g, "").replace(/ *$/g, ""); // trimmed password
     if(tUsername.length !== req.body.username.length || tPassword.length !== req.body.password.length){
       res.render("pages/login", {
         session: req.session,
@@ -44,7 +44,7 @@ router.post("/login", function(req, res){
     }
 
     db_users.authenticate(req.body.username, req.body.password)
-    .then(authUser => {
+    .then((authUser) => {
       if(!authUser){
         res.render("pages/login", {session: req.session, fail_msg: "User does not exist. Please, sign up."});
       } else {
@@ -54,7 +54,7 @@ router.post("/login", function(req, res){
         res.redirect("/");
       }
     })
-    .catch(err => console.log(err.stack));
+    .catch((err) => console.log(err.stack));
   }
 });
 
@@ -107,7 +107,7 @@ router.post("/signup", function(req, res){
     }
 
     recaptcha.validate(req.body["g-recaptcha-response"])
-    .catch(err => {
+    .catch((err) => {
       res.render("pages/signup", {
         session: req.session,
         fail_msg: "ReCAPTCHA validation failed. Please try again.",
@@ -115,7 +115,7 @@ router.post("/signup", function(req, res){
       return Promise.reject(undefined);
     })
     .then(() => { return db_users.sign_up(req.body.username, req.body.password, req.body.callname); })
-    .then(authUser => {
+    .then((authUser) => {
       if(authUser){
         req.session.userid = authUser.id;
         req.session.username = authUser.username;
@@ -128,7 +128,7 @@ router.post("/signup", function(req, res){
         });
       }
     })
-    .catch(err => err ? console.log(err.stack) : "");
+    .catch((err) => err ? console.log(err.stack) : "");
   }
 });
 
@@ -175,20 +175,20 @@ router.route("/account")
   if(!req.body.cur_password){
     // Only callname to update
     db_users.update_user({id: req.session.userid, callname: req.body.callname})
-    .then(user => {
+    .then((user) => {
       // Update session
       req.session.callname = user.callname;
 
       // Signalize a success
       res.send("");
     })
-    .catch(err => {
+    .catch((err) => {
       res.send("Sorry, something went wrong in our database. Try again later.");
       console.log(err.stack);
     });
   } else {
     db_users.authenticate(req.session.username, req.body.cur_password)
-    .then(user => {
+    .then((user) => {
       if(!user){
         res.send("Wrong current password!");
         return;
@@ -196,14 +196,14 @@ router.route("/account")
       
       return db_users.update_user({id: req.session.userid, callname: req.body.callname, password: req.body.password});
     })
-    .then(user => {
+    .then((user) => {
       // Update session
       req.session.callname = user.callname;
 
       // Signalize a success
       res.send("");
     })
-    .catch(err => {
+    .catch((err) => {
       res.send("Sorry, something went wrong in our database. Try again later.");
       console.log(err.stack);
     });
@@ -225,13 +225,13 @@ router.use("/secret", secret_routes.router);
 
 router.route("/myip")
 .get((req, res) => {
-  db_myip.get().then(myip => {
+  db_myip.get().then((myip) => {
     res.send(myip.replace(/ /g, ""));
-  }).catch(err => console.log(err.stack));
+  }).catch((err) => console.log(err.stack));
 })
 .post((req, res) => {
   if(req.body.ip && req.body.ip.length <= 20){
-    db_myip.insert(req.body.ip).catch(err => console.log(err.stack));
+    db_myip.insert(req.body.ip).catch((err) => console.log(err.stack));
     res.send("Ok");
   } else {
     res.send("Error");

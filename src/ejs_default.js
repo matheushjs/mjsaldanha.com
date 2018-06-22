@@ -1,5 +1,5 @@
-express = require("express");
-path = require("path");
+var express = require("express");
+var path = require("path");
 
 /* Default EJS file rendering, that passes req.session to the rendering engine.
  * The function will look at the requested URL. If it doesn't have extension or it
@@ -9,8 +9,8 @@ path = require("path");
  * If it fails to render, we go next().
  */
 function create(prefixDir){
-  router = express.Router();
-  
+  var router = express.Router();
+
   router.use(function(req, res, next) {
     var info = path.parse(req.originalUrl);
     var renderUrl = "" + req.originalUrl;
@@ -23,7 +23,7 @@ function create(prefixDir){
     // If URL isn't any of the following extensions
     if(["", ".ejs"].indexOf(info.ext) == -1)
       return next();
-  
+
     // If requested path is a directory, serve the index.ejs
     if(req.originalUrl.slice(-1) === "/"){
       renderUrl += "index.ejs";
@@ -46,5 +46,5 @@ function create(prefixDir){
 }
 
 module.exports = {
-  create: create,
+  create,
 }

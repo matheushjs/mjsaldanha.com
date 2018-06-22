@@ -6,7 +6,7 @@ const client = require('./db_client').client;
 
 // Returns a Promise resolved to the current stored IP (as a string)
 function get(){
-  return client.query("SELECT ip FROM myip WHERE id = 1").then(res => { return res.rows[0].ip; });
+  return client.query("SELECT ip FROM myip WHERE id = 1").then((res) => { return res.rows[0].ip; });
 }
 
 // Changes current stored IP for the given 'ip'
@@ -15,6 +15,6 @@ function insert(ip){
 }
 
 module.exports = {
-  get: get,
-  insert: insert,
-}
+  get,
+  insert,
+};

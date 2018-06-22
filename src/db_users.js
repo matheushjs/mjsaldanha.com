@@ -171,9 +171,9 @@ function all_users(){
 }
 
 module.exports = {
-  authenticate: authenticate,
-  lookup: lookup,
-  sign_up: sign_up,
-  update_user: update_user,
-  all_users: all_users,
+  authenticate,
+  lookup,
+  sign_up,
+  update_user,
+  all_users,
 };
