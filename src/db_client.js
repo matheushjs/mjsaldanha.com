@@ -5,9 +5,8 @@
 
 const { Client } = require('pg');
 const client = new Client({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL || "postgres://mjsaldanha_com:mjsaldanha_com@localhost",
   ssl: true,
-  password: "password",
 });
 
 client.connect();
