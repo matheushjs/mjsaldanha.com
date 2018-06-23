@@ -23,7 +23,9 @@ function onNum(num){
 
 function pushNumber(){
     var str = $(".myDisplay").text();
-    if(str.length === 0) return;
+    if(str.length === 0){
+        return;
+    }
 
     var num = Number(str);
     
@@ -44,13 +46,15 @@ function onOp(op){
 }
 
 function onEqual(){
-    if(nInput === 0)
+    if(nInput === 0){
         return false;
+    }
 
     pushNumber();
 
-    if(nInput != 2)
+    if(nInput != 2){
         return false;
+    }
 
     var result = 0;
 

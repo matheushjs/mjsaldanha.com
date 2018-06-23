@@ -1,4 +1,4 @@
-var express = require("express")
+var express = require("express");
 var router = express.Router({strict: true});
 var fs = require("fs");
 var path = require("path");
@@ -6,7 +6,7 @@ var db_users = require("./db_users");
 
 // Returns whether user with id "id" has a secret page.
 function user_has_secret(userid){
-  dirs = fs.readdirSync("./client/secret");
+  var dirs = fs.readdirSync("./client/secret");
 
   for(var i = 0; i < dirs.length; i++){
     dirs[i] = Number(dirs[i]);

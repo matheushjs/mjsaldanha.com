@@ -68,7 +68,9 @@ function lookup(obj){
 function authenticate(user, pass){
   return lookup({username: user})
     .then((recUser) => {
-      if(!recUser) return undefined;
+      if(!recUser){
+        return undefined;
+      }
 
       const secret = recUser.hashpass.substr(0, keyBytes*2);
       const hash = crypto.createHmac("sha256", secret).update(pass).digest("hex");
@@ -120,8 +122,12 @@ function sign_up(user, pass, name){
  *   - password: the new textual password of the user (optional)
  */
 function update_user(user){
-  if(!user.id) throw Error("user must have an id");
-  if(!user.callname && !user.password) return lookup({id: user_id});
+  if(!user.id){
+    throw Error("user must have an id");
+  }
+  if(!user.callname && !user.password){
+    return lookup({id: user_id});
+  }
 
   var setEntries = [];
   var values = [];
