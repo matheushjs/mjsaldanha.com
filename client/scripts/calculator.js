@@ -52,7 +52,7 @@ function onEqual(){
 
     pushNumber();
 
-    if(nInput != 2){
+    if(nInput !== 2){
         return false;
     }
 

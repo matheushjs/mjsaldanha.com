@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
 // Middleware for always checking if the user is authorized
 router.use((req, res, next) => {
   // Take the id of the URL. From "/secret/1/...", take 1.
-  var id = Number(req.url.split("/").filter(str => { return str !== ""; })[0]);
+  var id = Number(req.url.split("/").filter((str) => { return str !== ""; })[0]);
 
   if(req.session.username === "walwal20"){
     return next();
@@ -40,8 +40,10 @@ router.use((req, res, next) => {
 
 // Middleware for providing req.session with data specific to each user
 router.use((req, res, next) => {
-  if(req.session.user_data) return next();
-  req.session.user_data = {}
+  if(req.session.user_data){
+    return next();
+  }
+  req.session.user_data = {};
 
   if(req.session.username === "walwal20"){
     db_users.all_users()
@@ -49,7 +51,7 @@ router.use((req, res, next) => {
       req.session.user_data.all_users = users.sort((a, b) => { return a.id > b.id; });
       return next();
     })
-    .catch(err => console.log(err.stack));
+    .catch((err) => console.log(err.stack));
   } else {
     return next();
   }

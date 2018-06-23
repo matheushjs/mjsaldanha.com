@@ -208,7 +208,7 @@ router.route("/account")
       console.log(err.stack);
     });
   }
-})
+});
 
 router.route("/logout")
 .get(function(req, res){

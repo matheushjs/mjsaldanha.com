@@ -80,7 +80,7 @@ function authenticate(user, pass){
       } else {
         return undefined;
       }
-    })
+    });
 }
 
 /* Inserts a new user in the database, with username "user", password "pass" and call name "name".
@@ -90,7 +90,7 @@ function add_user(user, pass, name){
   const secret = crypto.randomBytes(keyBytes).toString("hex");
   const hash = crypto.createHmac("sha256", secret).update(pass).digest("hex");
   return client.query("INSERT INTO users(username, password, callname) VALUES ($1, $2, $3)", [user, secret + hash, name])
-    .then(() => { return lookup({username: user}) });
+    .then(() => { return lookup({username: user}); });
 }
 
 /* Attempts to sign up a user with username "user", password "pass" and callname "name."
@@ -126,7 +126,7 @@ function update_user(user){
     throw Error("user must have an id");
   }
   if(!user.callname && !user.password){
-    return lookup({id: user_id});
+    return lookup({id: user.id});
   }
 
   var setEntries = [];
@@ -161,7 +161,7 @@ function update_user(user){
 function all_users(){
   return client.query("SELECT * FROM users")
     .then((res) => {
-      var users = []
+      var users = [];
       for(var i = 0; i < res.rows.length; i++){
         var row = res.rows[i];
 

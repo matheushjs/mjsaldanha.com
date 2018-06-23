@@ -21,8 +21,9 @@ function create(prefixDir){
     }
 
     // If URL isn't any of the following extensions
-    if(["", ".ejs"].indexOf(info.ext) === -1)
+    if(["", ".ejs"].indexOf(info.ext) === -1){
       return next();
+    }
 
     // If requested path is a directory, serve the index.ejs
     if(req.originalUrl.slice(-1) === "/"){
@@ -47,4 +48,4 @@ function create(prefixDir){
 
 module.exports = {
   create,
-}
+};
