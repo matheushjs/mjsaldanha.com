@@ -2,7 +2,7 @@
 Sign-up page
 
 Options:
-  fail_msg: if this object exists, displays it as a failure message telling the user that sign up failed.
+  failMsg: if this object exists, displays it as a failure message telling the user that sign up failed.
 -->
 
 <!DOCTYPE>
@@ -62,9 +62,9 @@ Options:
           <button type="submit" class="btn btn-default" onclick="return validateForm();">Submit</button>
         </div>
 
-        <div class="col-sm-12" id="failure_box" style="<%= (typeof(fail_msg) === 'undefined') ? 'display: none;' : '' %>">
+        <div class="col-sm-12" id="failure_box" style="<%= (typeof(failMsg) === 'undefined') ? 'display: none;' : '' %>">
           <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
-            <strong>Info: </strong> <span id="failure_msg"><%= typeof(fail_msg) === 'undefined' ? '' : fail_msg %></span>
+            <strong>Info: </strong> <span id="failure_msg"><%= typeof(failMsg) === 'undefined' ? '' : failMsg %></span>
           </div>
         </div>
       </form>

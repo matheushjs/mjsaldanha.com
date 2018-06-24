@@ -5,7 +5,7 @@ Navbar partial
 Parameters:
   session: session object
   session.callname: Identifies an authenticated user. If empty, navbar is rendered for an unknown/unauthenticated user.
-  session.special_user: Identifies a user with special page. If 'true', a button for the special page is added to the navbar.
+  session.specialUser: Identifies a user with special page. If 'true', a button for the special page is added to the navbar.
 -->
 
 <nav class="navbar navbar-default">
@@ -32,7 +32,7 @@ Parameters:
         </li>
         <li><a href="/aboutme">About Me</a></li>
         <li><a href="https://www.github.com/matheushjs">GitHub</a></li>
-        <% if(session.special_user) { %>
+        <% if(session.specialUser) { %>
           <li><a href="/secret">Special Page</a></li>
         <% } %>
       </ul>
