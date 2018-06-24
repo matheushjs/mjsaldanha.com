@@ -112,7 +112,7 @@ router.post("/signup", function(req, res){
         session: req.session,
         failMsg: "ReCAPTCHA validation failed. Please try again.",
       });
-      return Promise.reject(undefined);
+      return Promise.reject(null);
     })
     .then(() => { return dbUsers.signUp(req.body.username, req.body.password, req.body.callname); })
     .then((authUser) => {

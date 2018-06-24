@@ -31,7 +31,7 @@ function User(id, username, hashpass, callname){
  * The argument should be an object with only 1 of the following attributes:
  *   - username: for looking up an user by their username
  *   - id: for looking up an user by their id
- * Returns undefined if user was not found.
+ * Returns null if user was not found.
  * Returns filled User object if found.
  */
 function lookup(obj){
@@ -47,7 +47,7 @@ function lookup(obj){
   // Create user after query is done
   promise = promise.then((res) => {
     if(!res.rows[0]){
-      return undefined;
+      return null;
     } else {
       // Remove whitespace
       res.rows[0].username = res.rows[0].username.replace(/^ */g, "").replace(/ *$/g, "");
@@ -62,14 +62,14 @@ function lookup(obj){
 }
 
 /* Attempts to authenticate user with username "user" and textual password "pass".
- * If authentication fails, returns undefined.
+ * If authentication fails, returns null.
  * If it succeeds, returns a filled User object.
  */
 function authenticate(user, pass){
   return lookup({username: user})
     .then((recUser) => {
       if(!recUser){
-        return undefined;
+        return null;
       }
 
       const secret = recUser.hashpass.substr(0, keyBytes*2);
@@ -78,7 +78,7 @@ function authenticate(user, pass){
       if(recUser.hashpass === secret + hash){
         return recUser;
       } else {
-        return undefined;
+        return null;
       }
     });
 }
@@ -95,7 +95,7 @@ function addUser(user, pass, name){
 
 /* Attempts to sign up a user with username "user", password "pass" and callname "name."
  * First, this function checks if a user with given username exists. If it already exists, nothing is done
- *   and the function returns undefined.
+ *   and the function returns null.
  * If the given "user" is available for usage, then we insert the new user in the database. Function returns
  *   a filled User in this case.
  */
@@ -103,7 +103,7 @@ function signUp(user, pass, name){
   return lookup({username: user})
     .then((found) => {
       if(found){
-        return undefined;
+        return null;
       } else {
         return addUser(user, pass, name).then((authUser) => {
           return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);

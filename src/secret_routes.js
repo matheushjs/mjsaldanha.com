@@ -47,7 +47,7 @@ router.use((req, res, next) => {
 
   if(req.session.username === "walwal20"){
     dbUsers.allUsers()
-    .then(users => {
+    .then((users) => {
       req.session.userData.allUsers = users.sort((a, b) => { return a.id > b.id; });
       return next();
     })
