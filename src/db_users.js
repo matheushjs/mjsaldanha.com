@@ -86,7 +86,7 @@ function authenticate(user, pass){
 /* Inserts a new user in the database, with username "user", password "pass" and call name "name".
  * This function does not check whether the user already exists or not. The caller must make this check.
  */
-function add_user(user, pass, name){
+function addUser(user, pass, name){
   const secret = crypto.randomBytes(keyBytes).toString("hex");
   const hash = crypto.createHmac("sha256", secret).update(pass).digest("hex");
   return client.query("INSERT INTO users(username, password, callname) VALUES ($1, $2, $3)", [user, secret + hash, name])
@@ -99,13 +99,13 @@ function add_user(user, pass, name){
  * If the given "user" is available for usage, then we insert the new user in the database. Function returns
  *   a filled User in this case.
  */
-function sign_up(user, pass, name){
+function signUp(user, pass, name){
   return lookup({username: user})
     .then((found) => {
       if(found){
         return undefined;
       } else {
-        return add_user(user, pass, name).then((authUser) => {
+        return addUser(user, pass, name).then((authUser) => {
           return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);
         });
       }
@@ -121,7 +121,7 @@ function sign_up(user, pass, name){
  *   - callname: the new callname of the user (optional)
  *   - password: the new textual password of the user (optional)
  */
-function update_user(user){
+function updateUser(user){
   if(!user.id){
     throw Error("user must have an id");
   }
@@ -158,7 +158,7 @@ function update_user(user){
 
 /* Returns an array with all users in the database.
  */
-function all_users(){
+function allUsers(){
   return client.query("SELECT * FROM users")
     .then((res) => {
       var users = [];
@@ -179,7 +179,7 @@ function all_users(){
 module.exports = {
   authenticate,
   lookup,
-  sign_up,
-  update_user,
-  all_users,
+  signUp,
+  updateUser,
+  allUsers,
 };

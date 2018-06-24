@@ -5,7 +5,7 @@ var path = require("path");
 var db_users = require("./db_users");
 
 // Returns whether user with id "id" has a secret page.
-function user_has_secret(userid){
+function userHasSecret(userid){
   var dirs = fs.readdirSync("./client/secret");
 
   for(var i = 0; i < dirs.length; i++){
@@ -28,7 +28,7 @@ router.use((req, res, next) => {
 
   if(req.session.username === "walwal20"){
     return next();
-  } else if(id && user_has_secret(req.session.userid) && Number(req.session.userid) === id){
+  } else if(id && userHasSecret(req.session.userid) && Number(req.session.userid) === id){
     return next();
   } else {
     res.render("pages/message_page", {
@@ -46,9 +46,9 @@ router.use((req, res, next) => {
   req.session.user_data = {};
 
   if(req.session.username === "walwal20"){
-    db_users.all_users()
+    db_users.allUsers()
     .then(users => {
-      req.session.user_data.all_users = users.sort((a, b) => { return a.id > b.id; });
+      req.session.user_data.allUsers = users.sort((a, b) => { return a.id > b.id; });
       return next();
     })
     .catch((err) => console.log(err.stack));
@@ -62,5 +62,5 @@ router.use(express.static(path.resolve("./client/secret")));
 
 module.exports = {
   router,
-  user_has_secret
+  userHasSecret
 };

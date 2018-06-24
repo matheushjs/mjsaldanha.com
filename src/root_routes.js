@@ -10,7 +10,7 @@ var recaptcha = new ReCaptcha(require("./private_code").recaptcha_keys);
 
 // Handle user privilege variables in req.session
 router.use((req, res, next) => {
-  if(req.session.username && secret_routes.user_has_secret(req.session.userid)){
+  if(req.session.username && secret_routes.userHasSecret(req.session.userid)){
     req.session.special_user = true;
   } else {
     req.session.special_user = false;
@@ -114,7 +114,7 @@ router.post("/signup", function(req, res){
       });
       return Promise.reject(undefined);
     })
-    .then(() => { return db_users.sign_up(req.body.username, req.body.password, req.body.callname); })
+    .then(() => { return db_users.signUp(req.body.username, req.body.password, req.body.callname); })
     .then((authUser) => {
       if(authUser){
         req.session.userid = authUser.id;
@@ -174,7 +174,7 @@ router.route("/account")
   // Now for matters that involve the database
   if(!req.body.cur_password){
     // Only callname to update
-    db_users.update_user({id: req.session.userid, callname: req.body.callname})
+    db_users.updateUser({id: req.session.userid, callname: req.body.callname})
     .then((user) => {
       // Update session
       req.session.callname = user.callname;
@@ -194,7 +194,7 @@ router.route("/account")
         return;
       }
       
-      return db_users.update_user({id: req.session.userid, callname: req.body.callname, password: req.body.password});
+      return db_users.updateUser({id: req.session.userid, callname: req.body.callname, password: req.body.password});
     })
     .then((user) => {
       // Update session
