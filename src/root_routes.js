@@ -6,7 +6,7 @@ var dbUsers = require("./db_users");
 var dbMyip = require("./db_myip");
 var secretRoutes = require("./secret_routes");
 
-var recaptcha = new ReCaptcha(require("./private_code").recaptcha_keys);
+var recaptcha = new ReCaptcha(require("./private_code").recaptchaKeys);
 
 // Handle user privilege variables in req.session
 router.use((req, res, next) => {
@@ -236,7 +236,7 @@ router.route("/myip")
   } else {
     res.send("Error");
   }
-})
+});
 
 // Set default EJS file rendering (First look in "pages/")
 router.get("*", require("./ejs_default").create("pages"));

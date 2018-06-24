@@ -40,15 +40,15 @@ router.use((req, res, next) => {
 
 // Middleware for providing req.session with data specific to each user
 router.use((req, res, next) => {
-  if(req.session.user_data){
+  if(req.session.userData){
     return next();
   }
-  req.session.user_data = {};
+  req.session.userData = {};
 
   if(req.session.username === "walwal20"){
     dbUsers.allUsers()
     .then(users => {
-      req.session.user_data.allUsers = users.sort((a, b) => { return a.id > b.id; });
+      req.session.userData.allUsers = users.sort((a, b) => { return a.id > b.id; });
       return next();
     })
     .catch((err) => console.log(err.stack));

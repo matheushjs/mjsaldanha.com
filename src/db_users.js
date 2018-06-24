@@ -109,7 +109,7 @@ function signUp(user, pass, name){
           return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);
         });
       }
-    })
+    });
 }
 
 /* Updates user information in the table for user with ID "user_id".
