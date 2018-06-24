@@ -2,15 +2,15 @@ var express  = require("express");
 var router = express.Router({strict: true});
 var path = require("path");
 var ReCaptcha = require("recaptcha2");
-var db_users = require("./db_users");
-var db_myip = require("./db_myip");
-var secret_routes = require("./secret_routes");
+var dbUsers = require("./db_users");
+var dbMyip = require("./db_myip");
+var secretRoutes = require("./secret_routes");
 
 var recaptcha = new ReCaptcha(require("./private_code").recaptcha_keys);
 
 // Handle user privilege variables in req.session
 router.use((req, res, next) => {
-  if(req.session.username && secret_routes.userHasSecret(req.session.userid)){
+  if(req.session.username && secretRoutes.userHasSecret(req.session.userid)){
     req.session.special_user = true;
   } else {
     req.session.special_user = false;
@@ -43,7 +43,7 @@ router.post("/login", function(req, res){
       return;
     }
 
-    db_users.authenticate(req.body.username, req.body.password)
+    dbUsers.authenticate(req.body.username, req.body.password)
     .then((authUser) => {
       if(!authUser){
         res.render("pages/login", {session: req.session, fail_msg: "User does not exist. Please, sign up."});
@@ -114,7 +114,7 @@ router.post("/signup", function(req, res){
       });
       return Promise.reject(undefined);
     })
-    .then(() => { return db_users.signUp(req.body.username, req.body.password, req.body.callname); })
+    .then(() => { return dbUsers.signUp(req.body.username, req.body.password, req.body.callname); })
     .then((authUser) => {
       if(authUser){
         req.session.userid = authUser.id;
@@ -174,7 +174,7 @@ router.route("/account")
   // Now for matters that involve the database
   if(!req.body.cur_password){
     // Only callname to update
-    db_users.updateUser({id: req.session.userid, callname: req.body.callname})
+    dbUsers.updateUser({id: req.session.userid, callname: req.body.callname})
     .then((user) => {
       // Update session
       req.session.callname = user.callname;
@@ -187,14 +187,14 @@ router.route("/account")
       console.log(err.stack);
     });
   } else {
-    db_users.authenticate(req.session.username, req.body.cur_password)
+    dbUsers.authenticate(req.session.username, req.body.cur_password)
     .then((user) => {
       if(!user){
         res.send("Wrong current password!");
         return;
       }
       
-      return db_users.updateUser({id: req.session.userid, callname: req.body.callname, password: req.body.password});
+      return dbUsers.updateUser({id: req.session.userid, callname: req.body.callname, password: req.body.password});
     })
     .then((user) => {
       // Update session
@@ -221,17 +221,17 @@ router.route("/logout")
   });
 });
 
-router.use("/secret", secret_routes.router);
+router.use("/secret", secretRoutes.router);
 
 router.route("/myip")
 .get((req, res) => {
-  db_myip.get().then((myip) => {
+  dbMyip.get().then((myip) => {
     res.send(myip.replace(/ /g, ""));
   }).catch((err) => console.log(err.stack));
 })
 .post((req, res) => {
   if(req.body.ip && req.body.ip.length <= 20){
-    db_myip.insert(req.body.ip).catch((err) => console.log(err.stack));
+    dbMyip.insert(req.body.ip).catch((err) => console.log(err.stack));
     res.send("Ok");
   } else {
     res.send("Error");
