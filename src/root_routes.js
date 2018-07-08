@@ -6,7 +6,13 @@ var dbUsers = require("./db_users");
 var dbMyip = require("./db_myip");
 var secretRoutes = require("./secret_routes");
 
-var recaptcha = new ReCaptcha(require("./private_code").recaptchaKeys);
+var recaptcha;
+try {
+  recaptcha = new ReCaptcha(require("./private_code").recaptchaKeys);
+} catch(err) {
+  recaptcha = null;
+  console.log(err.message);
+}
 
 // Handle user privilege variables in req.session
 router.use((req, res, next) => {
@@ -59,11 +65,21 @@ router.post("/login", function(req, res){
 });
 
 router.post("/signup", function(req, res){
+  // Signing up should only work if reCaptcha was loaded correctly.
+  if(!recaptcha){
+    res.render("pages/message_page", {
+      message: "ReCaptcha could not be loaded in the server.",
+      session: req.session,
+    });
+    return;
+  }
+  
   if(req.session.username){
     res.render("pages/message_page", {
       message: "Please, log out of your current account before signing up.",
       session: req.session,
     });
+    return;
   } else {
     // Validate/fix fields
     // For callname, we just remove trailing/leading whitespace
