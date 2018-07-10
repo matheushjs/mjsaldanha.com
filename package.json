@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
+    "devstart": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matheus H. J. Saldanha",
@@ -18,7 +19,9 @@
     "pg": "7.4.1",
     "recaptcha2": "^1.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.18.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://www.github.com/matheushjs/matheushjs.me"
