@@ -2,11 +2,11 @@ var express = require("express");
 var router = express.Router({strict: true});
 var fs = require("fs");
 var path = require("path");
-var dbUsers = require("./db_users");
+var dbUsers = require("../model/db_users");
 
 // Returns whether user with id "id" has a secret page.
 function userHasSecret(userid){
-  var dirs = fs.readdirSync("./client/secret");
+  var dirs = fs.readdirSync(path.resolve("src/view/secret"));
 
   for(var i = 0; i < dirs.length; i++){
     dirs[i] = Number(dirs[i]);
@@ -31,7 +31,7 @@ router.use((req, res, next) => {
   } else if(id && userHasSecret(req.session.userid) && Number(req.session.userid) === id){
     return next();
   } else {
-    res.render("pages/message_page", {
+    res.render("message_page", {
       session: req.session,
       message: "Sorry, there is nothing special for you yet.",
     });
@@ -58,7 +58,7 @@ router.use((req, res, next) => {
 });
 
 // Then we serve all other files statically
-router.use(express.static(path.resolve("./client/secret")));
+router.use(express.static(path.resolve("src/view/secret")));
 
 module.exports = {
   router,

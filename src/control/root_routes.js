@@ -2,9 +2,9 @@ var express  = require("express");
 var router = express.Router({strict: true});
 var path = require("path");
 var ReCaptcha = require("recaptcha2");
-var dbUsers = require("./db_users");
-var dbMyip = require("./db_myip");
-var secretRoutes = require("./secret_routes");
+var dbUsers = require("../model/db_users");
+var dbMyip = require("../model/db_myip");
+var secretRoutes = require("../control/secret_routes");
 
 var recaptcha;
 try {
@@ -26,14 +26,14 @@ router.use((req, res, next) => {
 
 router.post("/login", function(req, res){
   if(req.session.username){
-    res.render("pages/login", {session: req.session, failMsg: "You're already logged in. Please log out first."});
+    res.render("login", {session: req.session, failMsg: "You're already logged in. Please log out first."});
   } else {
     // Validate/fix fields
     // For username and password, we enforce that no trailing/leading whitespace exist
     var tUsername = req.body.username.replace(/^ */g, "").replace(/ *$/g, ""); // trimmed username
     var tPassword = req.body.password.replace(/^ */g, "").replace(/ *$/g, ""); // trimmed password
     if(tUsername.length !== req.body.username.length || tPassword.length !== req.body.password.length){
-      res.render("pages/login", {
+      res.render("login", {
         session: req.session,
         failMsg: "Leading/trailing whitespace characters aren't allowed in the password and username fields.",
       });
@@ -42,7 +42,7 @@ router.post("/login", function(req, res){
 
     // We also check their lengths
     if(tUsername.length <= 0 || tUsername.length > 128 || tPassword.length <= 0 || tPassword.length > 128){
-      res.render("pages/login", {
+      res.render("login", {
         session: req.session,
         failMsg: "Username and Password should have at least 1 and at most 128 characters.",
       });
@@ -52,7 +52,7 @@ router.post("/login", function(req, res){
     dbUsers.authenticate(req.body.username, req.body.password)
     .then((authUser) => {
       if(!authUser){
-        res.render("pages/login", {session: req.session, failMsg: "User does not exist. Please, sign up."});
+        res.render("login", {session: req.session, failMsg: "User does not exist. Please, sign up."});
       } else {
         req.session.userid = authUser.id;
         req.session.username = authUser.username;
@@ -75,7 +75,7 @@ router.post("/signup", function(req, res){
   }
   
   if(req.session.username){
-    res.render("pages/message_page", {
+    res.render("message_page", {
       message: "Please, log out of your current account before signing up.",
       session: req.session,
     });
@@ -86,7 +86,7 @@ router.post("/signup", function(req, res){
     req.body.callname = req.body.callname.replace(/^ */g, "").replace(/ *$/g, "");
     // We also check its length
     if(req.body.callname.length <= 0 || req.body.callname.length > 128){
-      res.render("pages/signup", {
+      res.render("signup", {
         session: req.session,
         failMsg: "Name should have at least 1 and at most 128 characters.",
       });
@@ -98,7 +98,7 @@ router.post("/signup", function(req, res){
     var tPassword = req.body.password.replace(/^ */g, "").replace(/ *$/g, ""); // trimmed password
     var tPassword2 = req.body.password2.replace(/^ */g, "").replace(/ *$/g, ""); // trimmed password2
     if(tUsername.length !== req.body.username.length || tPassword.length !== req.body.password.length || tPassword2.length !== req.body.password2.length){
-      res.render("pages/signup", {
+      res.render("signup", {
         session: req.session,
         failMsg: "Please ensure there are no leading/trailing whitespace characters in your password and username.",
       });
@@ -106,7 +106,7 @@ router.post("/signup", function(req, res){
     }
     // We also check their lengths
     if(tUsername.length <= 0 || tUsername.length > 128 || tPassword.length <= 0 || tPassword.length > 128){
-      res.render("pages/signup", {
+      res.render("signup", {
         session: req.session,
         failMsg: "Username and Password should have at least 1 and at most 128 characters.",
       });
@@ -115,7 +115,7 @@ router.post("/signup", function(req, res){
 
     // Check if password match
     if(req.body.password !== req.body.password2){
-      res.render("pages/signup", {
+      res.render("signup", {
         session: req.session,
         failMsg: "Passwords didn't match!",
       });
@@ -124,7 +124,7 @@ router.post("/signup", function(req, res){
 
     recaptcha.validate(req.body["g-recaptcha-response"])
     .catch((err) => {
-      res.render("pages/signup", {
+      res.render("signup", {
         session: req.session,
         failMsg: "ReCAPTCHA validation failed. Please try again.",
       });
@@ -138,7 +138,7 @@ router.post("/signup", function(req, res){
         req.session.callname = authUser.callname;
         res.redirect("/");
       } else {
-        res.render("pages/signup", {
+        res.render("signup", {
           session: req.session,
           failMsg: "Username already exists. Please, pick another one.",
         });
@@ -152,7 +152,7 @@ router.route("/account")
 .get((req, res) => {
   if(!req.session.userid){ res.redirect("/"); return; }
 
-  res.render("pages/account", {session: req.session});
+  res.render("account", {session: req.session});
 })
 .post((req, res) => {
   if(!req.session.userid){ res.send("Must be logged in to perform this operation."); return; }
@@ -263,7 +263,7 @@ router.use(express.static(path.resolve("./client")));
 
 // Set up failsafe for non-found pages
 router.get("*", (req, res) => {
-  res.render("pages/message_page", {
+  res.render("message_page", {
     message: "Sorry! The requested page doesn't seem to exist.",
     session: req.session,
   });

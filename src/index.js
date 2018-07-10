@@ -6,7 +6,7 @@ const app = require("express")();
 
 // Sets up ejs templating
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "client"));
+app.set("views", path.join(__dirname, "view/pages"));
 
 // Sets up body parsing
 app.use(bodyParser.json());
@@ -27,11 +27,11 @@ app.use((req, res, next) => {
 */
 
 // Set up routes
-app.use("/", require("./src/root_routes"));
+app.use("/", require("./control/root_routes"));
 
 // Set up error handling
 app.use((err, req, res, next) => {
-  res.render("pages/message_page", {
+  res.render("message_page", {
     session: req.session,
     message: "Sorry, something went wrong in the server. The maintainer has been notified about this error.",
   });
