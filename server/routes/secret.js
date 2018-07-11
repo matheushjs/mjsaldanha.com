@@ -6,7 +6,7 @@ var dbUsers = require("../model/db_users");
 
 // Returns whether user with id "id" has a secret page.
 function userHasSecret(userid){
-  var dirs = fs.readdirSync(path.resolve("src/view/secret"));
+  var dirs = fs.readdirSync(path.resolve("server/view/secret"));
 
   for(var i = 0; i < dirs.length; i++){
     dirs[i] = Number(dirs[i]);
