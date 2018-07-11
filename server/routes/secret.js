@@ -57,9 +57,6 @@ router.use((req, res, next) => {
   }
 });
 
-// Then we serve all other files statically
-router.use(express.static(path.resolve("src/view/secret")));
-
 module.exports = {
   router,
   userHasSecret

@@ -237,8 +237,6 @@ router.route("/logout")
   });
 });
 
-router.use("/secret", secretRoutes.router);
-
 router.route("/myip")
 .get((req, res) => {
   dbMyip.get().then((myip) => {
@@ -257,16 +255,5 @@ router.route("/myip")
 // Set default EJS file rendering (First look in "pages/")
 router.get("*", require("./ejs_default").create("pages"));
 router.get("*", require("./ejs_default").create(""));
-
-// Set for serving static files (must come after setting up our routes)
-router.use(express.static(path.resolve("./public")));
-
-// Set up failsafe for non-found pages
-router.get("*", (req, res) => {
-  res.render("message_page", {
-    message: "Sorry! The requested page doesn't seem to exist.",
-    session: req.session,
-  });
-});
 
 module.exports = router;
