@@ -4,6 +4,8 @@ const session = require("express-session");
 
 const app = require("express")();
 
+const indexRoutes = require("./routes/root_routes");
+
 // Sets up ejs templating
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
@@ -27,7 +29,7 @@ app.use((req, res, next) => {
 */
 
 // Set up routes
-app.use("/", require("./control/root_routes"));
+app.use("/", indexRoutes);
 
 // Set up error handling
 app.use((err, req, res, next) => {

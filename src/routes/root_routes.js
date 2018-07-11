@@ -4,7 +4,7 @@ var path = require("path");
 var ReCaptcha = require("recaptcha2");
 var dbUsers = require("../model/db_users");
 var dbMyip = require("../model/db_myip");
-var secretRoutes = require("../control/secret_routes");
+var secretRoutes = require("./secret_routes");
 
 var recaptcha;
 try {
