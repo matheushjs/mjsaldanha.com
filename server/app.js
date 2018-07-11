@@ -4,7 +4,7 @@ const session = require("express-session");
 
 const app = require("express")();
 
-const indexRoutes = require("./routes/root_routes");
+const indexRoutes = require("./routes/index");
 
 // Sets up ejs templating
 app.set("view engine", "ejs");

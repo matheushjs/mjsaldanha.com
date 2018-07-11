@@ -2,10 +2,10 @@
   "name": "matheushjs_com",
   "version": "1.0.0",
   "description": "Webpage of Matheus H. J. Saldanha",
-  "main": "index.js",
+  "main": "server/app.js",
   "scripts": {
-    "start": "node server/index.js",
-    "devstart": "nodemon server/index.js",
+    "start": "node server/app.js",
+    "devstart": "nodemon server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matheus H. J. Saldanha",
