@@ -1,6 +1,7 @@
 const path = require("path");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const morgan = require("morgan");
 
 const app = require("express")();
 
@@ -10,8 +11,8 @@ const indexRoutes = require("./routes/index");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
 
-// Sets up body parsing
-app.use(bodyParser.json());
+app.use(morgan('dev'));     // Sets logging for debugging & control
+app.use(bodyParser.json()); // Sets up body parsing
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Set up session handling
