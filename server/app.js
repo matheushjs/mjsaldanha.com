@@ -1,6 +1,6 @@
 const path = require("path");
 const bodyParser = require("body-parser");
-const session = require("express-session");
+const cookieSession = require("cookie-session");
 const morgan = require("morgan");
 
 const app = require("express")();
@@ -12,14 +12,12 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
 
 app.use(morgan('dev'));     // Sets logging for debugging & control
-app.use(bodyParser.json()); // Sets up body parsing
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Set up session handling
-app.use(session({
+app.use(bodyParser.json()); // Sets up JSON body parsing
+app.use(bodyParser.urlencoded({ extended: false })); // Sets up urlencoded body parsing
+app.use(cookieSession({     // Sets up cookie-based session
+  name: "session",
   secret: "私が嫌い物があれば、それは人類だと思う。",
-  resave: false,
-  saveUninitialized: false,
+  maxAge: 24 * 60 * 60 * 1000, // 24 hours
 }));
 
 /*
