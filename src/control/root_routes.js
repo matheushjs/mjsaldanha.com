@@ -259,7 +259,7 @@ router.get("*", require("./ejs_default").create("pages"));
 router.get("*", require("./ejs_default").create(""));
 
 // Set for serving static files (must come after setting up our routes)
-router.use(express.static(path.resolve("./client")));
+router.use(express.static(path.resolve("./public")));
 
 // Set up failsafe for non-found pages
 router.get("*", (req, res) => {
