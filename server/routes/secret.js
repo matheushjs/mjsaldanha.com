@@ -59,5 +59,15 @@ router.use((req, res, next) => {
 
 module.exports = {
   router,
-  userHasSecret
+
+  // Checks if user has a special page
+  // If they have a special page, set req.specialUser to 'true', else 'false'.
+  secretControl: (req, res, next) => {
+    if(req.session.username && userHasSecret(req.session.userid)){
+      req.specialUser = true;
+    } else {
+      req.specialUser = false;
+    }
+    return next();
+  }
 };

@@ -1,24 +1,13 @@
 var express  = require("express");
 var router = express.Router({strict: true});
 var dbMyip = require("../model/db_myip");
-var secretRoutes = require("./secret");
 
-// Handle user privilege variables in req.session
-router.use((req, res, next) => {
-  if(req.session.username && secretRoutes.userHasSecret(req.session.userid)){
-    req.session.specialUser = true;
-  } else {
-    req.session.specialUser = false;
-  }
-  return next();
-});
-
-router.get("/",              (req, res) => res.render("index", {session: req.session}));
-router.get("/index",         (req, res) => res.render("index", {session: req.session}));
-router.get("/aboutme",       (req, res) => res.render("aboutme", {session: req.session}));
-router.get("/calculator",    (req, res) => res.render("calculator", {session: req.session}));
-router.get("/credits",       (req, res) => res.render("credits", {session: req.session}));
-router.get("/psp-project-1", (req, res) => res.render("psp-project-1", {session: req.session}));
+router.get("/",              (req, res) => req.renderer.render(res, "index"));
+router.get("/index",         (req, res) => req.renderer.render(res, "index"));
+router.get("/aboutme",       (req, res) => req.renderer.render(res, "aboutme"));
+router.get("/calculator",    (req, res) => req.renderer.render(res, "calculator"));
+router.get("/credits",       (req, res) => req.renderer.render(res, "credits"));
+router.get("/psp-project-1", (req, res) => req.renderer.render(res, "psp-project-1"));
 
 router.route("/myip")
 .get((req, res) => {

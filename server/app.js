@@ -3,9 +3,17 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const morgan = require("morgan");
 const express = require("express");
+const renderer = require("./view/renderer");
 
 const app = express();
 
+const secretControl = require("./routes/secret").secretControl;
+const rendererControl = (req, res, next) => {
+  let callname = req.session.callname;
+  let specialUser = req.specialUser;
+  req.renderer = new renderer.Renderer(callname, specialUser);
+  next();
+}
 const indexRoutes  = require("./routes/index");
 const secretRoutes = require("./routes/secret").router;
 const userRoutes   = require("./routes/user");
@@ -24,6 +32,9 @@ app.use(cookieSession({     // Sets up cookie-based session
 }));
 app.use(express.static(path.resolve("./public"))); // Serve the public folder statically. 
 
+app.use(secretControl); // Handle user privilege variables in req.session
+app.use(rendererControl); // Creates and initializes a Renderer object
+
 // Set up routes
 app.use("/secret", secretRoutes);
 app.use("/user", userRoutes);
@@ -33,20 +44,14 @@ app.use("/", indexRoutes);
 app.get("*", (req, res) => {
   // 404: Not Found
   res.status(404);
-  res.render("message_page", {
-    message: "Sorry! The requested page doesn't seem to exist.",
-    session: req.session,
-  });
+  req.renderer.messagePage(res, "Sorry! The requested page doesn't seem to exist.");
 });
 
 // Handle errors
 app.use((err, req, res, next) => {
   // 500: Internal Server Error
   res.status(500);
-  res.render("message_page", {
-    session: req.session,
-    message: "Sorry, something went wrong in the server. The maintainer has been notified about this error.",
-  });
+  req.renderer.messagePage(res, "Sorry, something went wrong in the server. The maintainer has been notified about this error.");
   console.log(err.stack);
 });
 

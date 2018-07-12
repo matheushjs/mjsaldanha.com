@@ -36,18 +36,18 @@ Parameters:
         <li><a href="/aboutme">About Me</a></li>
         <li><a href="https://www.github.com/matheushjs">GitHub</a></li>
         <li><a href="/credits">Credits</a></li>
-        <% if(session.specialUser) { %>
+        <% if(specialUser) { %>
           <li><a href="/secret">Special Page</a></li>
         <% } %>
       </ul>
 
       </ul>
         <ul class="nav navbar-nav navbar-right">
-        <% if(!session.callname){ %>
+        <% if(!callname){ %>
           <li><a href="/user/signup">Sign Up</a></li>
           <li><a href="/user/login">Login</a></li>
         <% } else { %>
-          <span class="navbar-text">Hello, <%= session.callname %></span>
+          <span class="navbar-text">Hello, <%= callname %></span>
           <li><a href="/user/account">Account</a></li>
           <li><a href="/user/logout">Logout</a></li>
         <% } %>

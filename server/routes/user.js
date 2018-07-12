@@ -13,25 +13,22 @@ try {
 
 router.route("/login")
 .get((req, res) => {
-  res.render("login", {session: req.session});
+  req.renderer.login(res);
 })
 .post((req, res) => {
   if(req.session.username){
-    res.render("login", {session: req.session, failMsg: "You're already logged in. Please log out first."});
+    req.renderer.login(res, "You're already logged in. Please log out first.");
   } else {
     let check = validateFields(req.body.username, req.body.password);
     if(!check.success){
-      res.render("login", {
-        session: req.session,
-        failMsg: check.failMsg,
-      });
+      req.renderer.login(res, check.failMsg);
       return;
     }
 
     dbUsers.authenticate(req.body.username, req.body.password)
     .then((authUser) => {
       if(!authUser){
-        res.render("login", {session: req.session, failMsg: "User does not exist. Please, sign up."});
+        req.renderer.login(res, "User does not exist. Please, sign up.")
       } else {
         req.session.userid = authUser.id;
         req.session.username = authUser.username;
@@ -47,25 +44,19 @@ router.route("/signup")
 // Check ReCaptcha. Sign up is disabled if it doesn't work.
 .all((req, res, next) => {
   if(!recaptcha){
-    res.render("message_page", {
-      message: "ReCaptcha could not be loaded in the server.",
-      session: req.session,
-    });
+    req.renderer.messagePage(res, "ReCaptcha could not be loaded in the server.");
   } else {
     next();
   }
 })
 // Serve GET request
 .get((req, res) =>{
-  res.render("signup", {session: req.session});
+  req.renderer.signup(res);
 })
 // Check if user isn't logged in already
 .post((req, res, next) => {
   if(req.session.username){
-    res.render("message_page", {
-      message: "Please, log out of your current account before signing up.",
-      session: req.session,
-    });
+    req.renderer.messagePage(res, "Please, log out of your current account before signing up.");
   } else {
     next();
   }
@@ -78,10 +69,7 @@ router.route("/signup")
   
   let check = validateFields(req.body.username, req.body.password, req.body.password2, req.body.callname);
   if(!check.success){
-    res.render("signup", {
-      session: req.session,
-      failMsg: check.failMsg,
-    });
+    req.renderer.signup(res, check.failMsg);
   } else {
     next();
   }
@@ -93,10 +81,7 @@ router.route("/signup")
     next()
   })
   .catch((err) => {
-    res.render("signup", {
-      session: req.session,
-      failMsg: "ReCAPTCHA validation failed. Please try again.",
-    });
+    req.renderer.signup(res, "ReCAPTCHA validation failed. Please try again.");
   });
 })
 // Sign user up in database
@@ -109,10 +94,7 @@ router.route("/signup")
       req.session.callname = authUser.callname;
       res.redirect("/");
     } else {
-      res.render("signup", {
-        session: req.session,
-        failMsg: "Username already exists. Please, pick another one.",
-      });
+      req.renderer.signup(res, "Username already exists. Please, pick another one.");
     }
   });
 });
@@ -129,7 +111,7 @@ router.route("/account")
 })
 // Serve GET requests
 .get((req, res) => {
-  res.render("account", {session: req.session});
+  req.renderer.account(res);
 })
 // Validate Fields
 .post((req, res, next) => {
