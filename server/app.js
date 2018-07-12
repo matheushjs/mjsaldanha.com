@@ -3,19 +3,13 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const morgan = require("morgan");
 const express = require("express");
-const renderer = require("./view/renderer");
 
 const app = express();
 
-const secretControl = require("./routes/secret").secretControl;
-const rendererControl = (req, res, next) => {
-  let callname = req.session.callname;
-  let specialUser = req.specialUser;
-  req.renderer = new renderer.Renderer(callname, specialUser);
-  next();
-}
+const makeSecret   = require("./midware/makeSecret");
+const makeRenderer = require("./midware/makeRenderer");
 const indexRoutes  = require("./routes/index");
-const secretRoutes = require("./routes/secret").router;
+const secretRoutes = require("./routes/secret");
 const userRoutes   = require("./routes/user");
 
 // Sets up ejs templating
@@ -32,8 +26,9 @@ app.use(cookieSession({     // Sets up cookie-based session
 }));
 app.use(express.static(path.resolve("./public"))); // Serve the public folder statically. 
 
-app.use(secretControl); // Handle user privilege variables in req.session
-app.use(rendererControl); // Creates and initializes a Renderer object
+// makeSecret must come before makeRenderer
+app.use(makeSecret);   // Handle user privilege variables in req.session
+app.use(makeRenderer); // Creates and initializes a Renderer object
 
 // Set up routes
 app.use("/secret", secretRoutes);

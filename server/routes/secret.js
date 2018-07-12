@@ -1,19 +1,6 @@
 var express = require("express");
 var router = express.Router({strict: true});
-var fs = require("fs");
-var path = require("path");
 var dbUsers = require("../model/db_users");
-
-// Returns whether user with id "id" has a secret page.
-function userHasSecret(userid){
-  var dirs = fs.readdirSync(path.resolve("server/view/secret"));
-
-  for(var i = 0; i < dirs.length; i++){
-    dirs[i] = Number(dirs[i]);
-  }
-
-  return dirs.indexOf(Number(userid)) !== -1;
-}
 
 // For the root URL, we unconditionally redirect the user to their index.
 // If it doesn't exist, let the other middlewares handle it.
@@ -28,7 +15,7 @@ router.use((req, res, next) => {
 
   if(req.session.username === "walwal20"){
     return next();
-  } else if(id && userHasSecret(req.session.userid) && Number(req.session.userid) === id){
+  } else if(id && req.specialUser && Number(req.session.userid) === id){
     return next();
   } else {
     res.render("message_page", {
@@ -57,17 +44,4 @@ router.use((req, res, next) => {
   }
 });
 
-module.exports = {
-  router,
-
-  // Checks if user has a special page
-  // If they have a special page, set req.specialUser to 'true', else 'false'.
-  secretControl: (req, res, next) => {
-    if(req.session.username && userHasSecret(req.session.userid)){
-      req.specialUser = true;
-    } else {
-      req.specialUser = false;
-    }
-    return next();
-  }
-};
+module.exports = router;
