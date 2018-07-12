@@ -25,9 +25,9 @@ app.use(cookieSession({     // Sets up cookie-based session
 app.use(express.static(path.resolve("./public"))); // Serve the public folder statically. 
 
 // Set up routes
-app.use("/", indexRoutes);
 app.use("/secret", secretRoutes);
 app.use("/user", userRoutes);
+app.use("/", indexRoutes);
 
 // Handle page not found
 app.get("*", (req, res) => {
