@@ -13,6 +13,13 @@ router.use((req, res, next) => {
   return next();
 });
 
+router.get("/",              (req, res) => res.render("index", {session: req.session}));
+router.get("/index",         (req, res) => res.render("index", {session: req.session}));
+router.get("/aboutme",       (req, res) => res.render("aboutme", {session: req.session}));
+router.get("/calculator",    (req, res) => res.render("calculator", {session: req.session}));
+router.get("/credits",       (req, res) => res.render("credits", {session: req.session}));
+router.get("/psp-project-1", (req, res) => res.render("psp-project-1", {session: req.session}));
+
 router.route("/myip")
 .get((req, res) => {
   dbMyip.get().then((myip) => {
@@ -27,9 +34,5 @@ router.route("/myip")
     res.send("Error");
   }
 });
-
-// Set default EJS file rendering (First look in "pages/")
-router.get("*", require("./ejs_default").create("pages"));
-router.get("*", require("./ejs_default").create(""));
 
 module.exports = router;
