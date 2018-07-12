@@ -44,12 +44,12 @@ Parameters:
       </ul>
         <ul class="nav navbar-nav navbar-right">
         <% if(!session.callname){ %>
-          <li><a href="/signup">Sign Up</a></li>
-          <li><a href="/login">Login</a></li>
+          <li><a href="/user/signup">Sign Up</a></li>
+          <li><a href="/user/login">Login</a></li>
         <% } else { %>
           <span class="navbar-text">Hello, <%= session.callname %></span>
-          <li><a href="/account">Account</a></li>
-          <li><a href="/logout">Logout</a></li>
+          <li><a href="/user/account">Account</a></li>
+          <li><a href="/user/logout">Logout</a></li>
         <% } %>
         </ul>
       </ul>

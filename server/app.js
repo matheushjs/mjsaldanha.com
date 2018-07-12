@@ -8,6 +8,7 @@ const app = express();
 
 const indexRoutes  = require("./routes/index");
 const secretRoutes = require("./routes/secret").router;
+const userRoutes   = require("./routes/user");
 
 // Sets up ejs templating
 app.set("view engine", "ejs");
@@ -26,6 +27,7 @@ app.use(express.static(path.resolve("./public"))); // Serve the public folder st
 // Set up routes
 app.use("/", indexRoutes);
 app.use("/secret", secretRoutes);
+app.use("/user", userRoutes);
 
 // Handle page not found
 app.get("*", (req, res) => {
