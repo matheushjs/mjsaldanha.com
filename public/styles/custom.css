@@ -10,9 +10,10 @@ body {
   color: white;
 }
 
-.navbar-default {
-  opacity: 0.6;
-  margin: -20px 5% 20px;
+.elf-navbar {
+  background-color: lightgrey;
+  opacity: 0.7;
+  margin: -20px 5% 40px;
   border-radius: 10px;
 }
 

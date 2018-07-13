@@ -8,52 +8,64 @@ Parameters:
   session.specialUser: Identifies a user with special page. If 'true', a button for the special page is added to the navbar.
 -->
 
-<nav class="navbar navbar-default">
-	<div class="container-fluid" style="opacity: 1; color: white;">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">
-        <img src="/images/elf_logo_512.png" width="26" height="26" style="margin-top: -3px; display: inline-block;">
-        MatHJS
-      </a>
-    </div>
+<nav class="elf-navbar navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="/">
+    <img src="/images/elf_logo_512.png" width="26" height="26" style="margin-top: -3px; display: inline-block;">
+    MatHJS
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-        <li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						Projects <span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-            <li><a href="//github.com/matheushjs/mjsaldanha.com">This Page</a></li>
-            <li><a href="/psp-project-1">PSP Project 1</a></li>
-          </ul>
+  <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Projects <span class="caret"></span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="//github.com/matheushjs/mjsaldanha.com">This Page</a>
+          <a class="dropdown-item" href="/psp-project-1">PSP Project 1</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/aboutme">About Me</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.github.com/matheushjs">GitHub</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/credits">Credits</a>
+      </li>
+      
+      <% if(specialUser) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/secret">Special Page</a>
         </li>
-        <li><a href="/aboutme">About Me</a></li>
-        <li><a href="https://www.github.com/matheushjs">GitHub</a></li>
-        <li><a href="/credits">Credits</a></li>
-        <% if(specialUser) { %>
-          <li><a href="/secret">Special Page</a></li>
-        <% } %>
-      </ul>
+      <% } %>
+    </ul>
 
-      </ul>
-        <ul class="nav navbar-nav navbar-right">
-        <% if(!callname){ %>
-          <li><a href="/user/signup">Sign Up</a></li>
-          <li><a href="/user/login">Login</a></li>
-        <% } else { %>
-          <span class="navbar-text">Hello, <%= callname %></span>
-          <li><a href="/user/account">Account</a></li>
-          <li><a href="/user/logout">Logout</a></li>
-        <% } %>
-        </ul>
-      </ul>
-    </div>
-
-	</div>
+    <ul class="navbar-nav">
+    <% if(!callname){ %>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/signup">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/login">Login</a>
+      </li>
+    <% } else { %>
+      <span class="navbar-text">Hello, <%= callname %></span>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/account">Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user/logout">Logout</a>
+      </li>
+    <% } %>
+    </ul>
+  </div>
 </nav>
