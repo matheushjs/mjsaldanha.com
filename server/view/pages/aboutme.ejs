@@ -4,8 +4,11 @@
     <% include ../partials/head_common %>
 
     <style>
-      .custom-table {
-        background: #EEE;
+      .elf-table {
+        background: #d5d5d5;
+      }
+      .elf-table, .elf-table th, .elf-table td {
+        border-color: #999;
       }
     </style>
   </head>
@@ -50,7 +53,8 @@
         </div>
 
         <div class="col-sm-9">
-          <table class="table table-bordered container text-center custom-table">
+          <div class="table-responsive">
+            <table class="table table-bordered container text-center elf-table">
               <tbody>
                 <tr>
                   <th scope="row" style="vertical-align: middle;">Institution</th>
@@ -88,6 +92,7 @@
                 </tr>
               </tbody>
             </table>
+          </div>
         </div>
       </div>
     </div>
