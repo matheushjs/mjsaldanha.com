@@ -45,9 +45,30 @@
         color: white;
       }
     </style>
+
+    <!-- Add smoothscrolling for scrollspy -->
+    <script>
+      $(document).ready(function(){
+        $("#floatingIndex a").on("click", function(event){
+          // this.hash must have a value
+          if(this.hash !== "") {
+            event.preventDefault();
+
+            var hash = this.hash;
+
+            $("html, body").animate({
+              scrollTop: $(hash).offset().top
+            }, 500, function(){
+              // Add hash link to URL
+              window.location.hash = hash;
+            });
+          }
+        });
+      })
+    </script>
   </head>
 
-	<body id="myPage" data-spy="scroll" data-target="#floatingIndex" data-offset="60">
+	<body id="elfPage" data-spy="scroll" data-target="#floatingIndex" data-offset="60">
     <div class="jumbotron">
       <div>
         <% include ../partials/navbar %>
@@ -318,6 +339,5 @@
     <div>
       <% include ../partials/footer %>
     </div>
-
   </body>
 </html>
