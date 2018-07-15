@@ -4,7 +4,6 @@ var dbMyip = require("../model/db_myip");
 
 router.get("/",              (req, res) => req.renderer.render(res, "index"));
 router.get("/index",         (req, res) => req.renderer.render(res, "index"));
-router.get("/aboutme",       (req, res) => req.renderer.render(res, "aboutme"));
 router.get("/calculator",    (req, res) => req.renderer.render(res, "calculator"));
 router.get("/credits",       (req, res) => req.renderer.render(res, "credits"));
 router.get("/psp-project-1", (req, res) => req.renderer.render(res, "psp-project-1"));
