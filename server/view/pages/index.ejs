@@ -40,11 +40,14 @@
       .elf-table, .elf-table th, .elf-table td {
         border-color: #999;
       }
+
+      .elf-index-nav .nav-link {
+        color: white;
+      }
     </style>
   </head>
 
 	<body>
-
     <div class="jumbotron">
       <div>
         <% include ../partials/navbar %>
@@ -292,6 +295,24 @@
         
         </div>
       </div>
+    </div>
+
+    <div class="rounded" style="position: sticky; bottom: 10px; float: left; background-color: #222222c0; margin-left: 5px;">
+      <div class="collapse" id="floatingIndex">
+        <div class="elf-index-nav nav nav-pills flex-column">
+          <a class="nav-item nav-link active" href="#">About Me</a>
+          <a class="nav-item nav-link" href="#">Academic Info</a>
+          <a class="nav-item nav-link" href="#">Programming Cradle</a>
+          <a class="nav-item nav-link" href="#">Miscellaneous Interests</a>
+          <a class="nav-item nav-link" href="#">Things I Like</a>
+          <a class="nav-item nav-link" href="#">I've Done Lately</a>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark rounded">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#floatingIndex" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          Index <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
     </div>
 
     <div>
