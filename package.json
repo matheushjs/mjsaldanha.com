@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matheus H. J. Saldanha",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/cookie-session": "^2.0.34",
     "body-parser": "^1.18.3",
