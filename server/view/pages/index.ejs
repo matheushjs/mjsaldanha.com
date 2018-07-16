@@ -40,10 +40,6 @@
       .elf-table, .elf-table th, .elf-table td {
         border-color: #999;
       }
-
-      .elf-index-nav .nav-link {
-        color: white;
-      }
     </style>
 
     <!-- Add smoothscrolling for scrollspy -->
@@ -318,9 +314,17 @@
       </div>
     </div>
 
-    <div class="rounded" style="position: sticky; bottom: 10px; float: left; background-color: #222222c0; margin-left: 5px;">
-      <div class="collapse" id="floatingIndex">
-        <div class="elf-index-nav nav nav-pills flex-column">
+    <div>
+      <% include ../partials/footer %>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: sticky; bottom: 0px;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#floatingIndex" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        Index <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="floatingIndex">
+        <div class="navbar-nav">
           <a class="nav-item nav-link active" href="#welcome">Welcome</a>
           <a class="nav-item nav-link" href="#acadinfo">Academic Info</a>
           <a class="nav-item nav-link" href="#progcradle">Programming Cradle</a>
@@ -329,15 +333,6 @@
           <a class="nav-item nav-link" href="#ivedone">I've Done Lately</a>
         </div>
       </div>
-      <nav class="navbar navbar-dark rounded">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#floatingIndex" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          Index <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
-    </div>
-
-    <div>
-      <% include ../partials/footer %>
-    </div>
+    </nav>
   </body>
 </html>
