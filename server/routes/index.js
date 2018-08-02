@@ -1,12 +1,12 @@
 var express  = require("express");
 var router = express.Router({strict: true});
 var dbMyip = require("../model/db_myip");
+var sciProjectsRouter = require("./sci-projects");
 
 router.get("/",              (req, res) => req.renderer.render(res, "index"));
 router.get("/index",         (req, res) => req.renderer.render(res, "index"));
 router.get("/calculator",    (req, res) => req.renderer.render(res, "calculator"));
 router.get("/credits",       (req, res) => req.renderer.render(res, "credits"));
-router.get("/psp-project-1", (req, res) => req.renderer.render(res, "psp-project-1"));
 
 router.route("/myip")
 .get((req, res) => {
@@ -22,5 +22,7 @@ router.route("/myip")
     res.send("Error");
   }
 });
+
+router.use("/sci-projects", sciProjectsRouter);
 
 module.exports = router;
