@@ -3,11 +3,14 @@ body {
 }
 
 .jumbotron {
+  color: white;
+}
+
+.elf-starry-sky {
   background-image: url(../images/earth_banner.jpg);
   background-position: 0% 0%;
   background-size: cover;
   background-repeat: no-repeat;
-  color: white;
 }
 
 .elf-navbar {
