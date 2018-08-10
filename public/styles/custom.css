@@ -4,6 +4,7 @@ body {
 
 .jumbotron {
   color: white;
+  border-radius: 0px;
 }
 
 .elf-starry-sky {
