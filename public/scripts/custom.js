@@ -8,3 +8,7 @@ $(window).scroll(function(){
     }
   });
 });
+
+$(document).ready(function(){
+  $(".major-block:odd").css("background-color", "#e9e9e9");
+});
