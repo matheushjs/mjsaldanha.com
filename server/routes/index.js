@@ -25,4 +25,7 @@ router.route("/myip")
 
 router.use("/sci-projects", sciProjectsRouter);
 
+// Serve apps
+router.get("/myapps/tictactoe", (req, res) => req.renderer.render(res, "myapps/tictactoe"));
+
 module.exports = router;
