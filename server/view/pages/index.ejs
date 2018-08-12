@@ -156,63 +156,27 @@
         </div>
         
         <div class="col-md-8">
-          <div class="text-left container" style="font-size: 1.1rem;">
-            <p>
-              Everything started because I really took a liking to a certain online game, <a href="https://www.runescape.com">Runescape</a>, due to it's intriguing and beautiful inner lore, greatly enriched by a well composed soundtrack.
-              However, to dig deeply in such story, one needs to complete a lot of what are called <strong>quests</strong>, which in turn require your in-game character to meet certain requirements regarding <strong>levels</strong> and <strong>skills</strong>.
-              Levelling up isn't easy, requiring an infinite amount of tedious, mouse-intensive, repetitive activities. This led me to search for an easier way to level up and sate my desire for knowing the lore.
-            </p>
-            <div class="row">
-              <div class="col-sm-6 text-center">
-                <figure class="figure">
-                  <img src="/images/varrock_palace.png" class="figure-img img-fluid rounded" alt="Image showing Varrock, a city of Runescape.">
-                  <figcaption class="figure-caption">Varrock, one of the main cities of Runescape.</figcaption>
-                </figure>
-              </div>
-              <div class="col-sm-6 text-center">
-                  <figure class="figure">
-                      <img src="/images/prifddinas_ithell.png" class="figure-img img-fluid rounded" alt="Image showing Prifddinas, a city of Runescape.">
-                    <figcaption class="figure-caption">A second main city, Prifddinas.</figcaption>
-                  </figure>
-                </div>
-            </div>
-            <p>
-              Eventually, I got to know some platforms that offered off-the-shelf automation software for many tasks in the game.
-              Within the game's community, players that use such software are commonly called <strong>bots</strong>, and the activity itself is referred to as <strong>botting</strong>.
-              Having caught my attention, the botting world dragged me in, and I began automating my in-game activites too.
-              The first botting platform I used, <a href="https://www.powerbot.org/">Powerbot</a>, was very powerful, based in Java, and had a huge amount of users and available software.
-              There were 3 problems, though:
-              <ol>
-                <li>Java was a very difficult language to read, and by that time I couldn't understand any code regardless of how much I tried (today I know why);</li>
-                <li>botting is against the game rules, so the game administrators were actively trying to find and ban botters from the game;</li>
-                <li>due to this platform's popularity, it received special attention from such bot-watching administrators.</li>
-              </ol>
-              And due to these reasons, I tried looking for another botting platform.
-            </p>
-            <p>
-              At some point, I found another platform, <a href="https://villavu.com/forum/">Villavu</a>, which was very good but for other reasons than those of the previous platform's.
-              For a start, it was based in Pascal, which was a language that I somehow managed to figure out how it worked.
-              Also, although this platform didn't have many available software, the community was really active towards helping everyone make their own programs, which was probably the key in leading me to begin programming.
-            </p>
-            <p>
-              Then finally, yes, I began programming.
-              <strong>This was where it started.</strong>
-              Pascal was my first language, and I managed to write many botting programs with it.
-              When I look back in those days, I find it funny that I managed to write programs with just a few Pascal constructs I managed to understand how to use; I never used a pointer, or allocated heap memory, for example.
-              Creating a type structure? Not even once.
-              In spite of having only a few known language tools at hand, I managed to make programs so complex that still make me giggle in perplexity nowadays.
-            </p>
-            <div class="text-center">
-              <figure class="figure">
-                <img src="/images/simba_pascal_snippet.png" class="figure-img img-fluid rounded" alt="Image showing a snippet of Pascal code I wrote.">
-                <figcaption class="figure-caption">Snippet of Pascal code of a bot I once made. I keep all of them for good remembrance.</figcaption>
-              </figure>
-            </div>
-            <p>
-              Then, through programming, I paved my way to being among the top 2000 players in amount of experience, and managed to achieve the <strong>completionist cape</strong>, which shows you've completed all the main activities of the game.
-              There is a trimmed version of such a cape, but university forced me to stop playing before I could get it.
-              It was an amazing experience, and I had plenty of fun; no matter how against the rules it was, I cannot say anything but "it was absolutely worth it".
-            </p>
+          <div style="max-height: 70vh; overflow: hidden; border-radius: 10px; background: linear-gradient(180deg, #fff0 70%, #444f 100%);">
+            <% include ../partials/index-content/progcradle %>
+            <button style="position: absolute; bottom: 20px; width: 60%; left: 20%;" type="button" class="btn btn-lg btn-light" data-toggle="modal" data-target="#progcradle-modal">
+              Read More!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for Programming Cradle -->
+    <div class="modal fade" id="progcradle-modal" tabindex="-1" role="dialog" aria-labelledby="progcradle-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="progcradle-modal-title">Programming Cradle</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% include ../partials/index-content/progcradle %>
           </div>
         </div>
       </div>
