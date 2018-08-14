@@ -23,6 +23,7 @@ body {
   animation-direction: normal;
   animation-duration: 15s;
   animation-fill-mode: forwards;
+  animation-delay: 1s;
 }
 @keyframes elf-logo-motion {
     0% { opacity:   0; left:   1%; }
