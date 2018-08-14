@@ -9,7 +9,7 @@ body {
 
 .elf-starry-sky {
   background-image: url(../images/earth_banner.jpg);
-  background-position: center top;
+  background-position: 50% 45%;
   background-size: auto;
   background-repeat: no-repeat;
 }
