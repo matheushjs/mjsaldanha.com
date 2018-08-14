@@ -42,8 +42,8 @@
       }
     </style>
 
-    <!-- Add smoothscrolling for scrollspy -->
     <script>
+      // Add smoothscrolling for scrollspy
       $(document).ready(function(){
         $("#floatingIndex a").on("click", function(event){
           // this.hash must have a value
@@ -147,7 +147,7 @@
       </div>
     </div>
 
-    <div id="progcradle" class="container-fluid text-center major-block" style="padding-top: 16vh; padding-bottom: 16vh;">
+    <div id="progcradle" class="container-fluid text-center major-block elf-modal-block" style="padding-top: 16vh; padding-bottom: 16vh;">
       <div class="row">
         <div class="col-md-4">
           <h1 class="slideanim elf-side-title align-self-center">
@@ -156,9 +156,12 @@
         </div>
         
         <div class="col-md-8">
-          <div style="max-height: 70vh; overflow: hidden; border-radius: 10px; background: linear-gradient(180deg, #fff0 70%, #444f 100%);">
+          <div class="elf-modal-content">
             <% include ../partials/index-content/progcradle %>
-            <button style="position: absolute; bottom: 20px; width: 60%; left: 20%;" type="button" class="btn btn-lg btn-light" data-toggle="modal" data-target="#progcradle-modal">
+            <button style="position: absolute; bottom: 20px; width: 60%; left: 20%;" 
+                    type="button"
+                    class="btn btn-lg btn-light border border-dark elf-modal-button"
+                    data-toggle="modal" data-target="#progcradle-modal">
               Read More!
             </button>
           </div>
@@ -185,7 +188,7 @@
       </div>
     </div>
 
-    <div id="miscints" class="container-fluid text-center major-block" style="padding-top: 16vh; padding-bottom: 16vh;">
+    <div id="miscints" class="container-fluid text-center major-block elf-modal-block" style="padding-top: 16vh; padding-bottom: 16vh;">
       <div class="row">
         <div class="col-md-4 order-md-2">
           <h1 class="slideanim elf-side-title align-self-center">
@@ -193,41 +196,32 @@
           </h1>
         </div>
 
-        <div class="col-md-8 order-md-1">
-          <div class="container text-left" style="font-size: 1.1rem;">
-            <p>
-              In my free time, I like to either learn other computer things unrelated to my university deeds, study japanese language,
-                listen to music, watch videos on Youtube (mostly gameplays) or watch animes.
-              There are plenty of interesting things to learn about computers that the university won't teach you,
-                such as how an operating system works in-depth, how to write drivers, currently popular frameworks
-                (for general purposes, user interfaces, web development, etc), programming languages of different paradigms,
-                contributing to open source projects etc... That's the kind of thing I sometimes study.
-            </p>
-            <p>
-              I began studying japanese due to a suggestion of a psychiatrist I used to go to. He himself liked languages and knew
-                plenty of them, so when I failed to follow any of a big list of suggestions I was given, he came up with a "What about
-                learning another language?".
-              Japanese language had already caught my attention due to my watching animes, so I felt like giving it a try, especially
-                considering that the psychiatrist gave me some hints on how to begin studying a language.
-              Then I started learning it, and eventually caught myself having fun studying it, which was when learning japanese stopped
-                being a means by which I could some day understand animes without reading subtitles, to become a precious source of
-                entertainment and mind cleansing. Nowadays, 日本人のように日本語を話せるようになりたい.
-            </p>
-            <p>
-              The kind of music I like is anime soundtracks
-                (<a href="https://www.youtube.com/watch?v=LrBU4kfiXhw" target="_blank">background music</a>,
-                <a href="https://www.youtube.com/watch?v=qvFNXg0cW0w" target="_blank">openings and endings</a>),
-                <a href="https://www.youtube.com/watch?v=yv32__UWhVs" target="_blank">J-Pop</a>
-                and classical music.
-              Most of the time I listen to the former 2, though, since I can't face classical music as an item to consume massively.
-              My favorite composition is
-                <a href="https://www.youtube.com/watch?v=vHqtJH2f1Yk" target="_blank">Dvořák's 9th Symphony "From the New World"</a>,
-                but I only listen to it every few months.
-              I'd also like to mention
-                <a href="https://www.youtube.com/watch?v=MD6xMyuZls0" target="_blank">Liszt's "La Campanella"</a> and
-                <a href="https://www.youtube.com/watch?v=LdH1hSWGFGU" target="_blank">"Hungarian Rhapsody No. 2"</a>, and
-                <a href="https://www.youtube.com/watch?v=GRxofEmo3HA" target="_blank">Vivaldi's "Four Seasons" suite</a>.
-            </p>
+        <div class="col-md-8 order-md-1 elf-modal-content">
+          <% include ../partials/index-content/miscints %>
+          <button style="position: absolute; bottom: 20px; width: 60%; left: 20%;" 
+                  type="button"
+                  class="btn btn-lg btn-light border border-dark elf-modal-button"
+                  data-toggle="modal" data-target="#miscints-modal">
+            Read More!
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for Miscellaneous Interests -->
+    <div class="modal fade" id="miscints-modal" tabindex="-1" role="dialog" aria-labelledby="miscints-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="miscints-modal-title">Miscellaneous Interests</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% include ../partials/index-content/miscints %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
