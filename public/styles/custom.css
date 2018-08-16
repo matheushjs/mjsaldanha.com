@@ -15,6 +15,13 @@ body {
   background-repeat: no-repeat;
 }
 
+.elf-starry-sky-top {
+  background-image: url(../images/earth_banner.jpg);
+  background-position: top;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
 .elf-moving-logo {
   position: absolute;
   left: calc(50% - 48px);
@@ -39,9 +46,15 @@ body {
 
 .elf-navbar {
   background-color: #e9e9e9;
-  opacity: 0.9;
   margin: -20px 5% 40px;
   border-radius: 10px;
+}
+
+.elf-navbar-bottom {
+  border-radius: 10px;
+}
+.elf-navbar-bottom .nav-item {
+  font-weight: bold;
 }
 
 .elf-footer {
