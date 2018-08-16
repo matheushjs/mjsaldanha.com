@@ -1,6 +1,6 @@
 
 class Renderer {
-  constructor(callname = undefined, specialUser = false){
+  constructor(callname = null, specialUser = false){
     this.callname = callname;
     this.specialUser = specialUser;
   }
@@ -20,7 +20,7 @@ class Renderer {
     });
   }
 
-  login(res, failMsg = undefined){
+  login(res, failMsg = null){
     res.render("login", {
       callname: this.callname,
       specialUser: this.specialUser,
@@ -28,7 +28,7 @@ class Renderer {
     });
   }
 
-  signup(res, failMsg = undefined){
+  signup(res, failMsg = null){
     res.render("signup", {
       callname: this.callname,
       specialUser: this.specialUser,

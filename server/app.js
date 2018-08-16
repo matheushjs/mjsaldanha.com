@@ -16,7 +16,7 @@ const userRoutes   = require("./routes/user");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
 
-app.use(morgan('dev'));     // Sets logging for debugging & control
+app.use(morgan("dev"));     // Sets logging for debugging & control
 app.use(bodyParser.json()); // Sets up JSON body parsing
 app.use(bodyParser.urlencoded({ extended: false }));  // Sets up urlencoded body parsing
 app.use(cookieSession({     // Sets up cookie-based session

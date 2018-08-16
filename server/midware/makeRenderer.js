@@ -8,4 +8,4 @@ module.exports = (req, res, next) => {
   let specialUser = req.specialUser;
   req.renderer = new renderer.Renderer(callname, specialUser);
   next();
-}
+};

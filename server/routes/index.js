@@ -1,5 +1,5 @@
 var express  = require("express");
-var router = express.Router({strict: true});
+var router = new express.Router({strict: true});
 var dbMyip = require("../model/db_myip");
 var sciProjectsRouter = require("./sci-projects");
 

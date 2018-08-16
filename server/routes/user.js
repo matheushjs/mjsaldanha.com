@@ -1,5 +1,5 @@
 var express  = require("express");
-var router = express.Router({strict: true});
+var router = new express.Router({strict: true});
 var ReCaptcha = require("recaptcha2");
 var dbUsers = require("../model/db_users");
 
@@ -28,7 +28,7 @@ router.route("/login")
     dbUsers.authenticate(req.body.username, req.body.password)
     .then((authUser) => {
       if(!authUser){
-        req.renderer.login(res, "User does not exist. Please, sign up.")
+        req.renderer.login(res, "User does not exist. Please, sign up.");
       } else {
         req.session.userid = authUser.id;
         req.session.username = authUser.username;
@@ -50,7 +50,7 @@ router.route("/signup")
   }
 })
 // Serve GET request
-.get((req, res) =>{
+.get((req, res) => {
   req.renderer.signup(res);
 })
 // Check if user isn't logged in already
@@ -78,7 +78,7 @@ router.route("/signup")
 .post((req, res, next) => {
   recaptcha.validate(req.body["g-recaptcha-response"])
   .then(() => {
-    next()
+    next();
   })
   .catch((err) => {
     req.renderer.signup(res, "ReCAPTCHA validation failed. Please try again.");
