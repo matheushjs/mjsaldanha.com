@@ -41,9 +41,9 @@ Options:
         
         <button type="submit" class="btn btn-dark" onclick="return validateForm();">Submit</button>
 
-        <div class="col-sm-12" id="failure_box" style="<%= (typeof(failMsg) === 'undefined') ? 'display: none;' : '' %>">
+        <div class="col-sm-12" id="failure_box" style="<%= failMsg ? '' : 'display: none;' %>">
           <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
-            <strong>Info: </strong> <span id="failure_msg"><%= typeof(failMsg) === 'undefined' ? '' : failMsg %></span>
+            <strong>Info: </strong> <span id="failure_msg"><%= failMsg %></span>
           </div>
         </div>
       </form>

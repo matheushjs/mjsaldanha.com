@@ -20,7 +20,7 @@ Parameters:
         <% include ../partials/navbar %>
       </div>
 
-      <% if (typeof message !== 'undefined') { %>
+      <% if(message) { %>
         <h2><%= message %></h2>
       <% } else { %>
         <h2>Oops, something went wrong!</h2>
