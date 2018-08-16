@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - npm install
+    - npm start
