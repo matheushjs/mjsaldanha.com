@@ -3,7 +3,7 @@ var path = require("path");
 
 // Returns whether user with id "id" has a secret page.
 function userHasSecret(userid){
-  var dirs = fs.readdirSync(path.resolve("server/view/secret"));
+  var dirs = fs.readdirSync("./server/view/secret");
 
   for(var i = 0; i < dirs.length; i++){
     dirs[i] = Number(dirs[i]);
@@ -22,4 +22,4 @@ module.exports = (req, res, next) => {
     req.specialUser = false;
   }
   next();
-}
+};
