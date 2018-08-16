@@ -13,6 +13,27 @@ $(document).ready(function(){
   $(".major-block:odd").css("background-color", "#e9e9e9");
 });
 
+/* Place footer at the bottom when needed */
+$(document).ready(function(){
+  /* Get height of viewport */
+  const vpHeight = $(window).height();
+  
+  /* Get height of body content */
+  var children = $("body").children();
+  var height = 0;
+  for(var i = 0; i < children.length; i++){
+    height += $(children[i]).outerHeight();
+  }
+
+  /* If content does not span the whole viewport, place footer on the bottom */
+  /* Footer is initially within the body, so it's already accounted for */
+  if(height < vpHeight){
+    var footer = $(".elf-footer");
+    footer.css("position", "absolute");
+    footer.css("bottom", "0");
+  }
+});
+
 
 /* Conditionally hide content and add modal button if the content exceeds a certain portion of the viewport
  * 

@@ -1,5 +1,6 @@
 body {
   background: #f8f8f8;
+  height: 100%;
 }
 
 .jumbotron {
@@ -43,12 +44,12 @@ body {
   border-radius: 10px;
 }
 
-.footer-container {
+.elf-footer {
   /* background: linear-gradient(175deg, #272b30, #272b30 40%, white 150%); */
   background: linear-gradient(180deg, #f8f8f8, #c8c8c8);
 }
 
-.footer-inner {
+.elf-footer .row div {
 	margin-top: 30px;
 }
 

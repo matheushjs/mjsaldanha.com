@@ -1,31 +1,10 @@
 <div id="footer-filling"></div>
 
-<div class="container-fluid footer-container">
+<div class="container-fluid elf-footer">
 	<div class="row">
-		<div class="col-sm-12 footer-inner">
+		<div class="col-sm-12">
 		<p>Page created and maintained by Matheus Henrique Junqueira Saldanha.</p>
 		<p>mhjsaldanha@gmail.com</p>
 		</div>
 	</div>
 </div>
-
-<script>
-	function positionFooter(){
-		root = document.getElementsByTagName("body")[0];
-		footer = document.getElementsByClassName("footer-container")[0];
-
-		var windowHeight = window.innerHeight;
-
-	  var childrenHeight = 0;
-		for(var i = 0; i < root.children.length; i++){
-			childrenHeight += root.children[i].offsetHeight;
-		}
-
-		if(windowHeight > childrenHeight)
-			document.getElementById("footer-filling").style.height = windowHeight - childrenHeight;
-	}
-
-	window.addEventListener ? 
-		window.addEventListener("load", positionFooter, false) : 
-		window.attachEvent && window.attachEvent("onload", positionFooter);
-</script>
