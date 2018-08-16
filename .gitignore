@@ -1,3 +1,5 @@
 node_modules
-src/private_code.js
 package-lock.json
+
+public/apps/
+server/routes/private_code.js
