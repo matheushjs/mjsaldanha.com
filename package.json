@@ -4,7 +4,7 @@
   "description": "Webpage of Matheus H. J. Saldanha",
   "main": "server/app.js",
   "scripts": {
-    "start": "node server/app.js",
+    "start": "NODE_ENV=production node server/app.js",
     "devstart": "nodemon server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
