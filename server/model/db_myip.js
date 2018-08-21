@@ -3,7 +3,7 @@
  */
 
 const fs = require("fs");
-const filePath = "server/db/ip.dat";
+const filePath = "server/model/ip.dat";
 
 var myIp = null;
 
