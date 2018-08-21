@@ -1,15 +1,10 @@
 /* db_client.js
- * Creates the database Client for unique usage along the code.
+ * Creates the database connection Pool for unique usage along the code.
  */
 
 
-const { Client } = require("pg");
-const client = new Client({
-  connectionString: process.env.DATABASE_URL || "postgres://mjsaldanha_com:mjsaldanha_com@localhost/mjsaldanha_com",
-  ssl: true,
-});
-
-client.connect();
+const sqlite3 = require("sqlite3");
+const client = new sqlite3.Database("server/model/database.db");
 
 module.exports = {
   client

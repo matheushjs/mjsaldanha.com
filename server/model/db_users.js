@@ -1,7 +1,7 @@
 /* db_users module
  * 
  * - No leading/trailing whitespace is to be allowed in usernames, passwords, callnames etc,
- *   because postgre fills these fields with whitespace, so we remove all whitespace from all
+ *   because the db fills these fields with whitespace, so we remove all whitespace from all
  *   strings retrieved from the database.
  * 
  * - Since the pg module offers only functions that return Promises, we also implement functions
@@ -14,7 +14,7 @@ const keyBytes = 16; // Size of the secret keys to be used with Hmac
 const client = require("./db_client").client;
 
 // Table schemas
-// client.query("CREATE TABLE users(id BIGSERIAL PRIMARY KEY, username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))");
+// CREATE TABLE users(id BIGSERIAL PRIMARY KEY, username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))
 
 
 /* User object to represent a user in memory.
@@ -35,26 +35,37 @@ function User(id, username, hashpass, callname){
  * Returns filled User object if found.
  */
 function lookup(obj){
-  var promise;
-  if(obj.username){
-    promise = client.query("SELECT * FROM users WHERE username = $1", [obj.username]);
-  } else if(obj.id){
-    promise = client.query("SELECT * FROM users WHERE id = $1", [obj.id]);
-  } else {
-      throw Error("Object given as argument doesn't have recognizable attributes.");
-  }
+  var promise = new Promise((resolve, reject) => {
+    if(obj.username){
+      client.all("SELECT rowid, * FROM users WHERE username = ?", [obj.username], (err, rows) => {
+        if(err){
+          reject(err);
+        }
+        resolve(rows[0]);
+      });
+    } else if(obj.id){
+      client.all("SELECT rowid, * FROM users WHERE rowid = ?", [obj.id], (err, rows) => {
+        if(err){
+          reject(err);
+        }
+        resolve(rows[0]);
+      });
+    } else {
+        reject("Object given as argument doesn't have recognizable attributes.");
+    }
+  });
 
   // Create user after query is done
-  promise = promise.then((res) => {
-    if(!res.rows[0]){
+  promise = promise.then((user) => {
+    if(!user){
       return null;
     } else {
       // Remove whitespace
-      res.rows[0].username = res.rows[0].username.replace(/^ */g, "").replace(/ *$/g, "");
-      res.rows[0].password = res.rows[0].password.replace(/^ */g, "").replace(/ *$/g, "");
-      res.rows[0].callname = res.rows[0].callname.replace(/^ */g, "").replace(/ *$/g, "");
+      user.username = user.username.replace(/^ */g, "").replace(/ *$/g, "");
+      user.password = user.password.replace(/^ */g, "").replace(/ *$/g, "");
+      user.callname = user.callname.replace(/^ */g, "").replace(/ *$/g, "");
 
-      return new User(res.rows[0].id, res.rows[0].username, res.rows[0].password, res.rows[0].callname);
+      return new User(user.rowid, user.username, user.password, user.callname);
     }
   });
 
@@ -84,13 +95,21 @@ function authenticate(user, pass){
 }
 
 /* Inserts a new user in the database, with username "user", password "pass" and call name "name".
- * This function does not check whether the user already exists or not. The caller must make this check.
+ * Inserting an existing user results in an exception that can be caught.
  */
 function addUser(user, pass, name){
   const secret = crypto.randomBytes(keyBytes).toString("hex");
   const hash = crypto.createHmac("sha256", secret).update(pass).digest("hex");
-  return client.query("INSERT INTO users(username, password, callname) VALUES ($1, $2, $3)", [user, secret + hash, name])
-    .then(() => { return lookup({username: user}); });
+  return new Promise((resolve, reject) => {
+    var stmt = client.prepare("INSERT INTO users(username, password, callname) VALUES (?, ?, ?)", [user, secret + hash, name]);
+    stmt.run((err, rows) => {
+      if(err){
+        reject(err);
+      } else {
+        resolve(lookup({username: user}));
+      }
+    });
+  });
 }
 
 /* Attempts to sign up a user with username "user", password "pass" and callname "name."
@@ -100,15 +119,12 @@ function addUser(user, pass, name){
  *   a filled User in this case.
  */
 function signUp(user, pass, name){
-  return lookup({username: user})
-    .then((found) => {
-      if(found){
-        return null;
-      } else {
-        return addUser(user, pass, name).then((authUser) => {
-          return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);
-        });
-      }
+  return addUser(user, pass, name)
+    .then((authUser) => {
+      return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);
+    })
+    .catch((err) => { // User already exists
+      return null;
     });
 }
 
@@ -129,51 +145,59 @@ function updateUser(user){
     return lookup({id: user.id});
   }
 
-  var setEntries = [];
-  var values = [];
-  var placeholders = ["$1", "$2", "$3", "$4", "$5"];
+  // First we lookup the user, obtaining a user object.
+  // We change this user object with new values, and update the database with this new user object.
+  return lookup(user)
+    .then(retUser => {
+      if(!user) return null;
 
-  // Add callname to the query
-  if(user.callname){
-    setEntries.push(" callname = " + placeholders.shift() + " ");
-    values.push(user.callname);
-  }
+      if(user.callname){
+        retUser.callname = user.callname;
+      }
 
-  // Add password to the query
-  if(user.password){
-    const secret = crypto.randomBytes(keyBytes).toString("hex");
-    const hash = crypto.createHmac("sha256", secret).update(user.password).digest("hex");
-    setEntries.push(" password = " + placeholders.shift() + " ");
-    values.push(secret + hash);
-  }
+      if(user.password){
+        const secret = crypto.randomBytes(keyBytes).toString("hex");
+        const hash = crypto.createHmac("sha256", secret).update(user.password).digest("hex");
+        retUser.hashpass = secret + hash;
+      }
 
-  var query = "UPDATE users ";
-  query += "SET " + setEntries.join(",") + " ";
-  query += "WHERE id = " + placeholders.shift() + " ";
-
-  values.push(user.id);
-  return client.query(query, values)
-    .then(() => { return lookup({id: user.id}); });
+      return new Promise((resolve, reject) => {
+        var stmt = client.prepare("UPDATE users SET callname = ?, password = ? WHERE rowid = ?", [retUser.callname, retUser.hashpass, retUser.id]);      
+        stmt.run((err, rows) => {
+          if(err){
+            reject(err);
+          } else {
+            resolve(retUser);
+          }
+        });
+      });
+    });
 }
 
 /* Returns an array with all users in the database.
  */
 function allUsers(){
-  return client.query("SELECT * FROM users")
-    .then((res) => {
+  return new Promise((resolve, reject) => {
+    client.all("SELECT rowid, * FROM users", (err, rows) => {
+      if(err){
+        reject(err);
+        return;
+      }
+
       var users = [];
-      for(var i = 0; i < res.rows.length; i++){
-        var row = res.rows[i];
+      for(var i = 0; i < rows.length; i++){
+        var row = rows[i];
 
         // Remove whitespace
         row.username = row.username.replace(/^ */g, "").replace(/ *$/g, "");
         row.password = row.password.replace(/^ */g, "").replace(/ *$/g, "");
         row.callname = row.callname.replace(/^ */g, "").replace(/ *$/g, "");
 
-        users.push(new User(row.id, row.username, row.password, row.callname));
+        users.push(new User(row.rowid, row.username, row.password, row.callname));
       }
-      return users;
+      resolve(users);
     });
+  });
 }
 
 module.exports = {
