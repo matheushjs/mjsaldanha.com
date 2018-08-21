@@ -5,13 +5,21 @@
 const fs = require("fs");
 const filePath = "server/db/ip.dat";
 
+var myIp = null;
+
 // Returns a Promise resolved to the current stored IP (as a string)
 function get(){
   return new Promise((resolve, reject) => {
+    if(myIp){
+      resolve(myIp);
+      return;
+    }
+
     fs.readFile(filePath, "utf8", (err, data) => {
       if(err){
         reject(err);
       } else {
+        myIp = data;
         resolve(data);
       }
     });
