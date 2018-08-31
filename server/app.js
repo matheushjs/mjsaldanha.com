@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const morgan = require("morgan");
 const express = require("express");
+const https = require("https");
+const fs = require("fs");
 
 const app = express();
 
@@ -52,7 +54,27 @@ app.use((err, req, res, next) => {
   console.log(err.stack);
 });
 
-// Begin serving
+// Serve HTTP
 const port = process.env.PORT || 5000;
 app.listen(port);
-console.log(`Server listening on ${port}`);
+
+// Serve HTTPS
+var ssl_port;
+try {
+  ssl_port = process.env.SSL_PORT || 5001;
+  
+  https.createServer({
+    key: fs.readFileSync("server/ssl/key.pem"),
+    cert: fs.readFileSync("server/ssl/cert.pem")
+  }, app).listen(ssl_port);
+} catch(err) {
+  if(err.code === "ENOENT"){
+    console.log(`ERROR: File "${err.path}" was not found.`);
+  } else {
+    console.log(err);
+  }
+  
+  ssl_port = -1;
+}
+
+console.log(`Server listening on ${port} (HTTP) and ${ssl_port} (HTTPS)`);
