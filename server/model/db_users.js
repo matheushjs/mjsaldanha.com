@@ -14,7 +14,7 @@ const keyBytes = 16; // Size of the secret keys to be used with Hmac
 const client = require("./db_client").client;
 
 // Table schemas
-// CREATE TABLE users(id BIGSERIAL PRIMARY KEY, username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))
+// CREATE TABLE users(username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))
 
 
 /* User object to represent a user in memory.
