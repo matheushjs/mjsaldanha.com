@@ -61,14 +61,14 @@ const port = process.env.PORT || 5000;
 app.listen(port);
 
 // Serve HTTPS
-var ssl_port;
+var sslPort;
 try {
-  ssl_port = process.env.SSL_PORT || 5001;
+  sslPort = process.env.SSL_PORT || 5001;
   
   https.createServer({
     key: fs.readFileSync("server/ssl/key.pem"),
     cert: fs.readFileSync("server/ssl/cert.pem")
-  }, app).listen(ssl_port);
+  }, app).listen(sslPort);
 } catch(err) {
   if(err.code === "ENOENT"){
     console.log(`ERROR: File "${err.path}" was not found.`);
@@ -76,7 +76,7 @@ try {
     console.log(err);
   }
   
-  ssl_port = -1;
+  sslPort = -1;
 }
 
-console.log(`Server listening on ${port} (HTTP) and ${ssl_port} (HTTPS)`);
+console.log(`Server listening on ${port} (HTTP) and ${sslPort} (HTTPS)`);
