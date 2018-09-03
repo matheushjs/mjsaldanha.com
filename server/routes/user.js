@@ -172,7 +172,9 @@ router.route("/account")
 
 router.route("/logout")
 .get(function(req, res){
-  req.session = null;
+  req.session.username = null;
+  req.session.callname = null;
+  req.session.userid   = null;
   res.redirect("/");
 });
 

@@ -40,6 +40,7 @@ function lookup(obj){
       client.all("SELECT rowid, * FROM users WHERE username = ?", [obj.username], (err, rows) => {
         if(err){
           reject(err);
+          return;
         }
         resolve(rows[0]);
       });
@@ -47,6 +48,7 @@ function lookup(obj){
       client.all("SELECT rowid, * FROM users WHERE rowid = ?", [obj.id], (err, rows) => {
         if(err){
           reject(err);
+          return;
         }
         resolve(rows[0]);
       });
@@ -67,6 +69,10 @@ function lookup(obj){
 
       return new User(user.rowid, user.username, user.password, user.callname);
     }
+  })
+  .catch((err) => {
+    console.log(err);
+    return null;
   });
 
   return promise;
@@ -91,6 +97,10 @@ function authenticate(user, pass){
       } else {
         return null;
       }
+    })
+    .catch((err) => {
+      console.log(err);
+      return null;
     });
 }
 
@@ -197,6 +207,10 @@ function allUsers(){
       }
       resolve(users);
     });
+  })
+  .catch((err) => {
+    console.log(err);
+    return [];
   });
 }
 
