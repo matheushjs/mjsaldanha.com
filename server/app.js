@@ -11,6 +11,7 @@ const app = express();
 
 const makeSecret   = require("./midware/makeSecret");
 const makeRenderer = require("./midware/makeRenderer");
+const countVisitor = require("./midware/countVisitor");
 const indexRoutes  = require("./routes/index");
 const secretRoutes = require("./routes/secret");
 const userRoutes   = require("./routes/user");
@@ -33,8 +34,9 @@ app.use(express.static(path.resolve("./public"), { // Serve the public folder st
 }));
 
 // makeSecret must come before makeRenderer
-app.use(makeSecret);   // Handle user privilege variables in req.session
-app.use(makeRenderer); // Creates and initializes a Renderer object
+app.use(makeSecret);     // Handle user privilege variables in req.session
+app.use(makeRenderer);   // Creates and initializes a Renderer object
+app.use(countVisitor);   // Handles visitor counting
 
 // Set up routes
 app.use("/secret", secretRoutes);
