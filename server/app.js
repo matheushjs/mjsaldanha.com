@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const express = require("express");
 const https = require("https");
 const fs = require("fs");
+const helmet = require("helmet");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.set("views", path.join(__dirname, "view/pages"));
 app.use(morgan("dev"));     // Sets logging for debugging & control
 app.use(bodyParser.json()); // Sets up JSON body parsing
 app.use(bodyParser.urlencoded({ extended: false }));  // Sets up urlencoded body parsing
+app.use(helmet());
 app.use(cookieSession({     // Sets up cookie-based session
   name: "session",
   secret: "私が嫌い物があれば、それは人類だと思う。",
