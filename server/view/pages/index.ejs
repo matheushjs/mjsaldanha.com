@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-    <link href="/apps/elf-slideshow/static/css/main.4c818ab6.css" rel="stylesheet">
-
     <% include ../partials/head_common %>
   
     <style>
-      .elf-slideshow {
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
       .showbox {
         height: 100px;
         color: black;
@@ -262,10 +254,24 @@
         </div>
 
         <div class="col-md-9">
-          <div id="root" class="elf-slideshow"></div>
+          <div id="likingsCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="w-75" src="/images/slideimage-gpucpu.png">
+              </div>
+              <div class="carousel-item">
+                <img class="w-75" src="/images/slideimage-parallel.png">
+              </div>
+              <div class="carousel-item">
+                <img class="w-75" src="/images/slideimage-linux.png">
+              </div>
+              <div class="carousel-item">
+                <img class="w-75" src="/images/slideimage-machine-learning.png">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <script type="text/javascript" src="/apps/elf-slideshow/static/js/main.f9cfaf76.js"></script>
     </div>
 
     <div class="container" style="position: sticky; bottom: 20px; margin-top: 20px; z-index: 10;">
