@@ -4,8 +4,16 @@
     <% include ../partials/head_common %>
   
     <style>
+      .carousel-indicators li {
+        border: 1px solid black;
+        height: 12px;
+        width: 12px;
+        border-radius: 100%;
+        background-color: #9995;
       }
 
+      .carousel-indicators li.active {
+        background-color: #999F;
       }
 
       .elf-table {
@@ -161,6 +169,12 @@
 
         <div class="col-md-9">
           <div id="likingsCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#likingsCarousel" data-slide-to="0" class="active"></li>
+              <li data-target="#likingsCarousel" data-slide-to="1"></li>
+              <li data-target="#likingsCarousel" data-slide-to="2"></li>
+              <li data-target="#likingsCarousel" data-slide-to="3"></li>
+            </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img class="w-75 bg-white rounded border" src="/images/slideimage-gpucpu.png">
