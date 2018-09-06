@@ -5,7 +5,7 @@
   "main": "server/app.js",
   "scripts": {
     "start": "NODE_ENV=production node server/app.js",
-    "devstart": "nodemon server/app.js",
+    "devstart": "firefox https://localhost:5001; nodemon server/app.js;",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matheus H. J. Saldanha",
