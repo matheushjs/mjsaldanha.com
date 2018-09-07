@@ -16,6 +16,20 @@
         background-color: #999F;
       }
 
+      #projectsCarousel .carousel-inner {
+        /* background: linear-gradient(90deg, #e9e9e9 0%, #e9e9e9 5%, white 50%, #e9e9e9 95%, #e9e9e9 100%); */
+        background: #f8f8f8;
+      }
+      #projectsCarousel h2 {
+        text-decoration: underline;
+        margin: 20px 0 40px;
+      }
+      #projectsCarousel h2 a {
+        position: absolute;
+        right: 3%;
+        font-size: 1rem;
+      }
+
       .elf-table {
         background: #d5d5d5;
       }
@@ -194,6 +208,86 @@
       </div>
     </div>
 
+    <div id="elfprojs" class="container-fluid text-center major-block">
+      <div class="row">
+        <div class="col-md-4 order-md-2">
+          <h1 class="slideanim elf-side-title align-self-center">
+            Elf Projects
+          </h1>
+        </div>
+        <div class="col-md-8 order-md-1">
+          <div class="justify-content-sm-center" style="font-size: 1.1rem;">
+            <p>
+              I've been developing plenty of 
+              <a href="//github.com/matheushjs">libraries and programs</a>
+              under the code name Elf (see <a href="#whyelf">Why Elf?</a>).
+              <br>
+              Check out some of them:
+            </p>
+            <div id="projectsCarousel" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#projectsCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#projectsCarousel" data-slide-to="1"></li>
+                <li data-target="#projectsCarousel" data-slide-to="2"></li>
+                <li data-target="#projectsCarousel" data-slide-to="3"></li>
+              </ol>
+              <div class="carousel-inner border rounded shadow">
+                <div style="height: 500px;" class="carousel-item active">
+                  <h2>
+                    Elf Website
+                    <a href="//github.com/matheushjs/ElfWebsite">code</a>
+                  </h2>
+                  <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                      A website for spreading my work and research.
+                    </div>
+                    <div class="col-5">
+                      <h4>Tools</h4>
+                      <ul class="text-left">
+                        <li>Bootstrap <small class="text-muted">CSS & JS Toolkit</small></li>
+                        <li>HTML, CSS, JS <small class="text-muted">Languages</small></li>
+                        <li>Express <small class="text-muted">Server-side JS library</small></li>
+                        <li>EJS <small class="text-muted">HTML templating language</small></li>
+                        <li>SQL <small class="text-muted">Language for databases</small></li>
+                      </ul>
+                      <h4>Skills</h4>
+                      <ul class="text-left">
+                        <li>Client- & Server-side programming</li>
+                        <li>Deployment to cloud hosting environment</li>
+                        <li>HTTPS & SSL set-up</li>
+                        <li>Organizing project file structures</li>
+                        <li>Password encryption</li>
+                      </ul>
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+                </div>
+                <div style="height: 500px;" class="carousel-item">
+                  <h2>
+                    Elf C Library (ElfLibC)
+                    <a href="//github.com/matheushjs/ElfLibC">code</a>
+                  </h2>
+                </div>
+                <div style="height: 500px;" class="carousel-item">
+                  <h2>
+                    Elf Music App (ElfMApp)
+                    <a href="//github.com/matheushjs/ElfMApp">code</a>
+                  </h2>
+                </div>
+                <div style="height: 500px;" class="carousel-item">
+                  <h2>
+                    Elf Cuda Libs
+                    <a href="//github.com/matheushjs/ElfCudaLibs">code</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="progcradle" class="container-fluid text-center major-block elf-modal-block">
       <div class="row">
         <div class="col-md-4">
@@ -286,6 +380,7 @@
             <a class="nav-item nav-link active" href="#welcome">Welcome</a>
             <a class="nav-item nav-link" href="#acadinfo">Academic Info</a>
             <a class="nav-item nav-link" href="#csinterests">Interests (CS)</a>
+            <a class="nav-item nav-link" href="#elfprojs">Elf Projects</a>
             <a class="nav-item nav-link" href="#progcradle">Programming Cradle</a>
             <a class="nav-item nav-link" href="#miscints">Interests (Misc)</a>
           </div>
