@@ -224,15 +224,40 @@
       </div>
     </div>
 
-    <div id="whyelf" class="container-fluid text-center major-block">
+    <div id="whyelf" class="container-fluid text-center major-block elf-modal-block">
       <div class="row">
         <div class="col-md-4">
           <h1 class="slideanim elf-side-title align-self-center">
             Why Elf?
           </h1>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 elf-modal-content">
           <% include ../partials/index-content/whyelf %>
+          <button style="position: absolute; bottom: 20px; width: 60%; left: 20%;" 
+                  type="button"
+                  class="btn btn-lg btn-light border border-dark elf-modal-button"
+                  data-toggle="modal" data-target="#whyelf-modal">
+            Read More!
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for Why Elf? -->
+    <div class="modal fade" id="whyelf-modal" tabindex="-1" role="dialog" aria-labelledby="whyelf-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="whyelf-modal-title">Why Elf?</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% include ../partials/index-content/whyelf %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
