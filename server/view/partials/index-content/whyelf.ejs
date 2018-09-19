@@ -1,5 +1,16 @@
 <div class="text-left container" style="font-size: 1.1rem;">
   <p>
+    I've felt the need for having a code name when I was making Elf C Library, where I faced a problem that is relatively common when programming: namespace conflicts.
+    The user of my library will probably include other libraries, and I had to make sure the names of functions or variables in mine didn't conflict with others'.
+    That's why it's not a good idea to define a <code>create_graph()</code> function in my library, because the name "create_graph" makes sense in a lot of contexts,
+      making it easy to imagine that other libraries also use it, which would cause problems.
+    Inspired by how <a href="https://developer.gnome.org/">Gnome</a> designs its libraries, and by their
+      <a href="https://developer.gnome.org/programming-guidelines/stable/namespacing.html.en">programming guidelines</a>, I decided to adopt a namespacing name,
+      that is, instead of defining <code>create_graph()</code>, I'd use <code>NAMESPACE_create_graph()</code>.
+    I ended up choosing "Elf" not only as the namespace, but also as a code name for my projects.
+    In the following, I elaborate on the reason for such selection.
+  </p>
+  <p>
     When I was younger, I got sort of addicted to <a href="https://www.runescape.com">Runescape</a>.
     Runescape is an adventure medieval MMORPG game in which the player assumes the role of main character of an epic
       story that advances as the player completes <strong>quests</strong>.
@@ -7,8 +18,8 @@
       bosses, playing minigames, etc; however, what kept me playing the game for over 10 years were most likely the breathtaking
       <strong>lore</strong> and <strong>soundtrack</strong>.
     Hence, I was the type of player - not a common type, in fact - that liked to complete quests paying attention to the story
-      being developed, rather than looking up guides and rushing through them; on the other hand, I've always been bad with combat
-      such as boss fighting and player-vs-player fights.
+      being developed, rather than looking up guides and rushing through them.
+    On the other hand, I've always been bad with combat such as boss fighting and player-vs-player fights.
     In what follows, I'll talk a bit about the lore, so I'm obliged to give you a <span class="text-danger"><strong>spoiler alert</strong>: the paragraphs below contain spoilers</span>.
   </p>
   <p>
@@ -31,7 +42,7 @@
       the city of Ardougne to the still unknown other side.
     I reached, then, the other side of the dungeon; suddenly from the darkness I emerged in a beautiful forest, filled with creatures I had never seen before
       (such as grenwalls), and surrounded by an astounding soundtrack that mesmerized me every time I visited that place.
-    One of the songs, <strong>Crystal Castle</strong>, has never left my memories even after having stopped playing; well, I showed this song to a precious girl at
+    One of the songs, <strong>Crystal Castle</strong>, has never left my memories even after having stopped playing; well, I showed this song to a precious person at
       that time, so it's all the more the kind of thing one doesn't easily forget.
   </p>
   <div class="container text-center">
@@ -45,11 +56,11 @@
   <p>
     Continuing with that quest and its successors, I got to know the story of <strong>elves</strong>.
     By that time, the quests didn't give much detail on elves, it was actually a content yet to be well developed.
-    This was all the more clear because there was a city on the map called Prifddinas, but it wasn't accessible by players as the elf guards wouldn't let you in.
+    This was clear because there was a city on the map called Prifddinas, but it wasn't accessible by players as the elf guards wouldn't let you in.
     That city would only be fully released many years later.
     Regardless, the little story that was available about the elves at that time was enough to completely change the way I view the game: <strong>elves</strong> really
       are an amazing species, and their story is fascinating.
-    They are known for being pacific, very intelligent and masters of using crystals for building weapons and buildings; I'll tell more about the story in the following.
+    They are known for being pacific, very intelligent and masters of using crystals for building weapons and buildings; let me tell you more about their origins.
   </p>
   <div class="container text-center">
     <figure class="figure">
@@ -88,10 +99,10 @@
       </div>
   </div>
   <p>
-    The forest where the elves lived, <strong>Tirannwn</strong>, was safe at first since nobody attempted an invasion against it.
+    The forest in Gielinor where the elves lived, <strong>Tirannwn</strong>, was safe at first since nobody attempted an invasion against it.
     Things eventually changed, though, and the war reached the elves too.
     The military elven clan defended their land and defeated every invasion attempt, while the construction elven clan fortified the walls of <strong>Prifddinas</strong>,
-      the city of the elves, also helped by Seren.
+      the city of the elves in Tirannwn, in order to protect the civilians.
     Eventually, the war reached proportions so big that Guthix, which was in some sort of slumber, woke up to find Gielinor in ruins.
     He then used all his power to banish the presence of any god within Gielinor, including Seren.
     Seren, however, could not leave the elves because they had developed some sort of dependence on being near her energy, and being far away for too long would render
