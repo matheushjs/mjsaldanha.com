@@ -5,7 +5,6 @@ var sciProjectsRouter = require("./sci-projects");
 
 router.get("/",              (req, res) => req.renderer.render(res, "index"));
 router.get("/index",         (req, res) => req.renderer.render(res, "index"));
-router.get("/calculator",    (req, res) => req.renderer.render(res, "calculator"));
 router.get("/credits",       (req, res) => req.renderer.render(res, "credits"));
 
 router.route("/myip")
@@ -26,6 +25,6 @@ router.route("/myip")
 router.use("/sci-projects", sciProjectsRouter);
 
 // Serve apps
-router.get("/myapps/tictactoe", (req, res) => req.renderer.render(res, "myapps/tictactoe"));
+// router.get("/myapps/tictactoe", (req, res) => req.renderer.render(res, "myapps/tictactoe"));
 
 module.exports = router;
