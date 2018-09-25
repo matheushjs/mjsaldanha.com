@@ -27,4 +27,8 @@ router.use("/sci-projects", sciProjectsRouter);
 // Serve apps
 // router.get("/myapps/tictactoe", (req, res) => req.renderer.render(res, "myapps/tictactoe"));
 
+// Redirections
+router.get("/siicusp18", (req, res) => res.redirect("/sci-projects/1-psp-project-1"));
+
+
 module.exports = router;
