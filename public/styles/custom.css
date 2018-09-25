@@ -19,6 +19,13 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+/* Only show stars on small screens */
+@media (max-width: 576px) {
+  .elf-starry-sky {
+    background-position: 50% 0%;
+  }
+}
+
 .elf-starry-sky-top {
   background-image: url(../images/earth_banner.jpg);
   background-position: top;
