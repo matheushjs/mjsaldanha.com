@@ -1,0 +1,72 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <% include ../../partials/head_common %>
+    
+    <style>
+      .elf-credits-ul {
+        margin: 20px auto;
+      }
+
+      .elf-credits-ul li {
+        margin: 10px auto;
+      }
+
+      .elf-credits-header {
+        margin: 20px auto 40px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="jumbotron text-center elf-starry-sky">
+      <div>
+        <% include ../../partials/navbar %>
+      </div>
+      <div class="container">
+        <h2>Scientific Research</h2>
+      </div>
+    </div>
+
+    <div class="container text-justified">
+      <p>
+        In this page I'll try to organize the research I've done, linking each research to their own pages, where you can find their abstracts and public resources.
+      </p>
+    </div>
+
+    <div class="container">
+      <table class="table table-hover">
+        <tbody>
+            <tr>
+            <th scope="row">2017-2018</th>
+            <td>
+                <div>
+                  <a href="/sci-projects/1-psp-project-1/">Protein Structure Prediction with Parallel Algorithms Orthogonal to Parallel Platforms</a>
+                  <span class="badge badge-danger">HPC</span>
+                  <span class="badge badge-success">PSP</span>
+                </div>
+            </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <h5>Labels</h5>
+      <table class="table table-sm">
+        <tbody>
+            <tr>
+              <td><span class="badge badge-danger">HPC</span></td>
+              <td>High-Performance Computing</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-success">PSP</span></td>
+              <td>Protein Structure Prediction</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <% include ../../partials/footer %>
+    </div>
+  </body>
+</html>
