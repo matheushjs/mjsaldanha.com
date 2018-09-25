@@ -1,5 +1,5 @@
 var express = require("express");
-var router = new express.Router({strict: true});
+var router = new express.Router();
 var dbUsers = require("../model/db_users");
 
 // For the root URL, we unconditionally redirect the user to their index.

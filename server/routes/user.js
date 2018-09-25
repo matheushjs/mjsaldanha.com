@@ -1,5 +1,5 @@
 var express  = require("express");
-var router = new express.Router({strict: true});
+var router = new express.Router();
 var ReCaptcha = require("recaptcha2");
 var dbUsers = require("../model/db_users");
 
