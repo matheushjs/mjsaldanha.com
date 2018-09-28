@@ -67,27 +67,6 @@
         100% { opacity:   0; left:   1%; }
       }
     </style>
-
-    <script>
-      // Add smoothscrolling for scrollspy
-      $(document).ready(function(){
-        $("#floatingIndex a").on("click", function(event){
-          // this.hash must have a value
-          if(this.hash !== "") {
-            event.preventDefault();
-
-            var hash = this.hash;
-
-            $("html, body").animate({
-              scrollTop: $(hash).offset().top
-            }, 500, function(){
-              // Add hash link to URL
-              window.location.hash = hash;
-            });
-          }
-        });
-      });
-    </script>
   </head>
 
 	<body id="elfPage" data-spy="scroll" data-target="#floatingIndex" data-offset="60">
@@ -360,6 +339,27 @@
         </div>
       </nav>
     </div>
+
+    <script>
+      // Add smoothscrolling for scrollspy
+      $(document).ready(function(){
+        $("#floatingIndex a").on("click", function(event){
+          // this.hash must have a value
+          if(this.hash !== "") {
+            event.preventDefault();
+
+            var hash = this.hash;
+
+            $("html, body").animate({
+              scrollTop: $(hash).offset().top
+            }, 500, function(){
+              // Add hash link to URL
+              window.location.hash = hash;
+            });
+          }
+        });
+      });
+    </script>
 
     <div>
       <% include ../partials/footer %>
