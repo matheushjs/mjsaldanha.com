@@ -10,6 +10,9 @@ router.get("/credits",       (req, res) => req.renderer.render(res, "credits"));
 router.route("/myip")
 .get((req, res) => {
   dbMyip.get().then((myip) => {
+    res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
+    res.header("Expires", "-1");
+    res.header("Pragma", "no-cache");
     res.send(myip.replace(/ /g, ""));
   }).catch((err) => console.log(err.stack));
 })
