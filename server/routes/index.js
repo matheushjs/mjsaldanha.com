@@ -6,6 +6,7 @@ var sciProjectsRouter = require("./sci-projects");
 router.get("/",              (req, res) => req.renderer.render(res, "index"));
 router.get("/index",         (req, res) => req.renderer.render(res, "index"));
 router.get("/credits",       (req, res) => req.renderer.render(res, "credits"));
+router.get("/palletes",      (req, res) => req.renderer.render(res, "palletes"));
 
 router.route("/myip")
 .get((req, res) => {
