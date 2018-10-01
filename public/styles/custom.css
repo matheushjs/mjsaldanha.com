@@ -49,10 +49,7 @@ a:hover {
 .elf-footer {
   /* background: linear-gradient(175deg, #272b30, #272b30 40%, white 150%); */
   background: linear-gradient(180deg, #f8f8f8, #c8c8c8);
-}
-
-.elf-footer .row div {
-	margin-top: 30px;
+  padding-top: 30px;
 }
 
 /* major-block receive grey/inherit background alternatedly. */
