@@ -36,6 +36,7 @@ function insert(ip){
         if(ip.length > 100){
           reject("Given IP is too big. Possible injection attack detected.");
         } else {
+          myIp = ip;
           resolve(ip);
         }
       }
