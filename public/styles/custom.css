@@ -72,6 +72,14 @@ a:hover {
     visibility: visible;
 }
 
+.elf-dark-a {
+  color: #228;
+}
+
+.elf-dark-a:hover {
+  color: black;
+}
+
 @keyframes slideframes {
     0% {
         opacity: 0;
