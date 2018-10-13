@@ -4,14 +4,14 @@
     The user of my library will probably include other libraries, and I had to make sure the names of functions or variables in mine didn't conflict with others'.
     That's why it's not a good idea to define a <code>create_graph()</code> function in my library, because the name "create_graph" makes sense in a lot of contexts,
       making it easy to imagine that other libraries also use it, which would cause problems.
-    Inspired by how <a href="https://developer.gnome.org/">Gnome</a> designs its libraries, and by their
-      <a href="https://developer.gnome.org/programming-guidelines/stable/namespacing.html.en">programming guidelines</a>, I decided to adopt a namespacing name,
+    Inspired by how <a href="https://developer.gnome.org/" target="_blank">Gnome</a> designs its libraries, and by their
+      <a href="https://developer.gnome.org/programming-guidelines/stable/namespacing.html.en" target="_blank">programming guidelines</a>, I decided to adopt a namespacing name,
       that is, instead of defining <code>create_graph()</code>, I'd use <code>NAMESPACE_create_graph()</code>.
     I ended up choosing "Elf" not only as the namespace, but also as a code name for my projects.
     In the following, I elaborate on the reason for such selection.
   </p>
   <p>
-    When I was younger, I got sort of addicted to <a href="https://www.runescape.com">Runescape</a>.
+    When I was younger, I got sort of addicted to <a href="https://www.runescape.com" target="_blank">Runescape</a>.
     Runescape is an adventure medieval MMORPG game in which the player assumes the role of main character of an epic
       story that advances as the player completes <strong>quests</strong>.
     There is a lot to do besides completing quests, such as honing one of your 25+ <strong>skills</strong>, fighting
