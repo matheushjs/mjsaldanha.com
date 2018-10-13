@@ -52,8 +52,8 @@
         <a href="/images/sci-projects/1/poster_1920.jpg" style="position: absolute; top: 5px; right: 40px;">
           <img src="/octicons/svg/screen-full.svg" alt="expand image" style="height: 2.5rem;">
         </a>
-        <div class="text-center border border-secondary rounded shadow" style="height: 50vh; overflow: auto;">
-          <img src="/images/sci-projects/1/poster_1920.jpg" style="width: 100%;">
+        <div class="text-center border border-secondary rounded shadow elf-add-poster" style="height: 50vh; overflow: auto;">
+          
         </div>
       </div>
     </div>
@@ -73,5 +73,13 @@
     <div>
       <% include ../../../partials/footer %>
     </div>
+
+
+    <script>
+      // The poster is a really heavy image, so we really really want it to load last.
+      $(window).on("load", function(){
+        $(".elf-add-poster").append("<img src='/images/sci-projects/1/poster_1920.jpg' style='width: 100%;'>");
+      });
+    </script>
   </body>
 </html>
