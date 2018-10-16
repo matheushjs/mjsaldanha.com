@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    id="svg8"
    version="1.1"
-   viewBox="0 0 4.2333333 4.2333152"
-   height="15.999931"
-   width="16">
+   viewBox="0 0 4.2499172 4.2500025"
+   height="16.063002"
+   width="16.062679">
   <defs
      id="defs2" />
   <metadata
@@ -25,54 +25,59 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-7.0932686,-287.32865)"
+     transform="translate(-7.0766854,-287.31197)"
      id="layer1">
-    <path
-       id="path823"
-       d="m 11.129521,288.7155 c 0,0.68672 -0.881649,1.24343 -1.9692161,1.24343 -1.0875672,0 -1.9692152,-0.55671 -1.9692153,-1.24343 1e-7,-0.68672 0.8816481,-0.0172 1.9692153,-0.0172 1.0875671,0 1.9692161,-0.66959 1.9692161,0.0172 z"
-       style="fill:none;fill-opacity:0.53333285;stroke:#000000;stroke-width:0.19564196;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
-       ry="0.32574537"
+       ry="0.32710722"
        rx="0.31586024"
        transform="scale(-1,1)"
-       style="fill:none;fill-opacity:0.53333285;stroke:#000000;stroke-width:0.19564196;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;fill-opacity:0.53333285;stroke:#000000;stroke-width:0.196;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="circle825"
        cx="-9.94133"
-       cy="291.1384" />
+       cy="291.13705" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.19564196;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 9.4361653,290.74723 8.3876429,290.21382"
+       style="fill:none;stroke:#000000;stroke-width:0.293;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 9.4361653,290.7443 8.3876429,290.10943"
        id="path827" />
     <path
        id="path830"
-       d="m 10.481527,288.71543 c 0.11336,-0.67785 0.09784,-1.05353 0.696347,-1.23942"
-       style="fill:none;stroke:#000000;stroke-width:0.2934629;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       d="m 10.481527,288.70395 c 0.11336,-0.68068 0.09784,-1.05793 0.696347,-1.2446"
+       style="fill:none;stroke:#000000;stroke-width:0.293;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
-       ry="0.32574537"
+       ry="0.32710722"
        rx="0.31586024"
-       cy="291.1384"
+       cy="291.13705"
        cx="8.3058081"
        id="circle832"
        style="fill:none;fill-opacity:0.53333285;stroke:#000000;stroke-width:0.19564196;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
        id="path834"
-       d="M 8.8109724,290.74723 9.859495,290.21382"
-       style="fill:none;stroke:#000000;stroke-width:0.19564196;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       d="M 8.8109724,290.7443 9.859495,290.10943"
+       style="fill:none;stroke:#000000;stroke-width:0.293;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <ellipse
-       cy="291.1384"
-       cx="-9.94133"
-       id="ellipse818"
-       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.19564196;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       transform="scale(-1,1)"
-       rx="0.12051237"
-       ry="0.12428392" />
-    <ellipse
-       ry="0.12428392"
-       rx="0.12051237"
+       ry="0.077372119"
+       rx="0.074711815"
        transform="scale(-1,1)"
        style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.19564196;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="ellipse820"
+       cx="-9.94133"
+       cy="291.13705" />
+    <path
+       d="m 11.248382,288.65109 a 2.0858483,1.3737675 0 0 1 -1.042924,1.18972 2.0858483,1.3737675 0 0 1 -2.0858485,0 2.0858483,1.3737675 0 0 1 -1.0429241,-1.18972 l 2.0858484,0 z"
+       id="path820"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24150327;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       transform="scale(-1)"
+       d="m -7.0766853,-288.56668 a 1.7206379,0.89065015 0 0 1 -1.7206379,0.89065 l 0,-0.89065 z"
+       id="path826"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.296;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <ellipse
+       cy="291.13705"
        cx="-8.3058081"
-       cy="291.1384" />
+       id="ellipse907"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.19564196;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="scale(-1,1)"
+       rx="0.074711815"
+       ry="0.077372119" />
   </g>
 </svg>
