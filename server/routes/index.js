@@ -2,6 +2,7 @@ var express  = require("express");
 var router = new express.Router();
 var dbMyip = require("../model/db_myip");
 var sciProjectsRouter = require("./sci-projects");
+var articlesRouter = require("./articles");
 
 router.get("/",              (req, res) => req.renderer.render(res, "index"));
 router.get("/index",         (req, res) => req.renderer.render(res, "index"));
@@ -27,6 +28,7 @@ router.route("/myip")
 });
 
 router.use("/sci-projects", sciProjectsRouter);
+router.use("/articles", articlesRouter);
 
 // Serve apps
 // router.get("/myapps/tictactoe", (req, res) => req.renderer.render(res, "myapps/tictactoe"));

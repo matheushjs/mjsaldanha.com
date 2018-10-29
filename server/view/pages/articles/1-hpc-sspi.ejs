@@ -1,0 +1,56 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <% include ../../partials/head_common %>
+
+    <style>
+      h1 {
+        margin-bottom: 0.5em;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="jumbotron text-center elf-starry-sky">
+      <div>
+        <% include ../../partials/navbar %>
+      </div>
+      <div class="container">
+        <h2>High Performance Algorithms for Contact and Collision Counting</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1>Code Repositories</h1>
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th scope="row">Collision Counting Algorithms (root directory)</th>
+            <td><a href="//github.com/matheushjs/ElfCudaLibs/tree/master/ElfColCnt" target="_blank">GitHub Repository</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Sequential O(n²) Version</th>
+            <td><a href="//github.com/matheushjs/ElfCudaLibs/tree/master/ElfColCnt/seq_quadratic" target="_blank">GitHub Repository</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Sequential O(n) Version</th>
+            <td><a href="//github.com/matheushjs/ElfCudaLibs/tree/master/ElfColCnt/seq_linear" target="_blank">GitHub Repository</a></td>
+          </tr>
+          <tr>
+            <th scope="row">CUDA Straightforward Version</th>
+            <td><a href="//github.com/matheushjs/ElfCudaLibs/tree/master/ElfColCnt/cuda_nsteps" target="_blank">GitHub Repository</a></td>
+          </tr>
+          <tr>
+            <th scope="row">CUDA Balanced Version</th>
+            <td><a href="//github.com/matheushjs/ElfCudaLibs/tree/master/ElfColCnt/cuda_halfsteps" target="_blank">GitHub Repository</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <% include ../../partials/footer %>
+    </div>
+  </body>
+</html>
