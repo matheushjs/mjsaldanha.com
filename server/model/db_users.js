@@ -11,7 +11,7 @@
 
 const crypto = require("crypto");
 const keyBytes = 16; // Size of the secret keys to be used with Hmac
-const client = require("./db_client").client;
+const client = require("./db_client");
 
 // Table schemas
 // CREATE TABLE users(username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))
@@ -35,24 +35,26 @@ function User(id, username, hashpass, callname){
  * Returns filled User object if found.
  */
 async function lookup(obj){
-  var promise = new Promise((resolve, reject) => {
-    if(obj.username){
-      client.all("SELECT rowid, * FROM users WHERE username = ?", [obj.username], (err, rows) => {
-        if(err) reject(err);
-        else    resolve(rows[0]);
-      });
-    } else if(obj.id){
-      client.all("SELECT rowid, * FROM users WHERE rowid = ?", [obj.id], (err, rows) => {
-        if(err) reject(err);
-        else    resolve(rows[0]);
-      });
-    } else {
-        reject("Object given as argument doesn't have recognizable attributes.");
-    }
-  });
+  var query = "SELECT rowid, * FROM users WHERE ";
+  const queryUsername = "username = ?";
+  const queryRowid = "rowid = ?";
+  var arg;
 
+  if(obj.username){
+    query += queryUsername;
+    arg = obj.username;
+  } else if(obj.id){
+    query += queryRowid;
+    arg = obj.id;
+  } else {
+    console.log("Object given as argument doesn't have recognizable attributes.");
+    return null;
+  }
+  
   try {
-    var user = await promise;
+    var rows = await client.all(query, [arg]);
+    var user = rows[0];
+
     if(!user){
       return null;
     } else {
