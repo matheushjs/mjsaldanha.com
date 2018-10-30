@@ -34,31 +34,25 @@ function User(id, username, hashpass, callname){
  * Returns null if user was not found.
  * Returns filled User object if found.
  */
-function lookup(obj){
+async function lookup(obj){
   var promise = new Promise((resolve, reject) => {
     if(obj.username){
       client.all("SELECT rowid, * FROM users WHERE username = ?", [obj.username], (err, rows) => {
-        if(err){
-          reject(err);
-          return;
-        }
-        resolve(rows[0]);
+        if(err) reject(err);
+        else    resolve(rows[0]);
       });
     } else if(obj.id){
       client.all("SELECT rowid, * FROM users WHERE rowid = ?", [obj.id], (err, rows) => {
-        if(err){
-          reject(err);
-          return;
-        }
-        resolve(rows[0]);
+        if(err) reject(err);
+        else    resolve(rows[0]);
       });
     } else {
         reject("Object given as argument doesn't have recognizable attributes.");
     }
   });
 
-  // Create user after query is done
-  promise = promise.then((user) => {
+  try {
+    var user = await promise;
     if(!user){
       return null;
     } else {
@@ -67,15 +61,13 @@ function lookup(obj){
       user.password = user.password.replace(/^ */g, "").replace(/ *$/g, "");
       user.callname = user.callname.replace(/^ */g, "").replace(/ *$/g, "");
 
-      return new User(user.rowid, user.username, user.password, user.callname);
+      return new User(user.rowid, user.username, user.password, user.callname);      
     }
-  })
-  .catch((err) => {
-    console.log(err);
-    return null;
-  });
+  } catch(e) {
+    console.log(e);
+  }
 
-  return promise;
+  return null;
 }
 
 /* Attempts to authenticate user with username "user" and textual password "pass".
