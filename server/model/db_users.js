@@ -76,44 +76,38 @@ async function lookup(obj){
  * If authentication fails, returns null.
  * If it succeeds, returns a filled User object.
  */
-function authenticate(user, pass){
-  return lookup({username: user})
-    .then((recUser) => {
-      if(!recUser){
-        return null;
-      }
+async function authenticate(user, pass){
+  var recUser = await lookup({username: user});
+  
+  if(!recUser){
+    return null;
+  }
 
-      const secret = recUser.hashpass.substr(0, keyBytes*2);
-      const hash = crypto.createHmac("sha256", secret).update(pass).digest("hex");
+  const secret = recUser.hashpass.substr(0, keyBytes*2);
+  const hash = crypto.createHmac("sha256", secret).update(pass).digest("hex");
 
-      if(recUser.hashpass === secret + hash){
-        return recUser;
-      } else {
-        return null;
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      return null;
-    });
+  if(recUser.hashpass === secret + hash){
+    return recUser;
+  } else {
+    return null;
+  }
 }
 
 /* Inserts a new user in the database, with username "user", password "pass" and call name "name".
  * Inserting an existing user results in an exception that can be caught.
  */
-function addUser(user, pass, name){
+async function addUser(user, pass, name){
   const secret = crypto.randomBytes(keyBytes).toString("hex");
   const hash = crypto.createHmac("sha256", secret).update(pass).digest("hex");
-  return new Promise((resolve, reject) => {
-    var stmt = client.prepare("INSERT INTO users(username, password, callname) VALUES (?, ?, ?)", [user, secret + hash, name]);
-    stmt.run((err, rows) => {
-      if(err){
-        reject(err);
-      } else {
-        resolve(lookup({username: user}));
-      }
-    });
-  });
+  var stmt = client.prepare("INSERT INTO users(username, password, callname) VALUES (?, ?, ?)", [user, secret + hash, name]);
+
+  try {
+    await stmt.run();
+    return await lookup({username: user});
+  } catch(e) {
+    console.log(e);
+    return null;
+  }
 }
 
 /* Attempts to sign up a user with username "user", password "pass" and callname "name."
@@ -122,14 +116,14 @@ function addUser(user, pass, name){
  * If the given "user" is available for usage, then we insert the new user in the database. Function returns
  *   a filled User in this case.
  */
-function signUp(user, pass, name){
-  return addUser(user, pass, name)
-    .then((authUser) => {
-      return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);
-    })
-    .catch((err) => { // User already exists
-      return null;
-    });
+async function signUp(user, pass, name){
+  var authUser = await addUser(user, pass, name);
+
+  if(authUser){
+    return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);
+  } else {
+    return null;
+  }
 }
 
 /* Updates user information in the table for user with ID "user_id".
@@ -141,71 +135,60 @@ function signUp(user, pass, name){
  *   - callname: the new callname of the user (optional)
  *   - password: the new textual password of the user (optional)
  */
-function updateUser(user){
+async function updateUser(user){
   if(!user.id){
     throw Error("user must have an id");
   }
   if(!user.callname && !user.password){
-    return lookup({id: user.id});
+    return await lookup({id: user.id});
   }
 
-  // First we lookup the user, obtaining a user object.
-  // We change this user object with new values, and update the database with this new user object.
-  return lookup(user)
-    .then(retUser => {
-      if(!user) return null;
+  var retUser = await lookup(user);
+  if(!retUser) return null;
 
-      if(user.callname){
-        retUser.callname = user.callname;
-      }
+  if(user.callname){
+    retUser.callname = user.callname;
+  }
 
-      if(user.password){
-        const secret = crypto.randomBytes(keyBytes).toString("hex");
-        const hash = crypto.createHmac("sha256", secret).update(user.password).digest("hex");
-        retUser.hashpass = secret + hash;
-      }
+  if(user.password){
+    const secret = crypto.randomBytes(keyBytes).toString("hex");
+    const hash = crypto.createHmac("sha256", secret).update(user.password).digest("hex");
+    retUser.hashpass = secret + hash;
+  }
 
-      return new Promise((resolve, reject) => {
-        var stmt = client.prepare("UPDATE users SET callname = ?, password = ? WHERE rowid = ?", [retUser.callname, retUser.hashpass, retUser.id]);      
-        stmt.run((err, rows) => {
-          if(err){
-            reject(err);
-          } else {
-            resolve(retUser);
-          }
-        });
-      });
-    });
+  var stmt = client.prepare("UPDATE users SET callname = ?, password = ? WHERE rowid = ?", [retUser.callname, retUser.hashpass, retUser.id]);      
+  try {
+    await stmt.run();
+    return retUser;
+  } catch(e) {
+    console.log(e);
+    return null;
+  }
 }
 
 /* Returns an array with all users in the database.
  */
-function allUsers(){
-  return new Promise((resolve, reject) => {
-    client.all("SELECT rowid, * FROM users", (err, rows) => {
-      if(err){
-        reject(err);
-        return;
-      }
-
-      var users = [];
-      for(var i = 0; i < rows.length; i++){
-        var row = rows[i];
-
-        // Remove whitespace
-        row.username = row.username.replace(/^ */g, "").replace(/ *$/g, "");
-        row.password = row.password.replace(/^ */g, "").replace(/ *$/g, "");
-        row.callname = row.callname.replace(/^ */g, "").replace(/ *$/g, "");
-
-        users.push(new User(row.rowid, row.username, row.password, row.callname));
-      }
-      resolve(users);
-    });
-  })
-  .catch((err) => {
-    console.log(err);
+async function allUsers(){
+  var rows;
+  try {
+    rows = await client.all("SELECT rowid, * FROM users");
+  } catch(e) {
+    console.log(e);
     return [];
-  });
+  }
+
+  var users = [];
+  for(var i = 0; i < rows.length; i++){
+    var row = rows[i];
+
+    // Remove whitespace
+    row.username = row.username.replace(/^ */g, "").replace(/ *$/g, "");
+    row.password = row.password.replace(/^ */g, "").replace(/ *$/g, "");
+    row.callname = row.callname.replace(/^ */g, "").replace(/ *$/g, "");
+
+    users.push(new User(row.rowid, row.username, row.password, row.callname));
+  }
+  return users;
 }
 
 module.exports = {

@@ -10,18 +10,25 @@ const origClient = new sqlite3.Database("server/model/database.db");
 
 function all(query, args){
   return new Promise((resolve, reject) => {
-    origClient.all(query, args, (err, rows) => {
-      if(err) reject(err);
-      else resolve(rows);
-    });
+    if(args){
+      origClient.all(query, args, (err, rows) => {
+        if(err) reject(err);
+        else resolve(rows);
+      });
+    } else {
+      origClient.all(query, (err, rows) => {
+        if(err) reject(err);
+        else resolve(rows);
+      });
+    }
   });
 }
 
 function prepare(query, args){
+  var stmt = origClient.prepare(query, args);
   return {
-    stmt: origClient.prepare(query, args),
     run: () => new Promise((resolve, reject) => {
-      this.stmt.run((err, rows) => {
+      stmt.run((err, rows) => {
         if(err) reject(err);
         else resolve(rows);
       });
