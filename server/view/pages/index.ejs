@@ -45,6 +45,10 @@
         margin: 40px auto;
       }
 
+      .elf-top-title {
+        margin: -8vh auto 40px; /* margin-top due to .major-block margins */
+      }
+
       .elf-moving-logo {
         position: absolute;
         left: calc(50% - 48px);
@@ -171,30 +175,43 @@
     </div>
 
     <div id="myresearch" class="container-fluid text-center major-block">
+      <h1 class="elf-top-title slideanim">Research</h1>
       <div class="row">
-        <div class="col-md-5 order-md-3">
-          <h1 class="slideanim elf-side-title align-self-center">
-            Research <br>
-            <img src="/octicons/svg/beaker.svg" alt="lab beaker" style="height: 2.5rem;">
-          </h1>
-        </div>
         <div class="col-md-6 order-md-2" style="font-size: 1.1rem;">
           <p>
-            I would like to make results of my research publicly available here, in my website.
+            Even though I haven't done much research yet, I would like to establish a place to make results of my current and future research publicly available here, in my website.
           </p>
           <p>
             Each research project has its own webpage, so I'll organize all of them in a "mapping" webpage,
-            which you can access by clicking below.
+            which you can access by clicking the links that surround this text.
           </p>
           <p>
             The link is also available in the navigation bar on the top of the page :).
           </p>
-          <a href="/sci-projects/">
-            <button type="button" class="btn btn-lg btn-primary">Research Map</button>
-          </a>
         </div>
-        <div class="col-md-1 order-md-1">
-
+        <div class="col-md-3 order-md-3">
+            <table class="table table-hover font-weight-bold">
+              <tbody>
+                  <tr>
+                    <td>
+                      <a href="/sci-projects/">All Research Projects</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="/articles/">All Articles</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="/sci-projects/1-psp-project-1/">Protein Structure Prediction and HPC</a>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="col-md-3 order-md-1">
+            <img src="/octicons/svg/beaker.svg" class="slideanim" alt="lab beaker" style="height: 30vh;">
         </div>
       </div>
     </div>
