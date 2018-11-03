@@ -12,10 +12,10 @@ try {
 }
 
 router.route("/login")
-.get((req, res) => {
+.get(async (req, res) => {
   req.renderer.login(res);
 })
-.post((req, res) => {
+.post(async (req, res) => {
   if(req.session.username){
     req.renderer.login(res, "You're already logged in. Please log out first.");
   } else {
@@ -25,24 +25,22 @@ router.route("/login")
       return;
     }
 
-    dbUsers.authenticate(req.body.username, req.body.password)
-    .then((authUser) => {
-      if(!authUser){
-        req.renderer.login(res, "User does not exist. Please, sign up.");
-      } else {
-        req.session.userid = authUser.id;
-        req.session.username = authUser.username;
-        req.session.callname = authUser.callname;
-        res.redirect("/");
-      }
-    });
+    var authUser = await dbUsers.authenticate(req.body.username, req.body.password);    
+    if(!authUser){
+      req.renderer.login(res, "User does not exist. Please, sign up.");
+    } else {
+      req.session.userid = authUser.id;
+      req.session.username = authUser.username;
+      req.session.callname = authUser.callname;
+      res.redirect("/");
+    }
   }
 });
 
 
 router.route("/signup")
 // Check ReCaptcha. Sign up is disabled if it doesn't work.
-.all((req, res, next) => {
+.all(async (req, res, next) => {
   if(!recaptcha){
     req.renderer.messagePage(res, "ReCaptcha could not be loaded in the server.");
   } else {
@@ -50,11 +48,11 @@ router.route("/signup")
   }
 })
 // Serve GET request
-.get((req, res) => {
+.get(async (req, res) => {
   req.renderer.signup(res);
 })
 // Check if user isn't logged in already
-.post((req, res, next) => {
+.post(async (req, res, next) => {
   if(req.session.username){
     req.renderer.messagePage(res, "Please, log out of your current account before signing up.");
   } else {
@@ -62,7 +60,7 @@ router.route("/signup")
   }
 })
 // Validate fields
-.post((req, res, next) => {
+.post(async (req, res, next) => {
   // Validate/fix fields
   // For callname, we just remove trailing/leading whitespace
   req.body.callname = req.body.callname.replace(/^ */g, "").replace(/ *$/g, "");
@@ -75,7 +73,7 @@ router.route("/signup")
   }
 })
 // Validate ReCaptcha
-.post((req, res, next) => {
+.post(async (req, res, next) => {
   recaptcha.validate(req.body["g-recaptcha-response"])
   .then(() => {
     next();
@@ -85,24 +83,22 @@ router.route("/signup")
   });
 })
 // Sign user up in database
-.post((req, res) => {
-  dbUsers.signUp(req.body.username, req.body.password, req.body.callname)
-  .then((authUser) => {
-    if(authUser){
-      req.session.userid = authUser.id;
-      req.session.username = authUser.username;
-      req.session.callname = authUser.callname;
-      res.redirect("/");
-    } else {
-      req.renderer.signup(res, "Username already exists. Please, pick another one.");
-    }
-  });
+.post(async (req, res) => {
+  var authUser = await dbUsers.signUp(req.body.username, req.body.password, req.body.callname);
+  if(authUser){
+    req.session.userid = authUser.id;
+    req.session.username = authUser.username;
+    req.session.callname = authUser.callname;
+    res.redirect("/");
+  } else {
+    req.renderer.signup(res, "Username already exists. Please, pick another one.");
+  }
 });
 
 
 router.route("/account")
 // Check if user is logged in
-.all((req, res, next) => {
+.all(async (req, res, next) => {
   if(!req.session.userid){
     res.redirect("/");
   } else {
@@ -110,11 +106,11 @@ router.route("/account")
   }
 })
 // Serve GET requests
-.get((req, res) => {
+.get(async (req, res) => {
   req.renderer.account(res);
 })
 // Validate Fields
-.post((req, res, next) => {
+.post(async (req, res, next) => {
   // For callname, we just remove trailing/leading whitespace
   req.body.callname = req.body.callname.replace(/^ */g, "").replace(/ *$/g, "");
   
@@ -131,47 +127,44 @@ router.route("/account")
   }
 })
 // Handle database
-.post((req, res) => {
+.post(async (req, res) => {
   if(!req.body.cur_password){
     // Only callname to update
-    dbUsers.updateUser({id: req.session.userid, callname: req.body.callname})
-    .then((user) => {
+    var user;
+    try {
+      user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname});
       // Update session
       req.session.callname = user.callname;
 
       // Signalize a success
       res.send("");
-    })
-    .catch((err) => {
+    } catch(e) {
       res.send("Sorry, something went wrong in our database. Try again later.");
-      console.log(err.stack);
-    });
+      console.log(e.stack);
+    }
   } else {
-    dbUsers.authenticate(req.session.username, req.body.cur_password)
-    .then((user) => {
+    var user;
+    try {
+      user = await dbUsers.authenticate(req.session.username, req.body.cur_password);
       if(!user){
         res.send("Wrong current password!");
         return;
       }
-      
-      return dbUsers.updateUser({id: req.session.userid, callname: req.body.callname, password: req.body.password});
-    })
-    .then((user) => {
+
+      user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname, password: req.body.password});
       // Update session
       req.session.callname = user.callname;
-
       // Signalize a success
       res.send("");
-    })
-    .catch((err) => {
+    } catch(e) {
       res.send("Sorry, something went wrong in our database. Try again later.");
       console.log(err.stack);
-    });
+    }
   }
 });
 
 router.route("/logout")
-.get(function(req, res){
+.get(async (req, res) => {
   req.session.username = null;
   req.session.callname = null;
   req.session.userid   = null;
