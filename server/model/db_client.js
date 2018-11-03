@@ -6,7 +6,22 @@
 const sqlite3 = require("sqlite3");
 const origClient = new sqlite3.Database("server/model/database.db");
 
-/* Set up function wrappers */
+/* Set up function wrappers that return Promises instead of using callbacks */
+
+class Stmt {
+  constructor(stmt){
+    this.stmt = stmt;
+  }
+
+  run(){
+    return new Promise((resolve, reject) => {
+      this.stmt.run((err, rows) => {
+        if(err) reject(err);
+        else resolve(rows);
+      });
+    });
+  }
+}
 
 function all(query, args){
   return new Promise((resolve, reject) => {
@@ -26,14 +41,7 @@ function all(query, args){
 
 function prepare(query, args){
   var stmt = origClient.prepare(query, args);
-  return {
-    run: () => new Promise((resolve, reject) => {
-      stmt.run((err, rows) => {
-        if(err) reject(err);
-        else resolve(rows);
-      });
-    }),
-  }
+  return new Stmt(stmt);
 }
 
 module.exports = {
