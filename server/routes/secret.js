@@ -34,13 +34,9 @@ router.use(async (req, res, next) => {
 
   if(req.session.username === "walwal20"){
     var users;
-    try {
-      users = await dbUsers.allUsers();
-      req.session.userData.allUsers = users.sort((a, b) => { return a.id > b.id; });
-      return next();
-    } catch(err) {
-      console.log(err.stack)
-    }
+    users = await dbUsers.allUsers();
+    req.session.userData.allUsers = users.sort((a, b) => { return a.id > b.id; });
+    return next();
   } else {
     return next();
   }

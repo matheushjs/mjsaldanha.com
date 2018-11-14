@@ -33,6 +33,7 @@ function User(id, username, hashpass, callname){
  *   - id: for looking up an user by their id
  * Returns null if user was not found.
  * Returns filled User object if found.
+ * Shouldn't raise exceptions.
  */
 async function lookup(obj){
   var query = "SELECT rowid, * FROM users WHERE ";
@@ -75,6 +76,7 @@ async function lookup(obj){
 /* Attempts to authenticate user with username "user" and textual password "pass".
  * If authentication fails, returns null.
  * If it succeeds, returns a filled User object.
+ * Shouldn't raise exceptions.
  */
 async function authenticate(user, pass){
   var recUser = await lookup({username: user});
@@ -94,7 +96,7 @@ async function authenticate(user, pass){
 }
 
 /* Inserts a new user in the database, with username "user", password "pass" and call name "name".
- * Inserting an existing user results in an exception that can be caught.
+ * Shouldn't raise exceptions.
  */
 async function addUser(user, pass, name){
   const secret = crypto.randomBytes(keyBytes).toString("hex");
@@ -115,6 +117,7 @@ async function addUser(user, pass, name){
  *   and the function returns null.
  * If the given "user" is available for usage, then we insert the new user in the database. Function returns
  *   a filled User in this case.
+ * Shouldn't raise exceptions.
  */
 async function signUp(user, pass, name){
   var authUser = await addUser(user, pass, name);
@@ -129,11 +132,12 @@ async function signUp(user, pass, name){
 /* Updates user information in the table for user with ID "user_id".
  * The only information available for updating are the password and the callname.
  * Password should given in textual form, we encrypt it.
- * This function always returns the filled User object. Always remember to catch the exception of the promise.
+ * This function always returns the filled User object.
  * "user" should be an object with at least the following attributes:
  *   - id: the id of the user to update (mandatory)
  *   - callname: the new callname of the user (optional)
  *   - password: the new textual password of the user (optional)
+ * Shouldn't raise exceptions.
  */
 async function updateUser(user){
   if(!user.id){
@@ -167,6 +171,7 @@ async function updateUser(user){
 }
 
 /* Returns an array with all users in the database.
+ * Shouldn't raise exceptions.
  */
 async function allUsers(){
   var rows;
