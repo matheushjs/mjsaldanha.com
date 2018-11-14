@@ -2,44 +2,26 @@ var express = require("express");
 var router = new express.Router();
 var dbUsers = require("../model/db_users");
 
-// For the root URL, we unconditionally redirect the user to their index.
-// If it doesn't exist, let the other middlewares handle it.
-router.get("/", async (req, res) => {
-  res.redirect("/secret/" + (req.session.userid || "not_logged_in") + "/");
-});
+const PAGE_AUTH = {
+  "/": ["walwal20"],
+  "/all_users": ["walwal20"],
+};
 
-// Middleware for always checking if the user is authorized
+// Middleware for always checking if the user is authorized to access such page
 router.use(async (req, res, next) => {
-  // Take the id of the URL. From "/secret/1/...", take 1.
-  var id = Number(req.url.split("/").filter((str) => { return str !== ""; })[0]);
+  // req.url is the path relative to secret/; e.g. '/all_users' or '/really_secret/page1'
+  var users = PAGE_AUTH[req.url];
 
-  if(req.session.username === "walwal20"){
-    return next();
-  } else if(id && req.specialUser && Number(req.session.userid) === id){
+  if(users && users.indexOf(req.session.username) >= 0){
     return next();
   } else {
-    res.render("message_page", {
-      session: req.session,
-      message: "Sorry, there is nothing special for you yet.",
-    });
+    req.renderer.messagePage(res, "Sorry, there is nothing special for you yet.");
   }
 });
 
-// Middleware for providing req.session with data specific to each user
-router.use(async (req, res, next) => {
-  if(req.session.userData){
-    return next();
-  }
-  req.session.userData = {};
-
-  if(req.session.username === "walwal20"){
-    var users;
-    users = await dbUsers.allUsers();
-    req.session.userData.allUsers = users.sort((a, b) => { return a.id > b.id; });
-    return next();
-  } else {
-    return next();
-  }
+// Middleware for providing the requested page
+router.use(async (req, res) => {
+  req.renderer.messagePage(res, "Sorry, we are currently building the secret section.");
 });
 
 module.exports = router;
