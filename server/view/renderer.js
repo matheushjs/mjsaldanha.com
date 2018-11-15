@@ -36,6 +36,14 @@ class Renderer {
     });
   }
 
+  allUsers(res, users){
+    res.render("secret/all_users", {
+      callname: this.callname,
+      specialUser: this.specialUser,
+      users,
+    });
+  }
+
   render(res, pageName){
     res.render(pageName, {
       callname: this.callname,

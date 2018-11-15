@@ -13,7 +13,7 @@ const makeSecret   = require("./midware/makeSecret");
 const makeRenderer = require("./midware/makeRenderer");
 const countVisitor = require("./midware/countVisitor");
 const indexRoutes  = require("./routes/index");
-const secretRoutes = require("./routes/secret");
+const secretRoutes = require("./routes/secret").router;
 const userRoutes   = require("./routes/user");
 
 // Sets up ejs templating
