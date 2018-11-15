@@ -3,3 +3,7 @@
 <img src="https://mjsaldanha.com/images/elf_icon.png" width="128" height="128">
 
 Check me out at [mjsaldanha.com](http://www.mjsaldanha.com) :D
+
+# Project Diagram
+
+![](/soft_eng/diagrams.png)
