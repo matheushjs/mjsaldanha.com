@@ -15,6 +15,8 @@ const countVisitor = require("./midware/countVisitor");
 const indexRoutes  = require("./routes/index");
 const secretRoutes = require("./routes/secret").router;
 const userRoutes   = require("./routes/user");
+const sciProjectsRoutes = require("./routes/sci-projects");
+const articlesRoutes    = require("./routes/articles");
 
 // Sets up ejs templating
 app.set("view engine", "ejs");
@@ -42,6 +44,8 @@ app.use(countVisitor);   // Handles visitor counting
 app.use("/secret", secretRoutes);
 app.use("/user", userRoutes);
 app.use("/", indexRoutes);
+app.use("/sci-projects", sciProjectsRoutes);
+app.use("/articles", articlesRoutes);
 
 // Handle page not found
 app.get("*", (req, res) => {
