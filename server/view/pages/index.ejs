@@ -80,8 +80,13 @@
         <% include ../partials/navbar %>
       </div>
       <div class="text-center container" style="margin: 10vh auto;">
-        <h2>Matheus Saldanha's WebPage</h2>
-        <p>Welcome to my humble abode!</p>
+        <% if(lang === "ja") { %>
+          <h2>Matheus Saldanhaのホームページ </h2>
+          <p>僕の拙宅ページへようこそ！</p>
+        <% } else { %>
+          <h2>Matheus Saldanha's WebPage</h2>
+          <p>Welcome to my humble abode!</p>
+        <% } %>
       </div>
     </div>
 
