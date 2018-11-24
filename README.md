@@ -44,11 +44,11 @@ So, how did we decide to solve this problem?
 Our home page contains the main portion of our website, so it isn't a big loss that the crawler can see the other pages in, say, japanese.
 Besides, the other options for localizing the website would be:
 
-1. Use different URLS for each language, such as `mjsaldanha.com/ja/articles`
-2. Use GET parameters to define the language
+1. Use different URLS for each language, such as `mjsaldanha.com/ja/articles/`
+2. Use GET parameters to define the language, as `mjsaldanha.com/articles/?set_lang=ja`
 3. Use subdomains such as `ja.mjsaldanha.com`
 
-And each of these options are a gigantic pain in the ass because we'd have to change all anchors `<a href="..." ></a>` within the website to point to the correct language.
+And each of these options are a gigantic pain in the ass because we'd have to change all anchors `<a href="..." ></a>` within the website to point to the language currently being used by the user.
 By using cookies we avoid this problem, and manage to save the user's preference.
 
 # Project Diagram
