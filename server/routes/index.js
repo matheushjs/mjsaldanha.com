@@ -5,6 +5,7 @@ var dbMyip = require("../model/db_myip");
 // Serve home page in multiple languages for Google Crawlers (the Renderer takes care of serving correct language).
 router.get("/",         async (req, res) => req.renderer.render(res, "index"));
 router.get("/ja",       async (req, res) => req.renderer.render(res, "index"));
+router.get("/en",       async (req, res) => req.renderer.render(res, "index"));
 
 router.get("/index",    async (req, res) => req.renderer.render(res, "index"));
 router.get("/credits",  async (req, res) => req.renderer.render(res, "credits"));
