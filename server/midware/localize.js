@@ -33,7 +33,5 @@ module.exports = (req, res, next) => {
   // We then update the user's cookie
   req.session.language = req.language;
 
-  console.log("Language: " + req.language);
-
   next();
 };
