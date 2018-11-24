@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<% if(lang === "ja") { %>
+  <html lang="ja">
+<% } else { %>
+  <html lang="en">
+<% } %>
+
 	<head>
     <% include ../partials/head_common %>
     <link rel="canonical" href="https://mjsaldanha.com"/>
