@@ -6,6 +6,7 @@ const renderer = require("../view/renderer");
 module.exports = (req, res, next) => {
   let callname = req.session.callname;
   let specialUser = req.specialUser;
-  req.renderer = new renderer.Renderer(callname, specialUser);
+  let language = req.language;
+  req.renderer = new renderer.Renderer(callname, specialUser, language);
   next();
 };

@@ -1,14 +1,16 @@
 
 class Renderer {
-  constructor(callname = null, specialUser = false){
+  constructor(callname = null, specialUser = false, language = "en"){
     this.callname = callname;
     this.specialUser = specialUser;
+    this.language = language;
   }
   
   messagePage(res, message){
     res.render("message_page", {
       callname: this.callname,
       specialUser: this.specialUser,
+      language: this.language,
       message,
     });
   }
@@ -17,6 +19,7 @@ class Renderer {
     res.render("account", {
       callname: this.callname,
       specialUser: this.specialUser,
+      language: this.language,
     });
   }
 
@@ -24,6 +27,7 @@ class Renderer {
     res.render("login", {
       callname: this.callname,
       specialUser: this.specialUser,
+      language: this.language,
       failMsg,
     });
   }
@@ -32,6 +36,7 @@ class Renderer {
     res.render("signup", {
       callname: this.callname,
       specialUser: this.specialUser,
+      language: this.language,
       failMsg,
     });
   }
@@ -40,6 +45,7 @@ class Renderer {
     res.render("secret/all_users", {
       callname: this.callname,
       specialUser: this.specialUser,
+      language: this.language,
       users,
     });
   }
@@ -48,6 +54,7 @@ class Renderer {
     res.render(pageName, {
       callname: this.callname,
       specialUser: this.specialUser,
+      language: this.language,
     });
   }
 }

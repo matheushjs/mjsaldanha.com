@@ -10,9 +10,9 @@ const helmet = require("helmet");
 const app = express();
 
 const makeSecret   = require("./midware/makeSecret");
+const localize     = require("./midware/localize");
 const makeRenderer = require("./midware/makeRenderer");
 const countVisitor = require("./midware/countVisitor");
-const localize     = require("./midware/localize");
 const indexRoutes  = require("./routes/index");
 const secretRoutes = require("./routes/secret").router;
 const userRoutes   = require("./routes/user");
@@ -38,9 +38,9 @@ app.use(express.static(path.resolve("./public"), { // Serve the public folder st
 
 // makeSecret must come before makeRenderer
 app.use(makeSecret);     // Handle user privilege variables in req.session
+app.use(localize);       // Handles language localization in req.language
 app.use(makeRenderer);   // Creates and initializes a Renderer object
 app.use(countVisitor);   // Handles visitor counting
-app.use(localize);       // Handles language localization
 
 // Set up routes
 app.use("/secret", secretRoutes);
