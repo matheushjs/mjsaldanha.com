@@ -29,7 +29,7 @@ app.use(helmet());
 app.use(cookieSession({     // Sets up cookie-based session
   name: "session",
   secret: "私が嫌い物があれば、それは人類だと思う。",
-  maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  maxAge: 10 * 365 * 24 * 60 * 60 * 1000, // 10 years
 }));
 app.use(express.static(path.resolve("./public"), { // Serve the public folder statically.
   maxAge: 31557600000 // Enable caching
