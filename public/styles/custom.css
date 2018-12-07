@@ -18,6 +18,7 @@ a:hover {
   background-position: 50% 45%;
   background-size: auto;
   background-repeat: no-repeat;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.3); /* Copied from Bootstrap .shadow */
 }
 
 /* Only show stars on small screens */
