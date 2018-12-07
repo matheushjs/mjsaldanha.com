@@ -130,8 +130,7 @@ router.route("/account")
 .post(async (req, res) => {
   if(!req.body.cur_password){
     // Only callname to update
-    var user;
-    user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname});
+    var user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname});
     
     if(user){
       // Update session
@@ -141,11 +140,9 @@ router.route("/account")
       res.send("");
     } else {
       res.send("Sorry, something went wrong in our database. Try again later.");
-      console.log(e.stack);
     }
   } else {
-    var user;
-    user = await dbUsers.authenticate(req.session.username, req.body.cur_password);
+    var user = await dbUsers.authenticate(req.session.username, req.body.cur_password);
     if(!user){
       res.send("Wrong current password!");
       return;

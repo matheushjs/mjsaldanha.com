@@ -23,13 +23,13 @@ module.exports = (req, res, next) => {
     return;
   }
 
-  if(req.session.firstVisit === undefined){
+  if(req.session.firstVisit == null){
     req.session.firstVisit = true;
   } else if(req.session.firstVisit === true){
     req.session.firstVisit = false;
     
     counter += 1;
-    fs.writeFile(filePath, counter, "utf8", err => {
+    fs.writeFile(filePath, counter, "utf8", (err) => {
       if(err){
         console.log(err);
       }

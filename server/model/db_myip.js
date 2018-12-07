@@ -29,7 +29,7 @@ function get(){
 // Changes current stored IP for the given "ip"
 function insert(ip){
   return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, ip, "utf8", err => {
+    fs.writeFile(filePath, ip, "utf8", (err) => {
       if(err){
         reject(err);
       } else {
