@@ -53,4 +53,4 @@ By using cookies we avoid this problem, and manage to save the user's preference
 
 # Project Diagram
 
-![](/soft_eng/diagrams.png)
+<img src="/soft_eng/diagrams.png" width="70%" />
