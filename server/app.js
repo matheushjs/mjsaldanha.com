@@ -37,10 +37,11 @@ app.use(express.static(path.resolve("./public"), { // Serve the public folder st
 }));
 
 // makeSecret must come before makeRenderer
-app.use(makeSecret);     // Handle user privilege variables in req.session
-app.use(localize);       // Handles language localization in req.language
-app.use(makeRenderer);   // Creates and initializes a Renderer object
-app.use(countVisitor);   // Handles visitor counting
+app.use(makeSecret);              // Handle user privilege variables in req.session
+app.use(localize.langDecider);    // Handles user language in req.language
+app.use(localize.localeProvider); // Handles translations in req.translation
+app.use(makeRenderer);            // Creates and initializes a Renderer object
+app.use(countVisitor);            // Handles visitor counting
 
 // Set up routes
 app.use("/secret", secretRoutes);

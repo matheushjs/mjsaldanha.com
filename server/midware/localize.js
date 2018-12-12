@@ -1,4 +1,7 @@
 
+const yaml = require("js-yaml");
+const fs   = require("fs");
+
 /* Sets up the language in which to serve the website.
  * We don't use just cookies because of google crawlers.
  * So the rules are:
@@ -8,7 +11,7 @@
  *   3) Else, serve english
  * The language will be stored in "req.language", using codes defined in ISO 639-1.
  */
-module.exports = (req, res, next) => {
+function langDecider(req, res, next) {
   let urlTokens = req.path.split("/");
   let langToken = urlTokens[1];     // Language given as directory in the URL
   let cookieLang = req.session.language;  // Language taken from the cookie
@@ -34,4 +37,24 @@ module.exports = (req, res, next) => {
   req.session.language = req.language;
 
   next();
+};
+
+/* Based on req.language, fill req.translation with due translation strings.
+ */
+function localeProvider(req, res, next) {
+  if(!req.language){
+    console.log("localeProvider has been called, but req.language is not defined!");
+    req.language = "en";
+  }
+
+  // read YAML file
+  var doc = yaml.load(fs.readFileSync("./server/view/locale/index.yml", "utf8"));
+  //console.log(doc);
+
+  next();
+}
+
+module.exports = {
+  langDecider,
+  localeProvider,
 };
