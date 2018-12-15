@@ -39,7 +39,7 @@ function langDecider(req, res, next) {
   next();
 };
 
-/* Based on req.language, fill req.translation with due translation strings.
+/* Based on req.language, fill req.translations with due translation strings.
  */
 function localeProvider(req, res, next) {
   if(!req.language){
@@ -48,8 +48,22 @@ function localeProvider(req, res, next) {
   }
 
   // read YAML file
-  var doc = yaml.load(fs.readFileSync("./server/view/locale/index.yml", "utf8"));
-  //console.log(doc);
+  var jsonStrings = yaml.load(fs.readFileSync("./server/view/locale/all.yml", "utf8"));
+  
+  // Iterate over first level of objects
+  for(top in jsonStrings){
+    // Iterate over second level
+    for(middle in jsonStrings[top]){
+      // Get only the desired language
+      if(req.language == "ja"){
+        jsonStrings[top][middle] = jsonStrings[top][middle]["ja"];
+      } else {
+        jsonStrings[top][middle] = jsonStrings[top][middle]["en"];
+      }
+    }
+  }
+
+  req.translations = jsonStrings;
 
   next();
 }

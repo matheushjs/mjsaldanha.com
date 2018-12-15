@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
   let callname = req.session.callname;
   let specialUser = req.specialUser;
   let language = req.language;
-  req.renderer = new renderer.Renderer(callname, specialUser, language);
+  let translations = req.translations;
+  req.renderer = new renderer.Renderer(callname, specialUser, language, translations);
   next();
 };

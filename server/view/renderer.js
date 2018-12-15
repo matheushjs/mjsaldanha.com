@@ -1,9 +1,11 @@
 
 class Renderer {
-  constructor(callname = null, specialUser = false, language = "en"){
+  constructor(callname = null, specialUser = false, language = "en", translations = null){
     this.callname = callname;
     this.specialUser = specialUser;
     this.language = language;
+    this.translations = translations;
+    console.log(this.translations);
   }
   
   messagePage(res, message){
@@ -11,6 +13,7 @@ class Renderer {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
+      trans: this.translations,
       message,
     });
   }
@@ -20,6 +23,7 @@ class Renderer {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
+      trans: this.translations,
     });
   }
 
@@ -28,6 +32,7 @@ class Renderer {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
+      trans: this.translations,
       failMsg,
     });
   }
@@ -37,6 +42,7 @@ class Renderer {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
+      trans: this.translations,
       failMsg,
     });
   }
@@ -46,6 +52,7 @@ class Renderer {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
+      trans: this.translations,
       users,
     });
   }
@@ -55,6 +62,7 @@ class Renderer {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
+      trans: this.translations,
     });
   }
 }
