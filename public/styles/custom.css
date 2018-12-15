@@ -12,10 +12,14 @@ a:hover {
   border-radius: 0px;
 }
 
+.jumbotron.elf-starry-sky .container {
+  margin: 5vh auto;
+}
+
 .elf-starry-sky {
   background-color: black;
   background-image: url(../images/earth_banner.jpg);
-  background-position: 50% 45%;
+  background-position: 50% 55%;
   background-size: auto;
   background-repeat: no-repeat;
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,.3); /* Copied from Bootstrap .shadow */

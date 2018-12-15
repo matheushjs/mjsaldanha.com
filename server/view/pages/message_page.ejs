@@ -25,11 +25,13 @@ Parameters:
         <% include ../partials/navbar %>
       </div>
 
-      <% if(message) { %>
-        <h2><%= message %></h2>
-      <% } else { %>
-        <h2>Oops, something went wrong!</h2>
-      <% } %>
+      <div class="container">
+        <% if(message) { %>
+          <h2><%= message %></h2>
+        <% } else { %>
+          <h2>Oops, something went wrong!</h2>
+        <% } %>
+      </div>
     </div>
 
     <div>
