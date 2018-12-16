@@ -1,10 +1,96 @@
 ---
 home:
   title:
-    ja: |
-      <h2>Matheus Saldanhaのホームページ </h2>
-      <p>僕の拙宅ページへようこそ！</p>
     en: |
       <h2>Matheus Saldanha's WebPage</h2>
       <p>Welcome to my humble abode!</p>
+    ja: |
+      <h2>Matheus Saldanhaのホームページ</h2>
+      <p>僕の拙宅ページへようこそ！</p>
+  intro:
+    en: |
+      <p>
+        Hello, and welcome to my page!
+      </p>
+      <p>
+        This page was originally supposed to be a playground for me to practice web development,
+          but I hope it also serves for publishing information about <strong>myself and my research</strong>.
+      </p>
+      <p>
+        I'm currently a <strong>Computer Science</strong> undergraduate student, with research interest in low level aspects of a computer, close to the hardware level.
+        In general, however, I like gathering smaller chunks of knowledge on a broad range of areas of Computer Science,
+          so that I can face a large number of problems without feeling completely ignorant.
+      </p>
+      <p>
+        I'm currently researching about High-Performance Computing applied to the problem of Protein Structure Prediction.
+        Since I've been enjoying to do science, I'm currently arranging things so that I can <strong>research for the rest of my life</strong>.
+      </p>
+    ja: |
+      <p>
+        おはようございます。　僕のホームページへようこそ！
+      </p>
+      <p>
+        元々このページはウェブ能力を鍛えるように作ったけど、現在僕の研究などを世界に見せるにも使いたいと思います。
+      </p>
+      <p>
+        今高性能計算に研究を行っているコンピュータ専攻の大学生です。
+        　科学を行うことをすごく楽しんでいますので、出来ればずっと研究して行きたいと思います。
+      </p>
+login:
+  placeholder1:
+    en: Enter your username
+    ja: ユーザー名を入力
+  placeholder2:
+    en: Enter your password
+    ja: パスワードを入力
+  submit:
+    en: Submit
+    ja: ログイン
+  info:
+    en: "Info:"
+    ja: "報告："
+global:
+  title:
+    en: Matheus Saldanha's WebPage
+    ja: Matheus Saldanhaのホームページ
+  description:
+    en: Webpage of Matheus Saldanha! I'm a Computer Science undergraduate and researcher, currently working with high-performance computing.
+    ja: Matheus Saldanhaのホームページ！ コンピュータ専攻の大学生と研究者です。今、高性能計算に研究を行っています。
+  greetings1:
+    en: "Hello, "
+    ja: "おはようございます "
+  greetings2:
+    en: "!"
+    ja: "さん"
+raw:
+  research:
+    en: Research
+    ja: 研究
+  credits:
+    en: Credits
+    ja: 礼状
+  specialpage:
+    en: Special Page
+    ja: 特なページ
+  language:
+    en: Language
+    ja: 言語
+  signup:
+    en: Sign Up
+    ja: 登録
+  login:
+    en: Log In
+    ja: ログイン
+  account:
+    en: Account
+    ja: アカウント
+  logout:
+    en: Log Out
+    ja: ログアウト
+  username:
+    en: Username
+    ja: ユーザー名
+  password:
+    en: Password
+    ja: パスワード
 ...
