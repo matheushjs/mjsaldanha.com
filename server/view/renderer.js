@@ -5,7 +5,6 @@ class Renderer {
     this.specialUser = specialUser;
     this.language = language;
     this.translations = translations;
-    console.log(this.translations);
   }
   
   messagePage(res, message){
