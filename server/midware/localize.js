@@ -2,6 +2,10 @@
 const yaml = require("js-yaml");
 const fs   = require("fs");
 
+// read YAML file
+const jsonStrings = yaml.load(fs.readFileSync("./server/view/locale/all.yml", "utf8"));
+
+
 /* Sets up the language in which to serve the website.
  * We don't use just cookies because of google crawlers.
  * So the rules are:
@@ -46,24 +50,27 @@ function localeProvider(req, res, next) {
     console.log("localeProvider has been called, but req.language is not defined!");
     req.language = "en";
   }
-
-  // read YAML file
-  var jsonStrings = yaml.load(fs.readFileSync("./server/view/locale/all.yml", "utf8"));
   
+  strings = {};
+
   // Iterate over first level of objects
   for(top in jsonStrings){
+    if(strings[top] == null){
+      strings[top] = {};
+    }
+
     // Iterate over second level
     for(middle in jsonStrings[top]){
       // Get only the desired language
       if(req.language == "ja"){
-        jsonStrings[top][middle] = jsonStrings[top][middle]["ja"];
+        strings[top][middle] = jsonStrings[top][middle]["ja"];
       } else {
-        jsonStrings[top][middle] = jsonStrings[top][middle]["en"];
+        strings[top][middle] = jsonStrings[top][middle]["en"];
       }
     }
   }
 
-  req.translations = jsonStrings;
+  req.translations = strings;
 
   next();
 }
