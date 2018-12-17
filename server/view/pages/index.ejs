@@ -119,7 +119,7 @@
       <div class="row">
         <div class="col-md-3 order-md-2">
           <h1 class="slideanim elf-side-title align-self-center">
-              Academic Info <br>
+              <%= trans.home.sidetitle2 %> <br>
               <img src="/octicons/svg/mortar-board.svg" alt="graduation hat" style="height: 2.5rem;">
           </h1>
         </div>
@@ -169,7 +169,7 @@
     </div>
 
     <div id="myresearch" class="container-fluid text-center major-block">
-      <h1 class="elf-top-title slideanim">Research</h1>
+      <h1 class="elf-top-title slideanim"><%= trans.home.sidetitle3 %></h1>
       <div class="row">
         <div class="col-md-5 order-md-2" style="font-size: 1.1rem;">
           <p>
@@ -214,7 +214,7 @@
       <div class="row">  
         <div class="col-md-3">
           <h1 class="slideanim elf-side-title align-self-center">
-            Interests <br> (Computer Science) <br>
+            <%- trans.home.sidetitle4 %> <br>
             <img src="/octicons/svg/thumbsup.svg" alt="graph" style="height: 2.5rem;">
           </h1>
         </div>
@@ -250,7 +250,7 @@
       <div class="row">
         <div class="col-md-4 order-md-2">
           <h1 class="slideanim elf-side-title align-self-center">
-            Elf Projects <br>
+            <%= trans.home.sidetitle5 %> <br>
             <img src="/octicons/svg/circuit-board.svg" alt="circuit board" style="height: 2.5rem;">
           </h1>
         </div>
@@ -264,7 +264,7 @@
       <div class="row">
         <div class="col-md-4">
           <h1 class="slideanim elf-side-title align-self-center">
-            Why Elf? <br>
+            <%- trans.home.sidetitle6 %> <br>
             <img src="/octicons/svg/question.svg" alt="question mark" style="height: 2.5rem;">
           </h1>
         </div>
@@ -284,7 +284,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="whyelf-modal-title">Why Elf?</h4>
+            <h4 class="modal-title" id="whyelf-modal-title"><%- trans.home.sidetitle6 %></h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -303,7 +303,7 @@
       <div class="row">
         <div class="col-md-4 order-md-2">
           <h1 class="slideanim elf-side-title align-self-center">
-            Programming Cradle <br>
+            <%- trans.home.sidetitle7 %> <br>
             <img src="/elficons/cradle.svg" alt="cradle" style="height: 2.5rem;">
           </h1>
         </div>
@@ -324,7 +324,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="progcradle-modal-title">Programming Cradle</h4>
+            <h4 class="modal-title" id="progcradle-modal-title"><%- trans.home.sidetitle7 %></h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -343,7 +343,7 @@
       <div class="row">
         <div class="col-md-4">
           <h1 class="slideanim elf-side-title align-self-center">
-            Interests (Miscellaneous) <br>
+            <%- trans.home.sidetitle8 %> <br>
             <img src="/octicons/svg/thumbsup.svg" alt="graph" style="height: 2.5rem;">
           </h1>
         </div>
@@ -364,7 +364,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="miscints-modal-title">Interests (Miscellaneous)</h4>
+            <h4 class="modal-title" id="miscints-modal-title"><%- trans.home.sidetitle8 %></h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -388,14 +388,14 @@
   
         <div class="collapse navbar-collapse" id="floatingIndex">
           <div class="navbar-nav">
-            <a class="nav-item nav-link text-center active" href="#welcome">Welcome</a>
-            <a class="nav-item nav-link text-center" href="#acadinfo">Academic Info</a>
-            <a class="nav-item nav-link text-center" href="#myresearch">Research</a>
-            <a class="nav-item nav-link text-center" href="#csinterests">Interests (CS)</a>
-            <a class="nav-item nav-link text-center" href="#elfprojs">Elf Projects</a>
-            <a class="nav-item nav-link text-center" href="#whyelf">Why Elf?</a>
-            <a class="nav-item nav-link text-center" href="#progcradle">Programming Cradle</a>
-            <a class="nav-item nav-link text-center" href="#miscints">Interests (Misc)</a>
+            <a class="nav-item nav-link text-center active" href="#welcome"><%= trans.home.sidetitle1 %></a>
+            <a class="nav-item nav-link text-center" href="#acadinfo"><%= trans.home.sidetitle2 %></a>
+            <a class="nav-item nav-link text-center" href="#myresearch"><%= trans.home.sidetitle3 %></a>
+            <a class="nav-item nav-link text-center" href="#csinterests"><%= trans.home.sidetitle4_short %></a>
+            <a class="nav-item nav-link text-center" href="#elfprojs"><%= trans.home.sidetitle5 %></a>
+            <a class="nav-item nav-link text-center" href="#whyelf"><%= trans.home.sidetitle6 %></a>
+            <a class="nav-item nav-link text-center" href="#progcradle"><%= trans.home.sidetitle7 %></a>
+            <a class="nav-item nav-link text-center" href="#miscints"><%= trans.home.sidetitle8_short %></a>
           </div>
         </div>
       </nav>

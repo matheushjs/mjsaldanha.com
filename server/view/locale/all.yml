@@ -41,6 +41,36 @@ home:
         現在、タンパク質構造予測に高性能計算を適用すつことについて研究しています。
         　僕は科学を行うことをすごく楽しんでいるので、いまずっと研究することができるようにしようとしています。
       </p>
+  sidetitle1:
+    en: Welcome
+    ja: 紹介
+  sidetitle2:
+    en: Academic Info
+    ja: 学的な情報
+  sidetitle3:
+    en: Research
+    ja: 研究
+  sidetitle4:
+    en: Interests <br> (Computer Science)
+    ja: 興味 <br> (コンピュータ学)
+  sidetitle4_short:
+    en: Interests (CS)
+    ja: 興味 (学)
+  sidetitle5:
+    en: Elf Projects
+    ja: Elfプロジェクト
+  sidetitle6:
+    en: Why Elf?
+    ja: Elfは何?
+  sidetitle7:
+    en: Programming Cradle
+    ja: プログラミングの始まり
+  sidetitle8:
+    en: Interests (Miscellaneous)
+    ja: 興味 (個人)
+  sidetitle8_short:
+    en: Interests (Misc)
+    ja: 興味 (個人)
 login:
   placeholder1:
     en: Enter your username
