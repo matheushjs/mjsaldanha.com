@@ -2,42 +2,22 @@
 On the first visit, the user is assigned a cookie "firstVisit".
 Then we use it to detect the second visit, which is when we increment the visitor counter.
 */
-const fs = require("fs");
-const filePath = "server/model/visitorCount.dat";
-
-var counter = -1;
-
-// Initialize counter
-fs.readFile(filePath, "utf8", (err, data) => {
-  if(!err){
-    counter = Number(data);
-  } else {
-    counter = 0;
-  }
-});
+const db_visitors = require("../model/db_visitors");
 
 module.exports = (req, res, next) => {
-  // Counter for some reason could not be initialized (maybe race conditions)
-  if(counter === -1){
-    next();
-    return;
-  }
-
   if(req.session.firstVisit == null){
     req.session.firstVisit = true;
   } else if(req.session.firstVisit === true){
     req.session.firstVisit = false;
-    
-    counter += 1;
-    fs.writeFile(filePath, counter, "utf8", (err) => {
-      if(err){
-        console.log(err);
-      }
-    });
-
-    console.log(`New visitor! Counter is now: ${counter}.`);
+    db_visitors.inc();
   }
 
-  req.visitorCounter = counter;
+  try {
+    req.visitorCounter = db_visitors.get();
+  } catch(e) {
+    req.visitorCounter = -1;
+    console.log(e);
+  }
+
   next();
 };
