@@ -38,7 +38,7 @@ home:
         　その理由は、僕は無知に感じることなく多くの問題に直面できることが欲しいんです。
       </p>
       <p>
-        現在、タンパク質構造予測に高性能計算を適用すつことについて研究しています。
+        現在、タンパク質構造予測に高性能計算を適用することについて研究しています。
         　僕は科学を行うことをすごく楽しんでいるので、いま<strong>ずっと研究する</strong>ことができるようにしようとしています。
       </p>
   sidetitle1:
@@ -52,7 +52,7 @@ home:
     ja: 研究
   sidetitle4:
     en: Interests <br> (Computer Science)
-    ja: 興味 <br> (コンピュータ学)
+    ja: 興味 <br> (計算機科学)
   sidetitle4_short:
     en: Interests (CS)
     ja: 興味 (学)
@@ -67,10 +67,10 @@ home:
     ja: プログラミングの始まり
   sidetitle8:
     en: Interests (Miscellaneous)
-    ja: 興味 (個人)
+    ja: 興味 (他のもの)
   sidetitle8_short:
     en: Interests (Misc)
-    ja: 興味 (個人)
+    ja: 興味 (他)
 login:
   placeholder1:
     en: Enter your username
