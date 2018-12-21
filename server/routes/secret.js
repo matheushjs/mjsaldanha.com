@@ -25,7 +25,7 @@ router.get("/all_users", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  req.renderer.render(res, "secret/index");
+  req.renderer.secret(res, req.visitorCounter);
 });
 
 module.exports = {

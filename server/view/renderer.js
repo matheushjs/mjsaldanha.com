@@ -46,6 +46,16 @@ class Renderer {
     });
   }
 
+  secret(res, visitors = -1){
+    res.render("secret/index", {
+      callname: this.callname,
+      specialUser: this.specialUser,
+      lang: this.language,
+      trans: this.translations,
+      visitors,
+    })
+  }
+
   allUsers(res, users){
     res.render("secret/all_users", {
       callname: this.callname,
