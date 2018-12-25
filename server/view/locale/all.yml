@@ -71,6 +71,26 @@ home:
   sidetitle8_short:
     en: Interests (Misc)
     ja: 興味 (他)
+  acadinfo:
+    instit:
+      en: Institution
+      ja: 所属施設
+    occup:
+      en: Occupation
+      ja: 役目
+    interests_text:
+      en: |
+        <div>High-Performance Computing</div>
+        <div>Computer Organization and Architecture</div>
+        <div>Operating Systems</div>
+        <div>Machine Learning & Deep Learning</div>
+        <div>Web Development</div>
+      ja: |
+        <div>High-Performance Computing</div>
+        <div>Computer Organization and Architecture</div>
+        <div>Operating Systems</div>
+        <div>Machine Learning & Deep Learning</div>
+        <div>Web Development</div>
 login:
   placeholder1:
     en: Enter your username
@@ -128,4 +148,22 @@ raw:
   password:
     en: Password
     ja: パスワード
+  major:
+    en: Major
+    ja: 専攻
+  compsci:
+    en: Computer Science
+    ja: 計算機科学
+  understud:
+    en: Undergraduate Student
+    ja: 大学生
+  contact:
+    en: Contact
+    ja: 連絡
+  interests:
+    en: Interest
+    ja: 興味
+  curriculum:
+    en: Curriculum
+    ja: 履歴書
 ...
