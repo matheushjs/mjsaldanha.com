@@ -5,6 +5,8 @@ const fs   = require("fs");
 // read YAML file
 const jsonStrings = yaml.load(fs.readFileSync("./server/view/locale/all.yml", "utf8"));
 
+// Will globally hold the translation strings
+var langStrings = null;
 
 /* Sets up the language in which to serve the website.
  * We don't use just cookies because of google crawlers.
@@ -43,6 +45,34 @@ function langDecider(req, res, next) {
   next();
 };
 
+/* Recursive function for filtering language strings off a JSON object.
+ * 'src' will likely be something like
+ *   { home: {
+ *       title: {
+ *         en: "title",
+ *         ja: "タイトル",
+ *   } } }
+ * and we want to remove these objects that represents languages, "en" and "ja", like:
+ *   { home: {
+ *       title: "title"
+ *   } }
+ * The result is stored in 'dest'.
+ */
+function filter_language(dest, src, lang){
+  for(var property in src){
+    if(typeof src[property] === "object"){
+      if("en" in src[property]){
+        dest[property] = src[property][lang];
+      } else {
+        dest[property] = {};
+        filter_language(dest[property], src[property], lang);
+      }
+    } else {
+      dest[property] = src[property];
+    }
+  }
+}
+
 /* Based on req.language, fill req.translations with due translation strings.
  */
 function localeProvider(req, res, next) {
@@ -50,27 +80,17 @@ function localeProvider(req, res, next) {
     console.log("localeProvider has been called, but req.language is not defined!");
     req.language = "en";
   }
-  
-  strings = {};
 
-  // Iterate over first level of objects
-  for(top in jsonStrings){
-    if(strings[top] == null){
-      strings[top] = {};
-    }
-
-    // Iterate over second level
-    for(middle in jsonStrings[top]){
-      // Get only the desired language
-      if(req.language == "ja"){
-        strings[top][middle] = jsonStrings[top][middle]["ja"];
-      } else {
-        strings[top][middle] = jsonStrings[top][middle]["en"];
-      }
-    }
+  if(langStrings === null){
+    langStrings = {
+      en: {},
+      ja: {}
+    };
+    filter_language(langStrings.en, jsonStrings, "en");
+    filter_language(langStrings.ja, jsonStrings, "ja");
   }
 
-  req.translations = strings;
+  req.translations = langStrings[req.language];
 
   next();
 }
