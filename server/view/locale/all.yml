@@ -91,6 +91,29 @@ home:
         <div>Operating Systems</div>
         <div>Machine Learning & Deep Learning</div>
         <div>Web Development</div>
+  research:
+    init:
+      en: |
+        <p>
+          Even though I haven't done much research yet, I would like to establish a place to make results of my current and future research publicly available here, in my website.
+        </p>
+        <p>
+          Each research project has its own webpage, so I'll organize all of them in a \"mapping\" webpage,
+          which you can access by clicking the links that surround this text.
+        </p>
+        <p>
+          The link is also available in the navigation bar on the top of the page :).
+        </p>
+      ja: |
+        <p>
+          僕はまだあまり研究していませんが、このページの一つの目的は現在と将来の研究の結果を公開することにしたいと思います。
+        </p>
+        <p>
+          それぞれの研究プロジェクトはそれ自身のウェブページがあって、それら全ては「マッピング」のページで組織されていてお客様がこの周囲にあるリンクをクリックすることによってアクセスすることができます。
+        </p>
+        <p>
+          リンクはページの上にあるナビゲーションバーにもあります:)。
+        </p>
 login:
   placeholder1:
     en: Enter your username
