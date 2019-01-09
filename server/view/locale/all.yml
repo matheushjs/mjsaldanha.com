@@ -123,6 +123,23 @@ home:
     pspandhpc:
       en: Protein Structure Prediction and HPC
       ja: タンパク質構造予測に高性能計算
+  elfprojs:
+    init:
+      en: |
+        <p>
+          I've been developing plenty of 
+          <a href="//github.com/matheushjs" target="_blank">libraries and programs</a>
+          under the code name Elf (see <a href="#whyelf">Why Elf?</a>).
+          <br>
+          Check out some of them:
+        </p>
+      ja: |
+        <p>
+          コード名「Elf」のもとで（<a href="#whyelf">Elfは何？</a>）、
+          複数な<a href="//github.com/matheushjs" target="_blank">ライブラリとプログラム</a>を開発してあります。
+          <br>
+          それらのいくつかは下に見せられて、宜しければご覧ください：
+        </p>
 login:
   placeholder1:
     en: Enter your username
