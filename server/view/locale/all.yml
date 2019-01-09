@@ -112,8 +112,17 @@ home:
           それぞれの研究プロジェクトはそれ自身のウェブページがあって、それら全ては「マッピング」のページで組織されていてお客様がこの周囲にあるリンクをクリックすることによってアクセスすることができます。
         </p>
         <p>
-          リンクはページの上にあるナビゲーションバーにもあります:)。
+          リンクはページの上にあるナビゲーションバーにもあります　:)。
         </p>
+    allresearch:
+      en: All Research Projects
+      ja: 全ての研究プロジェクト
+    allarticles:
+      en: All Articles
+      ja: 全ての論文
+    pspandhpc:
+      en: Protein Structure Prediction and HPC
+      ja: タンパク質構造予測に高性能計算
 login:
   placeholder1:
     en: Enter your username
