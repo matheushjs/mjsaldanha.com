@@ -140,6 +140,21 @@ home:
           <br>
           それらのいくつかは下に見せられて、宜しければご覧ください：
         </p>
+    desc1:
+      en: A website for spreading my work and research.
+      ja: 私の研究に関する情報などを公開するためのウェブページ。
+    desc2:
+      en: Library of data structures and algorithms for the C language.
+      ja: 「C」言語にデータ構造とアルゴリズムのライブラリー。
+    desc3:
+      en: Command-line utility for quickly evaluating and deleting songs.
+      ja: 迅速に音楽を評価したり消したりするためのコマンドラインのプログラム。
+    desc4:
+      en: Library of parallel algorithms implemented in CUDA.
+      ja: 「CUDA」に実装してある並列アルゴリズムのライブラリー。
+    desc5:
+      en: Python & Bash scripts for habitual command-line use cases.
+      ja: 通常のコマンドライン使用ということに、援助する「Python」と「Bash」スクリプト。
 login:
   placeholder1:
     en: Enter your username
@@ -215,4 +230,13 @@ raw:
   curriculum:
     en: Curriculum
     ja: 履歴書
+  skills:
+    en: Skills
+    ja: 能力
+  tools:
+    en: Tools
+    ja: 道具
+  features:
+    en: Features
+    ja: 機能
 ...
