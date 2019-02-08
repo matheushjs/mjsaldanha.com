@@ -1,3 +1,25 @@
+/**
+ * Sets up the express server, both HTTP and HTTPS, and adds all due midwares.
+ *
+ * We are currently using all the following modules and midwares, **in the order listed**:
+ *
+ * - **EJS**: adds the method `render` to the `res` objects, allowing us to `res.render("page")`
+ *
+ * - **morgan**: which logs information about requests and responses
+ *
+ * - **body-parser**: parses the body of an HTTP request, and stores it in `req.body`
+ *
+ * - **helmet**: adds HSTS, which enforces usage of HTTPS.
+ *
+ * - **cookie-session**: parses cookies of an HTTP request, and stores it in `req.session`
+ *
+ * - **express.static**: serves a folder statically (folder ./public)
+ *
+ * - **makeSecret**: handles user privileges, checking if they have special pages or not.
+ *
+ * @module app.js
+ */
+
 const path = require("path");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
