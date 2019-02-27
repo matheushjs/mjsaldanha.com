@@ -41,13 +41,37 @@ const userRoutes   = require("./routes/user");
 const sciProjectsRoutes = require("./routes/sci-projects");
 const articlesRoutes    = require("./routes/articles");
 
-// Sets up ejs templating
+/**
+ * Sets up EJS templating.
+ *
+ * Templates are taken from the directory `/server/view/pages/`.
+ *
+ * The method **`res.render`** is added, allowing us to, for example, use `res.render("page")`.
+ *
+ * @submodule midware-EJS
+ */
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
 
-app.use(morgan("dev"));     // Sets logging for debugging & control
-app.use(bodyParser.json()); // Sets up JSON body parsing
-app.use(bodyParser.urlencoded({ extended: false }));  // Sets up urlencoded body parsing
+/**
+ * Sets logging for debugging & control.
+ *
+ * @submodule midware-morgan
+ */
+app.use(morgan("dev"));
+
+/**
+ * Sets up body parsing, accepting the `application/json` and `application/x-www-form-urlencoded`
+ * content types (respectively, JSON and URL encoded contents).
+ *
+ * This adds the object **`res.body`** containing data in the body of the POST request.
+ *
+ * @submodule midware-bodyParser
+ */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
 app.use(helmet());
 app.use(cookieSession({     // Sets up cookie-based session
   name: "session",
