@@ -1,5 +1,5 @@
 clean:
 	find -name "*~" -exec rm -vf '{}' \;
 
-docs:
+dox:
 	yuidoc .
