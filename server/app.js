@@ -1,23 +1,11 @@
 /**
- * Sets up the express server, both HTTP and HTTPS, and adds all due midwares.
+ * This is not a class; just a convenient way for grouping documentation using YUIDoc.
  *
- * We are currently using all the following modules and midwares, **in the order listed**:
+ * This sets up the express server, both HTTP and HTTPS, and adds all due midwares.
  *
- * - **EJS**: adds the method `render` to the `res` objects, allowing us to `res.render("page")`
+ * Each method describes a midware used within the server.
  *
- * - **morgan**: which logs information about requests and responses
- *
- * - **body-parser**: parses the body of an HTTP request, and stores it in `req.body`
- *
- * - **helmet**: adds HSTS, which enforces usage of HTTPS.
- *
- * - **cookie-session**: parses cookies of an HTTP request, and stores it in `req.session`
- *
- * - **express.static**: serves a folder statically (folder ./public)
- *
- * - **makeSecret**: handles user privileges, checking if they have special pages or not.
- *
- * @module app.js
+ * @class app.js
  */
 
 const path = require("path");
@@ -48,7 +36,7 @@ const articlesRoutes    = require("./routes/articles");
  *
  * The method **`res.render`** is added, allowing us to, for example, use `res.render("page")`.
  *
- * @submodule midware-EJS
+ * @method midware-EJS
  */
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
@@ -56,7 +44,7 @@ app.set("views", path.join(__dirname, "view/pages"));
 /**
  * Sets logging for debugging & control.
  *
- * @submodule midware-morgan
+ * @method midware-morgan
  */
 app.use(morgan("dev"));
 
@@ -64,26 +52,60 @@ app.use(morgan("dev"));
  * Sets up body parsing, accepting the `application/json` and `application/x-www-form-urlencoded`
  * content types (respectively, JSON and URL encoded contents).
  *
- * This adds the object **`res.body`** containing data in the body of the POST request.
+ * This adds the object **`req.body`** containing data in the body of the POST request.
  *
- * @submodule midware-bodyParser
+ * @method midware-bodyParser
  */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-
+/**
+ * Sets up HSTS (HTTP Strict Transport Security).
+ * If the user accesses our pages using HTTP, we ask the browser to
+ *   redirect them to HTTPS in future requests.
+ * Drawback: if we ever stop serving HTTPS, the browsers won't allow the user
+ *   to access the HTTP version.
+ *
+ * @method midware-helmet
+ */
 app.use(helmet());
-app.use(cookieSession({     // Sets up cookie-based session
-  name: "session",
+
+/**
+ * Sets up cookie-based user sessions.
+ *
+ * This adds the object **`req.session`** in which an specific user's session data is stored.
+ * New session data can be created by adding objects to this `req.session` object.
+ *
+ * The `name` parameter controls what object is created within `req`. Prefer "session".
+ *
+ * @method midware-cookieSession
+ */
+app.use(cookieSession({
+  name: "session", // Controls what object is created in `req`
   secret: "私が嫌い物があれば、それは人類だと思う。",
   maxAge: 10 * 365 * 24 * 60 * 60 * 1000, // 10 years
 }));
-app.use(express.static(path.resolve("./public"), { // Serve the public folder statically.
+
+/**
+ * Sets up static serving of the /public folder.
+ *
+ * @method midware-express-static
+ */
+app.use(express.static(path.resolve("./public"), {
   maxAge: 31557600000 // Enable caching
 }));
 
 // makeSecret must come before makeRenderer
-app.use(makeSecret);              // Handle user privilege variables in req.session
+
+/**
+ * Handles user privilege variables contained within req.session.
+ *
+ * See also {{#crossLink "midware/makeSecret.js:method"}}{{/crossLink}}.
+ *
+ * @method midware-makeSecret
+ */
+app.use(makeSecret);
+
 app.use(localize.langDecider);    // Handles user language in req.language
 app.use(localize.localeProvider); // Handles translations in req.translation
 app.use(makeRenderer);            // Creates and initializes a Renderer object
