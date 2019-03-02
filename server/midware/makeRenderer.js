@@ -1,8 +1,21 @@
 const renderer = require("../view/renderer");
 
-/* This middleware makes sure the object req.renderer exists.
- * req.renderer is a Renderer object that should be used to render all pages.
+/**
+ * This middleware makes sure the object `req.renderer` exists.
+ *
+ * `req.renderer` is a {{#crossLink "Renderer"}}{{/crossLink}} object that should be used to render all pages.
+ *
+ * **Depends on**:
+ * - Nothing
+ *
+ * **Generates**:
+ * - `req.renderer`: The renderer object.
+ *
+ * @method makeRenderer.js
+ * @for midware
  */
+
+
 module.exports = (req, res, next) => {
   let callname = req.session.callname;
   let specialUser = req.specialUser;

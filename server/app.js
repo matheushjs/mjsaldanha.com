@@ -114,10 +114,17 @@ app.use(makeSecret);
  * @method midware-localization
  */
 app.use(localize.langDecider);
-app.use(localize.localeProvider); // Handles translations in req.translation
+app.use(localize.localeProvider);
 
+/**
+ * Creates `req.renderer`.
+ *
+ * See also {{#crossLink "midware/makeRenderer.js:method"}}{{/crossLink}}.
+ *
+ * @method midware-makeRenderer
+ */
+app.use(makeRenderer);
 
-app.use(makeRenderer);            // Creates and initializes a Renderer object
 app.use(countVisitor);            // Handles visitor counting
 
 // Set up routes
