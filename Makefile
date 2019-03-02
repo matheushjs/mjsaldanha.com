@@ -2,4 +2,4 @@ clean:
 	find -name "*~" -exec rm -vf '{}' \;
 
 dox:
-	yuidoc .
+	yuidoc . -t ./yuidoc-theme
