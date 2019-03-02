@@ -8,14 +8,27 @@ const jsonStrings = yaml.load(fs.readFileSync("./server/view/locale/all.yml", "u
 // Will globally hold the translation strings
 var langStrings = null;
 
-/* Sets up the language in which to serve the website.
+/**
+ * Sets up the language in which to serve the website.
  * We don't use just cookies because of google crawlers.
+ *
  * So the rules are:
- *   1) If the URL is something like 'mjsaldanha.com/jp/...', we use it to define
+ *   1. If the URL is something like 'mjsaldanha.com/jp/...', we use it to define
  *        the language. Normally, only the index page will be accessed like this.
- *   2) If we have session.lang, we use it to determine the language
- *   3) Else, serve english
+ *   2. If we have session.lang, we use it to determine the language
+ *   3. Else, serve english
+ *
  * The language will be stored in "req.language", using codes defined in ISO 639-1.
+ *
+ * **Depends on**:
+ *     - `req.session.language`: we first look into this cookie to see if the user already has a
+ *         preferred language.
+ *
+ * **Generates**:
+ *     - `req.language`: the language in which we should serve the website.
+ *
+ * @method localize.js-langDecider
+ * @for midware
  */
 function langDecider(req, res, next) {
   let urlTokens = req.path.split("/");
@@ -73,8 +86,22 @@ function filter_language(dest, src, lang){
   }
 }
 
-/* Based on req.language, fill req.translations with due translation strings.
+/* 
  */
+/**
+ * Based on req.language, fill req.translations with due translation strings.
+ *
+ * **Depends on**:
+ *     - `req.language`: To check in which language we should produce translation strings.
+ *
+ * **Generates**:
+ *     - `req.translations`: Contains the translation strings, in a way that closely reflects the
+ *         YAML structure.
+ *
+ * @method localize.js-localeProvider
+ * @for midware
+ */
+
 function localeProvider(req, res, next) {
   if(!req.language){
     console.log("localeProvider has been called, but req.language is not defined!");

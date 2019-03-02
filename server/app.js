@@ -95,10 +95,9 @@ app.use(express.static(path.resolve("./public"), {
   maxAge: 31557600000 // Enable caching
 }));
 
-// makeSecret must come before makeRenderer
-
 /**
  * Handles user privilege variables contained within req.session.
+ * This middleware must be added before makeRenderer.
  *
  * See also {{#crossLink "midware/makeSecret.js:method"}}{{/crossLink}}.
  *
@@ -106,8 +105,18 @@ app.use(express.static(path.resolve("./public"), {
  */
 app.use(makeSecret);
 
-app.use(localize.langDecider);    // Handles user language in req.language
+/**
+ * Handles localization in `req.language` and `req.translation`.
+ *
+ * See also {{#crossLink "midware/localize.js-langDecider:method"}}{{/crossLink}}.
+ * See also {{#crossLink "midware/localize.js-localeProvider:method"}}{{/crossLink}}.
+ *
+ * @method midware-localization
+ */
+app.use(localize.langDecider);
 app.use(localize.localeProvider); // Handles translations in req.translation
+
+
 app.use(makeRenderer);            // Creates and initializes a Renderer object
 app.use(countVisitor);            // Handles visitor counting
 
@@ -141,7 +150,7 @@ app.listen(port);
 var sslPort;
 try {
   sslPort = process.env.SSL_PORT || 5001;
-  
+
   https.createServer({
     key: fs.readFileSync("server/ssl/key.pem"),
     cert: fs.readFileSync("server/ssl/cert.pem")
@@ -152,7 +161,7 @@ try {
   } else {
     console.log(err);
   }
-  
+
   sslPort = -1;
 }
 
