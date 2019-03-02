@@ -13,10 +13,10 @@ const secretusers = require("../routes/secret").users;
  * Handles user privilege variables in `req.session`.
  *
  * **Depends on**:
- *     - `req.session.username`: for deciding if the user is special
+ * - `req.session.username`: for deciding if the user is special
  *
  * **Generates**:
- *     - `req.specialUser`: boolean saying whether the 
+ * - `req.specialUser`: boolean saying whether the 
  *
  * We simply read the contents of `req.session.username` to see if the user is logged in.
  * If they are logged in, and their username is in the list of users that have a secret page,

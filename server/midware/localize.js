@@ -21,11 +21,11 @@ var langStrings = null;
  * The language will be stored in "req.language", using codes defined in ISO 639-1.
  *
  * **Depends on**:
- *     - `req.session.language`: we first look into this cookie to see if the user already has a
- *         preferred language.
+ * - `req.session.language`: we first look into this cookie to see if the user already has a
+ *     preferred language.
  *
  * **Generates**:
- *     - `req.language`: the language in which we should serve the website.
+ * - `req.language`: the language in which we should serve the website.
  *
  * @method localize.js-langDecider
  * @for midware
@@ -92,11 +92,11 @@ function filter_language(dest, src, lang){
  * Based on req.language, fill req.translations with due translation strings.
  *
  * **Depends on**:
- *     - `req.language`: To check in which language we should produce translation strings.
+ * - `req.language`: To check in which language we should produce translation strings.
  *
  * **Generates**:
- *     - `req.translations`: Contains the translation strings, in a way that closely reflects the
- *         YAML structure.
+ * - `req.translations`: Contains the translation strings, in a way that closely reflects the
+ *     YAML structure.
  *
  * @method localize.js-localeProvider
  * @for midware
