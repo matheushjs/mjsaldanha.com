@@ -1,6 +1,6 @@
 body {
     font-family: Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 12px;
     line-height: 1.7;
     color: #333;
     margin: 0;
@@ -49,7 +49,7 @@ input[type="search"] {
 
 
 /* -- Paragraphs ------------------------------------------------------------ */
-p { margin: 1.3em 0; }
+p { margin: 0.5em 0; }
 dd p, td p { margin-bottom: 0; }
 dd p:first-child, td p:first-child { margin-top: 0; }
 
@@ -57,7 +57,7 @@ dd p:first-child, td p:first-child { margin-top: 0; }
 h1, h2, h3, h4, h5, h6 {
     color: #000000;/*was #f80*/
     font-family: Helvectica, sans-serif;
-    margin:1em 0 15px;
+    margin:0.5em 0 0.5em;
   padding:0;
   font-weight:bold;
   line-height:1.2;
@@ -136,7 +136,7 @@ td {
 .main-header h1.project-name {
     display: inline;
     padding: 0;
-    font-size: 24px;
+    font-size: 20px;
     color: #fff;
     border: none;
     padding-right: 8px;
@@ -247,13 +247,12 @@ td {
 
 
 .main-body {
-    max-width: 1200px;
     text-align: left;
     margin: 0 auto;
 }
 
 .main-body .content {
-    padding: 28px 18px;
+    padding: 10px 18px;
 }
 
 .main-body .content>h1 {
@@ -263,7 +262,7 @@ td {
 #docs-sidebar {
     width: 220px;
     margin: 0 8px;
-    padding-top: 36px;
+    padding-top: 10px;
     float: left;
 }
 
@@ -334,7 +333,7 @@ td {
 
 .property.item,
 .events.item {
-    margin: 3em 0;
+    margin: 1em 0;
 }
 
 .property.item h3,
@@ -364,7 +363,7 @@ td {
 .property.item .meta,
 .events.item .meta {
     color: #b0b0b0;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .property.item .meta p,
@@ -387,14 +386,14 @@ td {
 
 .method.item {
     padding: 0;
-    margin: 2em 0;
+    margin: 1em 0;
     background-color: #fff;
     border: 3px solid #eee;
     border-radius: 3px;
 }
 
 .method.item h3 {
-    font-size: 16px;
+    font-size: 13px;
     border: 1px solid #cacaca;
     text-shadow: 0 1px 0 #fff;
     margin: 0;
@@ -445,11 +444,11 @@ td {
 .method .meta {
     background-color: #f8f8f8;
     margin: 0;
-    padding: 5px 10px;
+    padding: 3px 6px;
     color: #999;
     border: 1px solid #cacaca;
     border-top: none;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 .method .meta p {
@@ -480,7 +479,7 @@ td {
 
 .params-list .param-description p,
 .returns-description p {
-    margin: .5em 0 1.5em 1.5em;
+    margin: 0.2em 0 0.3em 1.5em;
 }
 
 .param .type {
@@ -491,7 +490,7 @@ td {
     border: 1px solid #cacaca;
     border-top: 1px transparent;
     margin: 0;
-    padding: .1em 2em 2em 2em;
+    padding: .1em 2em .5em;
 }
 
 .returns-inline {
@@ -529,14 +528,14 @@ ul.apis {
     margin: 0;
     background-color: #fff;
     line-height: 1.5;
-    font-size: 13px;
+    font-size: 11px;
 }
 
 ul.apis li {
     position: relative;
     display: block;
     padding: 6px 8px;
-    font-size: 14px;
+    font-size: 12px;
     border-top: 1px solid #e5e5e5;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -568,8 +567,8 @@ ul.apis li {
 
 .index {
     /*border: 1px solid #e5e5e5;*/
-    padding: 10px 20px;
-    margin: 30px 0;
+    padding: 3px 6px;
+    margin: 3px 0;
     background-color: #f6f6f6;
 }
 
@@ -684,3 +683,8 @@ ul.index-list {
     bottom: -1px;
 }
 
+
+/*----- OUR CUSTOMIZATION ---- */
+ul, ol {
+	margin: 2px 0px;
+}
