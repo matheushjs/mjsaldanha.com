@@ -125,7 +125,14 @@ app.use(localize.localeProvider);
  */
 app.use(makeRenderer);
 
-app.use(countVisitor);            // Handles visitor counting
+/**
+ * Handles visitor counting.
+ *
+ * See also {{#crossLink "midware/countVisitor.js:method"}}{{/crossLink}}.
+ *
+ * @method midware-countVisitor
+ */
+app.use(countVisitor);
 
 // Set up routes
 app.use("/secret", secretRoutes);
