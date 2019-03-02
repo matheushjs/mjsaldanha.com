@@ -5,6 +5,7 @@
 	"url": "https://mjsaldanha.com/",
 	"paths": "./server/",
 	"options": {
-		"outdir": "./docs"
+		"outdir": "./docs",
+		"themedir": "./yuidoc-theme"
 	}
 }
