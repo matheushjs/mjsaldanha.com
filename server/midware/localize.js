@@ -28,7 +28,7 @@ var langStrings = null;
  * - `req.language`: the language in which we should serve the website.
  *
  * @method localize.js-langDecider
- * @for midware
+ * @for Midware
  */
 function langDecider(req, res, next) {
   let urlTokens = req.path.split("/");
@@ -99,7 +99,7 @@ function filter_language(dest, src, lang){
  *     YAML structure.
  *
  * @method localize.js-localeProvider
- * @for midware
+ * @for Midware
  */
 
 function localeProvider(req, res, next) {

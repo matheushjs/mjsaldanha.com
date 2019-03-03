@@ -12,7 +12,7 @@ const renderer = require("../view/renderer");
  * - `req.renderer`: The renderer object.
  *
  * @method makeRenderer.js
- * @for midware
+ * @for Midware
  */
 
 

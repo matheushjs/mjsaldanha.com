@@ -6,7 +6,7 @@ const secretusers = require("../routes/secret").users;
  *
  * Each method is actually a midware implemented in its own file under the `midware/` directory.
  *
- * @class midware
+ * @class Midware
  */
 
 /**
@@ -23,7 +23,7 @@ const secretusers = require("../routes/secret").users;
  *   then we set **`req.specialUser`** to true; else, it is false.
  *
  * @method makeSecret.js
- * @for midware
+ * @for Midware
  */
 
 

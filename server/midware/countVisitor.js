@@ -4,7 +4,7 @@
  * Then we use it to detect the second visit, which is when we increment the visitor counter.
  *
  * @method countVisitor.js
- * @for midware
+ * @for Midware
  */
 
 const db_visitors = require("../model/db_visitors");
