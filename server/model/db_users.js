@@ -1,11 +1,17 @@
-/* db_users module
- * 
+/**
+ * This file provides functions for interacting with the database, where user information and
+ * user authentication are concerned.
+ *
  * - No leading/trailing whitespace is to be allowed in usernames, passwords, callnames etc,
  *   because the db fills these fields with whitespace, so we remove all whitespace from all
  *   strings retrieved from the database.
- * 
- * - Since the pg module offers only functions that return Promises, we also implement functions
- *   using this pattern.
+ *
+ * Table schema:
+ *
+ * ```
+ * CREATE TABLE users(username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))```
+ *
+ * @class Model::db_users.js
  */
 
 
@@ -13,12 +19,22 @@ const crypto = require("crypto");
 const keyBytes = 16; // Size of the secret keys to be used with Hmac
 const client = require("./db_client");
 
-// Table schemas
-// CREATE TABLE users(username CHAR(128) NOT NULL, password CHAR(96) NOT NULL, callname CHAR(128))
 
-
-/* User object to represent a user in memory.
+/**
+ * User object to represent a user in memory.
+ *
  * "hashpass" receives the hash value stored in the database for the password.
+ *
+ * The User object is defined as:
+ *
+ * `User = { id, username, hashpass, callname }`
+ *
+ * @method User
+ * @param {Number-like} id The unique ID of the user.
+ * @param {String} username Username of the user.
+ * @param {String} hashpass The hash of the user password.
+ * @param {String} callname The name by which we should call the user.
+ * @return {Object} A User object.
  */
 function User(id, username, hashpass, callname){
   this.id = Number(id);
