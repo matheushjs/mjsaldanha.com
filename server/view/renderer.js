@@ -11,20 +11,14 @@
  * rendering pages, and providing some specialized render functions that accept arguments for changing
  * the rendered page.
  *
- * @class Renderer
+ * @class View::Renderer
+ * @constructor
+ * @param {String} [callname = null] Name by which we should call the user.
+ * @param {Boolean} [specialUser = false] Whether the user has a special page or not.
+ * @param {String} [language = "en"] The language in which to serve the page.
+ * @param {Object} [translations = null] Object containing translation strings for the language in which to
  */
 class Renderer {
-
-  /**
-   * Default constructor.
-   *
-   * @method constructor
-   * @param {String} [callname = null] Name by which we should call the user.
-   * @param {Boolean} [specialUser = false] Whether the user has a special page or not.
-   * @param {String} [language = "en"] The language in which to serve the page.
-   * @param {Object} [translations = null] Object containing translation strings for the language in which to
-   *                                       serve the website.
-   */
   constructor(callname = null, specialUser = false, language = "en", translations = null){
     this.callname = callname;
     this.specialUser = specialUser;

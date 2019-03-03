@@ -2,15 +2,7 @@ var fs = require("fs");
 const secretusers = require("../routes/secret").users;
 
 /**
- * This is not a class; just a YUIdoc way of grouping multiple midwares in the same place.
- *
- * Each method is actually a midware implemented in its own file under the `midware/` directory.
- *
- * @class Midware
- */
-
-/**
- * Handles user privilege variables in `req.session`.
+ * Exports a middleware that handles user privilege variables in `req.session`.
  *
  * **Depends on**:
  * - `req.session.username`: for deciding if the user is special
@@ -22,8 +14,7 @@ const secretusers = require("../routes/secret").users;
  * If they are logged in, and their username is in the list of users that have a secret page,
  *   then we set **`req.specialUser`** to true; else, it is false.
  *
- * @method makeSecret.js
- * @for Midware
+ * @class Midware::makeSecret.js
  */
 
 

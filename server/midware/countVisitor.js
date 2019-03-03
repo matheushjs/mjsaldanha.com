@@ -1,10 +1,10 @@
 /**
  * This middleware checks if the visitor is a new visitor, by means of cookies.
+ *
  * On the first visit, the user is assigned a cookie "firstVisit".
  * Then we use it to detect the second visit, which is when we increment the visitor counter.
  *
- * @method countVisitor.js
- * @for Midware
+ * @class Midware::countVisitor.js
  */
 
 const db_visitors = require("../model/db_visitors");

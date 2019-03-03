@@ -5,7 +5,7 @@
  *
  * Each method describes a midware used within the server.
  *
- * @class app.js
+ * @class App::app.js
  */
 
 const path = require("path");

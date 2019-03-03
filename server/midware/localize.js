@@ -1,4 +1,15 @@
 
+/**
+ * This file has middlewares related to localization.
+ *
+ * For now, we store all translations in a YAML file under `/server/view/locale`.
+ * Such YAML file is parsed an translation strings for each language are stored in a global
+ * variable. In the future, we should add some sort of caching for such strings.
+ *
+ * @class Midware::localize.js
+ */
+
+
 const yaml = require("js-yaml");
 const fs   = require("fs");
 
@@ -27,8 +38,10 @@ var langStrings = null;
  * **Generates**:
  * - `req.language`: the language in which we should serve the website.
  *
- * @method localize.js-langDecider
- * @for Midware
+ * @method langDecider
+ * @param req
+ * @param res
+ * @param next
  */
 function langDecider(req, res, next) {
   let urlTokens = req.path.split("/");
@@ -98,10 +111,11 @@ function filter_language(dest, src, lang){
  * - `req.translations`: Contains the translation strings, in a way that closely reflects the
  *     YAML structure.
  *
- * @method localize.js-localeProvider
- * @for Midware
+ * @method localeProvider
+ * @param req
+ * @param res
+ * @param next
  */
-
 function localeProvider(req, res, next) {
   if(!req.language){
     console.log("localeProvider has been called, but req.language is not defined!");

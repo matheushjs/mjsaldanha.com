@@ -11,10 +11,8 @@ const renderer = require("../view/renderer");
  * **Generates**:
  * - `req.renderer`: The renderer object.
  *
- * @method makeRenderer.js
- * @for Midware
+ * @class Midware::makeRenderer.js
  */
-
 
 module.exports = (req, res, next) => {
   let callname = req.session.callname;
