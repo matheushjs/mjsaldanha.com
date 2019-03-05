@@ -43,13 +43,22 @@ function User(id, username, hashpass, callname){
   this.callname = callname;
 }
 
-/* Queries the database for an user.
+/**
+ * Queries the database for an user.
+ *
  * The argument should be an object with only 1 of the following attributes:
- *   - username: for looking up an user by their username
- *   - id: for looking up an user by their id
- * Returns null if user was not found.
- * Returns filled User object if found.
- * Shouldn't raise exceptions.
+ * - username: for looking up an user by their username
+ * - id: for looking up an user by their id
+ *
+ * @method lookup
+ * @param {Object} obj Object containing either a `username` or an `id`.
+ * @return {User} Filled User object, if the user is found; null, otherwise.
+ * @async
+ * @example
+ *     var user = await lookup({username: "walwal"});
+ *     if(user){
+ *       console.log(user.callname);
+ *     }
  */
 async function lookup(obj){
   var query = "SELECT rowid, * FROM users WHERE ";
@@ -67,7 +76,7 @@ async function lookup(obj){
     console.log("Object given as argument doesn't have recognizable attributes.");
     return null;
   }
-  
+
   try {
     var rows = await client.all(query, [arg]);
     var user = rows[0];
@@ -80,7 +89,7 @@ async function lookup(obj){
       user.password = user.password.replace(/^ */g, "").replace(/ *$/g, "");
       user.callname = user.callname.replace(/^ */g, "").replace(/ *$/g, "");
 
-      return new User(user.rowid, user.username, user.password, user.callname);      
+      return new User(user.rowid, user.username, user.password, user.callname);
     }
   } catch(e) {
     console.log(e);
@@ -89,10 +98,20 @@ async function lookup(obj){
   return null;
 }
 
-/* Attempts to authenticate user with username "user" and textual password "pass".
- * If authentication fails, returns null.
- * If it succeeds, returns a filled User object.
- * Shouldn't raise exceptions.
+/**
+ * Attempts to authenticate user with username "user" and textual password "pass".
+ *
+ * @method authenticate
+ * @param {String} user Username of the user.
+ * @param {String} pass Password of the user, in its textual (non-hashed) form.
+ * @return {User} Filled User object if authentication is successful, null otherwise.
+ * @async
+ * @example
+ *     var user = await dbUsers.authenticate(req.session.username, req.body.cur_password);
+ *     if(!user){
+ *       res.send("Wrong current password!");
+ *       return;
+ *     }
  */
 async function authenticate(user, pass){
   var recUser = await lookup({username: user});
@@ -128,12 +147,24 @@ async function addUser(user, pass, name){
   }
 }
 
-/* Attempts to sign up a user with username "user", password "pass" and callname "name."
+/**
+ * Attempts to sign up a user.
+ *
  * First, this function checks if a user with given username exists. If it already exists, nothing is done
  *   and the function returns null.
- * If the given "user" is available for usage, then we insert the new user in the database. Function returns
- *   a filled User in this case.
- * Shouldn't raise exceptions.
+ * If the given "user" is available for usage, then we insert the new user in the database.
+ *
+ * @method signUp
+ * @async
+ * @param {String} user Username of the user being signed up.
+ * @param {String} pass Textual (non-hashed) password of the user being signed up.
+ * @param {String} name Call name of the user, by which we should call them.
+ * @return {User} Filled user object if user was signed up successfully, null otherwise.
+ * @example
+ *     var authUser = await dbUsers.signUp(req.body.username, req.body.password, req.body.callname);
+ *     if(!authUser){
+ *       console.log("Username already exists. Please, pick another one.");
+ *     }
  */
 async function signUp(user, pass, name){
   var authUser = await addUser(user, pass, name);
@@ -145,15 +176,35 @@ async function signUp(user, pass, name){
   }
 }
 
-/* Updates user information in the table for user with ID "user_id".
- * The only information available for updating are the password and the callname.
+/**
+ * Updates user information in the table for the given user.
+ *
+ * Here we require that the given user has `user.id`, which we will use
+ *   to lookup the user in the database.
+ *
+ * We update callname and/or password, as long as they are provided as
+ *   `user.callname` or `user.password`.
+ *
  * Password should given in textual form, we encrypt it.
  * This function always returns the filled User object.
  * "user" should be an object with at least the following attributes:
  *   - id: the id of the user to update (mandatory)
  *   - callname: the new callname of the user (optional)
  *   - password: the new textual password of the user (optional)
- * Shouldn't raise exceptions.
+ *
+ * @method updateUser
+ * @async
+ * @param {Object} user Information about the user to be edited.
+ * @param {Number} user.id Unique identified of the user to be edited.
+ * @param {String} [user.callname] New callname of the user being edited.
+ * @param {String} [user.password] New password of the user being edited.
+ * @return {User} Filled user object with updated information about the user; null
+ *   if user was not found in the database.
+ * @example
+ *     var user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname});
+ *     if(user){
+ *         console.log("OK");
+ *     }
  */
 async function updateUser(user){
   if(!user.id){
@@ -186,8 +237,14 @@ async function updateUser(user){
   }
 }
 
-/* Returns an array with all users in the database.
- * Shouldn't raise exceptions.
+/**
+ * Gets all users stored within the database.
+ *
+ * @method allUsers
+ * @async
+ * @return {List} List of User objects, with all users in the database.
+ * @example
+ *     var users = await dbUsers.allUsers();
  */
 async function allUsers(){
   var rows;
