@@ -1,6 +1,13 @@
-/* db_visitors.js
- * Provides wrappers to reading/writing the counter of visitors
+/**
+ * Provides wrappers to reading/writing the counter of visitors.
+ *
+ * The counter is only read once, and stored in memory.
+ * Then it is written every time the counter is incremented.
+ *
+ * @class Model::db_visitors.js
  */
+
+
 const fs = require("fs");
 const filePath = "server/model/visitorCount.dat";
 
@@ -15,6 +22,10 @@ fs.readFile(filePath, "utf8", (err, data) => {
   }
 });
 
+/**
+ * Increments the counter.
+ * @method inc
+ */
 function inc(){
   counter += 1;
   fs.writeFile(filePath, counter, "utf8", (err) => {
@@ -25,6 +36,14 @@ function inc(){
   console.log(`New visitor! Counter is now: ${counter}.`);
 }
 
+/**
+ * Returns the current value of the counter.
+ *
+ * Throws exception if the counter could not be initialized, but this should not happen.
+ *
+ * @method get
+ * @return {Number} The counter.
+ */
 function get(){
   if(counter === -1){
     throw "Counter hasn't been initialized yet."
