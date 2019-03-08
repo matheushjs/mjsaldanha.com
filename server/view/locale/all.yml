@@ -155,6 +155,19 @@ home:
     desc5:
       en: Python & Bash scripts for habitual command-line use cases.
       ja: 通常のコマンドライン使用ということに、援助する「Python」と「Bash」スクリプト。
+  progcradle:
+    par1:
+      en: |
+        Everything started because I really took a liking to a certain online game, <a href="https://www.runescape.com" target="_blank">Runescape</a>, due to it's intriguing and beautiful inner lore, greatly enriched by a well composed soundtrack.
+        However, to dig deeply in such story, one needs to complete a lot of what are called <strong>quests</strong>, which in turn require your in-game character to meet certain requirements regarding <strong>levels</strong> and <strong>skills</strong>.
+        Levelling up isn't easy, requiring an infinite amount of tedious, mouse-intensive, repetitive activities. This led me to search for an easier way to level up and sate my desire for knowing the lore.
+      ja: |
+        「<a href="https://www.runescape.com" target="_blank">Runescape</a>」というゲームにすごく興味になったころから全てが始まったと言えます。
+        うまくできた背景歌が重なった美しいストーリーによって、ゲームが興味深いです。
+        しかし、その物語を深く掘り下げるたった一つの方法は、<strong>クエスト</strong>と呼ばれるものを無数に完成させなければいけません。
+        そのためには、ゲーム内のキャラクターが<strong>レベル</strong>と<strong>スキル</strong>に関する特定の要件を満たす必要があります。
+        レベルを上げるのは簡単ではなく、退屈な作業も、マウスを多用することも、反復的なアクティビティを無限にすることも必要とします。
+        そのせいで、ストーリーをもっと知りたい私はその欲求を満たすために、より簡単にレベルを上げる方法を探すことにしました。
 login:
   placeholder1:
     en: Enter your username
