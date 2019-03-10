@@ -130,8 +130,23 @@ async function authenticate(user, pass){
   }
 }
 
-/* Inserts a new user in the database, with username "user", password "pass" and call name "name".
- * Shouldn't raise exceptions.
+/**
+ * Inserts a new user in the database, with username "user", password "pass" and call name "name".
+ *
+ * For each user, we generate a random string [secret]. Then we hash the user password using [secret]
+ * as the salt, generating [hashpass]. We store in the database [secret][hashpass], so that the next
+ * time someone attempts to log in to such user, we can retrieve the same [secret] we used as salt
+ * here.
+ *
+ * @method addUser
+ * @async
+ * @private
+ * @param {String} user Username of the user being signed up.
+ * @param {String} pass Textual (non-hashed) password of the user being signed up.
+ * @param {String} name Call name of the user, by which we should call them.
+ * @return {User} Filled user object if user was added up successfully, null if database
+ *                returned an error, which likely means an user with that username already
+ *                exists.
  */
 async function addUser(user, pass, name){
   const secret = crypto.randomBytes(keyBytes).toString("hex");
