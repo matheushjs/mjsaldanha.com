@@ -168,6 +168,18 @@ home:
         そのためには、ゲーム内のキャラクターが<strong>レベル</strong>と<strong>スキル</strong>に関する特定の要件を満たす必要があります。
         レベルを上げるのは簡単ではなく、退屈な作業も、マウスを多用することも、反復的なアクティビティを無限にすることも必要とします。
         そのせいで、ストーリーをもっと知りたい私はその欲求を満たすために、より簡単にレベルを上げる方法を探すことにしました。
+    fig1_alt:
+      en: Image showing Varrock, a city of Runescape.
+      ja: Runescapeで「Varrock」という都市の画像。
+    fig1_caption:
+      en: Varrock, one of the main cities of Runescape (click to expand).
+      ja: Runescapeのなかで主要都市である「Varrock」（クリックで広がります）。
+    fig2_alt:
+      en: Image showing Prifddinas, a city of Runescape.
+      ja: Runescapeで「Prifddinas」という都市の画像。
+    fig2_caption:
+      en: Another main city, Prifddinas (click to expand).
+      ja: また他の主要都市である「Prifddinas」（クリックで広がります）。
 login:
   placeholder1:
     en: Enter your username
