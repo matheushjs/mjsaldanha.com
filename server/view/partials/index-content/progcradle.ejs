@@ -1,3 +1,18 @@
+<%
+  var fig1_alt = lang == "en" ?
+    "Image showing Varrock, a city of Runescape." :
+    "Runescapeで「Varrock」という都市の画像。";
+  var fig1_caption = lang == "en" ?
+    "Varrock, one of the main cities of Runescape (click to expand)." :
+    "Runescapeのなかで主要都市である「Varrock」（クリックで広がります）。";
+  var fig2_alt = lang == "en" ?
+    "Image showing Prifddinas, a city of Runescape." :
+    "Runescapeで「Prifddinas」という都市の画像。";
+  var fig2_caption = lang == "en" ?
+    "Another main city, Prifddinas (click to expand)." :
+    "また他の主要都市である「Prifddinas」（クリックで広がります）";
+%>
+
 <div class="text-left container" style="font-size: 1.1rem;">
   <p>
     <%- trans.home.progcradle.par1 %>
@@ -6,46 +21,23 @@
     <div class="col-sm-6 text-center">
       <figure class="figure">
         <a href="/images/index/progcradle/varrock_palace.png" target="_blank">
-          <img src="/images/index/progcradle/varrock_palace_small.png" class="figure-img img-fluid rounded" alt="<%= trans.home.progcradle.fig1_alt %>">
+          <img src="/images/index/progcradle/varrock_palace_small.png" class="figure-img img-fluid rounded" alt="<%= fig1_alt %>">
         </a>
-        <figcaption class="figure-caption"><%= trans.home.progcradle.fig1_caption %></figcaption>
+        <figcaption class="figure-caption"><%= fig1_caption %></figcaption>
       </figure>
     </div>
     <div class="col-sm-6 text-center">
         <figure class="figure">
           <a href="/images/index/progcradle/prifddinas_ithell.png" target="_blank">
-            <img src="/images/index/progcradle/prifddinas_ithell_small.png" class="figure-img img-fluid rounded" alt="<%= trans.home.progcradle.fig2_alt %>">
+            <img src="/images/index/progcradle/prifddinas_ithell_small.png" class="figure-img img-fluid rounded" alt="<%= fig2_alt %>">
           </a>
-          <figcaption class="figure-caption"><%= trans.home.progcradle.fig2_caption %></figcaption>
+          <figcaption class="figure-caption"><%= fig2_caption %></figcaption>
         </figure>
       </div>
   </div>
-  <p>
-    Eventually, I got to know some platforms that offered off-the-shelf automation software for many tasks in the game.
-    Within the game's community, players that use such software are commonly called <strong>bots</strong>, and the activity itself is referred to as <strong>botting</strong>.
-    Having caught my attention, the botting world dragged me in, and I began automating my in-game activites too.
-    The first botting platform I used, <a href="https://www.powerbot.org/" target="_blank">Powerbot</a>, was very powerful, based in Java, and had a huge amount of users and available software.
-    There were 3 problems, though:
-    <ol>
-      <li>Java was a very difficult language to read, and by that time I couldn't understand any code regardless of how much I tried (today I know why);</li>
-      <li>botting is against the game rules, so the game administrators were actively trying to find and ban botters from the game;</li>
-      <li>due to this platform's popularity, it received special attention from such bot-watching administrators.</li>
-    </ol>
-    And due to these reasons, I tried looking for another botting platform.
-  </p>
-  <p>
-    At some point, I found another platform, <a href="https://villavu.com/forum/" target="_blank">Villavu</a>, which was very good but for other reasons than those of the previous platform's.
-    For a start, it was based in Pascal, which was a language that I somehow managed to figure out how it worked.
-    Also, although this platform didn't have many available software, the community was really active towards helping everyone make their own programs, which was probably the key in leading me to begin programming.
-  </p>
-  <p>
-    Then finally, yes, I began programming.
-    <strong>This was where it started.</strong>
-    Pascal was my first language, and I managed to write many botting programs with it.
-    When I look back in those days, I find it funny that I managed to write programs with just a few Pascal constructs I managed to understand how to use; I never used a pointer, or allocated heap memory, for example.
-    Creating a type structure? Not even once.
-    In spite of having only a few known language tools at hand, I managed to make programs so complex that still make me giggle in perplexity nowadays.
-  </p>
+
+  <%- trans.home.progcradle.par2 %>
+
   <div class="text-center">
     <figure class="figure">
       <img src="/images/index/progcradle/simba_pascal_snippet.png" class="figure-img img-fluid rounded" alt="Image showing a snippet of Pascal code I wrote.">
