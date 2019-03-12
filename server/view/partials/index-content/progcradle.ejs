@@ -1,16 +1,15 @@
 <%
-  var fig1_alt = lang == "en" ?
-    "Image showing Varrock, a city of Runescape." :
-    "Runescapeで「Varrock」という都市の画像。";
-  var fig1_caption = lang == "en" ?
-    "Varrock, one of the main cities of Runescape (click to expand)." :
-    "Runescapeのなかで主要都市である「Varrock」（クリックで広がります）。";
-  var fig2_alt = lang == "en" ?
-    "Image showing Prifddinas, a city of Runescape." :
-    "Runescapeで「Prifddinas」という都市の画像。";
-  var fig2_caption = lang == "en" ?
-    "Another main city, Prifddinas (click to expand)." :
-    "また他の主要都市である「Prifddinas」（クリックで広がります）";
+  if(lang == "ja"){
+    var fig1_alt = "Runescapeで「Varrock」という都市の画像。";
+    var fig1_caption = "Runescapeのなかで主要都市である「Varrock」（クリックで広がります）。";
+    var fig2_alt = "Runescapeで「Prifddinas」という都市の画像。";
+    var fig2_caption = "また他の主要都市である「Prifddinas」（クリックで広がります）";
+  } else {
+    var fig1_alt = "Image showing Varrock, a city of Runescape.";
+    var fig1_caption = "Varrock, one of the main cities of Runescape (click to expand).";
+    var fig2_alt = "Image showing Prifddinas, a city of Runescape.";
+    var fig2_caption = "Another main city, Prifddinas (click to expand).";
+  }
 %>
 
 <div class="text-left container" style="font-size: 1.1rem;">
