@@ -198,11 +198,11 @@ home:
         </p>
       ja: |
         <p>
-          Eventually, I got to know some platforms that offered off-the-shelf automation software for many tasks in the game.
-          Within the game's community, players that use such software are commonly called <strong>bots</strong>, and the activity itself is referred to as <strong>botting</strong>.
-          Having caught my attention, the botting world dragged me in, and I began automating my in-game activites too.
-          The first botting platform I used, <a href="https://www.powerbot.org/" target="_blank">Powerbot</a>, was very powerful, based in Java, and had a huge amount of users and available software.
-          There were 3 problems, though:
+          結局、ゲームの多くのタスクに既製の自動化ソフトウェアを備え付けられたプラットフォームを知ってきました。
+          ゲームのコミュニティ内では、そのようなソフトウェアを使用するプレイヤーは一般的に<strong>ボット</strong>と呼ばれ、アクティビティ自体は<strong>ボッティング</strong>と呼ばれます。
+          気に入ってボッティング世界に引き寄せられて、そして私もゲームの活動を自動化し始めました。
+          一番目の使ったボッティングプラットフォームである「<a href="https://www.powerbot.org/" target="_blank">Powerbot</a>」は、Javaに基づいた非常に強力なもので、多量なユーザーベースと利用可能なソフトウェアを持っていました。
+          ただし、3つの問題がありました：
           <ol>
             <li>Java was a very difficult language to read, and by that time I couldn't understand any code regardless of how much I tried (today I know why);</li>
             <li>botting is against the game rules, so the game administrators were actively trying to find and ban botters from the game;</li>
