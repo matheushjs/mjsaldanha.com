@@ -204,9 +204,9 @@ home:
           一番目の使ったボッティングプラットフォームである「<a href="https://www.powerbot.org/" target="_blank">Powerbot</a>」は、Javaに基づいた非常に強力なもので、多量なユーザーベースと利用可能なソフトウェアを持っていました。
           ただし、3つの問題がありました：
           <ol>
-            <li>Java was a very difficult language to read, and by that time I couldn't understand any code regardless of how much I tried (today I know why);</li>
-            <li>botting is against the game rules, so the game administrators were actively trying to find and ban botters from the game;</li>
-            <li>due to this platform's popularity, it received special attention from such bot-watching administrators.</li>
+            <li>その時の私にはJavaがすごく読みづらい言語でした、そしてどれだけ読んでみてもコードを理解できませんでした（それはどうしてか今知っています）；</li>
+            <li>ボッティングはゲーム規則に違反ですので、管理者が猛烈的にボットを見つけてバンしようとしていました；</li>
+            <li>このプラットフォームが大いに普及していましたため、前述の管理者から格別な警戒を集めるのは当然でした。</li>
           </ol>
           And due to these reasons, I tried looking for another botting platform.
         </p>
