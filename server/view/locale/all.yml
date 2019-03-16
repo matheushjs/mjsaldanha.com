@@ -224,6 +224,20 @@ home:
           　タイプ構造の創造方法？　それも知りませんでした。
           　それは今もたまに微笑むようにされます。
         </p>
+    par3:
+      en: |
+        <p>
+          Then, through programming, I paved my way to being among the top 2000 players in amount of experience, and managed to achieve the <strong>completionist cape</strong>, which shows you've completed all the main activities of the game.
+          There is a trimmed version of such a cape, but university forced me to stop playing before I could get it.
+          It was an amazing experience, and I had plenty of fun; no matter how against the rules it was, I cannot say anything but "it was absolutely worth it".
+        </p>
+      ja: |
+        <p>
+          それから、プログラミングで私は最も経験値が持っている2000のトッププレーヤーのところへ着きました、そしてゲームのすべての主要な活動を完了したことを示す「<strong>Completionist肩マント</strong>」を達成しました。
+          　そのマントの飾り付けたバージョンもありますが、それを得られる前に大学が邪魔になってゲームを辞めさせられました。
+          　それでも素晴らしい経験で私はたくさん楽しめました。
+          　どんなに規則に違反していたって言っても、「すごく楽しかったです、絶対に後悔しません」ということ以外は思わせません。
+        </p>
 login:
   placeholder1:
     en: Enter your username
