@@ -273,15 +273,14 @@ home:
         </p>
       ja: |
         <p>
-          I've felt the need for having a code name when I was making Elf C Library, where I faced a problem that is relatively common when programming: namespace conflicts.
-          The user of my library will probably include other libraries, and I had to make sure the names of functions or variables in mine didn't conflict with others'.
-          That's why it's not a good idea to define a <code>create_graph()</code> function in my library, because the name "create_graph" makes sense in a lot of contexts,
-            making it easy to imagine that other libraries also use it, which would cause problems.
-          Inspired by how <a href="https://developer.gnome.org/" target="_blank">Gnome</a> designs its libraries, and by their
-            <a href="https://developer.gnome.org/programming-guidelines/stable/namespacing.html.en" target="_blank">programming guidelines</a>, I decided to adopt a namespacing name,
-            that is, instead of defining <code>create_graph()</code>, I'd use <code>NAMESPACE_create_graph()</code>.
-          I ended up choosing "Elf" not only as the namespace, but also as a code name for my projects.
-          In the following, I elaborate on the reason for such selection.
+          コードネームを持つ必要性を感じることが、「Elf C Library」というライブラリを作っていた時で行った。
+          　そこで割と一般的である一つのプログラミング的の問題に直面しました：　名前衝突　(英：namespace conflict)。
+          　私のライブラリのユーザーはおそらく他のライブラリを含むでしょう、そして私のライブラリの関数や変数の名前が他のものと衝突しないようにしなければなりませんでした。
+          　例えば<code>create_graph()</code>関数を定義する場合は、多くの文脈で意味を成しますので他のライブラリもその名前を使用する可能性が高くて問題になります。
+          　<a href="https://developer.gnome.org/" target="_blank">Gnome</a>がそのライブラリを設計する方法とその<a href="https://developer.gnome.org/programming-guidelines/stable/namespacing.html.en" target="_blank">プログラミングガイドライン</a>に啓発されて、私もプログラミングで使用できる接頭名前を採用することに決めました。
+          　つまり、<code>create_graph()</code>を定義する代わりに、<code>NAMESPACE_create_graph()</code>を使用します。
+          　接頭名前としてだけでなく、私のプロジェクトのコード名としても「Elf」を選択しました。
+          　以下では、そのような選択の理由について詳しく述べます。
         </p>
         <p>
           When I was younger, I got sort of addicted to <a href="https://www.runescape.com" target="_blank">Runescape</a>.
