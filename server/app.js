@@ -44,9 +44,18 @@ app.set("views", path.join(__dirname, "view/pages"));
 /**
  * Sets logging for debugging & control.
  *
+ * We do not log requests to `/myip`.
+ * 
  * @method midware-morgan
  */
-app.use(morgan(":date[clf] :remote-addr :method :status :response-time ms - :url :res[content-length]"));
+app.use(morgan(":date[clf] :remote-addr :method :status :response-time ms - :url :res[content-length]", {
+  skip: (req, res) => {
+    var skipThis = {
+      "/myip": 1,
+    };
+    return skipThis[req.path] ? true : false;
+  }
+}));
 
 /**
  * Sets up body parsing, accepting the `application/json` and `application/x-www-form-urlencoded`
