@@ -372,167 +372,167 @@ home:
             are an amazing species, and their story is fascinating.
           They are known for being pacific, very intelligent and masters of using crystals for building weapons and buildings; let me tell you more about their origins.
         </p>
-      par4:
-        en: |          
-          <div class="container text-center">
+    par4:
+      en: |          
+        <div class="container text-center">
+          <figure class="figure">
+            <a href="/images/index/whyelf/prifddinas_meilyr.png" target="_blank">
+              <img src="/images/index/whyelf/prifddinas_meilyr-small.png" class="figure-img img-fluid rounded" alt="Section of Prifddinas, the city of Elves." style="max-height: 300px;">
+            </a>
+            <figcaption class="figure-caption">Prifddinas, the city of Elves (click to expand).</figcaption>
+          </figure>
+        </div>
+        <p>
+          <strong>Guthix</strong> was a normal creature that ascended to godhood when he acquired an <strong>Ancient Artifact</strong>.
+          He roamed throughout the universe and stumbled in Gielinor, the player's planet, which he found so beautiful that he stayed there.
+          In his trip around the universe, he also eventually visited Tarddiad, a planet inhabited by elves and their goddess <strong>Seren</strong>.
+          Guthix felt that Gielinor was so beautiful that peaceful creatures, such as the elves, deserved to get to know it, so he invited Seren to
+            bring elves there.
+          With this, elves gradually migrated to Gielinor, around the beautiful forest I mentioned earlier.
+          However, as years passed by, other gods also found Gielinor and started inhabiting it with their followers, which included creatures and gods that promoted war and chaos.
+          This made Gielinor fall in an enormous war called <strong>The God Wars</strong>.
+        </p>
+      ja: |
+        <div class="container text-center">
+          <figure class="figure">
+            <a href="/images/index/whyelf/prifddinas_meilyr.png" target="_blank">
+              <img src="/images/index/whyelf/prifddinas_meilyr-small.png" class="figure-img img-fluid rounded" alt="Section of Prifddinas, the city of Elves." style="max-height: 300px;">
+            </a>
+            <figcaption class="figure-caption">Prifddinas, the city of Elves (click to expand).</figcaption>
+          </figure>
+        </div>
+        <p>
+          <strong>Guthix</strong> was a normal creature that ascended to godhood when he acquired an <strong>Ancient Artifact</strong>.
+          He roamed throughout the universe and stumbled in Gielinor, the player's planet, which he found so beautiful that he stayed there.
+          In his trip around the universe, he also eventually visited Tarddiad, a planet inhabited by elves and their goddess <strong>Seren</strong>.
+          Guthix felt that Gielinor was so beautiful that peaceful creatures, such as the elves, deserved to get to know it, so he invited Seren to
+            bring elves there.
+          With this, elves gradually migrated to Gielinor, around the beautiful forest I mentioned earlier.
+          However, as years passed by, other gods also found Gielinor and started inhabiting it with their followers, which included creatures and gods that promoted war and chaos.
+          This made Gielinor fall in an enormous war called <strong>The God Wars</strong>.
+        </p>
+    par5:
+      en: |          
+        <div class="row">
+          <div class="col-sm-6 text-center">
             <figure class="figure">
-              <a href="/images/index/whyelf/prifddinas_meilyr.png" target="_blank">
-                <img src="/images/index/whyelf/prifddinas_meilyr-small.png" class="figure-img img-fluid rounded" alt="Section of Prifddinas, the city of Elves." style="max-height: 300px;">
+              <a href="/images/index/whyelf/seren.png" target="_blank">
+                <img src="/images/index/whyelf/seren-small.png" class="figure-img img-fluid rounded" alt="Seren, the god worshipped by elves.">
               </a>
-              <figcaption class="figure-caption">Prifddinas, the city of Elves (click to expand).</figcaption>
+              <figcaption class="figure-caption">Seren, the god worshipped by elves (click to expand).</figcaption>
             </figure>
           </div>
-          <p>
-            <strong>Guthix</strong> was a normal creature that ascended to godhood when he acquired an <strong>Ancient Artifact</strong>.
-            He roamed throughout the universe and stumbled in Gielinor, the player's planet, which he found so beautiful that he stayed there.
-            In his trip around the universe, he also eventually visited Tarddiad, a planet inhabited by elves and their goddess <strong>Seren</strong>.
-            Guthix felt that Gielinor was so beautiful that peaceful creatures, such as the elves, deserved to get to know it, so he invited Seren to
-              bring elves there.
-            With this, elves gradually migrated to Gielinor, around the beautiful forest I mentioned earlier.
-            However, as years passed by, other gods also found Gielinor and started inhabiting it with their followers, which included creatures and gods that promoted war and chaos.
-            This made Gielinor fall in an enormous war called <strong>The God Wars</strong>.
-          </p>
-        ja: |
-          <div class="container text-center">
-            <figure class="figure">
-              <a href="/images/index/whyelf/prifddinas_meilyr.png" target="_blank">
-                <img src="/images/index/whyelf/prifddinas_meilyr-small.png" class="figure-img img-fluid rounded" alt="Section of Prifddinas, the city of Elves." style="max-height: 300px;">
-              </a>
-              <figcaption class="figure-caption">Prifddinas, the city of Elves (click to expand).</figcaption>
-            </figure>
-          </div>
-          <p>
-            <strong>Guthix</strong> was a normal creature that ascended to godhood when he acquired an <strong>Ancient Artifact</strong>.
-            He roamed throughout the universe and stumbled in Gielinor, the player's planet, which he found so beautiful that he stayed there.
-            In his trip around the universe, he also eventually visited Tarddiad, a planet inhabited by elves and their goddess <strong>Seren</strong>.
-            Guthix felt that Gielinor was so beautiful that peaceful creatures, such as the elves, deserved to get to know it, so he invited Seren to
-              bring elves there.
-            With this, elves gradually migrated to Gielinor, around the beautiful forest I mentioned earlier.
-            However, as years passed by, other gods also found Gielinor and started inhabiting it with their followers, which included creatures and gods that promoted war and chaos.
-            This made Gielinor fall in an enormous war called <strong>The God Wars</strong>.
-          </p>
-      par5:
-        en: |          
-          <div class="row">
-            <div class="col-sm-6 text-center">
+          <div class="col-sm-6 text-center">
               <figure class="figure">
-                <a href="/images/index/whyelf/seren.png" target="_blank">
-                  <img src="/images/index/whyelf/seren-small.png" class="figure-img img-fluid rounded" alt="Seren, the god worshipped by elves.">
+                <a href="/images/index/progcradle/baxtorian.png" target="_blank">
+                  <img src="/images/index/whyelf/baxtorian-small.png" class="figure-img img-fluid rounded" alt="Baxtorian, an elf.">
                 </a>
-                <figcaption class="figure-caption">Seren, the god worshipped by elves (click to expand).</figcaption>
+                <figcaption class="figure-caption">Baxtorian, an elf (click to expand).</figcaption>
               </figure>
             </div>
-            <div class="col-sm-6 text-center">
-                <figure class="figure">
-                  <a href="/images/index/progcradle/baxtorian.png" target="_blank">
-                    <img src="/images/index/whyelf/baxtorian-small.png" class="figure-img img-fluid rounded" alt="Baxtorian, an elf.">
-                  </a>
-                  <figcaption class="figure-caption">Baxtorian, an elf (click to expand).</figcaption>
-                </figure>
-              </div>
+        </div>
+        <p>
+          The forest in Gielinor where the elves lived, <strong>Tirannwn</strong>, was safe at first since nobody attempted an invasion against it.
+          Things eventually changed, though, and the war reached the elves too.
+          The military elven clan defended their land and defeated every invasion attempt, while the construction elven clan fortified the walls of <strong>Prifddinas</strong>,
+            the city of the elves in Tirannwn, in order to protect the civilians.
+          Eventually, the war reached proportions so big that Guthix, which was in some sort of slumber, woke up to find Gielinor in ruins.
+          He then used all his power to banish the presence of any god within Gielinor, including Seren.
+          Seren, however, could not leave the elves because they had developed some sort of dependence on being near her energy, and being far away for too long would render
+            them ill.
+          She, then, shattered herself in tiny crystals scattered over Tirannwn, so that the elves could continue living in Gielinor, and possibly develop a healthy relation
+            with other creatures.
+        </p>
+      ja: |
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <figure class="figure">
+              <a href="/images/index/whyelf/seren.png" target="_blank">
+                <img src="/images/index/whyelf/seren-small.png" class="figure-img img-fluid rounded" alt="Seren, the god worshipped by elves.">
+              </a>
+              <figcaption class="figure-caption">Seren, the god worshipped by elves (click to expand).</figcaption>
+            </figure>
           </div>
-          <p>
-            The forest in Gielinor where the elves lived, <strong>Tirannwn</strong>, was safe at first since nobody attempted an invasion against it.
-            Things eventually changed, though, and the war reached the elves too.
-            The military elven clan defended their land and defeated every invasion attempt, while the construction elven clan fortified the walls of <strong>Prifddinas</strong>,
-              the city of the elves in Tirannwn, in order to protect the civilians.
-            Eventually, the war reached proportions so big that Guthix, which was in some sort of slumber, woke up to find Gielinor in ruins.
-            He then used all his power to banish the presence of any god within Gielinor, including Seren.
-            Seren, however, could not leave the elves because they had developed some sort of dependence on being near her energy, and being far away for too long would render
-              them ill.
-            She, then, shattered herself in tiny crystals scattered over Tirannwn, so that the elves could continue living in Gielinor, and possibly develop a healthy relation
-              with other creatures.
-          </p>
-        ja: |
-          <div class="row">
-            <div class="col-sm-6 text-center">
+          <div class="col-sm-6 text-center">
               <figure class="figure">
-                <a href="/images/index/whyelf/seren.png" target="_blank">
-                  <img src="/images/index/whyelf/seren-small.png" class="figure-img img-fluid rounded" alt="Seren, the god worshipped by elves.">
+                <a href="/images/index/progcradle/baxtorian.png" target="_blank">
+                  <img src="/images/index/whyelf/baxtorian-small.png" class="figure-img img-fluid rounded" alt="Baxtorian, an elf.">
                 </a>
-                <figcaption class="figure-caption">Seren, the god worshipped by elves (click to expand).</figcaption>
+                <figcaption class="figure-caption">Baxtorian, an elf (click to expand).</figcaption>
               </figure>
             </div>
-            <div class="col-sm-6 text-center">
-                <figure class="figure">
-                  <a href="/images/index/progcradle/baxtorian.png" target="_blank">
-                    <img src="/images/index/whyelf/baxtorian-small.png" class="figure-img img-fluid rounded" alt="Baxtorian, an elf.">
-                  </a>
-                  <figcaption class="figure-caption">Baxtorian, an elf (click to expand).</figcaption>
-                </figure>
-              </div>
-          </div>
-          <p>
-            The forest in Gielinor where the elves lived, <strong>Tirannwn</strong>, was safe at first since nobody attempted an invasion against it.
-            Things eventually changed, though, and the war reached the elves too.
-            The military elven clan defended their land and defeated every invasion attempt, while the construction elven clan fortified the walls of <strong>Prifddinas</strong>,
-              the city of the elves in Tirannwn, in order to protect the civilians.
-            Eventually, the war reached proportions so big that Guthix, which was in some sort of slumber, woke up to find Gielinor in ruins.
-            He then used all his power to banish the presence of any god within Gielinor, including Seren.
-            Seren, however, could not leave the elves because they had developed some sort of dependence on being near her energy, and being far away for too long would render
-              them ill.
-            She, then, shattered herself in tiny crystals scattered over Tirannwn, so that the elves could continue living in Gielinor, and possibly develop a healthy relation
-              with other creatures.
-          </p>
-      par6:
-        en: |
-          <div class="container text-center">
-            <figure class="figure">
-              <a href="/images/index/whyelf/guthix_edicts.png" target="_blank">
-                <img src="/images/index/whyelf/guthix_edicts-small.png" class="figure-img img-fluid rounded" alt="Guthix banishing gods from Gielinor." style="max-height: 300px;">
-              </a>
-              <figcaption class="figure-caption">Guthix banishing gods from Gielinor (click to expand).</figcaption>
-            </figure>
-          </div>
-          <p>
-            Well, there is more to the story than what I've said here, which can be found <a href="https://runescape.wiki/w/Seren/History" target="_blank">here</a>.
-            Better than reading the story is playing it while surrounded by the beautiful soundtrack of the game.
-            What I can say is that I was deeply moved by such story, by Seren's attitude of placing her followers, the elves, above any other kind of mundane desire,
-              such as war, power or territories.
-            Above that, the elves are really a special creature within the universe of Runescape: they are knowledgeable and treat knowledge as a very valuable artifact,
-              which led them to develop precious technology that could only be handled by themselves; namely, crystal manipulation and their own magic spells.
-            They could possibly defeat any other creatures in a war, obtaining as much land and power as they wanted; but no, they opt to live peacefully with nature, as
-              preached by Seren, and Guthix as well.
-          </p>
-          <p>
-            The name that has this beautiful and meaningful background story, that's the name I want to develop my research and projects under.
-            Hence, <strong>Elf Projects</strong>.
-          </p>
-          <div class="container text-center">
-            <figure class="figure">
-              <img src="/images/elf_icon.png" class="figure-img img-fluid rounded" alt="Elf Projects Logo." style="max-height: 300px;">
-              <figcaption class="figure-caption">Elf Projects Logo.</figcaption>
-            </figure>
-          </div>
-        ja: |
-          <div class="container text-center">
-            <figure class="figure">
-              <a href="/images/index/whyelf/guthix_edicts.png" target="_blank">
-                <img src="/images/index/whyelf/guthix_edicts-small.png" class="figure-img img-fluid rounded" alt="Guthix banishing gods from Gielinor." style="max-height: 300px;">
-              </a>
-              <figcaption class="figure-caption">Guthix banishing gods from Gielinor (click to expand).</figcaption>
-            </figure>
-          </div>
-          <p>
-            Well, there is more to the story than what I've said here, which can be found <a href="https://runescape.wiki/w/Seren/History" target="_blank">here</a>.
-            Better than reading the story is playing it while surrounded by the beautiful soundtrack of the game.
-            What I can say is that I was deeply moved by such story, by Seren's attitude of placing her followers, the elves, above any other kind of mundane desire,
-              such as war, power or territories.
-            Above that, the elves are really a special creature within the universe of Runescape: they are knowledgeable and treat knowledge as a very valuable artifact,
-              which led them to develop precious technology that could only be handled by themselves; namely, crystal manipulation and their own magic spells.
-            They could possibly defeat any other creatures in a war, obtaining as much land and power as they wanted; but no, they opt to live peacefully with nature, as
-              preached by Seren, and Guthix as well.
-          </p>
-          <p>
-            The name that has this beautiful and meaningful background story, that's the name I want to develop my research and projects under.
-            Hence, <strong>Elf Projects</strong>.
-          </p>
-          <div class="container text-center">
-            <figure class="figure">
-              <img src="/images/elf_icon.png" class="figure-img img-fluid rounded" alt="Elf Projects Logo." style="max-height: 300px;">
-              <figcaption class="figure-caption">Elf Projects Logo.</figcaption>
-            </figure>
-          </div>
+        </div>
+        <p>
+          The forest in Gielinor where the elves lived, <strong>Tirannwn</strong>, was safe at first since nobody attempted an invasion against it.
+          Things eventually changed, though, and the war reached the elves too.
+          The military elven clan defended their land and defeated every invasion attempt, while the construction elven clan fortified the walls of <strong>Prifddinas</strong>,
+            the city of the elves in Tirannwn, in order to protect the civilians.
+          Eventually, the war reached proportions so big that Guthix, which was in some sort of slumber, woke up to find Gielinor in ruins.
+          He then used all his power to banish the presence of any god within Gielinor, including Seren.
+          Seren, however, could not leave the elves because they had developed some sort of dependence on being near her energy, and being far away for too long would render
+            them ill.
+          She, then, shattered herself in tiny crystals scattered over Tirannwn, so that the elves could continue living in Gielinor, and possibly develop a healthy relation
+            with other creatures.
+        </p>
+    par6:
+      en: |
+        <div class="container text-center">
+          <figure class="figure">
+            <a href="/images/index/whyelf/guthix_edicts.png" target="_blank">
+              <img src="/images/index/whyelf/guthix_edicts-small.png" class="figure-img img-fluid rounded" alt="Guthix banishing gods from Gielinor." style="max-height: 300px;">
+            </a>
+            <figcaption class="figure-caption">Guthix banishing gods from Gielinor (click to expand).</figcaption>
+          </figure>
+        </div>
+        <p>
+          Well, there is more to the story than what I've said here, which can be found <a href="https://runescape.wiki/w/Seren/History" target="_blank">here</a>.
+          Better than reading the story is playing it while surrounded by the beautiful soundtrack of the game.
+          What I can say is that I was deeply moved by such story, by Seren's attitude of placing her followers, the elves, above any other kind of mundane desire,
+            such as war, power or territories.
+          Above that, the elves are really a special creature within the universe of Runescape: they are knowledgeable and treat knowledge as a very valuable artifact,
+            which led them to develop precious technology that could only be handled by themselves; namely, crystal manipulation and their own magic spells.
+          They could possibly defeat any other creatures in a war, obtaining as much land and power as they wanted; but no, they opt to live peacefully with nature, as
+            preached by Seren, and Guthix as well.
+        </p>
+        <p>
+          The name that has this beautiful and meaningful background story, that's the name I want to develop my research and projects under.
+          Hence, <strong>Elf Projects</strong>.
+        </p>
+        <div class="container text-center">
+          <figure class="figure">
+            <img src="/images/elf_icon.png" class="figure-img img-fluid rounded" alt="Elf Projects Logo." style="max-height: 300px;">
+            <figcaption class="figure-caption">Elf Projects Logo.</figcaption>
+          </figure>
+        </div>
+      ja: |
+        <div class="container text-center">
+          <figure class="figure">
+            <a href="/images/index/whyelf/guthix_edicts.png" target="_blank">
+              <img src="/images/index/whyelf/guthix_edicts-small.png" class="figure-img img-fluid rounded" alt="Guthix banishing gods from Gielinor." style="max-height: 300px;">
+            </a>
+            <figcaption class="figure-caption">Guthix banishing gods from Gielinor (click to expand).</figcaption>
+          </figure>
+        </div>
+        <p>
+          Well, there is more to the story than what I've said here, which can be found <a href="https://runescape.wiki/w/Seren/History" target="_blank">here</a>.
+          Better than reading the story is playing it while surrounded by the beautiful soundtrack of the game.
+          What I can say is that I was deeply moved by such story, by Seren's attitude of placing her followers, the elves, above any other kind of mundane desire,
+            such as war, power or territories.
+          Above that, the elves are really a special creature within the universe of Runescape: they are knowledgeable and treat knowledge as a very valuable artifact,
+            which led them to develop precious technology that could only be handled by themselves; namely, crystal manipulation and their own magic spells.
+          They could possibly defeat any other creatures in a war, obtaining as much land and power as they wanted; but no, they opt to live peacefully with nature, as
+            preached by Seren, and Guthix as well.
+        </p>
+        <p>
+          The name that has this beautiful and meaningful background story, that's the name I want to develop my research and projects under.
+          Hence, <strong>Elf Projects</strong>.
+        </p>
+        <div class="container text-center">
+          <figure class="figure">
+            <img src="/images/elf_icon.png" class="figure-img img-fluid rounded" alt="Elf Projects Logo." style="max-height: 300px;">
+            <figcaption class="figure-caption">Elf Projects Logo.</figcaption>
+          </figure>
+        </div>
 login:
   placeholder1:
     en: Enter your username
