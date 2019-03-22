@@ -340,9 +340,9 @@ home:
         <div class="container text-center">
           <figure class="figure">
             <a href="/images/index/whyelf/isafdar_forest.png" target="_blank">
-              <img src="/images/index/whyelf/isafdar_forest-small.png" class="figure-img img-fluid rounded" alt="Image showing the forest seen after crossing Underground Pass." style="max-height: 300px;">
+              <img src="/images/index/whyelf/isafdar_forest-small.png" class="figure-img img-fluid rounded" alt="Underground Passの向かい側に現れる森を示している画像。" style="max-height: 300px;">
             </a>
-            <figcaption class="figure-caption">The forest you see once leaving the Underground Pass (click to expand).</figcaption>
+            <figcaption class="figure-caption">Underground Passを歩き果たすと現れる森　（クリックで広がります）。</figcaption>
           </figure>
         </div>
         <p>
