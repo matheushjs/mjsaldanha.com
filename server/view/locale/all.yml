@@ -617,4 +617,7 @@ raw:
   features:
     en: Features
     ja: 機能
+  papers:
+    en: Papers
+    ja: 論文
 ...
