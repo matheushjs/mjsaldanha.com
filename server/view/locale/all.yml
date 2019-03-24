@@ -399,20 +399,21 @@ home:
         <div class="container text-center">
           <figure class="figure">
             <a href="/images/index/whyelf/prifddinas_meilyr.png" target="_blank">
-              <img src="/images/index/whyelf/prifddinas_meilyr-small.png" class="figure-img img-fluid rounded" alt="Section of Prifddinas, the city of Elves." style="max-height: 300px;">
+              <img src="/images/index/whyelf/prifddinas_meilyr-small.png" class="figure-img img-fluid rounded" alt="エルフの都市というPrifddinasの一部。" style="max-height: 300px;">
             </a>
-            <figcaption class="figure-caption">Prifddinas, the city of Elves (click to expand).</figcaption>
+            <figcaption class="figure-caption">エルフの都市であるPrifddinas　（クリックで広がります）。</figcaption>
           </figure>
         </div>
         <p>
-          <strong>Guthix</strong> was a normal creature that ascended to godhood when he acquired an <strong>Ancient Artifact</strong>.
-          He roamed throughout the universe and stumbled in Gielinor, the player's planet, which he found so beautiful that he stayed there.
-          In his trip around the universe, he also eventually visited Tarddiad, a planet inhabited by elves and their goddess <strong>Seren</strong>.
-          Guthix felt that Gielinor was so beautiful that peaceful creatures, such as the elves, deserved to get to know it, so he invited Seren to
-            bring elves there.
-          With this, elves gradually migrated to Gielinor, around the beautiful forest I mentioned earlier.
-          However, as years passed by, other gods also found Gielinor and started inhabiting it with their followers, which included creatures and gods that promoted war and chaos.
-          This made Gielinor fall in an enormous war called <strong>The God Wars</strong>.
+          <strong>Guthix</strong>は普通の生き物でしたが、<strong>古代アーティファクト</strong>を獲得した上で神性に昇格しました。
+          　彼は宇宙を歩き回る間、プレイヤーの惑星であるGielinorに偶然に着きました、そしてすごく綺麗だと思ってそこに住むようにしました。
+          　その前に、Tarddiadという惑星にも行きました、それはエルフとエルフ達の女神である<strong>Seren</strong>が住んでいる惑星です。
+          　エルフのような平安な生き物がそんなに美しい惑星であるGielinorを訪問しなければもったいないとGuthixは思いました。
+          　それでそれをSerenに伝えて、Gielinorにエルフを連れて来てって勧めました。
+          　それ以後、エルフは私が前に述べた美しい森の周りに、だんだんGielinorへ移住しました。
+          　しかし、年が経つにつれてGielinorを見つけた他の神達がそれらの信者と共にGielinorに住んで来ました。
+          　残念ながら、その中に戦争と混乱を発生するがちの方を含みました。
+          　そんな状況で、結局Gielinorは「<strong>The God Wars</strong>」と呼ばれる巨大な戦争に陥りました。
         </p>
     par5:
       en: |          
