@@ -40,7 +40,7 @@ const articlesRoutes    = require("./routes/articles");
  */
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
-app.set('view options', {debug: true});
+//app.set('view options', {debug: true});
 
 /**
  * Sets logging for debugging & control.
