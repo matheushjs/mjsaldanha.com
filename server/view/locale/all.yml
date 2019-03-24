@@ -176,11 +176,13 @@ home:
           Having caught my attention, the botting world dragged me in, and I began automating my in-game activites too.
           The first botting platform I used, <a href="https://www.powerbot.org/" target="_blank">Powerbot</a>, was very powerful, based in Java, and had a huge amount of users and available software.
           There were 3 problems, though:
-          <ol>
-            <li>Java was a very difficult language to read, and by that time I couldn't understand any code regardless of how much I tried (today I know why);</li>
-            <li>botting is against the game rules, so the game administrators were actively trying to find and ban botters from the game;</li>
-            <li>due to this platform's popularity, it received special attention from such bot-watching administrators.</li>
-          </ol>
+        </p>
+        <ol>
+          <li>Java was a very difficult language to read, and by that time I couldn't understand any code regardless of how much I tried (today I know why);</li>
+          <li>botting is against the game rules, so the game administrators were actively trying to find and ban botters from the game;</li>
+          <li>due to this platform's popularity, it received special attention from such bot-watching administrators.</li>
+        </ol>
+        <p>
           And due to these reasons, I tried looking for another botting platform.
         </p>
         <p>
@@ -203,11 +205,13 @@ home:
           　気に入ってボッティング世界に引き寄せられて、そして私もゲームの活動を自動化し始めました。
           　一番目の使ったボッティングプラットフォームである「<a href="https://www.powerbot.org/" target="_blank">Powerbot</a>」は、Javaに基づいた非常に強力なもので、多量なユーザーベースと利用可能なソフトウェアを持っていました。
           　ただし、3つの問題がありました：
-          <ol>
-            <li>その時の私にはJavaがすごく読みづらい言語でした、そしてどれだけ読んでみてもコードを理解できませんでした（それはどうしてか今知っています）；</li>
-            <li>ボッティングはゲーム規則に違反ですので、管理者が猛烈的にボットを見つけてバンしようとしていました；</li>
-            <li>このプラットフォームが大いに普及していましたため、前述の管理者から格別な警戒を集めるのは当然でした。</li>
-          </ol>
+        </p>
+        <ol>
+          <li>その時の私にはJavaがすごく読みづらい言語でした、そしてどれだけ読んでみてもコードを理解できませんでした（それはどうしてか今知っています）；</li>
+          <li>ボッティングはゲーム規則に違反ですので、管理者が猛烈的にボットを見つけてバンしようとしていました；</li>
+          <li>このプラットフォームが大いに普及していましたため、前述の管理者から格別な警戒を集めるのは当然でした。</li>
+        </ol>
+        <p>
           それで他のボッティングプラットフォームを探してみました。
         </p>
         <p>
