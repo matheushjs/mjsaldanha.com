@@ -452,25 +452,34 @@ home:
           <div class="col-sm-6 text-center">
             <figure class="figure">
               <a href="/images/index/whyelf/seren.png" target="_blank">
-                <img src="/images/index/whyelf/seren-small.png" class="figure-img img-fluid rounded" alt="Seren, the god worshipped by elves.">
+                <img src="/images/index/whyelf/seren-small.png" class="figure-img img-fluid rounded" alt="エルフに崇拝された女神であるSeren。">
               </a>
-              <figcaption class="figure-caption">Seren, the god worshipped by elves (click to expand).</figcaption>
+              <figcaption class="figure-caption">エルフに崇拝された女神であるSeren　（クリックで広がります）。</figcaption>
             </figure>
           </div>
           <div class="col-sm-6 text-center">
               <figure class="figure">
                 <a href="/images/index/progcradle/baxtorian.png" target="_blank">
-                  <img src="/images/index/whyelf/baxtorian-small.png" class="figure-img img-fluid rounded" alt="Baxtorian, an elf.">
+                  <img src="/images/index/whyelf/baxtorian-small.png" class="figure-img img-fluid rounded" alt="エルフの一人であるBaxtorian。">
                 </a>
-                <figcaption class="figure-caption">Baxtorian, an elf (click to expand).</figcaption>
+                <figcaption class="figure-caption">エルフの一人であるBaxtorian　（クリックで広がります）。</figcaption>
               </figure>
             </div>
         </div>
         <p>
-          The forest in Gielinor where the elves lived, <strong>Tirannwn</strong>, was safe at first since nobody attempted an invasion against it.
-          Things eventually changed, though, and the war reached the elves too.
-          The military elven clan defended their land and defeated every invasion attempt, while the construction elven clan fortified the walls of <strong>Prifddinas</strong>,
-            the city of the elves in Tirannwn, in order to protect the civilians.
+          エルフが住んでいたGielinorの森という<strong>Tirannwn</strong>を、何の他の種族も侵略しようとしませんでしたので、最初は安全でした。
+          その状況が結局変わってしまいました、戦争はエルフの森にも届きました。
+          軍のエルフ族は森を守り、あらゆる侵略の試みを破っているながら、建設エルフ族は市民を守るためにTirannwnにある町のPrifddinasの壁を強化しました。
+          戦争が続いて、何かの眠りに陥っていたGuthixを覚ますほど巨大なものになりました。
+          でもGuthixはGielinorを見てそれはもう廃墟の状態であった、それからSerenを含むGielinorにいる神々の存在を全力で追放しました。
+          
+          
+          Serenはエルフから離れられませんでした。          
+          エルフは自分のエネルギーの近くにいることにある種の依存関係を築き、あまりにも遠くにいると病気になる可能性があるからです。
+          
+          それから、彼女はティランヌーンの上に散らばった小さな結晶で自分自身を粉砕しました。
+          その結果、エルフはギリノールに住み続け、おそらく他の生き物との健全な関係を築くことができました。
+
           Eventually, the war reached proportions so big that Guthix, which was in some sort of slumber, woke up to find Gielinor in ruins.
           He then used all his power to banish the presence of any god within Gielinor, including Seren.
           Seren, however, could not leave the elves because they had developed some sort of dependence on being near her energy, and being far away for too long would render
