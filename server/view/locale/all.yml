@@ -608,6 +608,32 @@ home:
           　このようでゲームプレイを見ながら口語日本語を勉強できます：　一石二鳥ですね！
           　たまにはMMD動画も見ます。
         </p>
+footer:
+  webmap:
+    en: Website Map
+    ja: ページのマップ
+  links:
+    en: |
+      <a href="/">home</a>
+      <a href="/credits/">credits</a>
+      <a href="/palletes">palletes</a>
+      <a href="/sci-projects/">research</a>
+      <a href="/articles/">articles</a>
+    ja: |
+      <a href="/">ホーム</a>
+      <a href="/credits/">礼状</a>
+      <a href="/palletes">パレット</a>
+      <a href="/sci-projects/">研究</a>
+      <a href="/articles/">論文</a>
+  creatornote:
+    en: |
+      Page created and maintained by Matheus Henrique Junqueira Saldanha.
+      <br>
+      mhjsaldanha@gmail.com
+    ja: |
+      Matheus Henrique Junqueira Saldanhaに創造されて保っているページです。
+      <br>
+      mhjsaldanha@gmail.com
 login:
   placeholder1:
     en: Enter your username

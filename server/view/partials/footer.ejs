@@ -1,23 +1,14 @@
 <div class="container-fluid elf-footer">
   <div class="container text-center mx-auto" style="max-width: 500px; font-size: 0.8rem;">
     <h5>
-      Website Map
+      <%= trans.footer.webmap %>
     </h5>
     <div class="d-flex flex-wrap justify-content-around my-3">
-      <a href="/">home</a>
-      <a href="/credits/">credits</a>
-      <a href="/palletes">palletes</a>
-      <a href="/sci-projects/">research</a>
+      <%- trans.footer.links %>
     </div>
   </div>      
   
-  <div class="row">
-    <div class="col-12">
-      <p>
-        Page created and maintained by Matheus Henrique Junqueira Saldanha.
-        <br>
-        mhjsaldanha@gmail.com
-      </p>
-    </div>
+  <div class="w-100 text-left mt-3">
+    <%- trans.footer.creatornote %>
   </div>
 </div>
