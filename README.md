@@ -50,7 +50,3 @@ Besides, the other options for localizing the website would be:
 
 And each of these options are a gigantic pain in the ass because we'd have to change all anchors `<a href="..." ></a>` within the website to point to the language currently being used by the user.
 By using cookies we avoid this problem, and manage to save the user's preference.
-
-# Project Diagram
-
-<img src="/soft_eng/diagrams.png" width="70%" />
