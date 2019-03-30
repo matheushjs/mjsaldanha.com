@@ -14,7 +14,7 @@ $(document).ready(function(){
 });
 
 /* Place footer at the bottom when needed */
-$(document).ready(function(){
+function lowerTheFooter(){
   /* Get height of viewport */
   const vpHeight = $(window).height();
   
@@ -31,8 +31,15 @@ $(document).ready(function(){
     var footer = $(".elf-footer");
     footer.css("position", "absolute");
     footer.css("bottom", "0");
+  } else {
+    var footer = $(".elf-footer");
+    footer.css("position", "");
+    footer.css("bottom", "");
   }
-});
+
+  setTimeout(lowerTheFooter, 3000);
+}
+$(document).ready(lowerTheFooter);
 
 
 /* Conditionally hide content and add modal button if the content exceeds a certain portion of the viewport
