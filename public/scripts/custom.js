@@ -46,28 +46,39 @@ $(document).ready(function(){
  *   6. Add the 'elf-modal-content' to the element that contains the whole content
  *   7. Add the 'elf-modal-button' to the button that triggers the modal
  */
-$(document).ready(function(){
+function hideModals(){
   const elements = $(".elf-modal-block");
 
   for(var i = 0; i < elements.length; i++){
     const elem    = $(elements[i]);
     const content = elem.find(".elf-modal-content");
     const button = elem.find(".elf-modal-button");
-    const vpRatio = elem.height() / $(window).height(); // viewport ratio
+
+    // At first, the element is on its correct height, so we store it as an attribute
+    // We are also prepared for if any image 
+    if(!elem.attr("fullheight") || elem.height() > Number(elem.attr("fullheight"))){
+      elem.attr("fullheight", elem.height());
+    }
+
+    const vpRatio = elem.attr("fullheight") / $(window).height(); // viewport ratio
 
     // We only modalize elements whose height is larger 70% of the viewport
     if(vpRatio > 0.7){
       // Warp content and add fading background
-      content.css("max-height", "70vh");
-      content.css("overflow", "hidden");
-      content.css("border-radius", "10px");
-      content.css("background", "linear-gradient(180deg, #fff0 50%, #444f 100%)");
+      if(!content.hasClass("elf-modal-wrapped")){
+        content.addClass("elf-modal-wrapped");
+      }
 
       // Show button
       button.show();
     } else {
+      content.removeClass("elf-modal-wrapped");
+
       // Hide button
       button.hide();
     }
   }
-});
+}
+
+$(document).ready(hideModals);
+$(window).resize(hideModals);

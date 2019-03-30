@@ -58,6 +58,13 @@ a:hover {
   padding-top: 30px;
 }
 
+.elf-modal-wrapped {
+  max-height: 70vh;
+  overflow: hidden;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #fff0 50%, #444f 100%);
+}
+
 /* major-block receive grey/inherit background alternatedly. */
 .major-block {
   padding-top: 16vh;
