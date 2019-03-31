@@ -89,3 +89,45 @@ function hideModals(){
 
 $(document).ready(hideModals);
 $(window).resize(hideModals);
+
+/* Returns the total height of $el that is inside the viewport.
+ */
+function getVisible($el) {    
+  var scrollTop = $(this).scrollTop(),
+      scrollBot = scrollTop + $(this).height(),
+      elTop = $el.offset().top,
+      elBottom = elTop + $el.outerHeight(),
+      visibleTop = elTop < scrollTop ? scrollTop : elTop,
+      visibleBottom = elBottom > scrollBot ? scrollBot : elBottom;
+  return visibleBottom - visibleTop;
+}
+
+/* Control element classes so that they have that class only when they are visible in the viewport.
+ * Elements that should be controlled should have the class "elf-class-control".
+ * Class that should be removed/added as it disappears/appears in the viewport should be in data-control attribute.
+ */
+function classInViewControl(){
+  $(".elf-class-control").each(function(index, value){
+    var $el = $(value);
+    var visiblePortion = getVisible($el);
+    var controlClass = $el.attr("data-control");
+
+    if(!controlClass){
+      console.error("Expected data-control but did not find it: " + value);
+      return;
+    }
+
+    if(visiblePortion >= 0){
+      if(!$el.hasClass(controlClass)){
+        $el.addClass(controlClass);
+      }
+    } else {
+      $el.removeClass(controlClass);
+      console.log("OK!");
+    }
+
+    $("#elf-debug").text($(value).attr("data-control"));
+  });
+}
+
+$(window).on("resize scroll", classInViewControl);
