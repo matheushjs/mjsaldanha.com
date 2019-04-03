@@ -123,7 +123,6 @@ function classInViewControl(){
       }
     } else {
       $el.removeClass(controlClass);
-      console.log("OK!");
     }
 
     $("#elf-debug").text($(value).attr("data-control"));
