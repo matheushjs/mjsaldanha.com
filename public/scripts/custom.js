@@ -15,19 +15,29 @@ function slideOnScroll(){
 /* Place footer at the bottom when needed */
 function lowerTheFooter(){
   /* Get height of viewport */
-  const vpHeight = $(window).height();
-  
+  var vpHeight = $(window).height();
+
   /* Get height of body content */
   var height = $("body").height();
+
+  /* Get height of the footer */
+  var footer = $(".elf-footer");
+  var footHeight = footer.height();
+
+  /* If the footer's position is absolute, it should be added to the height */
+  if(footer.css("position") === "absolute"){
+    height += footHeight;
+  }
+
+  /* We underestimate the viewport height */
+  vpHeight -= 30;
 
   /* If content does not span the whole viewport, place footer on the bottom */
   /* Footer is initially within the body, so it's already accounted for */
   if(height < vpHeight){
-    var footer = $(".elf-footer");
     footer.css("position", "absolute");
     footer.css("bottom", "0");
   } else {
-    var footer = $(".elf-footer");
     footer.css("position", "");
     footer.css("bottom", "");
   }
