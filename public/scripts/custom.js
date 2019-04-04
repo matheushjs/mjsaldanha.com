@@ -134,8 +134,73 @@ function toggleClassOnVisible(){
   });
 }
 
+function textFlowAnimation(){
+  var canvas = $("#welcome .elf-textflow");
 
+  const keywords = [
+    "High Performance Computing",
+    "Neural Networks",
+    "Deep Learning",
+    "Maximum Likelihood Estimation",
+    "Statistical Inference",
+    "GPU Programming",
+    "Computational Models",
+    "Parameter Servers",
+    "Task Scheduling",
+    "Distributed Programs",
+    "Parallel Computing",
+    "Supercomputers"
+  ];
+  var randInt = Math.floor(Math.random() * keywords.length);
+  var keyword = keywords[randInt];
 
+  // Begins on the left (0) or on the right (1)?
+  var randSide = Math.floor(Math.random() * 2);
+  var randW = Math.random() * (canvas.width() / 2);
+  var randH = Math.random() * canvas.height();
+
+  // If begins on the right, invert randW
+  if(randSide === 1){
+    randW = canvas.width() - randW;
+  }
+
+  // Decide destiny width
+  var randWFinal;
+  if(randSide === 0){
+    randWFinal = randW + 0.8 * Math.random() * (canvas.width() - randW);
+  } else {
+    randWFinal = randW + 0.8 * Math.random() * (0 - randW);
+  }
+
+  // The word's position is given by its left-most portion.
+  // We try to change it to the center, by estimating its size.
+  randW = randW - 100;
+  randWFinal = randWFinal - 100;
+
+  var p = $("<p></p>");
+  p.text(keyword);
+  p.css({
+    "position": "absolute",
+    "top": randH,
+    "left": randW,
+    "opacity": "0"
+  });
+
+  canvas.append(p);
+
+  p.animate({
+    left: [randWFinal, "linear"],
+  }, {
+    queue: false,
+    duration: 6000,
+  })
+  .animate({ opacity: 1 }, 3000)
+  .animate({ opacity: 0 }, 3000, function(){
+    p.remove();
+  });
+
+  setTimeout(textFlowAnimation, 700);
+}
 
 $(window).on("scroll", function(){
   slideOnScroll();
@@ -153,4 +218,6 @@ $(document).ready(function(){
   
   lowerTheFooter();
   setInterval(lowerTheFooter, 3000);
+
+  textFlowAnimation();
 });
