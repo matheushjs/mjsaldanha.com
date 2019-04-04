@@ -78,7 +78,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
  *
  * @method midware-helmet
  */
-app.use(helmet());
+if(process.env.NODE_ENV === "production"){
+  app.use(helmet());
+}
 
 /**
  * Sets up cookie-based user sessions.
