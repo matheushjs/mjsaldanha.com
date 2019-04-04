@@ -1,4 +1,7 @@
-$(window).scroll(function(){
+/**
+ * Makes element slide into the screen when the user scrolls the page down enough to see such element.
+ */
+function slideOnScroll(){
   $(".slideanim").each(function(){
     var pos = $(this).offset().top;
 
@@ -7,11 +10,7 @@ $(window).scroll(function(){
       $(this).removeClass("slideanim").addClass("slideframes");
     }
   });
-});
-
-$(document).ready(function(){
-  $(".major-block:odd").css("background-color", "#e9e9e9");
-});
+}
 
 /* Place footer at the bottom when needed */
 function lowerTheFooter(){
@@ -19,11 +18,7 @@ function lowerTheFooter(){
   const vpHeight = $(window).height();
   
   /* Get height of body content */
-  var children = $("body").children();
-  var height = 0;
-  for(var i = 0; i < children.length; i++){
-    height += $(children[i]).outerHeight();
-  }
+  var height = $("body").height();
 
   /* If content does not span the whole viewport, place footer on the bottom */
   /* Footer is initially within the body, so it's already accounted for */
@@ -36,10 +31,7 @@ function lowerTheFooter(){
     footer.css("position", "");
     footer.css("bottom", "");
   }
-
-  setTimeout(lowerTheFooter, 3000);
 }
-$(document).ready(lowerTheFooter);
 
 
 /* Conditionally hide content and add modal button if the content exceeds a certain portion of the viewport
@@ -62,7 +54,6 @@ function hideModals(){
     const button = elem.find(".elf-modal-button");
 
     // At first, the element is on its correct height, so we store it as an attribute
-    // We are also prepared for if any image 
     if(!elem.attr("fullheight") || elem.height() > Number(elem.attr("fullheight"))){
       elem.attr("fullheight", elem.height());
     }
@@ -87,9 +78,6 @@ function hideModals(){
   }
 }
 
-$(document).ready(hideModals);
-$(window).resize(hideModals);
-
 /* Returns the total height of $el that is inside the viewport.
  */
 function getVisible($el) {    
@@ -102,11 +90,15 @@ function getVisible($el) {
   return visibleBottom - visibleTop;
 }
 
-/* Control element classes so that they have that class only when they are visible in the viewport.
+/**
+ * Control element classes so that they have that class only when they are visible in the viewport.
+ * 
  * Elements that should be controlled should have the class "elf-class-control".
  * Class that should be removed/added as it disappears/appears in the viewport should be in data-control attribute.
+ * 
+ * MAIN USAGE: Hide CSS animations when they aren't visible, for performance reasons.
  */
-function classInViewControl(){
+function toggleClassOnVisible(){
   $(".elf-class-control").each(function(index, value){
     var $el = $(value);
     var visiblePortion = getVisible($el);
@@ -117,16 +109,27 @@ function classInViewControl(){
       return;
     }
 
-    if(visiblePortion >= 0){
-      if(!$el.hasClass(controlClass)){
-        $el.addClass(controlClass);
-      }
-    } else {
-      $el.removeClass(controlClass);
-    }
-
-    $("#elf-debug").text($(value).attr("data-control"));
+    $el.toggleClass(controlClass, visiblePortion >= 0);
   });
 }
 
-$(window).on("resize scroll", classInViewControl);
+
+
+
+$(window).on("scroll", function(){
+  slideOnScroll();
+  toggleClassOnVisible();
+});
+
+$(window).on("resize", function(){
+  toggleClassOnVisible();
+  hideModals();
+});
+
+$(document).ready(function(){
+  $(".major-block:odd").css("background-color", "#e9e9e9");
+  hideModals();
+  
+  lowerTheFooter();
+  setInterval(lowerTheFooter, 3000);
+});
