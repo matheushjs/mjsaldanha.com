@@ -135,7 +135,15 @@ function toggleClassOnVisible(){
 }
 
 function textFlowAnimation(){
+  const TIMEOUT = 700;
+  const FLOW_TIME = 6000;
   var canvas = $("#welcome .elf-textflow");
+
+  // If canvas is not visible, we don't do anything.
+  if(getVisible(canvas) <= 0){
+    setTimeout(textFlowAnimation, TIMEOUT);
+    return;
+  }
 
   const keywords = [
     "High Performance Computing",
@@ -192,14 +200,14 @@ function textFlowAnimation(){
     left: [randWFinal, "linear"],
   }, {
     queue: false,
-    duration: 6000,
+    duration: FLOW_TIME,
   })
-  .animate({ opacity: 1 }, 3000)
-  .animate({ opacity: 0 }, 3000, function(){
+  .animate({ opacity: 1 }, FLOW_TIME/2)
+  .animate({ opacity: 0 }, FLOW_TIME/2, function(){
     p.remove();
   });
 
-  setTimeout(textFlowAnimation, 700);
+  setTimeout(textFlowAnimation, TIMEOUT);
 }
 
 $(window).on("scroll", function(){
