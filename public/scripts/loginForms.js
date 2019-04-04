@@ -45,6 +45,26 @@ function validateUsername(){
   return true;
 }
 
+function validateCurPassword(){
+  var elem = $("form input[name='cur_password']");
+  var pwd = elem.val();
+  
+  // For pwd, we ensure it doesn't have t/l whitespace and has 1-128 characters too
+  if(pwd.trim().length !== pwd.length){
+    setFailMessage("Current password cannot contain trailing/leading whitespaces.");
+    elem.addClass("is-invalid");
+    return false;
+  } 
+  if(pwd.length <= 0 || pwd.length > 128){
+    setFailMessage("Current password must have at least 1 and at most 128 characters.");
+    elem.addClass("is-invalid");
+    return false;
+  }
+
+  elem.addClass("is-valid");
+  return true;
+}
+
 function validatePassword(){
   var elem = $("form input[name='password']");
   var pwd = elem.val();
@@ -86,7 +106,7 @@ function validatePassword2(){
 
   if(elem2.val() !== elem1.val()){
     setFailMessage("Passwords are not equal.");
-    elem.addClass("is-invalid");
+    elem2.addClass("is-invalid");
     return false;
   }
 
@@ -109,6 +129,69 @@ function validateSignup(){
   } else {
     return false;
   }
+}
+
+/** Currently only used in account/ . */
+function sendForm(data) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+    if (this.readyState == 4){
+      if(this.responseText != ''){
+        setFailMessage(this.responseText);
+      } else {
+        setFailMessage("Your changes have been recorded!");
+      }
+    }
+  };
+  xhttp.open("POST", "/user/account", true);
+  xhttp.setRequestHeader('Content-type', 'application/json');
+  xhttp.send(JSON.stringify(data));
+}
+
+function validateAccount(){
+  clearErrors();
+
+  var callname = $("form input[name='callname']").val();
+  var curpwd = $("form input[name='cur_password']").val();
+  var pwd = $("form input[name='password']").val();
+  var pwd2 = $("form input[name='password2']").val();
+  
+  // For callname, we ensure it has at least 1 character and less than 128
+  if(!validateCallname()){
+    return false;
+  }
+
+  // If user didn't touch password fields, we end validation here.
+  if(curpwd === "" && pwd === "" && pwd2 === ""){
+    sendForm({
+      callname: callname,
+    })
+    return false;
+  }
+
+  var failures = 0;
+  
+  failures += !validateCurPassword();
+  failures += !validatePassword();
+  failures += !validatePassword2();
+
+  if(failures == 0){
+    sendForm({
+      callname: callname,
+      cur_password: curpwd,
+      password: pwd,
+      password2: pwd2
+    });
+  }
+
+  /** Always return false because we are using AJAX here. */
+  return false;
+}
+
+function accountOnFocus(){
+  $("form input[name='cur_password']").css("background-color", "");
+  $("form input[name='password']").prop("disabled", false);
+  $("form input[name='password2']").prop("disabled", false);
 }
 
 $(document).ready(function(){

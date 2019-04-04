@@ -12,6 +12,7 @@ Account Management page
 
   <head>
     <% include ../partials/head_common %>
+    <script src="/scripts/loginForms.js"></script>
   </head>
 
   <body>
@@ -28,49 +29,41 @@ Account Management page
     <div class="container text-center">
       <form method="post">
 
-        <div class="form-group form-row" id="callname_group">
-          <label class="col-form-label col-sm-2" for="callname">Name:</label>
+        <div class="form-group form-row">
+          <label class="col-form-label col-sm-2">Name:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="callname" name="callname" value='<%= callname %>' placeholder="How would you like to be called?">
+            <input type="text" class="form-control" name="callname" value='<%= callname %>' placeholder="How would you like to be called?">
           </div>
         </div>
 
-        <div class="form-group form-row" id="curpwd_group">
-          <label class="col-form-label col-sm-2" for="curpwd">Current Password:</label>
+        <div class="form-group form-row">
+          <label class="col-form-label col-sm-2">Current Password:</label>
           <div class="col-sm-10">
-            <input style="background-color: lightgrey;" type="password" class="form-control" id="curpwd" name="cur_password" placeholder="Enter your current password"
-                  onfocus="this.style=''; ['pwd','pwd2'].filter(id => document.getElementById(id).disabled=false);">
+            <input style="background-color: lightgrey;" type="password" class="form-control" name="cur_password" placeholder="Enter your current password"
+                  onfocus="return accountOnFocus();">
           </div>
         </div>
 
-        <div class="form-group form-row" id="pwd_group">
-          <label class="col-form-label col-sm-2" for="pwd">New Password:</label>
+        <div class="form-group form-row">
+          <label class="col-form-label col-sm-2">New Password:</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="pwd" name="password" placeholder="Enter new password" disabled>
+            <input type="password" class="form-control" name="password" placeholder="Enter new password" disabled>
           </div>
         </div>
 
-        <div class="form-group form-row" id="pwd2_group">
-          <label class="col-form-label col-sm-2" for="pwd2">Confirm New Password:</label>
+        <div class="form-group form-row">
+          <label class="col-form-label col-sm-2">Confirm New Password:</label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="pwd2" name="password2" placeholder="Enter new password again" disabled>
+            <input type="password" class="form-control" name="password2" placeholder="Enter new password again" disabled>
           </div>
         </div>
         
         <div class="col-sm-12">
-          <button type="submit" class="btn btn-dark" onclick="return validateForm();">Finish Editing</button>
+          <button type="submit" class="btn btn-dark" onclick="return validateAccount();">Finish Editing</button>
         </div>
 
-        <div class="col-sm-12" id="failure_box" style="display: none;">
-          <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
-            <strong>Info: </strong> <span id="failure_msg"></span>
-          </div>
-        </div>
-
-        <div class="col-sm-12" id="success_box" style="display: none;">
-          <div class="alert alert-success" style="color: darkblue; width: 50%; margin: 30px auto 0;">
-            <strong>Info: </strong> <span id="success_msg"></span>
-          </div>
+        <div class="alert alert-info" style="display: none; color: darkblue; width: 50%; margin: 30px auto 0;">
+          <strong>Info: </strong> <span class="fail-msg"></span>
         </div>
       </form>
     </div>
@@ -78,105 +71,5 @@ Account Management page
     <div>
       <% include ../partials/footer %>
     </div>
-
-    <script>
-        function setFailMessage(str){
-          document.getElementById("failure_msg").innerHTML = str;
-          document.getElementById("failure_box").style = "display: ;";
-          document.getElementById("success_box").style = "display: none;";
-        }
-  
-        function alertSuccess(){
-          document.getElementById("success_msg").innerHTML = "Your changes have been successfully recorded.";
-          document.getElementById("success_box").style = "display: ;";
-          document.getElementById("failure_box").style = "display: none;";
-
-          // Set all form fields to blank
-          var all = document.getElementsByClassName("form-control");
-          for(var i = 0; i < all.length; i++)
-            all[i].value = '';
-        }
-
-        // Trim whitespace
-        function trimws(str){
-          return str.replace(/^ */g, '').replace(/ *$/g, '');
-        }
-  
-        function setError(elementId){
-          // First clear all errors
-          var all = document.getElementsByClassName("form-group");
-          for(var i = 0; i < all.length; i++)
-            all[i].classList.remove("has-error");
-  
-          // Then add error
-          document.getElementById(elementId).classList.add("has-error");
-        }
-  
-        function sendForm(data) {
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function(){
-            if (this.readyState == 4){
-              if(this.responseText != ''){
-                setFailMessage(this.responseText);
-              } else {
-                alertSuccess();
-              }
-            }
-          };
-          xhttp.open("POST", "/user/account", true);
-          xhttp.setRequestHeader('Content-type', 'application/json');
-          xhttp.send(JSON.stringify(data));
-        }
-
-        function validateForm(){
-          var callname = document.getElementById("callname").value;
-          var curpwd = document.getElementById("curpwd").value;
-          var pwd = document.getElementById("pwd").value;
-          var pwd2 = document.getElementById("pwd2").value;
-          
-          // For callname, we ensure it has at least 1 character and less than 128
-          if(trimws(callname).length <= 0 || trimws(callname).length > 128){
-            setFailMessage("Name must have at least 1 and at most 128 characters.");
-            document.getElementById("callname").value = trimws(callname);
-            setError("callname_group");
-            return false;
-          }
-  
-          // If user didn't touch password fields, we end validation here.
-          if(curpwd === ''){
-            sendForm({
-              callname: callname,
-            })
-            return false;
-          }
-
-          // For pwd, we ensure it doesn't have t/l whitespace and has 1-128 characters too
-          if(trimws(pwd).length !== pwd.length){
-            setFailMessage("Password cannot contain trailing/leading whitespaces.");
-            setError("pwd_group");
-            return false;
-          } 
-          if(pwd.length <= 0 || pwd.length > 128){
-            setFailMessage("Password must have at least 1 and at most 128 characters.");
-            setError("pwd_group");
-            return false;
-          }
-  
-          // For pwd2, we just check if it's equal pwd
-          if(pwd2 !== pwd){
-            setFailMessage("Passwords don't match.");
-            setError("pwd2_group");
-            return false;
-          }
-
-          sendForm({
-            callname: callname,
-            cur_password: curpwd,
-            password: pwd,
-            password2: pwd2
-          });
-          return false;
-        }
-      </script>
   </body>
 </html>
