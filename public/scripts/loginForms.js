@@ -1,4 +1,4 @@
-function setFailMessage(str){
+function appendFailMsg(str){
   var msg = $("form .fail-msg");
 
   msg.text(msg.text() + " " + str);
@@ -11,79 +11,76 @@ function clearErrors(){
   $("form input").removeClass("is-invalid").removeClass("is-valid");
 }
 
-function validateCallname(){
-  var elem = $("form input[name='callname']");
-  var callname = elem.val().trim();
+/**
+ * Validates the value in the given form element.
+ * If it is invalid, we add "is-invalid" class to it, to highlight it in red.
+ * 
+ * @param {JQuery} $formElem Element to validate.
+ * @param {String} elemName Name of what is being validated (Name, Password, etc).
+ * @param {Boolean} checkWhitespace True if we should check if the field has trailing/leading whitespace.
+ * @param {Boolean} checkLength True if we should check if the field has length between 1 and 128.
+ * @returns True if value is valid.
+ */
+function validateName($formElem, elemName, checkWhitespace, checkLength){
+  var value = $formElem.val();
+  var retVal = true;
 
-  // For username, we ensure it doesn't have t/l whitespace and has 1-128 characters
-  if(callname.length <= 0 || callname.length > 128){
-    setFailMessage("Name must have at least 1 and at most 128 characters.");
-    elem.addClass("is-invalid");
-    return false;
+  // Check t/l whitespace
+  if(checkWhitespace && value.trim().length !== value.length){
+    appendFailMsg(elemName + " cannot contain trailing/leading whitespaces.");
+    $formElem.addClass("is-invalid");
+    retVal = false;
+  }
+  
+  // Check if has 1-128 characters
+  if(checkLength && (value.length <= 0 || value.length > 128)){
+    appendFailMsg(elemName + " must have at least 1 and at most 128 characters.");
+    $formElem.addClass("is-invalid");
+    retVal = false;
   }
 
-  elem.addClass("is-valid");
-  return true;
+  if(retVal === true){
+    $formElem.addClass("is-valid");
+  }
+  
+  return retVal;
+}
+
+function validateCallname(){
+  var elem = $("form input[name='callname']");
+  elem.val(elem.val().trim());
+  return validateName(elem, "Name", false, true);
 }
 
 function validateUsername(){
   var elem = $("form input[name='username']");
-  var username = elem.val();
-
-  // For username, we ensure it doesn't have t/l whitespace and has 1-128 characters
-  if(username.trim().length !== username.length){
-    setFailMessage("Username cannot contain trailing/leading whitespaces.");
-    elem.addClass("is-invalid");
-    return false;
-  } else if(username.length <= 0 || username.length > 128){
-    setFailMessage("Username must have at least 1 and at most 128 characters.");
-    elem.addClass("is-invalid");
-    return false;
-  }
-
-  elem.addClass("is-valid");
-  return true;
+  return validateName(elem, "Username", true, true);
 }
 
 function validateCurPassword(){
   var elem = $("form input[name='cur_password']");
-  var pwd = elem.val();
-  
-  // For pwd, we ensure it doesn't have t/l whitespace and has 1-128 characters too
-  if(pwd.trim().length !== pwd.length){
-    setFailMessage("Current password cannot contain trailing/leading whitespaces.");
-    elem.addClass("is-invalid");
-    return false;
-  } 
-  if(pwd.length <= 0 || pwd.length > 128){
-    setFailMessage("Current password must have at least 1 and at most 128 characters.");
-    elem.addClass("is-invalid");
-    return false;
-  }
-
-  elem.addClass("is-valid");
-  return true;
+  return validateName(elem, "Current password", true, true);
 }
 
 function validatePassword(){
   var elem = $("form input[name='password']");
-  var pwd = elem.val();
-  
-  // For pwd, we ensure it doesn't have t/l whitespace and has 1-128 characters too
-  if(pwd.trim().length !== pwd.length){
-    setFailMessage("Password cannot contain trailing/leading whitespaces.");
-    elem.addClass("is-invalid");
-    return false;
-  } 
-  if(pwd.length <= 0 || pwd.length > 128){
-    setFailMessage("Password must have at least 1 and at most 128 characters.");
-    elem.addClass("is-invalid");
+  return validateName(elem, "Password", true, true);
+}
+
+function validatePassword2(){
+  var elem1 = $("form input[name='password']");
+  var elem2 = $("form input[name='password2']");
+
+  if(elem2.val() !== elem1.val()){
+    appendFailMsg("Passwords are not equal.");
+    elem2.addClass("is-invalid");
     return false;
   }
 
-  elem.addClass("is-valid");
+  elem2.addClass("is-valid");
   return true;
 }
+
 
 function validateLogin(){
   clearErrors();
@@ -98,20 +95,6 @@ function validateLogin(){
   } else {
     return false;
   }
-}
-
-function validatePassword2(){
-  var elem1 = $("form input[name='password']");
-  var elem2 = $("form input[name='password2']");
-
-  if(elem2.val() !== elem1.val()){
-    setFailMessage("Passwords are not equal.");
-    elem2.addClass("is-invalid");
-    return false;
-  }
-
-  elem2.addClass("is-valid");
-  return true;
 }
 
 function validateSignup(){
@@ -137,9 +120,9 @@ function sendForm(data) {
   xhttp.onreadystatechange = function(){
     if (this.readyState == 4){
       if(this.responseText != ''){
-        setFailMessage(this.responseText);
+        appendFailMsg(this.responseText);
       } else {
-        setFailMessage("Your changes have been recorded!");
+        appendFailMsg("Your changes have been recorded!");
       }
     }
   };
