@@ -1,5 +1,15 @@
 /**
+ * This is not a class; just a convenient way for grouping documentation using YUIDoc.
+ *
+ * This file has general javascript code that applies to many pages.
+ *
+ * @class Client::custom.js
+ */
+
+
+/**
  * Makes element slide into the screen when the user scrolls the page down enough to see such element.
+ * @method slideOnScroll
  */
 function slideOnScroll(){
   $(".slideanim").each(function(){
@@ -107,6 +117,7 @@ function getVisible($el) {
  * Class that should be removed/added as it disappears/appears in the viewport should be in data-control attribute.
  * 
  * MAIN USAGE: Hide CSS animations when they aren't visible, for performance reasons.
+ * @method toggleClassOnVisible
  */
 function toggleClassOnVisible(){
   $(".elf-class-control").each(function(index, value){

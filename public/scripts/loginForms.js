@@ -1,3 +1,11 @@
+/**
+ * This is not a class; just a convenient way for grouping documentation using YUIDoc.
+ *
+ * This file has javascript related to the forms for user login, signup etc.
+ *
+ * @class Client::loginForms.js
+ */
+
 function appendFailMsg(str){
   var msg = $("form .fail-msg");
 
@@ -19,7 +27,8 @@ function clearErrors(){
  * @param {String} elemName Name of what is being validated (Name, Password, etc).
  * @param {Boolean} checkWhitespace True if we should check if the field has trailing/leading whitespace.
  * @param {Boolean} checkLength True if we should check if the field has length between 1 and 128.
- * @returns True if value is valid.
+ * @return {Boolean} True if value is valid.
+ * @method validateName
  */
 function validateName($formElem, elemName, checkWhitespace, checkLength){
   var value = $formElem.val();
@@ -114,7 +123,7 @@ function validateSignup(){
   }
 }
 
-/** Currently only used in account/ . */
+/* Currently only used in account/ . */
 function sendForm(data) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
@@ -167,7 +176,7 @@ function validateAccount(){
     });
   }
 
-  /** Always return false because we are using AJAX here. */
+  /* Always return false because we are using AJAX here. */
   return false;
 }
 
