@@ -15,6 +15,7 @@ Options:
 
   <head>
     <% include ../partials/head_common %>
+    <script src="/scripts/loginForms.js"></script>
   </head>
 
   <body>
@@ -37,25 +38,23 @@ Options:
             <%= trans.raw.username %>
           </label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="username" name="username" placeholder="<%= trans.login.placeholder1 %>" required>
+            <input type="text" class="form-control" name="username" placeholder="<%= trans.login.placeholder1 %>" required>
           </div>
         </div>
         
         <div class="form-group form-row" id="pwd_group">
           <label class="col-form-label col-sm-2" for="pwd"><%= trans.raw.password %></label>
           <div class="col-sm-10">
-            <input type="password" class="form-control" id="pwd" name="password" placeholder="<%= trans.login.placeholder2 %>" required>
+            <input type="password" class="form-control" name="password" placeholder="<%= trans.login.placeholder2 %>" required>
           </div>
         </div>
         
-        <button type="submit" class="btn btn-dark" onclick="return validateForm();">
+        <button type="submit" class="btn btn-dark" onclick="return validateLogin();">
           <%= trans.login.submit %>
         </button>
 
-        <div class="col-sm-12" id="failure_box" style="<%= failMsg ? '' : 'display: none;' %>">
-          <div class="alert alert-info" style="color: darkblue; width: 50%; margin: 30px auto 0;">
-            <strong><%= trans.login.info %></strong> <span id="failure_msg"><%= failMsg %></span>
-          </div>
+        <div class="alert alert-info" style="<%= failMsg ? '' : 'display: none;' %> color: darkblue; width: 50%; margin: 30px auto 0;">
+          <strong><%= trans.login.info %></strong> <span class="fail-msg"><%= failMsg %></span>
         </div>
       </form>
     </div>
@@ -63,60 +62,5 @@ Options:
     <div>
       <% include ../partials/footer %>
     </div>
-
-    <script>
-      function setFailMessage(str){
-        failure_msg = document.getElementById("failure_msg").innerHTML = str;
-        failure_box = document.getElementById("failure_box").style = "display: ;";
-      }
-
-      // Trim whitespace
-      function trimws(str){
-        return str.replace(/^ */g, '').replace(/ *$/g, '');
-      }
-
-      function setError(elementId){
-        // First clear all errors
-        var all = document.getElementsByClassName("form-group");
-        for(var i = 0; i < all.length; i++)
-          all[i].classList.remove("has-error");
-
-        // Then add error
-        document.getElementById(elementId).classList.add("has-error");
-      }
-      
-      function validateForm(){
-        var username = document.getElementById("username").value;
-        var pwd = document.getElementById("pwd").value;
-
-        // For username, we ensure it doesn't have t/l whitespace and has 1-128 characters
-        if(trimws(username).length !== username.length){
-          setFailMessage("Username cannot contain trailing/leading whitespaces.");
-          setError("username_group");
-          return false;
-        } 
-        if(username.length <= 0 || username.length > 128){
-          setFailMessage("Username must have at least 1 and at most 128 characters.");
-          setError("username_group");
-          return false;
-        }
-
-        // For pwd, we ensure it doesn't have t/l whitespace and has 1-128 characters too
-        if(trimws(pwd).length !== pwd.length){
-          setFailMessage("Password cannot contain trailing/leading whitespaces.");
-          setError("pwd_group");
-          return false;
-        } 
-        if(pwd.length <= 0 || pwd.length > 128){
-          setFailMessage("Password must have at least 1 and at most 128 characters.");
-          setError("pwd_group");
-          return false;
-        }
-      }
-
-      window.onload = function(){
-        document.getElementById("username").focus();
-      }
-    </script>
   </body>
 </html>
