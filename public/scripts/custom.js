@@ -188,6 +188,12 @@ function textFlowAnimation(){
   var p = $("<p></p>");
   p.text(keyword);
   p.css({
+    "-webkit-touch-callout": "none",
+    "-webkit-user-select": "none",
+    "-khtml-user-select": "none",
+    "-moz-user-select": "none",
+    "-ms-user-select": "none",
+    "user-select": "none",
     "position": "absolute",
     "top": randH,
     "left": randW,
