@@ -6,6 +6,8 @@
  * @class Client::loginForms.js
  */
 
+"use strict";
+
 function appendFailMsg(str){
   var msg = $("form .fail-msg");
 

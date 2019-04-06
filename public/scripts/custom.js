@@ -6,6 +6,7 @@
  * @class Client::custom.js
  */
 
+"use strict";
 
 /**
  * Makes element slide into the screen when the user scrolls the page down enough to see such element.
@@ -138,6 +139,9 @@ function textFlowAnimation(){
   const TIMEOUT = 700;
   const FLOW_TIME = 6000;
   var canvas = $("#welcome .elf-textflow");
+
+  if(canvas.length === 0)
+    return;
 
   // If canvas is not visible, we don't do anything.
   if(getVisible(canvas) <= 0){
