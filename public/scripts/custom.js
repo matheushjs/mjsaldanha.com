@@ -101,13 +101,13 @@ function hideModals(){
 
 /* Returns the total height of $el that is inside the viewport.
  */
-function getVisible($el) {    
+function getVisible($el) {
   var scrollTop = $(this).scrollTop(),
-      scrollBot = scrollTop + $(this).height(),
-      elTop = $el.offset().top,
-      elBottom = elTop + $el.outerHeight(),
-      visibleTop = elTop < scrollTop ? scrollTop : elTop,
-      visibleBottom = elBottom > scrollBot ? scrollBot : elBottom;
+    scrollBot = scrollTop + $(this).height(),
+    elTop = $el.offset().top,
+    elBottom = elTop + $el.outerHeight(),
+    visibleTop = elTop < scrollTop ? scrollTop : elTop,
+    visibleBottom = elBottom > scrollBot ? scrollBot : elBottom;
   return visibleBottom - visibleTop;
 }
 

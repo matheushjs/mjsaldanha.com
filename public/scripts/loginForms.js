@@ -92,7 +92,7 @@ function validatePassword2(){
   return true;
 }
 
-
+/* exported validateLogin */
 function validateLogin(){
   clearErrors();
 
@@ -108,6 +108,7 @@ function validateLogin(){
   }
 }
 
+/* exported validateSignup */
 function validateSignup(){
   clearErrors();
 
@@ -130,7 +131,7 @@ function sendForm(data) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
     if (this.readyState == 4){
-      if(this.responseText != ''){
+      if(this.responseText != ""){
         appendFailMsg(this.responseText);
       } else {
         appendFailMsg("Your changes have been recorded!");
@@ -138,10 +139,11 @@ function sendForm(data) {
     }
   };
   xhttp.open("POST", "/user/account", true);
-  xhttp.setRequestHeader('Content-type', 'application/json');
+  xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send(JSON.stringify(data));
 }
 
+/* exported validateAccount */
 function validateAccount(){
   clearErrors();
 
@@ -159,7 +161,7 @@ function validateAccount(){
   if(curpwd === "" && pwd === "" && pwd2 === ""){
     sendForm({
       callname: callname,
-    })
+    });
     return false;
   }
 
@@ -182,6 +184,7 @@ function validateAccount(){
   return false;
 }
 
+/* exported accountOnFocus */
 function accountOnFocus(){
   $("form input[name='cur_password']").css("background-color", "");
   $("form input[name='password']").prop("disabled", false);

@@ -7,32 +7,36 @@ if(ESL_ENV === "server") {
     "es6": true
   };
 
-  var ecmaVersion = 2017;
-  var noConsole = ["off"];
+  var noConsole = ["off", { "allow": ["warn", "error"] }];
+  var parserOptions = {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  };
+
 } else if(ESL_ENV === "browser") {
   var env = {
     "browser": true,
-    "commonjs": true,
-    "jquery": true
+    "jquery": true,
+    "es6": true
   };
 
-  var ecmaVersion = 5;
-  var noConsole = ["warn"];
+  var noConsole = ["warn", { "allow": ["warn", "error"] }];
+  var parserOptions = {
+    "ecmaVersion": 2015,
+    "sourceType": "script"
+  };
 }
 
 module.exports = {
   "env": env,
   "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": ecmaVersion,
-    "sourceType": "module"
-  },
+  "parserOptions": parserOptions,
   "rules": {
     "indent": ["error", 2, { "MemberExpression": 0 }],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "no-console": noConsole,
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+    "no-unused-vars": ["error", { "args": "none" }]
   }
 };
