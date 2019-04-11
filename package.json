@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server/app.js",
     "devstart": "{ sleep 2 && firefox https://localhost:5001; } & nodemon --ext js,ejs,html,css,yml,yaml server/app.js;",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ESL_ENV=browser eslint ./public/scripts/; ESL_ENV=server eslint ./server/;"
   },
   "author": "Matheus H. J. Saldanha",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "sqlite3": "^4.0.2"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
     "nodemon": "^1.18.4"
   },
   "repository": {
