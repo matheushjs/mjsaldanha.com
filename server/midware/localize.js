@@ -69,7 +69,7 @@ function langDecider(req, res, next) {
   req.session.language = req.language;
 
   next();
-};
+}
 
 /* Recursive function for filtering language strings off a JSON object.
  * 'src' will likely be something like

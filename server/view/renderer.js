@@ -72,7 +72,7 @@ class Renderer {
       lang: this.language,
       trans: this.translations,
       visitors,
-    })
+    });
   }
 
   allUsers(res, users){

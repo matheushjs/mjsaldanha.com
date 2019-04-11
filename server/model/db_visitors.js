@@ -46,7 +46,7 @@ function inc(){
  */
 function get(){
   if(counter === -1){
-    throw "Counter hasn't been initialized yet."
+    throw "Counter hasn't been initialized yet.";
   } else {
     return counter;
   }
