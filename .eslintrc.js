@@ -62,7 +62,7 @@ module.exports = {
     "no-negated-in-lhs": 2, // disallow negation of the left operand of an in expression
     "no-obj-calls": 2, // disallow the use of object properties of the global object (Math and JSON) as functions
     "no-regex-spaces": 2, // disallow multiple spaces in a regular expression literal
-    "quote-props": ["consistent-as-needed", {"keywords": true}], // disallow reserved words being used as object literal keys (off by default)
+    "quote-props": [1, "consistent-as-needed", {"keywords": true}], // disallow reserved words being used as object literal keys (off by default)
     "no-sparse-arrays": 2, // disallow sparse arrays
     "no-unreachable": 2, // disallow unreachable statements after a return, throw, continue, or break statement
     "use-isnan": 2, // disallow comparisons with the value NaN
@@ -178,12 +178,11 @@ module.exports = {
     "one-var": [1, "never"], // allow just one var statement per function (off by default)
     // "operator-assignment": [1, "never"], // require assignment operator shorthand where possible or prohibit it entirely (off by default)
     "padded-blocks": [1, "never"], // enforce padding within blocks (off by default)
-    "quote-props": [1, "as-needed"], // require quotes around object literal property names (off by default)
     "semi-spacing": [1, {"before": false, "after": true}], // enforce spacing before and after semicolons
     "sort-vars": 0, // sort variables within the same declaration block (off by default)
     // "keyword-spacing": [1, {"before": true, "after": true}], // require a space after certain keywords (off by default)
     "space-before-blocks": 0, // require or disallow space before blocks (off by default)
-    "space-before-function-paren": [1, {"anonymous": "always", "named": "never"}], // require or disallow space before function opening parenthesis (off by default)
+    "space-before-function-paren": [1, {"anonymous": "never", "named": "never", "asyncArrow": "always"}], // require or disallow space before function opening parenthesis (off by default)
     // "object-curly-spacing": [1, "never"],  // require or disallow spaces inside JSON objects
     // "array-bracket-spacing": [1, "never"], // require or disallow spaces inside brackets
     "space-in-parens": [1, "never"], // require or disallow spaces inside parentheses (off by default)

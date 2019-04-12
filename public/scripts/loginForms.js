@@ -24,7 +24,7 @@ function clearErrors(){
 /**
  * Validates the value in the given form element.
  * If it is invalid, we add "is-invalid" class to it, to highlight it in red.
- * 
+ *
  * @param {JQuery} $formElem Element to validate.
  * @param {String} elemName Name of what is being validated (Name, Password, etc).
  * @param {Boolean} checkWhitespace True if we should check if the field has trailing/leading whitespace.
@@ -42,7 +42,7 @@ function validateName($formElem, elemName, checkWhitespace, checkLength){
     $formElem.addClass("is-invalid");
     retVal = false;
   }
-  
+
   // Check if has 1-128 characters
   if(checkLength && (value.length <= 0 || value.length > 128)){
     appendFailMsg(elemName + " must have at least 1 and at most 128 characters.");
@@ -53,7 +53,7 @@ function validateName($formElem, elemName, checkWhitespace, checkLength){
   if(retVal === true){
     $formElem.addClass("is-valid");
   }
-  
+
   return retVal;
 }
 
@@ -101,11 +101,10 @@ function validateLogin(){
   failures += !validateUsername();
   failures += !validatePassword();
 
-  if(failures == 0){
+  if(failures === 0)
     return true;
-  } else {
-    return false;
-  }
+
+  return false;
 }
 
 /* exported validateSignup */
@@ -113,25 +112,24 @@ function validateSignup(){
   clearErrors();
 
   var failures = 0;
-  
+
   failures += !validateCallname();
   failures += !validateUsername();
   failures += !validatePassword();
   failures += !validatePassword2();
 
-  if(failures == 0){
+  if(failures === 0)
     return true;
-  } else {
-    return false;
-  }
+
+  return false;
 }
 
 /* Currently only used in account/ . */
 function sendForm(data) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
-    if (this.readyState == 4){
-      if(this.responseText != ""){
+    if (this.readyState === 4){
+      if(this.responseText !== ""){
         appendFailMsg(this.responseText);
       } else {
         appendFailMsg("Your changes have been recorded!");
@@ -151,7 +149,7 @@ function validateAccount(){
   var curpwd = $("form input[name='cur_password']").val();
   var pwd = $("form input[name='password']").val();
   var pwd2 = $("form input[name='password2']").val();
-  
+
   // For callname, we ensure it has at least 1 character and less than 128
   if(!validateCallname()){
     return false;
@@ -166,12 +164,12 @@ function validateAccount(){
   }
 
   var failures = 0;
-  
+
   failures += !validateCurPassword();
   failures += !validatePassword();
   failures += !validatePassword2();
 
-  if(failures == 0){
+  if(failures === 0){
     sendForm({
       callname: callname,
       cur_password: curpwd,

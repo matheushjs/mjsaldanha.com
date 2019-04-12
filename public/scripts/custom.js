@@ -56,7 +56,7 @@ function lowerTheFooter(){
 
 
 /* Conditionally hide content and add modal button if the content exceeds a certain portion of the viewport
- * 
+ *
  * Steps to make this work:
  *   1. Take the big content and place into a partial .ejs file
  *   2. Include that content where it originally was
@@ -101,22 +101,22 @@ function hideModals(){
 
 /* Returns the total height of $el that is inside the viewport.
  */
-function getVisible($el) {
-  var scrollTop = $(this).scrollTop(),
-    scrollBot = scrollTop + $(this).height(),
-    elTop = $el.offset().top,
-    elBottom = elTop + $el.outerHeight(),
-    visibleTop = elTop < scrollTop ? scrollTop : elTop,
-    visibleBottom = elBottom > scrollBot ? scrollBot : elBottom;
+function getVisible($el){
+  var scrollTop = $(this).scrollTop();
+  var scrollBot = scrollTop + $(this).height();
+  var elTop = $el.offset().top;
+  var elBottom = elTop + $el.outerHeight();
+  var visibleTop = elTop < scrollTop ? scrollTop : elTop;
+  var visibleBottom = elBottom > scrollBot ? scrollBot : elBottom;
   return visibleBottom - visibleTop;
 }
 
 /**
  * Control element classes so that they have that class only when they are visible in the viewport.
- * 
+ *
  * Elements that should be controlled should have the class "elf-class-control".
  * Class that should be removed/added as it disappears/appears in the viewport should be in data-control attribute.
- * 
+ *
  * MAIN USAGE: Hide CSS animations when they aren't visible, for performance reasons.
  * @method toggleClassOnVisible
  */
@@ -233,7 +233,7 @@ $(window).on("resize", function(){
 $(document).ready(function(){
   $(".major-block:odd").css("background-color", "#e9e9e9");
   hideModals();
-  
+
   lowerTheFooter();
   setInterval(lowerTheFooter, 3000);
 
