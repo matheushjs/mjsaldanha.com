@@ -85,9 +85,24 @@ if(process.env.NODE_ENV === "production"){
 
 /**
  * Compresses the HTTP responses.
+ * We don't compress some file formats because they are already compressed, and further compression results in
+ *   a waste of computational power or even an elongation of the data transferral time.
+ *
  * @method midware-compression
  */
-app.use(compression());
+app.use(compression({
+  filter: (req, res) => {
+    var url = req.url;
+    var exts = [".jpg", ".png"];
+
+    for(var ext in exts){
+      if(url.endsWith(ext))
+        return false;
+    }
+
+    return compression.filter(req, res);
+  }
+}));
 
 /**
  * Sets up cookie-based user sessions.
