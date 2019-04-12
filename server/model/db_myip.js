@@ -45,13 +45,11 @@ function insert(ip){
     fs.writeFile(filePath, ip, "utf8", (err) => {
       if(err){
         reject(err);
+      } else if(ip.length > 100){
+        reject("Given IP is too big. Possible injection attack detected.");
       } else {
-        if(ip.length > 100){
-          reject("Given IP is too big. Possible injection attack detected.");
-        } else {
-          myIp = ip;
-          resolve(ip);
-        }
+        myIp = ip;
+        resolve(ip);
       }
     });
   });

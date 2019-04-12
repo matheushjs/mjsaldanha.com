@@ -99,8 +99,6 @@ function filter_language(dest, src, lang){
   }
 }
 
-/* 
- */
 /**
  * Based on req.language, fill req.translations with due translation strings.
  *

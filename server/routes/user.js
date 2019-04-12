@@ -1,4 +1,4 @@
-var express  = require("express");
+var express = require("express");
 var router = new express.Router();
 var ReCaptcha = require("recaptcha2");
 var dbUsers = require("../model/db_users");
@@ -9,6 +9,79 @@ try {
 } catch(err) {
   recaptcha = null;
   console.log(err.message);
+}
+
+/* Validates fields.
+ * If both passwords are given, they are checked for equality.
+ * Returns an object with:
+ *   failMsg: message saying what went wrong.
+ *   success: boolean telling if validation was successful
+ */
+function validateFields(username = null, password1 = null, password2 = null, callname = null){
+  var retVal = {
+    failMsg: "",
+    success: false,
+  };
+
+  if(username !== null){
+    let trimmed = username.trim();
+
+    // Leading/trailing whitespace
+    if(username.length !== trimmed.length){
+      retVal.failMsg = "Please ensure there are no leading/trailing whitespace characters in your username.";
+      return retVal;
+    }
+  }
+
+  if(password1 !== null){
+    let trimmed = password1.trim();
+
+    // Leading/trailing whitespace
+    if(password1.length !== trimmed.length){
+      retVal.failMsg = "Please ensure there are no leading/trailing whitespace characters in your passwords.";
+      return retVal;
+    }
+
+    // Length
+    if(password1.length <= 0 || password1.length > 128){
+      retVal.failMsg = "Password should have at least 1 and at most 128 characters.";
+      return retVal;
+    }
+  }
+
+  if(password2 !== null){
+    let trimmed = password2.trim();
+
+    // Leading/trailing whitespace
+    if(password2.length !== trimmed.length){
+      retVal.failMsg = "Please ensure there are no leading/trailing whitespace characters in your passwords.";
+      return retVal;
+    }
+
+    // Length
+    if(password2.length <= 0 || password2.length > 128){
+      retVal.failMsg = "Password should have at least 1 and at most 128 characters.";
+      return retVal;
+    }
+  }
+
+  if(password1 !== null && password2 !== null){
+    // Equality
+    if(password1 !== password2){
+      retVal.failMsg = "Passwords don't match!";
+      return retVal;
+    }
+  }
+
+  if(callname !== null){
+    if(callname.length <= 0 || callname.length > 128){
+      retVal.failMsg = "Name should have at least 1 and at most 128 characters.";
+      return retVal;
+    }
+  }
+
+  retVal.success = true;
+  return retVal;
 }
 
 router.route("/login")
@@ -25,7 +98,7 @@ router.route("/login")
       return;
     }
 
-    var authUser = await dbUsers.authenticate(req.body.username, req.body.password);    
+    var authUser = await dbUsers.authenticate(req.body.username, req.body.password);
     if(!authUser){
       req.renderer.login(res, "User does not exist. Please, sign up.");
     } else {
@@ -64,7 +137,7 @@ router.route("/signup")
   // Validate/fix fields
   // For callname, we just remove trailing/leading whitespace
   req.body.callname = req.body.callname.replace(/^ */g, "").replace(/ *$/g, "");
-  
+
   let check = validateFields(req.body.username, req.body.password, req.body.password2, req.body.callname);
   if(!check.success){
     req.renderer.signup(res, check.failMsg);
@@ -113,7 +186,7 @@ router.route("/account")
 .post(async (req, res, next) => {
   // For callname, we just remove trailing/leading whitespace
   req.body.callname = req.body.callname.replace(/^ */g, "").replace(/ *$/g, "");
-  
+
   if(!req.body.cur_password){
     req.body.password = null;
     req.body.password2 = null;
@@ -165,83 +238,5 @@ router.route("/logout")
   req.session.userid   = null;
   res.redirect("/");
 });
-
-// Removes whitespace from left and right sides of the string
-function stringTrim(string){
-  return string.replace(/^ */g, "").replace(/ *$/g, "");
-}
-
-/* Validates fields.
- * If both passwords are given, they are checked for equality.
- * Returns an object with:
- *   failMsg: message saying what went wrong.
- *   success: boolean telling if validation was successful
- */
-function validateFields(username = null, password1 = null, password2 = null, callname = null){
-  var retVal = {
-    failMsg: "",
-    success: false,
-  };
-  
-  if(username !== null){
-    let trimmed = stringTrim(username);
-
-    // Leading/trailing whitespace
-    if(username.length !== trimmed.length){
-      retVal.failMsg = "Please ensure there are no leading/trailing whitespace characters in your username.";
-      return retVal;
-    }
-  }
-
-  if(password1 !== null){
-    let trimmed = stringTrim(password1);
-    
-    // Leading/trailing whitespace
-    if(password1.length !== trimmed.length){
-      retVal.failMsg = "Please ensure there are no leading/trailing whitespace characters in your passwords.";
-      return retVal;
-    }
-
-    // Length
-    if(password1.length <= 0 || password1.length > 128){
-      retVal.failMsg = "Password should have at least 1 and at most 128 characters.";
-      return retVal;
-    }
-  }
-
-  if(password2 !== null){
-    let trimmed = stringTrim(password2);
-    
-    // Leading/trailing whitespace
-    if(password2.length !== trimmed.length){
-      retVal.failMsg = "Please ensure there are no leading/trailing whitespace characters in your passwords.";
-      return retVal;
-    }
-
-    // Length
-    if(password2.length <= 0 || password2.length > 128){
-      retVal.failMsg = "Password should have at least 1 and at most 128 characters.";
-      return retVal;
-    }
-  }
-
-  if(password1 !== null && password2 !== null){
-    // Equality
-    if(password1 !== password2){
-      retVal.failMsg = "Passwords don't match!";
-      return retVal;
-    }
-  }
-
-  if(callname !== null){
-    if(callname.length <= 0 || callname.length > 128){
-      retVal.failMsg = "Name should have at least 1 and at most 128 characters.";
-      return retVal;
-    }
-  }
-
-  retVal.success = true;
-  return retVal;
-}
 
 module.exports = router;

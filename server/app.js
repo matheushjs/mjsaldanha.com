@@ -40,13 +40,13 @@ const articlesRoutes    = require("./routes/articles");
  */
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
-//app.set('view options', {debug: true});
+// app.set('view options', {debug: true});
 
 /**
  * Sets logging for debugging & control.
  *
  * We do not log requests to `/myip`.
- * 
+ *
  * @method midware-morgan
  */
 app.use(morgan(":date[clf] :remote-addr :method :status :response-time ms - :url :res[content-length]", {

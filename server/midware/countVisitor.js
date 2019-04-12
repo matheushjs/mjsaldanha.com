@@ -10,7 +10,7 @@
 const db_visitors = require("../model/db_visitors");
 
 module.exports = (req, res, next) => {
-  if(req.session.firstVisit == null){
+  if(req.session.firstVisit === undefined){
     req.session.firstVisit = true;
   } else if(req.session.firstVisit === true){
     req.session.firstVisit = false;

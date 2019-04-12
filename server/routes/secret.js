@@ -14,9 +14,10 @@ router.use(async (req, res, next) => {
 
   if(users && users.indexOf(req.session.username) >= 0){
     return next();
-  } else {
-    req.renderer.messagePage(res, "Sorry, you don't have permission to visit this special page.");
   }
+
+  req.renderer.messagePage(res, "Sorry, you don't have permission to visit this special page.");
+  return null;
 });
 
 router.get("/all_users", async (req, res) => {

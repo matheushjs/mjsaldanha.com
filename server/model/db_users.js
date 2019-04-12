@@ -81,16 +81,15 @@ async function lookup(obj){
     var rows = await client.all(query, [arg]);
     var user = rows[0];
 
-    if(!user){
+    if(!user)
       return null;
-    } else {
-      // Remove whitespace
-      user.username = user.username.replace(/^ */g, "").replace(/ *$/g, "");
-      user.password = user.password.replace(/^ */g, "").replace(/ *$/g, "");
-      user.callname = user.callname.replace(/^ */g, "").replace(/ *$/g, "");
 
-      return new User(user.rowid, user.username, user.password, user.callname);
-    }
+    // Remove whitespace
+    user.username = user.username.replace(/^ */g, "").replace(/ *$/g, "");
+    user.password = user.password.replace(/^ */g, "").replace(/ *$/g, "");
+    user.callname = user.callname.replace(/^ */g, "").replace(/ *$/g, "");
+
+    return new User(user.rowid, user.username, user.password, user.callname);
   } catch(e) {
     console.log(e);
   }
@@ -115,7 +114,7 @@ async function lookup(obj){
  */
 async function authenticate(user, pass){
   var recUser = await lookup({username: user});
-  
+
   if(!recUser){
     return null;
   }
@@ -125,9 +124,9 @@ async function authenticate(user, pass){
 
   if(recUser.hashpass === secret + hash){
     return recUser;
-  } else {
-    return null;
   }
+
+  return null;
 }
 
 /**
@@ -186,9 +185,9 @@ async function signUp(user, pass, name){
 
   if(authUser){
     return new User(authUser.id, authUser.username, authUser.hashpass, authUser.callname);
-  } else {
-    return null;
   }
+
+  return null;
 }
 
 /**
@@ -242,7 +241,7 @@ async function updateUser(user){
     retUser.hashpass = secret + hash;
   }
 
-  var stmt = client.prepare("UPDATE users SET callname = ?, password = ? WHERE rowid = ?", [retUser.callname, retUser.hashpass, retUser.id]);      
+  var stmt = client.prepare("UPDATE users SET callname = ?, password = ? WHERE rowid = ?", [retUser.callname, retUser.hashpass, retUser.id]);
   try {
     await stmt.run();
     return retUser;
