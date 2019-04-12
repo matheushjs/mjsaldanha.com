@@ -14,6 +14,7 @@
   "dependencies": {
     "@types/cookie-session": "^2.0.35",
     "body-parser": "^1.18.3",
+    "compression": "^1.7.4",
     "cookie-session": "^2.0.0-beta.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",

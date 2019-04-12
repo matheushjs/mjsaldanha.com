@@ -16,6 +16,7 @@ const express = require("express");
 const https = require("https");
 const fs = require("fs");
 const helmet = require("helmet");
+const compression = require("compression");
 
 const app = express();
 
@@ -81,6 +82,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 if(process.env.NODE_ENV === "production"){
   app.use(helmet());
 }
+
+/**
+ * Compresses the HTTP responses.
+ * @method midware-compression
+ */
+app.use(compression());
 
 /**
  * Sets up cookie-based user sessions.
