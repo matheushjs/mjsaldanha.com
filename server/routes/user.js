@@ -84,32 +84,7 @@ function validateFields(username = null, password1 = null, password2 = null, cal
   return retVal;
 }
 
-router.route("/login")
-.get(async (req, res) => {
-  req.renderer.login(res);
-})
-.post(async (req, res) => {
-  if(req.session.username){
-    req.renderer.login(res, "You're already logged in. Please log out first.");
-  } else {
-    let check = validateFields(req.body.username, req.body.password);
-    if(!check.success){
-      req.renderer.login(res, check.failMsg);
-      return;
-    }
-
-    var authUser = await dbUsers.authenticate(req.body.username, req.body.password);
-    if(!authUser){
-      req.renderer.login(res, "User does not exist. Please, sign up.");
-    } else {
-      req.session.userid = authUser.id;
-      req.session.username = authUser.username;
-      req.session.callname = authUser.callname;
-      res.redirect("/");
-    }
-  }
-});
-
+router.get("/login", async (req, res) => { req.renderer.login(res); })
 
 router.route("/signup")
 // Check ReCaptcha. Sign up is disabled if it doesn't work.
