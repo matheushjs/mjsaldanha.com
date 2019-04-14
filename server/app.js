@@ -17,6 +17,7 @@ const https = require("https");
 const fs = require("fs");
 const helmet = require("helmet");
 const compression = require("compression");
+const uglifyEs = require("uglify-es");
 const minify = require("express-minify");
 
 const app = express();
@@ -106,8 +107,7 @@ app.use(compression({
 }));
 
 /**
- * Minifies CSS and JSON files.
- * We don't minify javascript because Webpack is already doing that.
+ * Minifies files.
  *
  * This midware must come after `compression` and before `express.static`.
  *
@@ -115,9 +115,16 @@ app.use(compression({
  */
 app.use(minify({
   cache: false,
-  uglifyJsModule: null,
-  errorHandler: null,
-  jsMatch: false,
+  uglifyJsModule: uglifyEs,
+  errorHandler: (err, callback) => {
+    console.log(err);
+    if(err.stage === "compile"){
+      callback(err.error, JSON.stringify(err.error));
+      return;
+    }
+    callback(err.error, err.body);
+  },
+  jsMatch: /javascript/,
   cssMatch: /css/, // Matches content-types containing 'css'
   jsonMatch: /json/,
 }));
