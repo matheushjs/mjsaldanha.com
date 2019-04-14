@@ -31,6 +31,7 @@ const secretRoutes = require("./routes/secret").router;
 const userRoutes   = require("./routes/user");
 const sciProjectsRoutes = require("./routes/sci-projects");
 const articlesRoutes    = require("./routes/articles");
+const modelRoutes       = require("./model/db_routes");
 
 /**
  * Sets up EJS templating.
@@ -199,6 +200,7 @@ app.use("/user", userRoutes);
 app.use("/", indexRoutes);
 app.use("/sci-projects", sciProjectsRoutes);
 app.use("/articles", articlesRoutes);
+app.use("/model", modelRoutes);
 
 // Handle page not found
 app.get("*", (req, res) => {
