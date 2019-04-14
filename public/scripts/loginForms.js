@@ -115,17 +115,16 @@ function validateLogin(){
       dataType: "json",
     })
     .done(function(json){
-      console.log(json);
       if(json.success){
         window.location.replace("/");
       } else {
         appendFailMsg(json.errorTxt);
       }
-    }) 
+    })
     .fail(function(xhr, status, err){
       appendFailMsg("Something went wrong in the server. I am really sorry for that. Please try again later.");
       appendFailMsg("Server error: " + err);
-    })
+    });
   }
 
   return false;

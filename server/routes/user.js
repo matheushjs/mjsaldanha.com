@@ -84,7 +84,7 @@ function validateFields(username = null, password1 = null, password2 = null, cal
   return retVal;
 }
 
-router.get("/login", async (req, res) => { req.renderer.login(res); })
+router.get("/login", async (req, res) => req.renderer.login(res));
 
 router.route("/signup")
 // Check ReCaptcha. Sign up is disabled if it doesn't work.
