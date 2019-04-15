@@ -17,7 +17,6 @@ const https = require("https");
 const fs = require("fs");
 const helmet = require("helmet");
 const compression = require("compression");
-const uglifyEs = require("uglify-es");
 const minify = require("express-minify");
 
 const app = express();
@@ -116,7 +115,7 @@ app.use(compression({
  */
 app.use(minify({
   cache: false,
-  uglifyJsModule: uglifyEs,
+  uglifyJsModule: null,
   errorHandler: (err, callback) => {
     console.log(err);
     if(err.stage === "compile"){
@@ -125,7 +124,7 @@ app.use(minify({
     }
     callback(err.error, err.body);
   },
-  jsMatch: /javascript/,
+  jsMatch: false,
   cssMatch: /css/, // Matches content-types containing 'css'
   jsonMatch: /json/,
 }));
