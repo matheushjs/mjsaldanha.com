@@ -1,6 +1,14 @@
 body {
   background: #f8f8f8;
   height: 100%;
+
+  /* Set up font families. Dinamically loaded fonts come first, then come the other ones. */
+  font-family: "Noto Sans JP", /* Dynamically loaded from Google. */
+    -apple-system, BlinkMacSystemFont, /* OSX fonts */
+    "Segoe UI", /* Windows */
+    Roboto, /* Android */
+    Arial, sans-serif, /* Preferable default fonts. */
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Emoji fonts */
 }
 
 a:hover {
@@ -71,6 +79,9 @@ a:hover {
   padding-bottom: 16vh;
 }
 
+.major-block h1 {
+  font-family: "Noto Serif JP";
+}
 
 .slideanim {
   visibility: hidden;
