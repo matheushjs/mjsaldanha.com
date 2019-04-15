@@ -216,6 +216,9 @@ $(document).ready(function(){
   $("form input").first().focus();
 });
 
-$(document).ready(function(){
-
-});
+export default {
+  validateLogin,
+  validateSignup,
+  validateAccount,
+  accountOnFocus
+};

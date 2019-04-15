@@ -40,7 +40,7 @@ Account Management page
           <label class="col-form-label col-sm-2">Current Password:</label>
           <div class="col-sm-10">
             <input style="background-color: lightgrey;" type="password" class="form-control" name="cur_password" placeholder="Enter your current password"
-                  onfocus="return accountOnFocus();">
+                  onfocus="return Elf.accountOnFocus();">
           </div>
         </div>
 
@@ -59,7 +59,7 @@ Account Management page
         </div>
         
         <div class="col-sm-12">
-          <button type="submit" class="btn btn-dark" onclick="return validateAccount();">Finish Editing</button>
+          <button type="submit" class="btn btn-dark" onclick="return Elf.validateAccount();">Finish Editing</button>
         </div>
 
         <div class="alert alert-info" style="display: none; color: darkblue; width: 50%; margin: 30px auto 0;">
