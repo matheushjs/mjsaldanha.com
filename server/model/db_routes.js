@@ -85,4 +85,47 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.post("/account", async (req, res) => {
+  // Check if user is logged in
+  if(!req.session.userid){
+    res.json({
+      errorTxt: "You must be logged in to change your account information.",
+      errorNum: 1
+    });
+    return;
+  }
+
+  if(typeof(req.body["cur_password"]) === "undefined"){
+    // Only callname to update
+    user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname});
+
+    if(user){
+      // Update session
+      req.session.callname = user.callname;
+
+      // Signalize a success
+      res.json({ success: true });
+    } else {
+      res.json({
+        errorTxt: "Sorry, something went wrong in our database. Try again later.",
+        errorNum: 2
+      });
+    }
+  } else {
+    user = await dbUsers.authenticate(req.session.username, req.body.cur_password);
+    if(!user){
+      res.json({
+        errorTxt: "Wrong current password!",
+        errorNum: 3
+      });
+      return;
+    }
+
+    user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname, password: req.body.password});
+    // Update session
+    req.session.callname = user.callname;
+    res.json({ success: true });
+  }
+});
+
 module.exports = router;

@@ -190,23 +190,6 @@ function validateSignup(){
   return false;
 }
 
-/* Currently only used in account/ . */
-function sendForm(data) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function(){
-    if (this.readyState === 4){
-      if(this.responseText !== ""){
-        appendFailMsg(this.responseText);
-      } else {
-        appendFailMsg("Your changes have been recorded!");
-      }
-    }
-  };
-  xhttp.open("POST", "/user/account", true);
-  xhttp.setRequestHeader("Content-type", "application/json");
-  xhttp.send(JSON.stringify(data));
-}
-
 /* exported validateAccount */
 function validateAccount(){
   clearErrors();
@@ -223,8 +206,22 @@ function validateAccount(){
 
   // If user didn't touch password fields, we end validation here.
   if(curpwd === "" && pwd === "" && pwd2 === ""){
-    sendForm({
-      callname: callname,
+    $.ajax({
+      url: "/model/account",
+      data: { callname },
+      type: "POST",
+      dataType: "json",
+    })
+    .done(function(json){
+      if(json.success){
+        appendFailMsg("Your changes have been recorded!");
+      } else {
+        appendFailMsg(json.errorTxt);
+      }
+    })
+    .fail(function(xhr, status, err){
+      appendFailMsg("Something went wrong in the server. I am really sorry for that. Please try again later.");
+      appendFailMsg("Server error: " + err);
     });
     return false;
   }
@@ -236,15 +233,30 @@ function validateAccount(){
   failures += !validatePassword2();
 
   if(failures === 0){
-    sendForm({
-      callname: callname,
-      cur_password: curpwd,
-      password: pwd,
-      password2: pwd2
+    $.ajax({
+      url: "/model/account",
+      data: {
+        callname,
+        cur_password: curpwd,
+        password: pwd,
+        password2: pwd2
+      },
+      type: "POST",
+      dataType: "json",
+    })
+    .done(function(json){
+      if(json.success){
+        appendFailMsg("Your changes have been recorded!");
+      } else {
+        appendFailMsg(json.errorTxt);
+      }
+    })
+    .fail(function(xhr, status, err){
+      appendFailMsg("Something went wrong in the server. I am really sorry for that. Please try again later.");
+      appendFailMsg("Server error: " + err);
     });
   }
 
-  /* Always return false because we are using AJAX here. */
   return false;
 }
 
