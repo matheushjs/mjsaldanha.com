@@ -95,7 +95,9 @@ router.post("/account", async (req, res) => {
     return;
   }
 
-  if(typeof(req.body["cur_password"]) === "undefined"){
+  var user;
+
+  if(typeof req.body.cur_password === "undefined"){
     // Only callname to update
     user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname});
 
