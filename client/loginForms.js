@@ -141,8 +141,51 @@ function validateSignup(){
   failures += !validatePassword();
   failures += !validatePassword2();
 
-  if(failures === 0)
-    return true;
+  if(failures === 0){
+    var username = $("form input[name='username']").val();
+    var callname = $("form input[name='callname']").val();
+    var password = $("form input[name='password']").val();
+    var password2 = $("form input[name='password2']").val();
+    var recaptcha;
+    
+    try {
+      recaptcha = grecaptcha.getResponse();
+    } catch(err){
+      appendFailMsg("Something went wrong with Google ReCaptcha. I am sorry for this. Please try signing up later.");
+      appendFailMsg("Error text: " + err);
+      return false;
+    }
+
+    if(recaptcha == ""){
+      appendFailMsg("Please click the ReCaptcha box.");
+      return false;
+    }
+
+    $.ajax({
+      url: "/model/signup",
+      data: {
+        username,
+        callname,
+        password,
+        password2,
+        recaptcha
+      },
+      type: "POST",
+      dataType: "json",
+    })
+    .done(function(json){
+      if(json.success){
+        window.location.replace("/");
+      } else {
+        appendFailMsg(json.errorTxt);
+        grecaptcha.reset();
+      }
+    })
+    .fail(function(xhr, status, err){
+      appendFailMsg("Something went wrong in the server. I am really sorry for that. Please try again later.");
+      appendFailMsg("Server error: " + err);
+    });
+  }
 
   return false;
 }

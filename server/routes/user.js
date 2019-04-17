@@ -1,15 +1,6 @@
 var express = require("express");
 var router = new express.Router();
-var ReCaptcha = require("recaptcha2");
 var dbUsers = require("../model/db_users");
-
-var recaptcha;
-try {
-  recaptcha = new ReCaptcha(require("./private_code").recaptchaKeys);
-} catch(err) {
-  recaptcha = null;
-  console.log(err.message);
-}
 
 /* Validates fields.
  * If both passwords are given, they are checked for equality.
@@ -86,62 +77,14 @@ function validateFields(username = null, password1 = null, password2 = null, cal
 
 router.get("/login", async (req, res) => req.renderer.login(res));
 
-router.route("/signup")
-// Check ReCaptcha. Sign up is disabled if it doesn't work.
-.all(async (req, res, next) => {
-  if(!recaptcha){
-    req.renderer.messagePage(res, "ReCaptcha could not be loaded in the server.");
-  } else {
-    next();
-  }
-})
-// Serve GET request
-.get(async (req, res) => {
-  req.renderer.signup(res);
-})
-// Check if user isn't logged in already
-.post(async (req, res, next) => {
-  if(req.session.username){
-    req.renderer.messagePage(res, "Please, log out of your current account before signing up.");
-  } else {
-    next();
-  }
-})
-// Validate fields
-.post(async (req, res, next) => {
-  // Validate/fix fields
-  // For callname, we just remove trailing/leading whitespace
-  req.body.callname = req.body.callname.replace(/^ */g, "").replace(/ *$/g, "");
+router.get("/signup", async (req, res) => {
+  // Check ReCaptcha. Sign up is disabled if it doesn't work.
+  if(!recaptcha)
+    req.renderer.messagePage(res, "ReCaptcha could not be loaded in the server. I am sorry about this. Please sign up in a later time.");
 
-  let check = validateFields(req.body.username, req.body.password, req.body.password2, req.body.callname);
-  if(!check.success){
-    req.renderer.signup(res, check.failMsg);
-  } else {
-    next();
-  }
-})
-// Validate ReCaptcha
-.post(async (req, res, next) => {
-  recaptcha.validate(req.body["g-recaptcha-response"])
-  .then(() => {
-    next();
-  })
-  .catch((err) => {
-    req.renderer.signup(res, "ReCAPTCHA validation failed. Please try again.");
-  });
-})
-// Sign user up in database
-.post(async (req, res) => {
-  var authUser = await dbUsers.signUp(req.body.username, req.body.password, req.body.callname);
-  if(authUser){
-    req.session.userid = authUser.id;
-    req.session.username = authUser.username;
-    req.session.callname = authUser.callname;
-    res.redirect("/");
-  } else {
-    req.renderer.signup(res, "Username already exists. Please, pick another one.");
-  }
+  req.renderer.signup(res);
 });
+
 
 
 router.route("/account")

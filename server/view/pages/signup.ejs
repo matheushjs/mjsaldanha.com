@@ -31,7 +31,7 @@ Options:
     </div>
 
     <div class="container text-center">
-      <form class="form-horizontal" method="post">
+      <form class="form-horizontal">
         <div class="form-group form-row" id="callname_group">
           <label class="col-form-label col-sm-2">Name:</label>
           <div class="col-sm-10">
@@ -64,9 +64,9 @@ Options:
           <div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LewBUgUAAAAADgVXdjSgymYSwI7lQsLF1mDgryY"></div>
         </div>
 
-        <div class="col-sm-12">
-          <button type="submit" class="btn btn-dark" onclick="return Elf.validateSignup();">Submit</button>
-        </div>
+        <button type="submit" class="btn btn-dark" onclick="return Elf.validateSignup();">
+          Submit
+        </button>
 
         <div class="alert alert-info" style="<%= failMsg ? '' : 'display: none;' %> color: darkblue; width: 50%; margin: 30px auto 0;">
           <strong>Info: </strong> <span class="fail-msg"><%= failMsg %></span>
