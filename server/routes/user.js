@@ -76,16 +76,7 @@ function validateFields(username = null, password1 = null, password2 = null, cal
 }
 
 router.get("/login", async (req, res) => req.renderer.login(res));
-
-router.get("/signup", async (req, res) => {
-  // Check ReCaptcha. Sign up is disabled if it doesn't work.
-  if(!recaptcha)
-    req.renderer.messagePage(res, "ReCaptcha could not be loaded in the server. I am sorry about this. Please sign up in a later time.");
-
-  req.renderer.signup(res);
-});
-
-
+router.get("/signup", async (req, res) => req.renderer.signup(res));
 
 router.route("/account")
 // Check if user is logged in

@@ -147,7 +147,7 @@ function validateSignup(){
     var password = $("form input[name='password']").val();
     var password2 = $("form input[name='password2']").val();
     var recaptcha;
-    
+
     try {
       recaptcha = grecaptcha.getResponse();
     } catch(err){
@@ -156,7 +156,7 @@ function validateSignup(){
       return false;
     }
 
-    if(recaptcha == ""){
+    if(recaptcha === ""){
       appendFailMsg("Please click the ReCaptcha box.");
       return false;
     }

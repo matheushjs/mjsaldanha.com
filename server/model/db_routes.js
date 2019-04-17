@@ -47,13 +47,21 @@ router.post("/signup", async (req, res) => {
     return;
   }
 
+  if(!ReCaptchaValidator){
+    res.json({
+      errorTxt: "Could not load ReCAPTCHA in the server. I am sorry for this. Please sign up at a later time.",
+      errorNum: 2
+    });
+    return;
+  }
+
   // Validate recaptcha
   try {
     await ReCaptchaValidator.validate(req.body.recaptcha);
   } catch(err){
     res.json({
       errorTxt: "ReCAPTCHA validation failed. Please try again.",
-      errorNum: 2
+      errorNum: 3
     });
     console.log("Recaptcha error: " + err);
     return;
@@ -71,7 +79,7 @@ router.post("/signup", async (req, res) => {
   } else {
     res.json({
       errorTxt: "Username already exists. Please, pick another one.",
-      errorNum: 3
+      errorNum: 4
     });
     return;
   }
