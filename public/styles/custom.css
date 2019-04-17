@@ -3,8 +3,7 @@ body {
   height: 100%;
 
   /* Set up font families. Dinamically loaded fonts come first, then come the other ones. */
-  font-family: "Noto Sans JP", /* Dynamically loaded from Google. */
-    -apple-system, BlinkMacSystemFont, /* OSX fonts */
+  font-family: -apple-system, BlinkMacSystemFont, /* OSX fonts */
     "Segoe UI", /* Windows */
     Roboto, /* Android */
     Arial, sans-serif, /* Preferable default fonts. */
@@ -80,7 +79,7 @@ a:hover {
 }
 
 .major-block h1 {
-  font-family: "Noto Serif JP";
+  font-family: "Noto Serif JP", serif;
 }
 
 .slideanim {
