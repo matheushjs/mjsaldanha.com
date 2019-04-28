@@ -8,17 +8,42 @@
 
 "use strict";
 
+function formFailMsg(){
+  return $("form .fail-msg");
+}
+function formAlert(){
+  return $("form .alert");
+}
+function formAllInputs(){
+  return $("form input");
+}
+function formUsername(){
+  return $("form input[name='username']");
+}
+function formCallname(){
+  return $("form input[name='callname']");
+}
+function formPassword(){
+  return $("form input[name='password']");
+}
+function formPassword2(){
+  return $("form input[name='password2']");
+}
+function formCurPassword(){
+  return $("form input[name='cur_password']");
+}
+
 function appendFailMsg(str){
-  var msg = $("form .fail-msg");
+  var msg = formFailMsg();
 
   msg.text(msg.text() + " " + str);
-  $("form .alert").css("display", "");
+  formAlert().css("display", "");
 }
 
 function clearErrors(){
-  $("form .fail-msg").text("");
-  $("form .alert").css("display", "none");
-  $("form input").removeClass("is-invalid").removeClass("is-valid");
+  formFailMsg().text("");
+  formAlert().css("display", "none");
+  formAllInputs().removeClass("is-invalid").removeClass("is-valid");
 }
 
 /**
@@ -58,29 +83,29 @@ function validateName($formElem, elemName, checkWhitespace, checkLength){
 }
 
 function validateCallname(){
-  var elem = $("form input[name='callname']");
+  var elem = formCallname();
   elem.val(elem.val().trim());
   return validateName(elem, "Name", false, true);
 }
 
 function validateUsername(){
-  var elem = $("form input[name='username']");
+  var elem = formUsername();
   return validateName(elem, "Username", true, true);
 }
 
 function validateCurPassword(){
-  var elem = $("form input[name='cur_password']");
+  var elem = formCurPassword();
   return validateName(elem, "Current password", true, true);
 }
 
 function validatePassword(){
-  var elem = $("form input[name='password']");
+  var elem = formPassword();
   return validateName(elem, "Password", true, true);
 }
 
 function validatePassword2(){
-  var elem1 = $("form input[name='password']");
-  var elem2 = $("form input[name='password2']");
+  var elem1 = formPassword();
+  var elem2 = formPassword2();
 
   if(elem2.val() !== elem1.val()){
     appendFailMsg("Passwords are not equal.");
@@ -102,8 +127,8 @@ function validateLogin(){
   failures += !validatePassword();
 
   if(failures === 0){
-    var username = $("form input[name='username']").val();
-    var password = $("form input[name='password']").val();
+    var username = formUsername().val();
+    var password = formPassword().val();
 
     $.ajax({
       url: "/model/login",
@@ -142,10 +167,10 @@ function validateSignup(){
   failures += !validatePassword2();
 
   if(failures === 0){
-    var username = $("form input[name='username']").val();
-    var callname = $("form input[name='callname']").val();
-    var password = $("form input[name='password']").val();
-    var password2 = $("form input[name='password2']").val();
+    var username = formUsername().val();
+    var callname = formCallname().val();
+    var password = formPassword().val();
+    var password2 = formPassword2().val();
     var recaptcha;
 
     try {
@@ -194,10 +219,10 @@ function validateSignup(){
 function validateAccount(){
   clearErrors();
 
-  var callname = $("form input[name='callname']").val();
-  var curpwd = $("form input[name='cur_password']").val();
-  var pwd = $("form input[name='password']").val();
-  var pwd2 = $("form input[name='password2']").val();
+  var callname = formCallname().val();
+  var curpwd = formCurPassword().val();
+  var pwd = formPassword().val();
+  var pwd2 = formPassword2().val();
 
   // For callname, we ensure it has at least 1 character and less than 128
   if(!validateCallname()){
@@ -262,13 +287,13 @@ function validateAccount(){
 
 /* exported accountOnFocus */
 function accountOnFocus(){
-  $("form input[name='cur_password']").css("background-color", "");
-  $("form input[name='password']").prop("disabled", false);
-  $("form input[name='password2']").prop("disabled", false);
+  formCurPassword().css("background-color", "");
+  formPassword().prop("disabled", false);
+  formPassword2().prop("disabled", false);
 }
 
 $(document).ready(function(){
-  $("form input").first().focus();
+  formAllInputs().first().focus();
 });
 
 export default {
