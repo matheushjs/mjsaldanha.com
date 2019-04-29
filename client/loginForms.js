@@ -153,11 +153,9 @@ function loadingModal(toggle){
     div.append(inner);
     body.append(div);
     gModal = div;
-  } else {
-    if(gModal !== null){
-      gModal.remove();
-      gModal = null;
-    }
+  } else if(gModal !== null){
+    gModal.remove();
+    gModal = null;
   }
 }
 
@@ -172,7 +170,7 @@ function validateLogin(){
 
   if(failures === 0){
     loadingModal(true);
-    
+
     var username = formUsername().val();
     var password = formPassword().val();
 
