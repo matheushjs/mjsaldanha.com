@@ -117,6 +117,50 @@ function validatePassword2(){
   return true;
 }
 
+var gModal = null;
+function loadingModal(toggle){
+  if(toggle){
+    var body = $("body");
+    var div = $("<div></div>");
+    div.css({
+      "position": "fixed",
+      "top": "0px",
+      "bottom": "0px",
+      "left": "0px",
+      "right": "0px",
+      "display": "block",
+      "background": "#0007",
+      "z-index": "1050"
+    });
+
+    var inner = $("<div></div>");
+    inner.append("<span class='spinner-border'></span>");
+    inner.append("<h3 class='mx-auto' style='display: block;'>Please, wait a moment.</h3>");
+    inner.css({
+      "min-height": "20vh",
+      "top": "40vh",
+      "position": "relative",
+      "background": "#ffff",
+      "margin": "auto",
+      "padding-top": "30px",
+      "padding-bottom": "30px",
+    });
+    inner.addClass("border");
+    inner.addClass("rounded");
+    inner.addClass("text-center");
+    inner.addClass("container");
+
+    div.append(inner);
+    body.append(div);
+    gModal = div;
+  } else {
+    if(gModal !== null){
+      gModal.remove();
+      gModal = null;
+    }
+  }
+}
+
 /* exported validateLogin */
 function validateLogin(){
   clearErrors();
@@ -127,6 +171,8 @@ function validateLogin(){
   failures += !validatePassword();
 
   if(failures === 0){
+    loadingModal(true);
+    
     var username = formUsername().val();
     var password = formPassword().val();
 
@@ -149,6 +195,9 @@ function validateLogin(){
     .fail(function(xhr, status, err){
       appendFailMsg("Something went wrong in the server. I am really sorry for that. Please try again later.");
       appendFailMsg("Server error: " + err);
+    })
+    .always(function(){
+      loadingModal(false);
     });
   }
 
@@ -173,16 +222,20 @@ function validateSignup(){
     var password2 = formPassword2().val();
     var recaptcha;
 
+    loadingModal(true);
+
     try {
       recaptcha = grecaptcha.getResponse();
     } catch(err){
       appendFailMsg("Something went wrong with Google ReCaptcha. I am sorry for this. Please try signing up later.");
       appendFailMsg("Error text: " + err);
+      loadingModal(false);
       return false;
     }
 
     if(recaptcha === ""){
       appendFailMsg("Please click the ReCaptcha box.");
+      loadingModal(false);
       return false;
     }
 
@@ -209,6 +262,9 @@ function validateSignup(){
     .fail(function(xhr, status, err){
       appendFailMsg("Something went wrong in the server. I am really sorry for that. Please try again later.");
       appendFailMsg("Server error: " + err);
+    })
+    .always(function(){
+      loadingModal(false);
     });
   }
 
@@ -231,6 +287,7 @@ function validateAccount(){
 
   // If user didn't touch password fields, we end validation here.
   if(curpwd === "" && pwd === "" && pwd2 === ""){
+    loadingModal(true);
     $.ajax({
       url: "/model/account",
       data: { callname },
@@ -247,6 +304,9 @@ function validateAccount(){
     .fail(function(xhr, status, err){
       appendFailMsg("Something went wrong in the server. I am really sorry for that. Please try again later.");
       appendFailMsg("Server error: " + err);
+    })
+    .always(function(){
+      loadingModal(false);
     });
     return false;
   }
@@ -258,6 +318,7 @@ function validateAccount(){
   failures += !validatePassword2();
 
   if(failures === 0){
+    loadingModal(true);
     $.ajax({
       url: "/model/account",
       data: {
@@ -279,6 +340,9 @@ function validateAccount(){
     .fail(function(xhr, status, err){
       appendFailMsg("Something went wrong in the server. I am really sorry for that. Please try again later.");
       appendFailMsg("Server error: " + err);
+    })
+    .always(function(){
+      loadingModal(false);
     });
   }
 
