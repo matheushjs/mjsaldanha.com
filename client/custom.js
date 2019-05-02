@@ -135,6 +135,11 @@ function toggleClassOnVisible(){
   });
 }
 
+/**
+ * Responsible for the animation in the home page where words flow horizontally in a random manner.
+ *
+ * @method textFlowAnimation
+ */
 function textFlowAnimation(){
   const TIMEOUT = 700;
   const FLOW_TIME = 6000;
@@ -220,6 +225,13 @@ function textFlowAnimation(){
   setTimeout(textFlowAnimation, TIMEOUT);
 }
 
+/**
+ * Takes all elements with class 'elf-email' and makes their text equal to our contact e-mail.
+ *
+ * This is intended to avoid crawlers to crawl our e-mail and spam us.
+ *
+ * @method showEmail
+ */
 function showEmail(){
   var elems = $(".elf-email");
   elems.text(decodeURIComponent("mhjsaldanha" + "%40" + "gmail" + "." + "com"));
