@@ -220,6 +220,11 @@ function textFlowAnimation(){
   setTimeout(textFlowAnimation, TIMEOUT);
 }
 
+function showEmail(){
+  var elems = $(".elf-email");
+  elems.text(decodeURIComponent("mhjsaldanha" + "%40" + "gmail" + "." + "com"));
+}
+
 $(window).on("scroll", function(){
   slideOnScroll();
   toggleClassOnVisible();
@@ -238,4 +243,5 @@ $(document).ready(function(){
   setInterval(lowerTheFooter, 3000);
 
   textFlowAnimation();
+  showEmail();
 });

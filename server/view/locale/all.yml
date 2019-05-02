@@ -631,11 +631,11 @@ footer:
     en: |
       Page created and maintained by Matheus Henrique Junqueira Saldanha.
       <br>
-      mhjsaldanha@gmail.com
+      <span class="elf-email">Enable javascript to see</span>
     ja: |
       Matheus Henrique Junqueira Saldanhaに創造されて保っているページです。
       <br>
-      mhjsaldanha@gmail.com
+      <span class="elf-email">Javascriptが能動であれば見えます。</span>
 login:
   placeholder1:
     en: Enter your username
