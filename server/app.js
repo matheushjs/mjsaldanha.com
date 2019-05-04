@@ -30,6 +30,7 @@ const secretRoutes = require("./routes/secret").router;
 const userRoutes   = require("./routes/user");
 const sciProjectsRoutes = require("./routes/sci-projects");
 const articlesRoutes    = require("./routes/articles");
+const nihongoRoutes     = require("./routes/elf-nihongo");
 const modelRoutes       = require("./model/db_routes");
 
 /**
@@ -199,6 +200,7 @@ app.use("/user", userRoutes);
 app.use("/", indexRoutes);
 app.use("/sci-projects", sciProjectsRoutes);
 app.use("/articles", articlesRoutes);
+app.use("/elf-nihongo", nihongoRoutes);
 app.use("/model", modelRoutes);
 
 // Handle page not found
