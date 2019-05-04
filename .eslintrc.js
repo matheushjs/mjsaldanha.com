@@ -84,14 +84,14 @@ module.exports = {
     // "curly": 2, // specify curly brace conventions for all control statements
     "default-case": 2, // require default case in switch statements (off by default)
     "dot-notation": 2, // encourages use of dot notation whenever possible
-    "eqeqeq": 2, // require the use of === and !==
+    "eqeqeq": [2, "always", {"null": "ignore"}], // require the use of === and !==
     "guard-for-in": 2, // make sure for-in loops have an if statement (off by default)
     "no-alert": 2, // disallow the use of alert, confirm, and prompt
     "no-caller": 2, // disallow use of arguments.caller or arguments.callee
     "no-div-regex": 2, // disallow division operators explicitly at beginning of regular expression (off by default)
     "no-else-return": 2, // disallow else after a return in an if (off by default)
     "no-labels": [2, {"allowLoop": false, "allowSwitch": false}], // disallow use of labels for anything other then loops and switches
-    "no-eq-null": 2, // disallow comparisons to null without a type-checking operator (off by default)
+    //"no-eq-null": 2, // disallow comparisons to null without a type-checking operator (off by default)
     "no-eval": 2, // disallow use of eval()
     "no-extend-native": 2, // disallow adding to native types
     "no-extra-bind": 2, // disallow unnecessary function binding
