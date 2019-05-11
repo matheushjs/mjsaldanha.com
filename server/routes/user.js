@@ -1,14 +1,14 @@
 var express = require("express");
 var router = new express.Router();
 
-router.get("/login", async (req, res) => req.renderer.login(res));
-router.get("/signup", async (req, res) => req.renderer.signup(res));
+router.get("/login", async (req, res) => res.renderer.login());
+router.get("/signup", async (req, res) => res.renderer.signup());
 router.get("/account", async (req, res) => {
   // Confirm user is logged in
   if(!req.session.userid){
     res.redirect("/");
   } else {
-    req.renderer.account(res);
+    res.renderer.account();
   }
 });
 

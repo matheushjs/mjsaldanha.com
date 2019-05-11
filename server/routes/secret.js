@@ -16,17 +16,17 @@ router.use(async (req, res, next) => {
     return next();
   }
 
-  req.renderer.messagePage(res, "Sorry, you don't have permission to visit this special page.");
+  res.renderer.messagePage("Sorry, you don't have permission to visit this special page.");
   return null;
 });
 
 router.get("/all_users", async (req, res) => {
   var users = await dbUsers.allUsers();
-  req.renderer.allUsers(res, users);
+  res.renderer.allUsers(users);
 });
 
 router.get("/", async (req, res) => {
-  req.renderer.secret(res, req.visitorCounter);
+  res.renderer.secret(req.visitorCounter);
 });
 
 module.exports = {

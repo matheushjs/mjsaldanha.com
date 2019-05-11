@@ -13,21 +13,23 @@
  *
  * @class View::Renderer
  * @constructor
+ * @param {Object} res The `res` object from the express environment.
  * @param {String} [callname = null] Name by which we should call the user.
  * @param {Boolean} [specialUser = false] Whether the user has a special page or not.
  * @param {String} [language = "en"] The language in which to serve the page.
  * @param {Object} [translations = null] Object containing translation strings for the language in which to
  */
 class Renderer {
-  constructor(callname = null, specialUser = false, language = "en", translations = null){
+  constructor(res, callname = null, specialUser = false, language = "en", translations = null){
+    this.res = res;
     this.callname = callname;
     this.specialUser = specialUser;
     this.language = language;
     this.translations = translations;
   }
 
-  messagePage(res, message){
-    res.render("message_page", {
+  messagePage(message){
+    this.res.render("message_page", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -36,8 +38,8 @@ class Renderer {
     });
   }
 
-  account(res){
-    res.render("account", {
+  account(){
+    this.res.render("account", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -45,18 +47,8 @@ class Renderer {
     });
   }
 
-  login(res, failMsg = null){
-    res.render("login", {
-      callname: this.callname,
-      specialUser: this.specialUser,
-      lang: this.language,
-      trans: this.translations,
-      failMsg,
-    });
-  }
-
-  signup(res, failMsg = null){
-    res.render("signup", {
+  login(failMsg = null){
+    this.res.render("login", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -65,8 +57,18 @@ class Renderer {
     });
   }
 
-  secret(res, visitors = -1){
-    res.render("secret/index", {
+  signup(failMsg = null){
+    this.res.render("signup", {
+      callname: this.callname,
+      specialUser: this.specialUser,
+      lang: this.language,
+      trans: this.translations,
+      failMsg,
+    });
+  }
+
+  secret(visitors = -1){
+    this.res.render("secret/index", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -75,8 +77,8 @@ class Renderer {
     });
   }
 
-  allUsers(res, users){
-    res.render("secret/all_users", {
+  allUsers(users){
+    this.res.render("secret/all_users", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -85,8 +87,8 @@ class Renderer {
     });
   }
 
-  render(res, pageName){
-    res.render(pageName, {
+  render(pageName){
+    this.res.render(pageName, {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,

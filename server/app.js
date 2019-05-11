@@ -177,7 +177,7 @@ app.use(localize.langDecider);
 app.use(localize.localeProvider);
 
 /**
- * Creates `req.renderer`.
+ * Creates `res.renderer`.
  *
  * See also {{#crossLink "midware/makeRenderer.js:method"}}{{/crossLink}}.
  *
@@ -207,14 +207,14 @@ app.use("/model", modelRoutes);
 app.get("*", (req, res) => {
   // 404: Not Found
   res.status(404);
-  req.renderer.messagePage(res, "Sorry! The requested page doesn't seem to exist.");
+  res.renderer.messagePage("Sorry! The requested page doesn't seem to exist.");
 });
 
 // Handle errors
 app.use((err, req, res, next) => {
   // 500: Internal Server Error
   res.status(500);
-  req.renderer.messagePage(res, "Sorry, something went wrong in the server. The maintainer has been notified about this error.");
+  res.renderer.messagePage("Sorry, something went wrong in the server. The maintainer has been notified about this error.");
   console.log(err.stack);
 });
 
