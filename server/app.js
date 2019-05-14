@@ -15,7 +15,7 @@ const morgan = require("morgan");
 const express = require("express");
 const https = require("https");
 const fs = require("fs");
-const helmet = require("helmet");
+//const helmet = require("helmet");
 const compression = require("compression");
 const minify = require("express-minify");
 
@@ -83,7 +83,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
  * @method midware-helmet
  */
 if(process.env.NODE_ENV === "production"){
-  app.use(helmet());
+  //app.use(helmet());
 }
 
 /**
