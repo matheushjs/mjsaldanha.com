@@ -15,7 +15,7 @@ const morgan = require("morgan");
 const express = require("express");
 const https = require("https");
 const fs = require("fs");
-//const helmet = require("helmet");
+// const helmet = require("helmet");
 const compression = require("compression");
 const minify = require("express-minify");
 
@@ -83,7 +83,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
  * @method midware-helmet
  */
 if(process.env.NODE_ENV === "production"){
-  //app.use(helmet());
+  // app.use(helmet());
 }
 
 /**
@@ -226,11 +226,23 @@ app.listen(port);
 var sslPort;
 try {
   sslPort = process.env.SSL_PORT || 5001;
+  let certType = process.env.SSL_CERTIFICATE_TYPE || "cloudflare";
+  let certificate = {};
 
-  https.createServer({
-    key: fs.readFileSync("server/ssl/key.pem"),
-    cert: fs.readFileSync("server/ssl/cert.pem")
-  }, app).listen(sslPort);
+  if(certType === "positivessl"){
+    certificate = {
+      cert: fs.readFileSync("server/ssl/mjsaldanha_com.crt"),
+      ca: fs.readFileSync("server/ssl/mjsaldanha_com.ca-bundle"),
+      key: fs.readFileSync("server/ssl/mjsaldanha_com.key")
+    };
+  } else if(certType === "cloudflare"){
+    certificate = {
+      key: fs.readFileSync("server/ssl/key.pem"),
+      cert: fs.readFileSync("server/ssl/cert.pem")
+    };
+  }
+
+  https.createServer(certificate, app).listen(sslPort);
 } catch(err) {
   if(err.code === "ENOENT"){
     console.log(`ERROR: File "${err.path}" was not found.`);
