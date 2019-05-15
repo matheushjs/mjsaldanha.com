@@ -12,6 +12,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const morgan = require("morgan");
+const rfs = require("rotating-file-stream");
 const express = require("express");
 const https = require("https");
 const fs = require("fs");
@@ -48,18 +49,32 @@ app.set("views", path.join(__dirname, "view/pages"));
 
 /**
  * Sets logging for debugging & control.
+ * 
+ * Log files are placed under directory /server/log, and are separated in 1 file per each day.
  *
  * We do not log requests to `/myip`.
  *
  * @method midware-morgan
  */
+const logDir = path.join(__dirname, "log");
+
+// Ensure directory exists
+if(!fs.existsSync(logDir))
+  fs.mkdirSync(logDir);
+
+const logStream = rfs("access.log", {
+  interval: "1d", // rotate daily
+  path: logDir
+});
+
 app.use(morgan(":date[clf] :remote-addr :method :status :response-time ms - :url :res[content-length]", {
   skip: (req, res) => {
     var skipThis = {
       "/myip": 1,
     };
     return skipThis[req.path] ? true : false;
-  }
+  },
+  stream: logStream
 }));
 
 /**
