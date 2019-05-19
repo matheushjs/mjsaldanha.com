@@ -85,7 +85,7 @@ function listResearch($researchTable, $badgeTable, $spinnerBox){
   .done(json => {
     placeResearch(json.research, json.badgeCss, $researchTable);
     placeBadges(json.badgeTitles, json.badgeCss, $badgeTable);
-    $spinnerBox.hide();
+    $spinnerBox.remove();
   })
   .fail((xhr, status, err) => {
     $spinnerBox.append("<p>Something went wrong in the server. I am really sorry for that. Please try again later.</p>");
