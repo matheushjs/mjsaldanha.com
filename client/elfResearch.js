@@ -70,11 +70,13 @@ function placeBadges(badgeTitles, badgeCss, $table){
 /**
  * Lists research projects (and a list of badges) as a table in /sci-projects/.
  * 
- * @param {JQuery} $table Table to which to append the generated <tbody>.
+ * @param {JQuery} $researchTable Table to which to append the generated <tbody> with research projects.
+ * @param {JQuery} $badgeTable Table to which to append the badge list.
+ * @param {JQuery} $spinnerBox Container to hide after we are finished fetching things from the server. We also add error messages here.
  * @method listResearch
  */
 /* exported listResearch */
-function listResearch($researchTable, $badgeTable){
+function listResearch($researchTable, $badgeTable, $spinnerBox){
   $.ajax({
     url: "/json/research-projs.json",
     type: "GET",
@@ -83,12 +85,12 @@ function listResearch($researchTable, $badgeTable){
   .done(json => {
     placeResearch(json.research, json.badgeCss, $researchTable);
     placeBadges(json.badgeTitles, json.badgeCss, $badgeTable);
+    $spinnerBox.hide();
   })
   .fail((xhr, status, err) => {
-    console.log("Something went wrong in the server. I am really sorry for that. Please try again later.");
-    console.log("Server error: " + err);
-  })
-  .always(() => console.log("Finished"));
+    $spinnerBox.append("<p>Something went wrong in the server. I am really sorry for that. Please try again later.</p>");
+    $spinnerBox.append("<p>Server error: " + err + "</p>");
+  });
 }
 
 export default {

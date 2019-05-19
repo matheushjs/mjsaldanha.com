@@ -42,6 +42,11 @@
       </p>
     </div>
 
+    <div id="spinner-container" class="container text-center mb-5">
+      <span class="spinner-border"></span>
+      <span>Loading...</span>
+    </div>
+
     <div class="container">
       <table id="research-table" class="table table-hover mb-5">
 
@@ -57,6 +62,6 @@
       <% include ../../partials/footer %>
     </div>
 
-    <script>Elf.listResearch($("#research-table"), $("#badge-table"));</script>
+    <script>Elf.listResearch($("#research-table"), $("#badge-table"), $("#spinner-container"));</script>
   </body>
 </html>
