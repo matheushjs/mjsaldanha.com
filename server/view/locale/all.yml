@@ -122,9 +122,9 @@ home:
     allarticles:
       en: All Articles
       ja: 全ての論文
-    pspandhpc:
-      en: Protein Structure Prediction and HPC
-      ja: タンパク質構造予測に高性能計算
+    currproj:
+      en: Deep Neural Networks and HPC
+      ja: 深い学習に高性能計算
   elfprojs:
     init:
       en: |
