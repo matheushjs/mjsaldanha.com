@@ -1,0 +1,39 @@
+{
+  "research": [
+    {
+      "beginDate": "2017",
+      "endDate": "2019",
+      "title": "Protein Structure Prediction with Parallel Algorithms Orthogonal to Parallel Platforms",
+      "badges": "hpc psp",
+      "href": "/sci-projects/1-psp-project-1/"
+    },
+    {
+      "beginDate": "2019",
+      "endDate": "2020",
+      "title": "Accelerating Deep Neural Network Parameter Servers with High Performance Computing Techniques",
+      "badges": "hpc ml dnn",
+      "href": "/sci-projects/2-accel-nns-1/"
+    }
+  ],
+  "badgeCss": {
+    "hpc": {
+      "background": "linear-gradient(135deg, #fa8072ff 50%, #fa8072aa)"
+    },
+    "psp": {
+      "background": "linear-gradient(135deg, #92f4a3ff 50%, #92f4a3aa)"
+    },
+    "ml": {
+      "background": "linear-gradient(135deg, #00f2ffaa 50%, #00f2ff88)"
+    },
+    "dnn": {
+      "background": "linear-gradient(135deg, #212121ff 50%, #212121aa)",
+      "color": "white"
+    }
+  },
+  "badgeTitles": {
+    "hpc": "High-Performance Computing",
+    "psp": "Protein Structure Prediction",
+    "ml": "Machine Learning",
+    "dnn": "Deep Neural Networks"
+  }
+}

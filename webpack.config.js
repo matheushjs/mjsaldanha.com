@@ -4,7 +4,8 @@ module.exports = {
   mode: "production",
   entry: {
     custom: "./client/custom.js",
-    loginForms: "./client/loginForms.js"
+    loginForms: "./client/loginForms.js",
+    elfResearch: "./client/elfResearch.js"
   },
   output: {
     path: path.resolve(__dirname, "public/scripts"),

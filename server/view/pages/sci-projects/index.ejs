@@ -22,6 +22,8 @@
         margin: 20px auto 40px;
       }
     </style>
+
+    <script src="/scripts/elfResearch.js"></script>
   </head>
 
   <body>
@@ -41,53 +43,20 @@
     </div>
 
     <div class="container">
-      <table class="table table-hover mb-5">
-        <tbody>
-          <tr>
-            <th scope="row">2019-2020</th>
-            <td>
-              <a href="/sci-projects/2-accel-nns-1/">Accelerating Deep Neural Network Parameter Servers with High Performance Computing Techniques</a>
-              <span class="badge badge-danger">HPC</span>
-              <span class="badge badge-primary">ML</span>
-              <span class="badge badge-dark">DNN</span>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2017-2019</th>
-            <td>
-              <a href="/sci-projects/1-psp-project-1/">Protein Structure Prediction with Parallel Algorithms Orthogonal to Parallel Platforms</a>
-              <span class="badge badge-danger">HPC</span>
-              <span class="badge badge-success">PSP</span>
-            </td>
-          </tr>
-        </tbody>
+      <table id="research-table" class="table table-hover mb-5">
+
       </table>
 
       <h5>Labels</h5>
-      <table class="table table-sm">
-        <tbody>
-            <tr>
-              <td><span class="badge badge-danger">HPC</span></td>
-              <td>High-Performance Computing</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-success">PSP</span></td>
-              <td>Protein Structure Prediction</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-primary">ML</span></td>
-              <td>Machine Learning</td>
-            </tr>
-            <tr>
-              <td><span class="badge badge-dark">DNN</span></td>
-              <td>Deep Neural Networks</td>
-            </tr>
-        </tbody>
+      <table id="badge-table" class="table table-sm">
+
       </table>
     </div>
 
     <div>
       <% include ../../partials/footer %>
     </div>
+
+    <script>Elf.listResearch($("#research-table"), $("#badge-table"));</script>
   </body>
 </html>
