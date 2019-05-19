@@ -16,9 +16,9 @@ function placeResearch(array, badgeCss, $table){
     // Add date to the row
     tr.append(
       $("<th scope='row'></th>")
-        .text(elem.beginDate + "-" + elem.endDate)
+      .text(elem.beginDate + "-" + elem.endDate)
     );
-    
+
     // Add title + badges to the row
     let td = $("<td></td>");
 
@@ -27,11 +27,11 @@ function placeResearch(array, badgeCss, $table){
     td.append(" ");
 
     // Badges
-    elem.badges.split(" ").forEach(elem => {
+    elem.badges.split(" ").forEach(badge => {
       td.append(
         $("<span class='badge'></span>")
-        .text(elem.toUpperCase())
-        .css(badgeCss[elem])
+        .text(badge.toUpperCase())
+        .css(badgeCss[badge])
       );
       td.append(" ");
     });
@@ -45,10 +45,10 @@ function placeResearch(array, badgeCss, $table){
 // Place list of badges in the given table
 function placeBadges(badgeTitles, badgeCss, $table){
   var tbody = $("<tbody></tbody>");
-  
+
   for(var abbrv in badgeTitles){
     let tr = $("<tr></tr>");
-    
+
     // Add badge to row
     tr.append(
       $("<td></td>").append(
@@ -60,7 +60,7 @@ function placeBadges(badgeTitles, badgeCss, $table){
 
     // Add title of the badge to the row
     tr.append($("<td></td>").text(badgeTitles[abbrv]));
-    
+
     tbody.append(tr);
   }
 
@@ -69,7 +69,7 @@ function placeBadges(badgeTitles, badgeCss, $table){
 
 /**
  * Lists research projects (and a list of badges) as a table in /sci-projects/.
- * 
+ *
  * @param {JQuery} $researchTable Table to which to append the generated <tbody> with research projects.
  * @param {JQuery} $badgeTable Table to which to append the badge list.
  * @param {JQuery} $spinnerBox Container to hide after we are finished fetching things from the server. We also add error messages here.

@@ -49,7 +49,7 @@ app.set("views", path.join(__dirname, "view/pages"));
 
 /**
  * Sets logging for debugging & control.
- * 
+ *
  * Log files are placed under directory /server/log, and are separated in 1 file per each day.
  *
  * We do not log requests to `/myip`.
