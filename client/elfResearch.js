@@ -114,6 +114,13 @@ function placeArticles(array, $articleTable){
   });
 }
 
+/**
+ * Places list of articles in a table in /articles/.
+ * 
+ * @param {JQuery} $articleTable Table to which to add rows with the article data.
+ * @param {JQuery} $spinnerBox Element containing the spinner showing 'loading...'
+ * @method listArticles
+ */
 function listArticles($articleTable, $spinnerBox){
   $.ajax({
     url: "/json/sci-articles.json",
