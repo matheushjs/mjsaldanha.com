@@ -1,11 +1,11 @@
 [
   {
-    "harvard-ref": "Saldanha, M.H.J. and de Souza, P.S.L., 2019. High Performance Algorithms for Counting Collisions and Pairwise Interactions. arXiv preprint arXiv:1901.11204.",
+    "harvardRef": "Saldanha, M.H.J. and de Souza, P.S.L., 2019. High Performance Algorithms for Counting Collisions and Pairwise Interactions. arXiv preprint arXiv:1901.11204.",
     "title": "High Performance Algorithms for Counting Collisions and Pairwise Interactions",
     "year": 2019,
-    "published-at": "ICCS",
-    "rank-era": "A",
-    "rank-qualis": "A1",
+    "publishedAt": "ICCS",
+    "rankEra": "A",
+    "rankQualis": "A1",
     "href": "/articles/1-hpc-sspi"
   }
 ]
