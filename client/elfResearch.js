@@ -7,6 +7,8 @@
  * @class Client::elfResearch.js
  */
 
+import htmlEscape from "escape-html";
+
 // Place research projects in the given table (we add a <tbody> to it)
 function placeResearch(array, badgeCss, $table){
   var tbody = $("<tbody></tbody>");
@@ -104,10 +106,10 @@ function placeArticles(array, $articleTable){
   array.forEach(elem => {
     let row = template
     .replace("YEAR", elem.year)
-    .replace("CONFERENCE", elem.publishedAt)
-    .replace("TITLE", elem.title)
+    .replace("CONFERENCE", htmlEscape(elem.publishedAt))
+    .replace("TITLE", htmlEscape(elem.title))
     .replace("LINK", elem.href)
-    .replace("REFERENCE", elem.harvardRef);
+    .replace("REFERENCE", htmlEscape(elem.harvardRef));
     $articleTable.append($(row));
   });
 }
