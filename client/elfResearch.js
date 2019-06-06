@@ -11,24 +11,22 @@ import htmlEscape from "escape-html";
 
 // Place research projects in the given table (we add a <tbody> to it)
 function placeResearch(array, badgeCss, $table){
-  var tbody = $("<tbody></tbody>");
+  const template = "" +
+  "<tr>" +
+  "  <th scope='row'>YEAR</th>" +
+  "  <td class='js-select'><a href='LINK'>TITLE</a></td>" +
+  "</tr>";
+
   array.forEach(elem => {
-    let tr = $("<tr></tr>");
+    let html = template
+    .replace("YEAR", elem.beginDate + "-" + elem.endDate)
+    .replace("LINK", elem.href)
+    .replace("TITLE", htmlEscape(elem.title));
 
-    // Add date to the row
-    tr.append(
-      $("<th scope='row'></th>")
-      .text(elem.beginDate + "-" + elem.endDate)
-    );
+    let row = $(html);
+    let td = row.find(".js-select");
 
-    // Add title + badges to the row
-    let td = $("<td></td>");
-
-    // Title
-    td.append($("<a></a>").attr("href", elem.href).text(elem.title));
     td.append(" ");
-
-    // Badges
     elem.badges.split(" ").forEach(badge => {
       td.append(
         $("<span class='badge'></span>")
@@ -38,35 +36,30 @@ function placeResearch(array, badgeCss, $table){
       td.append(" ");
     });
 
-    tbody.append(tr.append(td));
+    $table.append(row);
   });
-
-  $table.append(tbody);
 }
 
 // Place list of badges in the given table
 function placeBadges(badgeTitles, badgeCss, $table){
-  var tbody = $("<tbody></tbody>");
+  const template = "" +
+  "<tr>" +
+  "   <td>"  +
+  "     <span class='badge'>BADGE</span>" +
+  "   </td>" +
+  "   <td>TITLE</td>" +
+  "</tr>";
 
   for(var abbrv in badgeTitles){
-    let tr = $("<tr></tr>");
+    let row = template
+    .replace("BADGE", abbrv.toUpperCase())
+    .replace("TITLE", htmlEscape(badgeTitles[abbrv]));
 
-    // Add badge to row
-    tr.append(
-      $("<td></td>").append(
-        $("<span class='badge'></span>")
-        .text(abbrv.toUpperCase())
-        .css(badgeCss[abbrv])
-      )
-    );
+    let $elem = $(row);
+    $elem.find(".badge").css(badgeCss[abbrv]);
 
-    // Add title of the badge to the row
-    tr.append($("<td></td>").text(badgeTitles[abbrv]));
-
-    tbody.append(tr);
+    $table.append($elem);
   }
-
-  $table.append(tbody);
 }
 
 /**
