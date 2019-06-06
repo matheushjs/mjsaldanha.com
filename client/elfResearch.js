@@ -93,6 +93,42 @@ function listResearch($researchTable, $badgeTable, $spinnerBox){
   });
 }
 
+function placeArticles(array, $articleTable){
+  let template = '\
+    <tr>\
+      <th scope="row">YEAR</th>\
+      <td>CONFERENCE</td>\
+      <td><a href="LINK">TITLE</a><br><i>REFERENCE</i></td>\
+    </tr>';
+  
+  array.forEach(elem => {
+    let row = template
+      .replace("YEAR", elem["year"])
+      .replace("CONFERENCE", elem["published-at"])
+      .replace("TITLE", elem["title"])
+      .replace("LINK", elem["href"])
+      .replace("REFERENCE", elem["harvard-ref"]);
+    $articleTable.append($(row));
+  });
+}
+
+function listArticles($articleTable, $spinnerBox){
+  $.ajax({
+    url: "/json/sci-articles.json",
+    type: "GET",
+    dataType: "json",
+  })
+  .done(json => {
+    placeArticles(json, $articleTable);
+    $spinnerBox.remove();
+  })
+  .fail((xhr, status, err) => {
+    $spinnerBox.append("<p>Something went wrong in the server. I am really sorry for that. Please try again later.</p>");
+    $spinnerBox.append("<p>Server error: " + err + "</p>");
+  });
+}
+
 export default {
-  listResearch
+  listResearch,
+  listArticles
 };
