@@ -9,6 +9,7 @@
 
 
 const fs = require("fs");
+const logger = require("../utils/logger.js");
 const filePath = "server/model/visitorCount.dat";
 
 var counter = -1;
@@ -30,10 +31,10 @@ function inc(){
   counter += 1;
   fs.writeFile(filePath, counter, "utf8", (err) => {
     if(err){
-      console.log(err);
+      logger.error(err);
     }
   });
-  console.log(`New visitor! Counter is now: ${counter}.`);
+  logger.info(`New visitor! Counter is now: ${counter}.`);
 }
 
 /**

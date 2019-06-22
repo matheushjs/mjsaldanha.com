@@ -8,6 +8,7 @@
  */
 
 const db_visitors = require("../model/db_visitors");
+const logger = require("../utils/logger.js");
 
 module.exports = (req, res, next) => {
   if(req.session.firstVisit === undefined){
@@ -21,7 +22,7 @@ module.exports = (req, res, next) => {
     req.visitorCounter = db_visitors.get();
   } catch(e) {
     req.visitorCounter = -1;
-    console.log(e);
+    logger.error(e);
   }
 
   next();

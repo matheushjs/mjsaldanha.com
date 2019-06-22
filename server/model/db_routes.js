@@ -2,13 +2,14 @@ var express = require("express");
 var router = new express.Router();
 var ReCaptcha = require("recaptcha2");
 var dbUsers = require("./db_users");
+const logger = require("../utils/logger.js");
 
 var ReCaptchaValidator;
 try {
   ReCaptchaValidator = new ReCaptcha(require("../routes/private_code").recaptchaKeys);
 } catch(err) {
   ReCaptchaValidator = null;
-  console.log(err.message);
+  logger.warn(err.message);
 }
 
 router.post("/login", async (req, res) => {
@@ -52,6 +53,7 @@ router.post("/signup", async (req, res) => {
       errorTxt: "Could not load ReCAPTCHA in the server. I am sorry for this. Please sign up at a later time.",
       errorNum: 2
     });
+    logger.warn("User could not sign up due to error in ReCAPTCHA.");
     return;
   }
 
@@ -63,7 +65,6 @@ router.post("/signup", async (req, res) => {
       errorTxt: "ReCAPTCHA validation failed. Please try again.",
       errorNum: 3
     });
-    console.log("Recaptcha error: " + err);
     return;
   }
 

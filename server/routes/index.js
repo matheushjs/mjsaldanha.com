@@ -1,6 +1,7 @@
 var express  = require("express");
 var router = new express.Router();
 var dbMyip = require("../model/db_myip");
+const logger = require("../utils/logger.js");
 
 // Serve home page in multiple languages for Google Crawlers (the Renderer takes care of serving correct language).
 router.get("/",         async (req, res) => res.renderer.render("index"));
@@ -20,7 +21,7 @@ router.route("/myip")
     res.header("Pragma", "no-cache");
     res.send(myip.replace(/ /g, ""));
   } catch(err) {
-    console.log(err.stack);
+    logger.error(err);
   }
 })
 .post(async (req, res) => {
@@ -29,7 +30,7 @@ router.route("/myip")
       await dbMyip.insert(req.body.ip);
       res.send("Ok");
     } catch(err) {
-      console.log(err.stack);
+      logger.error(err);
     }
   } else {
     res.send("Error");

@@ -12,6 +12,7 @@
 
 const yaml = require("js-yaml");
 const fs   = require("fs");
+const logger = require("../utils/logger.js");
 
 // read YAML file
 const jsonStrings = yaml.load(fs.readFileSync("./server/view/locale/all.yml", "utf8"));
@@ -116,7 +117,7 @@ function filter_language(dest, src, lang){
  */
 function localeProvider(req, res, next) {
   if(!req.language){
-    console.log("localeProvider has been called, but req.language is not defined!");
+    logger.error("localeProvider has been called, but req.language is not defined!");
     req.language = "en";
   }
 

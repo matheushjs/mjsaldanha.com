@@ -18,6 +18,7 @@
 const crypto = require("crypto");
 const keyBytes = 16; // Size of the secret keys to be used with Hmac
 const client = require("./db_client");
+const logger = require("../utils/logger.js");
 
 
 /**
@@ -57,7 +58,7 @@ function User(id, username, hashpass, callname){
  * @example
  *     var user = await lookup({username: "walwal"});
  *     if(user){
- *       console.log(user.callname);
+ *       logger.info(user.callname);
  *     }
  */
 async function lookup(obj){
@@ -73,7 +74,7 @@ async function lookup(obj){
     query += queryRowid;
     arg = obj.id;
   } else {
-    console.log("Object given as argument doesn't have recognizable attributes.");
+    logger.error("Object given as argument doesn't have recognizable attributes.");
     return null;
   }
 
@@ -91,7 +92,7 @@ async function lookup(obj){
 
     return new User(user.rowid, user.username, user.password, user.callname);
   } catch(e) {
-    console.log(e);
+    logger.error(e);
   }
 
   return null;
@@ -156,7 +157,7 @@ async function addUser(user, pass, name){
     await stmt.run();
     return await lookup({username: user});
   } catch(e) {
-    console.log(e);
+    logger.error(e);
     return null;
   }
 }
@@ -177,7 +178,7 @@ async function addUser(user, pass, name){
  * @example
  *     var authUser = await dbUsers.signUp(req.body.username, req.body.password, req.body.callname);
  *     if(!authUser){
- *       console.log("Username already exists. Please, pick another one.");
+ *       logger.info("Username already exists. Please, pick another one.");
  *     }
  */
 async function signUp(user, pass, name){
@@ -217,7 +218,7 @@ async function signUp(user, pass, name){
  * @example
  *     var user = await dbUsers.updateUser({id: req.session.userid, callname: req.body.callname});
  *     if(user){
- *         console.log("OK");
+ *         logger.info("OK");
  *     }
  */
 async function updateUser(user){
@@ -246,7 +247,7 @@ async function updateUser(user){
     await stmt.run();
     return retUser;
   } catch(e) {
-    console.log(e);
+    logger.error(e);
     return null;
   }
 }
@@ -265,7 +266,7 @@ async function allUsers(){
   try {
     rows = await client.all("SELECT rowid, * FROM users");
   } catch(e) {
-    console.log(e);
+    logger.error(e);
     return [];
   }
 
