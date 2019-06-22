@@ -24,7 +24,7 @@ if(process.env.NODE_ENV !== "production"){
 // Workaround to print Error objects neatly.
 logger.error = item => {
   const message = item instanceof Error ? item.stack : item;
-  logger.log({ level: 'error', message });
+  logger.log({ level: "error", message });
 };
 
 
