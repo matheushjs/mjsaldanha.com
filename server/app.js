@@ -19,6 +19,7 @@ const fs = require("fs");
 // const helmet = require("helmet");
 const compression = require("compression");
 const minify = require("express-minify");
+const logger = require("./utils/logger.js");
 
 const app = express();
 
@@ -133,7 +134,7 @@ app.use(minify({
   cache: false,
   uglifyJsModule: null,
   errorHandler: (err, callback) => {
-    console.log(err);
+    logger.error(err);
     if(err.stage === "compile"){
       callback(err.error, JSON.stringify(err.error));
       return;
@@ -230,7 +231,7 @@ app.use((err, req, res, next) => {
   // 500: Internal Server Error
   res.status(500);
   res.renderer.messagePage("Sorry, something went wrong in the server. The maintainer has been notified about this error.");
-  console.log(err.stack);
+  logger.error(err.stack);
 });
 
 // Serve HTTP
@@ -260,12 +261,12 @@ try {
   https.createServer(certificate, app).listen(sslPort);
 } catch(err) {
   if(err.code === "ENOENT"){
-    console.log(`ERROR: File "${err.path}" was not found.`);
+    logger.error(`File "${err.path}" was not found.`);
   } else {
-    console.log(err);
+    logger.error(err);
   }
 
   sslPort = -1;
 }
 
-console.log(`Server listening on ${port} (HTTP) and ${sslPort} (HTTPS)`);
+logger.info(`Server listening on ${port} (HTTP) and ${sslPort} (HTTPS)`);
