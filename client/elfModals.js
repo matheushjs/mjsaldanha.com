@@ -41,38 +41,28 @@ function loadingModal(obj){
     content.body = "";
   }
 
-  // Css for the block that occupies the whole height/width of the screen.
-  var outerCss = {
-    "position": "fixed",
-    "top": "0px",
-    "bottom": "0px",
-    "left": "0px",
-    "right": "0px",
-    "display": "block",
-    "background": "#0007",
-    "z-index": "1050"
-  };
-
-  // Css for the inner block that will hold the content
-  var innerCss = {
-    "min-height": "20vh",
-    "top": "40vh",
-    "position": "relative",
-    "background": "#ffff",
-    "margin": "auto",
-    "padding-top": "30px",
-    "padding-bottom": "30px",
-  };
-
-  var div = $("<div></div>").css(outerCss).append([
-    $("<div></div>").css(innerCss).addClass("border rounded text-center container").append([
-      content.spinner,
-      content.header,
-      content.body
-    ])
-  ]);
+  var div = $("<div class='modal' tabindex='-1' role='dialog'></div>").append(
+    $("<div class='modal-dialog modal-dialog-centered text-center' role='document'>").append(
+      $("<div class='modal-content border rounded shadow'></div>").append(
+        $("<div class='modal-body'></div>").append([
+          content.spinner,
+          content.header,
+          content.body
+        ])
+      )
+    )
+  );
 
   $("body").append(div);
+  div.modal();
+  
+  // Rewrite its 'remove' method, because just removing it leaves the background darkened.
+  div.removeOld = div.remove;
+  div.remove = function(){
+    this.modal("hide");
+    this.removeOld();
+  };
+
   return div;
 }
 
