@@ -62,9 +62,9 @@ function User(id, username, hashpass, callname){
  *     }
  */
 async function lookup(obj){
-  var query = "SELECT rowid, * FROM users WHERE ";
+  var query = "SELECT * FROM users WHERE ";
   const queryUsername = "username = ?";
-  const queryRowid = "rowid = ?";
+  const queryRowid = "id = ?";
   var arg;
 
   if(obj.username){
@@ -90,7 +90,7 @@ async function lookup(obj){
     user.password = user.password.replace(/^ */g, "").replace(/ *$/g, "");
     user.callname = user.callname.replace(/^ */g, "").replace(/ *$/g, "");
 
-    return new User(user.rowid, user.username, user.password, user.callname);
+    return new User(user.id, user.username, user.password, user.callname);
   } catch(e) {
     logger.error(e);
   }
@@ -242,7 +242,7 @@ async function updateUser(user){
     retUser.hashpass = secret + hash;
   }
 
-  var stmt = client.prepare("UPDATE users SET callname = ?, password = ? WHERE rowid = ?", [retUser.callname, retUser.hashpass, retUser.id]);
+  var stmt = client.prepare("UPDATE users SET callname = ?, password = ? WHERE id = ?", [retUser.callname, retUser.hashpass, retUser.id]);
   try {
     await stmt.run();
     return retUser;
@@ -264,7 +264,7 @@ async function updateUser(user){
 async function allUsers(){
   var rows;
   try {
-    rows = await client.all("SELECT rowid, * FROM users");
+    rows = await client.all("SELECT * FROM users");
   } catch(e) {
     logger.error(e);
     return [];
@@ -279,7 +279,7 @@ async function allUsers(){
     row.password = row.password.replace(/^ */g, "").replace(/ *$/g, "");
     row.callname = row.callname.replace(/^ */g, "").replace(/ *$/g, "");
 
-    users.push(new User(row.rowid, row.username, row.password, row.callname));
+    users.push(new User(row.id, row.username, row.password, row.callname));
   }
   return users;
 }

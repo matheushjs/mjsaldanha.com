@@ -7,8 +7,17 @@
  * @class Model::db_client.js
  */
 
-const sqlite3 = require("sqlite3");
-const origClient = new sqlite3.Database("server/model/database.db");
+const logger = require("../utils/logger");
+
+const mysqlPass = require("../routes/private_code").mysqlInfo.password;
+const mysql = require("mysql");
+const pool = mysql.createPool({
+  connectionLimit: 15,
+  host: "localhost",
+  user: "mathjs",
+  password: mysqlPass,
+  database: "mjsaldanha"
+});
 
 /* Set up function wrappers that return Promises instead of using callbacks */
 
@@ -19,9 +28,13 @@ class Stmt {
 
   run(){
     return new Promise((resolve, reject) => {
-      this.stmt.run((err, rows) => {
-        if(err) reject(err);
-        else resolve(rows);
+      pool.query(this.stmt, (err, rows) => {
+        if(err){
+          logger.error(`Error when running SQL query "${this.stmt}": ` + err);
+          reject(err);
+        }
+
+        resolve(rows);
       });
     });
   }
@@ -34,20 +47,18 @@ class Stmt {
  * @param {String} query The query to perform, with placeholders "?"
  * @param {List} args List with items to replace the placeholders.
  * @return {Promise} Promise containing a list of rows returned for the executed query.
+ * @async
  */
-function all(query, args){
+function all(query, args = []){
   return new Promise((resolve, reject) => {
-    if(args){
-      origClient.all(query, args, (err, rows) => {
-        if(err) reject(err);
-        else resolve(rows);
-      });
-    } else {
-      origClient.all(query, (err, rows) => {
-        if(err) reject(err);
-        else resolve(rows);
-      });
-    }
+    pool.query(query, args, (err, rows) => {
+      if(err){
+        logger.error(`Error when running SQL query "${query} with args ${args}": ` + err);
+        reject(err);
+      }
+
+      resolve(rows);
+    });
   });
 }
 
@@ -63,7 +74,7 @@ function all(query, args){
  * @return {Object} Object that has the method `run()` described above.
  */
 function prepare(query, args){
-  var stmt = origClient.prepare(query, args);
+  var stmt = mysql.format(query, args);
   return new Stmt(stmt);
 }
 
