@@ -9,7 +9,7 @@
  * Table schema:
  *
  * ```
- * CREATE TABLE users(username CHAR(128) PRIMARY KEY, password CHAR(96) NOT NULL, callname CHAR(128))```
+ * CREATE TABLE users(id INTEGER UNIQUE AUTO_INCREMENT, username CHAR(128) PRIMARY KEY, password CHAR(96) NOT NULL, callname CHAR(128))```
  *
  * @class Model::db_users.js
  */

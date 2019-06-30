@@ -1,3 +1,11 @@
+CREATE TABLE users(
+	id INTEGER UNIQUE AUTO_INCREMENT,
+	username CHAR(128) PRIMARY KEY,
+	password CHAR(96) NOT NULL,
+	callname CHAR(128)
+);
+
+
 CREATE TABLE topics( /* News Politics, News Society, Runescape, Shinsekai Yori etc */
 	shortdesc CHAR(50) PRIMARY KEY,
 	longdesc TEXT NOT NULL DEFAULT "",
