@@ -6,7 +6,7 @@ const logger = require("../utils/logger.js");
 
 var ReCaptchaValidator;
 try {
-  ReCaptchaValidator = new ReCaptcha(require("../routes/private_code").recaptchaKeys);
+  ReCaptchaValidator = new ReCaptcha(require("../utils/private_code").recaptchaKeys);
 } catch(err) {
   ReCaptchaValidator = null;
   logger.warn(err.message);

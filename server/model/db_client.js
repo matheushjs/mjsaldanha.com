@@ -8,7 +8,7 @@
  */
 
 const logger = require("../utils/logger");
-const mysqlInfo = require("../routes/private_code").mysqlInfo;
+const mysqlInfo = require("../utils/private_code").mysqlInfo;
 
 const mysql = require("mysql");
 const pool = mysql.createPool({
