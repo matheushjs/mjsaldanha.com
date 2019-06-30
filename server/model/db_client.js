@@ -16,7 +16,8 @@ const pool = mysql.createPool({
   host: "localhost",
   user: mysqlInfo.username,
   password: mysqlInfo.password,
-  database: mysqlInfo.database
+  database: mysqlInfo.database,
+  charset: "utf8mb4"
 });
 
 /* Set up function wrappers that return Promises instead of using callbacks */
