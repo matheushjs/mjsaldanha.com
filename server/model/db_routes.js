@@ -9,7 +9,7 @@ try {
   ReCaptchaValidator = new ReCaptcha(require("../utils/private_code").recaptchaKeys);
 } catch(err) {
   ReCaptchaValidator = null;
-  logger.warn(err.message);
+  logger.warn(err);
 }
 
 router.post("/login", async (req, res) => {
