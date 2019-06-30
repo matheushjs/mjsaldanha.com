@@ -157,7 +157,6 @@ async function addUser(user, pass, name){
     await stmt.run();
     return await lookup({username: user});
   } catch(e) {
-    logger.error(e);
     return null;
   }
 }

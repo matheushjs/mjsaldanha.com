@@ -30,7 +30,8 @@ class Stmt {
     return new Promise((resolve, reject) => {
       pool.query(this.stmt, (err, rows) => {
         if(err){
-          logger.error(`Error when running SQL query "${this.stmt}": ` + err);
+          if(err.fatal)
+            logger.error(`Error when running SQL query "${this.stmt}": ` + err);
           reject(err);
         }
 
@@ -53,7 +54,8 @@ function all(query, args = []){
   return new Promise((resolve, reject) => {
     pool.query(query, args, (err, rows) => {
       if(err){
-        logger.error(`Error when running SQL query "${query} with args ${args}": ` + err);
+        if(err.fatal)
+          logger.error(`Error when running SQL query "${query} with args ${args}": ` + err);
         reject(err);
       }
 
