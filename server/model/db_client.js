@@ -8,15 +8,15 @@
  */
 
 const logger = require("../utils/logger");
+const mysqlInfo = require("../routes/private_code").mysqlInfo;
 
-const mysqlPass = require("../routes/private_code").mysqlInfo.password;
 const mysql = require("mysql");
 const pool = mysql.createPool({
   connectionLimit: 15,
   host: "localhost",
-  user: "mathjs",
-  password: mysqlPass,
-  database: "mjsaldanha"
+  user: mysqlInfo.username,
+  password: mysqlInfo.password,
+  database: mysqlInfo.database
 });
 
 /* Set up function wrappers that return Promises instead of using callbacks */
