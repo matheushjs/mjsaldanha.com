@@ -62,6 +62,28 @@ function placeBadges(badgeTitles, badgeCss, $table){
   }
 }
 
+/** Returns the content of the given JSON. On error, throws an object containing (xhr, status, err).
+ *
+ * @param {String} url The url of the JSON to get.
+ * @return {Object} The content of the given JSON file.
+ * @method jsonResearchProjs
+ */
+async function getJSON(url){
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      url: url,
+      type: "GET",
+      dataType: "json",
+    })
+    .done(json => resolve(json))
+    .fail((xhr, status, err) => reject({
+      xhr,
+      status,
+      err
+    }));
+  });
+}
+
 /**
  * Lists research projects (and a list of badges) as a table in /sci-projects/.
  *
@@ -70,22 +92,19 @@ function placeBadges(badgeTitles, badgeCss, $table){
  * @param {JQuery} $spinnerBox Container to hide after we are finished fetching things from the server. We also add error messages here.
  * @method listResearch
  */
-/* exported listResearch */
-function listResearch($researchTable, $badgeTable, $spinnerBox){
-  $.ajax({
-    url: "/json/research-projs.json",
-    type: "GET",
-    dataType: "json",
-  })
-  .done(json => {
-    placeResearch(json.research, json.badgeCss, $researchTable);
-    placeBadges(json.badgeTitles, json.badgeCss, $badgeTable);
-    $spinnerBox.remove();
-  })
-  .fail((xhr, status, err) => {
+async function listResearch($researchTable, $badgeTable, $spinnerBox){
+  var json;
+  try {
+    json = await getJSON("/json/research-projs.json");
+  } catch(obj) {
     $spinnerBox.append("<p>Something went wrong in the server. I am really sorry for that. Please try again later.</p>");
-    $spinnerBox.append("<p>Server error: " + err + "</p>");
-  });
+    $spinnerBox.append("<p>Server error: " + obj.err + "</p>");
+    return;
+  }
+
+  placeResearch(json.research, json.badgeCss, $researchTable);
+  placeBadges(json.badgeTitles, json.badgeCss, $badgeTable);
+  $spinnerBox.remove();
 }
 
 function placeArticles(array, $articleTable){
@@ -114,23 +133,22 @@ function placeArticles(array, $articleTable){
  * @param {JQuery} $spinnerBox Element containing the spinner showing 'loading...'
  * @method listArticles
  */
-function listArticles($articleTable, $spinnerBox){
-  $.ajax({
-    url: "/json/sci-articles.json",
-    type: "GET",
-    dataType: "json",
-  })
-  .done(json => {
-    placeArticles(json, $articleTable);
-    $spinnerBox.remove();
-  })
-  .fail((xhr, status, err) => {
+async function listArticles($articleTable, $spinnerBox){
+  var json;
+  try {
+    json = await getJSON("/json/sci-articles.json");
+  } catch(obj) {
     $spinnerBox.append("<p>Something went wrong in the server. I am really sorry for that. Please try again later.</p>");
-    $spinnerBox.append("<p>Server error: " + err + "</p>");
-  });
+    $spinnerBox.append("<p>Server error: " + obj.err + "</p>");
+    return;
+  }
+
+  placeArticles(json, $articleTable);
+  $spinnerBox.remove();
 }
 
 export default {
+  getJSON,
   listResearch,
   listArticles
 };
