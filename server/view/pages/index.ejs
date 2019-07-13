@@ -128,24 +128,36 @@
     </div>
     
     <div id="myresearch" class="container-fluid text-center major-block">
-      <h1 class="elf-top-title slideanim"><%= trans.home.sidetitle3 %></h1>
+      <div class="mb-5">
+        <img src="/octicons/svg/beaker.svg" class="slideanim align-baseline" style="height: 2.2rem;" alt="lab beaker">
+        <h1 class="elf-top-title slideanim d-inline mx-5"><%= trans.home.sidetitle3 %></h1>
+        <img src="/octicons/svg/beaker.svg" class="slideanim align-baseline" style="height: 2.2rem;" alt="lab beaker">
+      </div>
       <div class="row">
-        <div class="col-md-4 order-md-2 text-justify" style="font-size: 1.1rem;">
-          <%- trans.home.research.init %>
-        </div>
-        <div class="col-md-5 order-md-3" style="padding: 0 5%; margin: 20px 0;">
-          <div class="container-fluid mb-3 border rounded bg-dark text-light" style="height: 33vh;">
-            <h3 style="margin-top: 13vh;">Protein Struc...</h3>
-          </div>
-          <div class="mb-3">
-            <a href="/sci-projects/"><button class="btn btn-lg btn-dark w-50"><%= trans.home.research.allresearch %></button></a>
-          </div>
-          <div>
-            <a href="/articles/"><button class="btn btn-lg btn-dark w-50"><%= trans.home.research.allarticles %></button></a>
+        <div class="col-md-5 text-justify" style="font-size: 1.1rem;">
+          <div class="px-5">
+            <%- trans.home.research.init %>
           </div>
         </div>
-        <div class="col-md-3 order-md-1">
-          <img src="/octicons/svg/beaker.svg" class="slideanim" alt="lab beaker" style="height: 10vh;">
+        <div class="col-md-7">
+          <div class="container-fluid">
+            <div class="row mb-5">
+              <div class="col-md-6">
+                <a href="#" class="btn btn-info border rounded p-5 my-2">
+                  <h3>Protein Struc...</h3>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="#" class="btn btn-info border rounded p-5 my-2">
+                  <h3>Protein Struc...</h3>
+                </a>
+              </div>
+            </div>
+            <div class="container-fluid text-center">
+                <a href="/sci-projects/" class="btn btn-dark m-2 p-3 "><%= trans.home.research.allresearch %></a>
+                <a href="/articles/" class="btn btn-dark m-2 p-3"><%= trans.home.research.allarticles %></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
