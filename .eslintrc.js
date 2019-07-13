@@ -22,7 +22,7 @@ if(ESL_ENV === "server") {
 
   var noConsole = ["warn", { "allow": ["warn", "error"] }];
   var parserOptions = {
-    "ecmaVersion": 2015,
+    "ecmaVersion": 2017,
     "sourceType": "module"
   };
 }

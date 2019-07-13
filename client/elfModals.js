@@ -55,7 +55,7 @@ function loadingModal(obj){
 
   $("body").append(div);
   div.modal();
-  
+
   // Rewrite its 'remove' method, because just removing it leaves the background darkened.
   div.removeOld = div.remove;
   div.remove = function(){
