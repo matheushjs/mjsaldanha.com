@@ -147,8 +147,58 @@ async function listArticles($articleTable, $spinnerBox){
   $spinnerBox.remove();
 }
 
+/**
+ * Fills the research kanban in index page /.
+ * 
+ */
+async function fillResearchKanban($anchors){
+  var projs;
+  var articles;
+
+  try {
+    projs = await getJSON("/json/research-projs.json");
+    projs = projs.research;
+    articles = await getJSON("/json/sci-articles.json");
+  } catch(obj) {
+    console.error(obj);
+    return;
+  }
+
+  var cutTitle = title => {
+    if(title.length > 50)
+      return title.slice(0, 47) + "...";
+    else return title;
+  }
+
+  var toggleSwitch = true;
+  $anchors.each((idx, elem) => {
+    let anchor = $(elem);
+
+    if(toggleSwitch){
+      let proj = projs.shift();
+      anchor.append(
+        $("<p>project</p><h4>TEXT</h4>"
+          .replace("TEXT", cutTitle(proj.title))
+        )
+      );
+      anchor.attr("href", proj.href);
+    } else {
+      let article = articles.shift();
+      anchor.append(
+        $("<p>article</p><h4>TEXT</h4>"
+          .replace("TEXT", cutTitle(article.title))
+        )
+      );
+      anchor.attr("href", article.href);
+    }
+
+    toggleSwitch = !toggleSwitch;
+  });
+}
+
 export default {
   getJSON,
   listResearch,
-  listArticles
+  listArticles,
+  fillResearchKanban
 };

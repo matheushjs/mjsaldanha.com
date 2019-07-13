@@ -93,6 +93,8 @@
         100% { opacity:   0; left:   1%; }
       }
     </style>
+
+    <script src="scripts/elfResearch.js"></script>
   </head>
 
 	<body id="elfPage" data-spy="scroll" data-target="#floatingIndex" data-offset="60">
@@ -140,20 +142,30 @@
           </div>
         </div>
         <div class="col-md-7">
-          <div class="container-fluid">
-            <div class="row mb-5">
+          <div  id="research-kanban" class="container-fluid text-center">
+            <h3 class="mb-3">
+              <% if(lang === "ja"){ %> 最近： <% } else { %> Latest: <% } %>
+            </h3>
+
+            <div class="row mb-3">
               <div class="col-md-6">
-                <a href="#" class="btn btn-info border rounded p-5 my-2">
-                  <h3>Protein Struc...</h3>
+                <a href="#" style="white-space: normal;" class="btn btn-secondary border rounded p-3 my-1">
                 </a>
               </div>
               <div class="col-md-6">
-                <a href="#" class="btn btn-info border rounded p-5 my-2">
-                  <h3>Protein Struc...</h3>
+                <a href="#" style="white-space: normal;" class="btn btn-secondary border rounded p-3 my-1">
                 </a>
               </div>
             </div>
-            <div class="container-fluid text-center">
+
+            <div class="row mb-3">
+              <div class="col-md-12 text-center">
+                <a href="#" style="white-space: normal;" class="w-50 btn btn-secondary border rounded p-3 my-1">
+                </a>
+              </div>
+            </div>
+
+            <div class="container-fluid">
                 <a href="/sci-projects/" class="btn btn-dark m-2 p-3 "><%= trans.home.research.allresearch %></a>
                 <a href="/articles/" class="btn btn-dark m-2 p-3"><%= trans.home.research.allarticles %></a>
             </div>
@@ -426,6 +438,8 @@
         });
       });
     </script>
+
+    <script>Elf.fillResearchKanban($("#research-kanban a[href='#']"));</script>
 
     <div>
       <% include ../partials/footer %>
