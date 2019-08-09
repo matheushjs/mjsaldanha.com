@@ -26,12 +26,16 @@ function placeResearch(array, badgeCss, $table){
     let row = $(html);
     let td = row.find(".js-select");
 
+    const otherCss = {
+      "background-color": "red"
+    };
+
     td.append(" ");
     elem.badges.split(" ").forEach(badge => {
       td.append(
         $("<span class='badge'></span>")
         .text(badge.toUpperCase())
-        .css(badgeCss[badge])
+        .css(badgeCss[badge] || otherCss)
       );
       td.append(" ");
     });
@@ -55,8 +59,12 @@ function placeBadges(badgeTitles, badgeCss, $table){
     .replace("BADGE", abbrv.toUpperCase())
     .replace("TITLE", htmlEscape(badgeTitles[abbrv]));
 
+    const otherCss = {
+      "background": "red"
+    };
+
     let $elem = $(row);
-    $elem.find(".badge").css(badgeCss[abbrv]);
+    $elem.find(".badge").css(badgeCss[abbrv] || otherCss);
 
     $table.append($elem);
   }
