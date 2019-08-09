@@ -1,11 +1,20 @@
 [
   {
-    "harvardRef": "Saldanha, M.H.J. and de Souza, P.S.L., 2019. High Performance Algorithms for Counting Collisions and Pairwise Interactions. arXiv preprint arXiv:1901.11204.",
+    "harvardRef": "Saldanha, M.H.J. and de Souza, P.S.L., 2019, June. High performance algorithms for counting collisions and pairwise interactions. In International Conference on Computational Science (pp. 182-196). Springer, Cham.",
     "title": "High Performance Algorithms for Counting Collisions and Pairwise Interactions",
     "year": 2019,
     "publishedAt": "ICCS",
     "rankEra": "A",
     "rankQualis": "A1",
     "href": "/articles/1-hpc-sspi"
+  },
+  {
+    "harvardRef": "Saldanha, M.H.J. and de Souza, P.S.L., Protein Structure Prediction with Parallel Algorithms Orthogonal to Parallel Platforms. Revista Eletrônica de Iniciação Científica em Computação, 17(2).",
+    "title": "Protein Structure Prediction with Parallel Algorithms Orthogonal to Parallel Platforms",
+    "year": 2019,
+    "publishedAt": "REIC",
+    "rankEra": "?",
+    "rankQualis": "C",
+    "href": "#"
   }
 ]
