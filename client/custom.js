@@ -158,18 +158,15 @@ function textFlowAnimation(){
     "High Performance Computing",
     "Neural Networks",
     "Deep Learning",
-    "Backpropagation",
+    "Maximum Likelihood Estimation",
     "Statistical Inference",
-    "Bayesian Inference",
-    "Probabilistic Modelling",
     "GPU Programming",
     "Computational Models",
     "Parameter Servers",
     "Task Scheduling",
     "Distributed Programs",
-    "Parallel Programming",
-    "Supercomputers",
-    "Stochastic Scheduling",
+    "Parallel Computing",
+    "Supercomputers"
   ];
   var randInt = Math.floor(Math.random() * keywords.length);
   var keyword = keywords[randInt];
