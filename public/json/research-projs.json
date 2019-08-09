@@ -36,9 +36,12 @@
       "background": "linear-gradient(135deg, #212121ff 50%, #212121aa)",
       "color": "white"
     },
-    "stat": {
-      "background": "linear-gradient(135deg, #212121ff 50%, #212121aa)",
+    "prob": {
+      "background": "linear-gradient(135deg, #8f00d1ff 50%, #8f00d1aa)",
       "color": "white"
+    },
+    "inf": {
+      "background": "linear-gradient(135deg, #ffbc5eff 50%, #ffbc5eaa)"
     }
   },
   "badgeTitles": {
