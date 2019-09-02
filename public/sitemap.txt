@@ -3,6 +3,8 @@ https://mjsaldanha.com/en
 https://mjsaldanha.com/ja
 https://mjsaldanha.com/sci-projects/
 https://mjsaldanha.com/sci-projects/1-psp-project-1/
+https://mjsaldanha.com/sci-projects/2-accel-nns-1/
+https://mjsaldanha.com/sci-projects/3-prob-exec-times-1/
 https://mjsaldanha.com/articles
 https://mjsaldanha.com/articles/1-hpc-sspi
 https://mjsaldanha.com/credits
