@@ -67,8 +67,8 @@ app.engine("njs", function(filePath, options, callback){
  *
  * The method **`res.render`** is added, allowing us to, for example, use `res.render("page")`.
  *
- * The first registered engine will be the default, res.render("file_without_extension") will be rendered
- * with it.
+ * For files without extension (e.g. res.render("file_without_extension")) the Renderer will add
+ * a default extension.
  *
  * @method midware-templating
  */
