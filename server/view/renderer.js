@@ -29,7 +29,7 @@ class Renderer {
   }
 
   messagePage(message){
-    this.res.render("message_page.ejs", {
+    this.res.render("message_page.njs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,

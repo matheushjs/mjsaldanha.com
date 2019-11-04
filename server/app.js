@@ -37,13 +37,17 @@ const articlesRoutes    = require("./routes/articles");
 const nihongoRoutes     = require("./routes/elf-nihongo");
 const modelRoutes       = require("./model/db_routes");
 
+/* Configure nunjucks not to escape anything by default. This can be changed in the template itself. */
+njs.configure({
+  autoescape: false,
+});
+
 /**
  * Registers the nunjucks rendering engine.
  * @method midware-set-nunjucks-engine
  */
-app.engine("elfEngine", function(filePath, options, callback){
+app.engine("njs", function(filePath, options, callback){
   let ext = filePath.split(".").reverse()[0];
-  console.log(filePath);
 
   if(ext === "ejs"){
     let rendered = ejs.renderFile(filePath, options);
@@ -63,9 +67,13 @@ app.engine("elfEngine", function(filePath, options, callback){
  *
  * The method **`res.render`** is added, allowing us to, for example, use `res.render("page")`.
  *
+ * The first registered engine will be the default, res.render("file_without_extension") will be rendered
+ * with it.
+ *
  * @method midware-templating
  */
-app.set("view engine", "elfEngine");
+app.set("view engine", "njs");
+app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
 // app.set('view options', {debug: true});
 
