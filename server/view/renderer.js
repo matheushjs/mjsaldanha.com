@@ -29,7 +29,7 @@ class Renderer {
   }
 
   messagePage(message){
-    this.res.render("message_page", {
+    this.res.render("message_page.ejs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -39,7 +39,7 @@ class Renderer {
   }
 
   account(){
-    this.res.render("account", {
+    this.res.render("account.ejs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -48,7 +48,7 @@ class Renderer {
   }
 
   login(failMsg = null){
-    this.res.render("login", {
+    this.res.render("login.ejs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -58,7 +58,7 @@ class Renderer {
   }
 
   signup(failMsg = null){
-    this.res.render("signup", {
+    this.res.render("signup.ejs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -68,7 +68,7 @@ class Renderer {
   }
 
   secret(visitors = -1){
-    this.res.render("secret/index", {
+    this.res.render("secret/index.ejs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -78,7 +78,7 @@ class Renderer {
   }
 
   allUsers(users){
-    this.res.render("secret/all_users", {
+    this.res.render("secret/all_users.ejs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -88,6 +88,11 @@ class Renderer {
   }
 
   render(pageName){
+    // If there is no extension, add .ejs.
+    if(pageName.split(".").length === 1){
+      pageName += ".ejs";
+    }
+
     this.res.render(pageName, {
       callname: this.callname,
       specialUser: this.specialUser,

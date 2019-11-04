@@ -16,6 +16,8 @@ const rfs = require("rotating-file-stream");
 const express = require("express");
 const https = require("https");
 const fs = require("fs");
+const ejs = require("ejs");
+const njs = require("nunjucks");
 // const helmet = require("helmet");
 const compression = require("compression");
 const minify = require("express-minify");
@@ -36,15 +38,34 @@ const nihongoRoutes     = require("./routes/elf-nihongo");
 const modelRoutes       = require("./model/db_routes");
 
 /**
- * Sets up EJS templating.
+ * Registers the nunjucks rendering engine.
+ * @method midware-set-nunjucks-engine
+ */
+app.engine("elfEngine", function(filePath, options, callback){
+  let ext = filePath.split(".").reverse()[0];
+  console.log(filePath);
+
+  if(ext === "ejs"){
+    let rendered = ejs.renderFile(filePath, options);
+    return callback(null, rendered);
+  } else if(ext === "njs"){
+    let rendered = njs.render(filePath, options);
+    return callback(null, rendered);
+  }
+
+  return callback(Error("Not a template file."));
+})
+
+/**
+ * Sets up templating.
  *
  * Templates are taken from the directory `/server/view/pages/`.
  *
  * The method **`res.render`** is added, allowing us to, for example, use `res.render("page")`.
  *
- * @method midware-EJS
+ * @method midware-templating
  */
-app.set("view engine", "ejs");
+app.set("view engine", "elfEngine");
 app.set("views", path.join(__dirname, "view/pages"));
 // app.set('view options', {debug: true});
 
