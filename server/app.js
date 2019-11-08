@@ -21,6 +21,7 @@ const njs = require("nunjucks");
 // const helmet = require("helmet");
 const compression = require("compression");
 const minify = require("express-minify");
+const serveIndex = require("serve-index");
 const logger = require("./utils/logger.js");
 
 const app = express();
@@ -194,11 +195,16 @@ app.use(cookieSession({
 /**
  * Sets up static serving of the /public folder.
  *
- * @method midware-express-static
+ * When the user accesses a folder (ending with "/") under the data/ directory, it shows
+ *   a list of files. Clicking on a file (not HTML, CSS or JS) will download it.
+ *
+ * @method midware-serve-public
  */
 app.use(express.static(path.resolve("./public"), {
   maxAge: 31557600000 // Enable caching
 }));
+app.use("/public/data", serveIndex(path.resolve("./public/data"), {"icons": true}));
+app.get("/public/data/*", (req, res, next) => res.download(req.path.replace(/^\//g, "")));
 
 /**
  * Handles user privilege variables contained within req.session.
