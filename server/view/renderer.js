@@ -39,7 +39,7 @@ class Renderer {
   }
 
   account(){
-    this.res.render("account.ejs", {
+    this.res.render("account.njs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
