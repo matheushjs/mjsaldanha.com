@@ -39,9 +39,7 @@ const nihongoRoutes     = require("./routes/elf-nihongo");
 const modelRoutes       = require("./model/db_routes");
 
 /* Configure nunjucks not to escape anything by default. This can be changed in the template itself. */
-njs.configure({
-  autoescape: false,
-});
+njs.configure("server/view/", { autoescape: false });
 
 /**
  * Registers the nunjucks rendering engine.

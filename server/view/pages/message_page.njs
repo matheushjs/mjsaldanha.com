@@ -6,7 +6,7 @@ Parameters:
   'message': The message to display to the user. If it's empty, a standard message is displayed.
 -->
 
-{% extends "../partials/main.njs" %}
+{% extends "partials/main.njs" %}
 
 {% block header %}
 <div class="container">
