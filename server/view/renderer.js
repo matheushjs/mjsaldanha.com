@@ -48,7 +48,7 @@ class Renderer {
   }
 
   login(failMsg = null){
-    this.res.render("login.ejs", {
+    this.res.render("login.njs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -58,7 +58,7 @@ class Renderer {
   }
 
   signup(failMsg = null){
-    this.res.render("signup.ejs", {
+    this.res.render("signup.njs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -68,7 +68,7 @@ class Renderer {
   }
 
   secret(visitors = -1){
-    this.res.render("secret/index.ejs", {
+    this.res.render("secret/index.njs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -78,7 +78,7 @@ class Renderer {
   }
 
   allUsers(users){
-    this.res.render("secret/all_users.ejs", {
+    this.res.render("secret/all_users.njs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
@@ -88,9 +88,9 @@ class Renderer {
   }
 
   render(pageName){
-    // If there is no extension, add .ejs.
+    // If there is no extension, add .njs.
     if(pageName.split(".").length === 1){
-      pageName += ".ejs";
+      pageName += ".njs";
     }
 
     this.res.render(pageName, {
