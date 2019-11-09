@@ -41,6 +41,12 @@ Parameters:
         </a>
       </li>
 
+      <li class="nav-item">
+        <a target="_blank" class="nav-link" href="http://lattes.cnpq.br/2301154612725391">
+          {{ trans.raw.curriculum }}
+        </a>
+      </li>
+
       {% if specialUser %}
         <li class="nav-item">
           <a class="nav-link" href="/secret">
