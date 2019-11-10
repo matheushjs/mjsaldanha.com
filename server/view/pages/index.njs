@@ -137,7 +137,7 @@
       <div class="col-md-7">
         <div  id="research-kanban" class="container-fluid text-center">
           <h3 class="mb-3">
-            <% if(lang === "ja"){ %> 最近： <% } else { %> Latest: <% } %>
+            {{ "最近" if lang === "ja" else "latest" }}
           </h3>
 
           <div class="row mb-3">
@@ -265,7 +265,7 @@
         </h1>
       </div>
       <div class="col-md-8 order-md-1">
-        <% include ../partials/index-content/elfprojs %>
+        {% include "partials/index-content/elfprojs.njs" %}
       </div>
     </div>
   </div>
@@ -279,7 +279,7 @@
         </h1>
       </div>
       <div class="col-md-8 elf-modal-content">
-        <% include ../partials/index-content/whyelf %>
+        {% include "partials/index-content/whyelf.njs" %}
         <button style="position: absolute; bottom: 20px; width: 60%; left: 20%;" 
                 type="button"
                 class="btn btn-lg btn-light border border-dark elf-modal-button"
@@ -300,7 +300,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <% include ../partials/index-content/whyelf %>
+          {% include "partials/index-content/whyelf.njs" %}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -319,7 +319,7 @@
       </div>
       
       <div class="col-md-8 order-md-1 elf-modal-content">
-        <% include ../partials/index-content/progcradle %>
+        {% include "partials/index-content/progcradle.njs" %}
         <button style="position: absolute; bottom: 20px; width: 60%; left: 20%;" 
                 type="button"
                 class="btn btn-lg btn-light border border-dark elf-modal-button"
@@ -340,7 +340,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <% include ../partials/index-content/progcradle %>
+          {% include "partials/index-content/progcradle.njs" %}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -359,7 +359,7 @@
       </div>
 
       <div class="col-md-8 elf-modal-content">
-        <% include ../partials/index-content/miscints %>
+        {% include "partials/index-content/miscints.njs" %}
         <button style="position: absolute; bottom: 20px; width: 60%; left: 20%;" 
                 type="button"
                 class="btn btn-lg btn-light border border-dark elf-modal-button"
@@ -380,7 +380,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <% include ../partials/index-content/miscints %>
+          {% include "partials/index-content/miscints.njs" %}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

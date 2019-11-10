@@ -71,7 +71,7 @@ Parameters:
       <li style="display: none;" class="nav-item d-lg-block">
         <span style="cursor: default;" class="mx-1 text-secondary navbar-text">|</span>
       </li>
-    {% if callname === false %}
+    {% if not callname %}
       <li class="nav-item">
         <a class="nav-link" href="/user/signup">
           {{ trans.raw.signup }}
