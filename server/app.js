@@ -16,7 +16,6 @@ const rfs = require("rotating-file-stream");
 const express = require("express");
 const https = require("https");
 const fs = require("fs");
-const ejs = require("ejs");
 const njs = require("nunjucks");
 // const helmet = require("helmet");
 const compression = require("compression");
@@ -46,17 +45,8 @@ njs.configure("server/view/", { autoescape: false });
  * @method midware-set-nunjucks-engine
  */
 app.engine("njs", function(filePath, options, callback){
-  let ext = filePath.split(".").reverse()[0];
-
-  if(ext === "ejs"){
-    let rendered = ejs.renderFile(filePath, options);
-    return callback(null, rendered);
-  } else if(ext === "njs"){
-    let rendered = njs.render(filePath, options);
-    return callback(null, rendered);
-  }
-
-  return callback(Error("Not a template file."));
+  let rendered = njs.render(filePath, options);
+  return callback(null, rendered);
 })
 
 /**
