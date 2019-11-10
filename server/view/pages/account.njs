@@ -4,6 +4,12 @@ Account Management page
 
 {% extends "partials/main.njs" %}
 
+
+{% block morehead %}
+<script src="/scripts/loginForms.js"></script>
+{% endblock %}
+
+
 {% block header %}
   <div class="text-center container">
     <h2>Edit Account</h2>
