@@ -155,18 +155,24 @@ function textFlowAnimation(){
   }
 
   const keywords = [
-    "High Performance Computing",
     "Neural Networks",
     "Deep Learning",
+    "Statistical Learning Theory",
+    "Glivenko–Cantelli-Kolmogorov Theory",
+    "Parametric & General Approaches",
+    "Time Series Analysis",
+    "Dynamical Systems",
+    "Embedding",
+    "Phase Spaces",
+    "Entropy Estimation",
     "Maximum Likelihood Estimation",
     "Statistical Inference",
+    "High Performance Computing",
     "GPU Programming",
-    "Computational Models",
-    "Parameter Servers",
-    "Task Scheduling",
-    "Distributed Programs",
     "Parallel Computing",
-    "Supercomputers"
+    "Supercomputers",
+    "Task Scheduling",
+    "Distributed Programs"
   ];
   var randInt = Math.floor(Math.random() * keywords.length);
   var keyword = keywords[randInt];
