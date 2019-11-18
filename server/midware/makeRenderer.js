@@ -19,6 +19,6 @@ module.exports = (req, res, next) => {
   let specialUser = req.specialUser;
   let language = req.language;
   let translations = req.translations;
-  res.renderer = new renderer.Renderer(res, callname, specialUser, language, translations);
+  res.renderer = new renderer.Renderer(res, "server/view/pages", callname, specialUser, language, translations);
   next();
 };

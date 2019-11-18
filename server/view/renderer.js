@@ -1,3 +1,7 @@
+const fs = require("fs");
+const path = require("path");
+const marked = require("marked");
+const logger = require("../utils/logger.js");
 
 /**
  * Our website uses EJS template engine, which requires every webpage to be server by means of a
@@ -14,14 +18,16 @@
  * @class View::Renderer
  * @constructor
  * @param {Object} res The `res` object from the express environment.
+ * @param {String} [baseDir = "server"] Base directory from which to serve Markdown pages.
  * @param {String} [callname = null] Name by which we should call the user.
  * @param {Boolean} [specialUser = false] Whether the user has a special page or not.
  * @param {String} [language = "en"] The language in which to serve the page.
  * @param {Object} [translations = null] Object containing translation strings for the language in which to
  */
 class Renderer {
-  constructor(res, callname = null, specialUser = false, language = "en", translations = null){
+  constructor(res, baseDir = "server", callname = null, specialUser = false, language = "en", translations = null){
     this.res = res;
+    this.baseDir = baseDir;
     this.callname = callname;
     this.specialUser = specialUser;
     this.language = language;
@@ -84,6 +90,30 @@ class Renderer {
       lang: this.language,
       trans: this.translations,
       users,
+    });
+  }
+
+  markdownPage(pageName, title = "No Title"){
+    // If there is no extension, add .md.
+    if(pageName.split(".").length === 1){
+      pageName += ".md";
+    }
+
+    let filePath = path.resolve(path.join(this.baseDir, pageName));
+    fs.readFile(filePath, (err, data) => {
+      if(err){
+        this.messagePage("Sorry! Something went wrong when rendering this post :-(.");
+        logger.error("Error when rendering markdown page." + err.message);
+      } else {
+        this.res.render("markdown_page.njs", {
+          callname: this.callname,
+          specialUser: this.specialUser,
+          lang: this.language,
+          trans: this.translations,
+          bodyContent: marked(String(data)),
+          headerContent: "<h2>" + title + "</h2>"
+        });
+      }
     });
   }
 
