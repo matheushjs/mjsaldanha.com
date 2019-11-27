@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col-sm-4"><a href="secret/all_users">User Listing</a></div>
     <div class="col-sm-4">Visitors: {{ visitors }}</div>
-    <div class="col-sm-4"></div>
+    <div class="col-sm-4"><a href="secret/upload_file">Upload File</a></div>
   </div>
 </div>
 {% endblock %}
