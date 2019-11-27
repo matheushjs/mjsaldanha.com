@@ -2,8 +2,10 @@ const express = require("express");
 const router = new express.Router();
 const multer = require("multer");
 const fs = require("fs");
+const logger = require("../utils/logger.js");
 
-const upload = multer({dest: "public/data/"});
+var storage = multer.diskStorage({ destination: null, filename: null });
+const upload = multer({ storage: storage });
 const dbUsers = require("../model/db_users");
 
 const SECRET_AUTH = {
@@ -31,11 +33,18 @@ router.get("/all_users", async (req, res) => {
 });
 
 router.get("/upload_file", async (req, res) => res.renderer.render("secret/upload_file.njs"));
-router.post("/upload_file", upload.single("file-to-upload"), async (req, res) => {
-  console.log(req.file);
-  console.log(req.body);
-  fs.rename(req.file.path, "public/data/" + req.file.originalname, function (err) {
-    if (err) throw err;
+router.post("/upload_file", upload.array("file-to-upload"), async (req, res, next) => {
+  req.files.forEach(file => {
+    fs.copyFile(file.path, "public/data/" + file.originalname, err => {
+      if(err){
+        logger.error("Error on file uploading. " + String(err));
+        next(err);
+        return;
+      }
+    });
+    fs.unlink(file.path, err => {
+      if(err) logger.error("Could not unlink file." + String(err));
+    });
   });
 });
 
