@@ -55,7 +55,7 @@ which is how we compute the quantile function for the generalized gamma.
 
 Our previous experience with implementing the `elfDistr` package showed that using C++ not necessarily leads to better performance.
 To test this, we use the following code (we actually tested more scenarios, but these two will suffice here):
-```
+```R
 require(Rcpp)
 require(microbenchmark)
 
@@ -105,7 +105,7 @@ print(summary(result))
 ```
 
 This code yields the following output
-```
+```plaintext
 > source("test.r")
                   expr      min       lq      mean    median       uq      max neval
 1 dggamma1(x, 1, 1, 1) 0.482550 0.500241 0.6422052 0.6042855 0.615583 8.177283  1000
@@ -114,7 +114,7 @@ This code yields the following output
 so as can be seen under the `mean` column, the R implementation happens to be faster in this case. Of course, we could tinker the C++ code to use parallel processing, or try to modify code to make better use of cache memories or allow the compiler to vectorize the code more easily. This would actually lead to a very cryptic code with terrible maintainability, and it likely would not reach the 0.6 seconds of the R implementation.
 
 The `flexsurv` package implements the generalized gamma using C++. They do not do any of these code optimizations; far from that, they made aggressive use of object orientation, encapsulating and modularizing things to make the code more maintainable. This is great, code maintainability is extremely important for such a big package. However, encapsulation and modularization unfortunately lead to less efficient code. Consider the following benchmark now:
-```
+```R
 require(flexsurv)
 require(elfDistr)
 require(microbenchmark)
@@ -146,7 +146,7 @@ result = microbenchmark(
 print(summary(result))
 ```
 where we are comparing the performance of three distribution functions: 1) `flexsurv`'s generalized gamma in its main parametrization; 2) `flexsurv`'s generalized gamma in the same parametrization we used; and 3) our implementation `dggamma`. The output of this code in my machine is:
-```
+```plaintext
 > source("test.r")
                   expr      min       lq      mean    median        uq       max neval
 1      flexsurv.test() 2.086867 2.150671 2.4591341 2.6028125 2.6573650  4.430079  1000

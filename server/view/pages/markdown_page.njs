@@ -18,9 +18,9 @@ Parameters:
   };
 </script>
 
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow-night.min.css">
 {% endblock %}
 
 {% block header %}
@@ -31,4 +31,9 @@ Parameters:
   <div class="container">
     {{ bodyContent }}
   </div>
+
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/plaintext.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
