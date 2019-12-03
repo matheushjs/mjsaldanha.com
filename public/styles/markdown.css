@@ -1,0 +1,235 @@
+@media print {
+  .elf-markdown *,
+  .elf-markdown *:before,
+  .elf-markdown *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .elf-markdown a,
+  .elf-markdown a:visited {
+    text-decoration: underline;
+  }
+
+  .elf-markdown a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .elf-markdown abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .elf-markdown a[href^="#"]:after,
+  .elf-markdown a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  .elf-markdown pre,
+  .elf-markdown blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  .elf-markdown thead {
+    display: table-header-group;
+  }
+
+  .elf-markdown tr,
+  .elf-markdown img {
+    page-break-inside: avoid;
+  }
+
+  .elf-markdown img {
+    max-width: 100% !important;
+  }
+
+  .elf-markdown p,
+  .elf-markdown h2,
+  .elf-markdown h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .elf-markdown h2,
+  .elf-markdown h3 {
+    page-break-after: avoid;
+  }
+}
+
+/*
+.elf-markdown pre,
+.elf-markdown code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+*/
+
+.elf-markdown pre {
+  padding: .5rem;
+  line-height: 1.25;
+  overflow-x: scroll;
+}
+
+.elf-markdown a,
+.elf-markdown a:visited {
+  color: #3498db;
+}
+
+.elf-markdown a:hover,
+.elf-markdown a:focus,
+.elf-markdown a:active {
+  color: #2980b9;
+}
+
+.elf-markdown .modest-no-decoration {
+  text-decoration: none;
+}
+
+/*
+.elf-markdown html {
+  font-size: 12px;
+}
+*/
+
+/*
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+  .elf-markdown html {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  .elf-markdown html {
+    font-size: 16px;
+  }
+}
+*/
+
+.elf-markdown body {
+  line-height: 1.85;
+}
+
+.elf-markdown p,
+.elf-markdown .modest-p {
+  /* font-size: 1rem; */
+  margin-bottom: 1.3rem;
+}
+
+.elf-markdown h1,
+.elf-markdown .modest-h1,
+.elf-markdown h2,
+.elf-markdown .modest-h2,
+.elf-markdown h3,
+.elf-markdown .modest-h3,
+.elf-markdown h4,
+.elf-markdown .modest-h4 {
+  margin: 1.414rem 0 .5rem;
+  font-weight: inherit;
+  line-height: 1.42;
+}
+
+.elf-markdown h1,
+.elf-markdown .modest-h1 {
+  margin-top: 0;
+  /* font-size: 3.998rem; */
+}
+
+/*
+.elf-markdown h2,
+.elf-markdown .modest-h2 {
+  font-size: 2.827rem;
+}
+
+.elf-markdown h3,
+.elf-markdown .modest-h3 {
+  font-size: 1.999rem;
+}
+
+.elf-markdown h4,
+.elf-markdown .modest-h4 {
+  font-size: 1.414rem;
+}
+
+.elf-markdown h5,
+.elf-markdown .modest-h5 {
+  font-size: 1.121rem;
+}
+
+.elf-markdown h6,
+.elf-markdown .modest-h6 {
+  font-size: .88rem;
+}
+
+.elf-markdown small,
+.elf-markdown .modest-small {
+  font-size: .707em;
+}
+*/
+
+/* https://github.com/mrmrs/fluidity */
+
+.elf-markdown img,
+.elf-markdown canvas,
+.elf-markdown iframe,
+.elf-markdown video,
+.elf-markdown svg,
+.elf-markdown select,
+.elf-markdown textarea {
+  max-width: 100%;
+}
+
+/*
+@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
+
+@import url(http://fonts.googleapis.com/css?family=Arimo:700,700italic);
+*/
+
+/*
+.elf-markdown html {
+  font-size: 18px;
+  max-width: 100%;
+}
+*/
+
+/*
+.elf-markdown body {
+  color: #444;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 300;
+  margin: 0 auto;
+  max-width: 48rem;
+  line-height: 1.45;
+  padding: .25rem;
+}
+
+.elf-markdown h1,
+.elf-markdown h2,
+.elf-markdown h3,
+.elf-markdown h4,
+.elf-markdown h5,
+.elf-markdown h6 {
+  font-family: Arimo, Helvetica, sans-serif;
+}
+*/
+
+.elf-markdown h1,
+.elf-markdown h2,
+.elf-markdown h3 {
+  border-bottom: 2px solid #fafafa;
+  margin-bottom: 1.15rem;
+  padding-bottom: .5rem;
+  /* text-align: center; */
+}
+
+.elf-markdown blockquote {
+  border-left: 8px solid #fafafa;
+  padding: 1rem;
+}
+
+/*
+.elf-markdown pre,
+.elf-markdown code {
+  background-color: #fafafa;
+}
+*/

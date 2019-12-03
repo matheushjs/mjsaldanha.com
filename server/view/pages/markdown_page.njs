@@ -18,8 +18,8 @@ Parameters:
   };
 </script>
 
+<link rel="stylesheet" href="/styles/markdown.css">
 <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/tomorrow-night.min.css">
 {% endblock %}
 
@@ -28,7 +28,7 @@ Parameters:
 {% endblock %}
 
 {% block body %}
-  <div class="container">
+  <div class="container elf-markdown">
     {{ bodyContent }}
   </div>
 
