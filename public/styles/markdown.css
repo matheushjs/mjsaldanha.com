@@ -61,14 +61,18 @@
 /*
 .elf-markdown pre,
 .elf-markdown code {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: 'Courier New', monospace;
 }
 */
+
+.elf-markdown code {
+  border-radius: 5px;
+}
 
 .elf-markdown pre {
   padding: .5rem;
   line-height: 1.25;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .elf-markdown a,
@@ -125,7 +129,7 @@
 .elf-markdown h4,
 .elf-markdown .modest-h4 {
   margin: 1.414rem 0 .5rem;
-  font-weight: inherit;
+  /* font-weight: inherit; */
   line-height: 1.42;
 }
 

@@ -5,13 +5,11 @@ Mainly, we compare our implementation of the generalized gamma distribution with
 
 Note that the source code can be found in the [GitHub repository](https://github.com/matheushjs/ggamma).
 
-## Efficient Implementation of the Generalized Gamma
+## Formulas
 
 Our implementation was mainly motivated by the slow performance of existing implementations.
 Let us first elaborate on the formulas for the distribution, and then discuss its implementation
   and performance.
-
-### Formulas
 
 The generalized gamma was proposed by Stacy, E. W. [1] with parameters $a, d, p$, but we use the reparametrization
 $$
@@ -51,7 +49,7 @@ $$
 $$
 which is how we compute the quantile function for the generalized gamma.
 
-### Implementation
+## Implementation Considerations
 
 Our previous experience with implementing the `elfDistr` package showed that using C++ not necessarily leads to better performance.
 To test this, we use the following code (we actually tested more scenarios, but these two will suffice here):
@@ -154,6 +152,12 @@ where we are comparing the performance of three distribution functions: 1) `flex
 3           elf.test() 0.676841 0.697649 0.8304953 0.7983525 0.8657395  2.728748  1000
 ```
 so again under the `mean` column we see that our implementation ends up being faster than theirs.
+
+Finally, the figures below show the same comparison above, but varying the problem size. Here we call `dgengamma(x, a, b, k)` and `dggamma(x, a, b, k)` with varying sizes for the vector `x`, and `a, b, k` are single elements. In the second image, we only change `a, b, k` to be vectors with sizes respectively `13, 64, 37` to test how well these functions work with recycling. In both cases we see that `ggamma` wins, and is much faster in the first case where `a, b, k` are single values. When recycling is imposed, both packages have similar execution times.
+
+<img class="img-fluid" src="/images/posts/flexsurv_ggamma_comparison.png"></img>
+
+<img class="img-fluid" src="/images/posts/flexsurv_ggamma_comparison2.png"></img>
 
 ## References
 
