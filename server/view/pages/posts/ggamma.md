@@ -1,6 +1,9 @@
 
 Here we give details regarding the `ggamma` package that we developed.
-Mainly, we compare our implementation of the generalized gamma distribution with the one offered
+Our main objective is to provide an efficient implementation of the generalized gamma in its original parametrization,
+  which is currently provided solely by the `flexsurv` package under the name of `dgengamma.orig`,
+	but as we will argue later it does not have very good performance.
+What we mainly do here is compare our implementation of the generalized gamma distribution with the one offered
   by the `flexsurv` package.
 
 Note that the source code can be found in the [GitHub repository](https://github.com/matheushjs/ggamma).
