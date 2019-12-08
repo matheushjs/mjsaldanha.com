@@ -117,6 +117,16 @@ class Renderer {
     });
   }
 
+  postList(items){
+    this.res.render("posts/index.njs", {
+      callname: this.callname,
+      specialUser: this.specialUser,
+      lang: this.language,
+      trans: this.translations,
+      items
+    });
+  }
+
   render(pageName){
     // If there is no extension, add .njs.
     if(pageName.split(".").length === 1){

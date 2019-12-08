@@ -32,6 +32,12 @@ Parameters:
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="/posts/">
+          {{ trans.raw.posts }}
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="https://www.github.com/matheushjs" target="_blank">GitHub</a>
       </li>
 

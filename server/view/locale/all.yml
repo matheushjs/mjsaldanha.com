@@ -723,4 +723,7 @@ raw:
   papers:
     en: Papers
     ja: 論文
+  posts:
+    en: Posts
+    ja: 投稿
 ...
