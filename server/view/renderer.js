@@ -18,6 +18,10 @@ function parse_modelines(text){
 
     // Find first ':'
     let idx = line.indexOf(":");
+    if(idx < 0){
+      logger.error("Wrong metadata format! Metadata line: " + String(line));
+      return;
+    }
 
     // Split
     let key = line.slice(0, idx).trim().toLowerCase();
