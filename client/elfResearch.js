@@ -60,7 +60,7 @@ function placeBadges(badgeTitles, badgeCss, $table){
     .replace("TITLE", htmlEscape(badgeTitles[abbrv]));
 
     const otherCss = {
-      "background": "red"
+      "background-color": "red"
     };
 
     let $elem = $(row);

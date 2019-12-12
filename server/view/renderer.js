@@ -8,9 +8,9 @@ function parse_modelines(text){
   let modelines = [];
 
   // Take modelines off
-  while(lines.length != 0 && lines[0].startsWith("\'"))
+  while(lines.length !== 0 && lines[0].startsWith("'"))
     modelines.push(lines.shift());
-  
+
   let metadata = {};
   modelines.forEach(line => {
     // Remove quote

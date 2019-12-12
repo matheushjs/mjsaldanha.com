@@ -48,7 +48,7 @@ njs.configure("server/view/", { autoescape: false });
 app.engine("njs", function(filePath, options, callback){
   let rendered = njs.render(filePath, options);
   return callback(null, rendered);
-})
+});
 
 /**
  * Sets up templating.
@@ -192,14 +192,14 @@ app.use(cookieSession({
 app.use(express.static(path.resolve("./public"), {
   maxAge: 31557600000 // Enable caching
 }));
-app.use("/public/data", serveIndex(path.resolve("./public/data"), {"icons": true}));
+app.use("/public/data", serveIndex(path.resolve("./public/data"), {icons: true}));
 app.get("/public/data/*", async (req, res, next) => {
   res.download(
     req.path.replace(/^\//g, ""),
     req.path,
     err => {
       if(err)
-        next()
+        next();
     }
   );
 });
