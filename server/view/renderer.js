@@ -3,6 +3,35 @@ const path = require("path");
 const marked = require("marked");
 const logger = require("../utils/logger.js");
 
+function parse_modelines(text){
+  let lines = text.split("\n");
+  let modelines = [];
+
+  // Take modelines off
+  while(lines.length != 0 && lines[0].startsWith("\'"))
+    modelines.push(lines.shift());
+  
+  let metadata = {};
+  modelines.forEach(line => {
+    // Remove quote
+    line = line.slice(1);
+
+    // Find first ':'
+    let idx = line.indexOf(":");
+
+    // Split
+    let key = line.slice(0, idx).trim().toLowerCase();
+    let value = line.slice(idx+1).trim();
+
+    metadata[key] = value;
+  });
+
+  return {
+    text: lines.join("\n"),
+    metadata
+  };
+}
+
 /**
  * Our website uses EJS template engine, which requires every webpage to be server by means of a
  *   call to `res.render(page, objects)`.
@@ -105,13 +134,15 @@ class Renderer {
         this.messagePage("Sorry! Something went wrong when rendering this post :-(.");
         logger.error("Error when rendering markdown page." + err.message);
       } else {
+        let { text, metadata } = parse_modelines(String(data));
+
         this.res.render("markdown_page.njs", {
           callname: this.callname,
           specialUser: this.specialUser,
           lang: this.language,
           trans: this.translations,
-          bodyContent: marked(String(data)),
-          headerContent: "<h2>" + title + "</h2>"
+          bodyContent: marked(text),
+          mdMetadata: metadata
         });
       }
     });

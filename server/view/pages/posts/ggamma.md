@@ -1,3 +1,5 @@
+' Title: R Package 'ggamma'
+' Date: December 7th 2019
 
 Here we give details regarding the `ggamma` package that we developed.
 Our main objective is to provide an efficient implementation of the generalized gamma in its original parametrization,

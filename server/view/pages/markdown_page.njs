@@ -24,7 +24,8 @@ Parameters:
 {% endblock %}
 
 {% block header %}
-  {{ headerContent }}
+  <h2>{{ mdMetadata.title if mdMetadata.title else "Post Without Title" }}</h2>
+  <p>{{ mdMetadata.date if mdMetadata.date else "" }}</p>
 {% endblock %}
 
 {% block body %}

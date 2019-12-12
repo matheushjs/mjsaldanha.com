@@ -1,3 +1,6 @@
+' Title: How to Normalize Your Music Library
+' Date: November 15th 2019
+
 # Music Normalization
 
 This is a markdown file.
