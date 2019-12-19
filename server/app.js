@@ -63,7 +63,6 @@ app.engine("njs", function(filePath, options, callback){
  * @method midware-templating
  */
 app.set("view engine", "njs");
-app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "view/pages"));
 // app.set('view options', {debug: true});
 

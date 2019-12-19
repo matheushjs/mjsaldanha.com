@@ -37,7 +37,7 @@ function parse_modelines(text){
 }
 
 /**
- * Our website uses EJS template engine, which requires every webpage to be server by means of a
+ * Our website uses Nunjucks template engine, which requires every webpage to be server by means of a
  *   call to `res.render(page, objects)`.
  *
  * `objects` is a JSON object that is used by the template itself; it can contain the name of the user,

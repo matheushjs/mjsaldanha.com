@@ -28,7 +28,7 @@
               <li>Bootstrap <small class="text-muted">CSS & JS Toolkit</small></li>
               <li>HTML, CSS, JS <small class="text-muted">Languages</small></li>
               <li>Express <small class="text-muted">Server-side JS library</small></li>
-              <li>EJS <small class="text-muted">HTML templating language</small></li>
+              <li>EJS & Nunjucks <small class="text-muted">HTML templating languages</small></li>
               <li>SQL <small class="text-muted">Language for databases</small></li>
             </ul>
             <h4>{{ trans.raw.skills }}</h4>
