@@ -1,8 +1,6 @@
 ' Title: How to Normalize Your Music Library
 ' Date: November 15th 2019
 
-# Music Normalization
-
 Aiming at those who love their music playlist like I do, in this article I'll try to give some hints as to how to normalize your music library so that songs have an uniform loudness.
 In this way, ideally you would be able to listen to the whole playlist without touching the volume button even once.
 
@@ -15,3 +13,13 @@ So let's first point out some requirements we will impose to potential solutions
 
 Note that these requirements are actually personal preferences.
 However, even if you disagree with any of them, I'm sure you still can make a lot of use of what is discussed in the following.
+
+## Some Definitions
+
+## Normalization Methods
+
+The first normalization method that comes to mind is to multiply the song samples by a factor that makes the largest sample
+
+## A Bit About Mean Values
+
+## Our Proposed Method
