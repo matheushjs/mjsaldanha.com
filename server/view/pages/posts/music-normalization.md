@@ -16,6 +16,14 @@ However, even if you disagree with any of them, I'm sure you still can make a lo
 
 ## Some Definitions
 
+A digital music file is composed of sequences of numbers, often signed 16-bit integers.
+The file might contain more than 1 such sequence, called *streams* in the digital music field.
+For example, stereo audio has 2 sequences, one for each side of your headphones, and surround sound has 5 or more streams to play in each loudspeaker in your living room.
+
+These numbers represent oscillations of the [https://en.wikipedia.org/wiki/Loudspeaker#Diaphragm](diaphragm) of the loudspeaker or the microphone.
+When you speak or play some music, you cause perturbations in air pressure, which reach the microphone's diaphragm and cause it to shake, which in turn generates voltage that is discretely recorded as a sequence of numbers.
+For loudspeakers, the difference is that these numbers are received, converted to voltage, which causes the diaphragma to move and then **cause** pressure changes in the air, generating some sound.
+
 ## Normalization Methods
 
 The first normalization method that comes to mind is to multiply the song samples by a factor that makes the largest sample
