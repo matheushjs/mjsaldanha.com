@@ -2,6 +2,13 @@
   "research": [
     {
       "beginDate": "2019",
+      "endDate": "2021",
+      "title": "Finding and Exploiting Theoretical Evidences for Applying Statistical Learning Theory in Time Series Forecasting",
+      "badges": "ml ts ds",
+      "href": "/sci-projects//4-chaotic-slt-1/"
+    },
+    {
+      "beginDate": "2019",
       "endDate": "2019",
       "title": "Probabilistic Models for the Execution Time of Individual Tasks in Stochastic Scheduling",
       "badges": "hpc prob inf",
@@ -42,6 +49,12 @@
     },
     "inf": {
       "background": "linear-gradient(135deg, #ffbc5eff 50%, #ffbc5eaa)"
+    },
+    "ts": {
+      "background": "linear-gradient(135deg, #69ffd4ff 50%, #69ffd4aa)"
+    },
+    "ds": {
+      "background": "linear-gradient(135deg, #e16be3ff 50%, #e16be3aa)"
     }
   },
   "badgeTitles": {
@@ -50,6 +63,8 @@
     "ml": "Machine Learning",
     "dnn": "Deep Neural Networks",
     "prob": "Probality Models",
-    "inf": "Statistical Inference"
+    "inf": "Statistical Inference",
+    "ts": "Time Series",
+    "ds": "Dynamical Systems"
   }
 }
