@@ -11,7 +11,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="<%= trans.global.description %>">
+    <meta name="description" content="{{ trans.global.description }}">
     <meta name="author" content="Matheus Henrique Junqueira Saldanha">
     <meta name="keywords" content="Matheus Saldanha,Matheus Junqueira,Computer Science,High-Performance Computing,HPC,Neural Networks,Deep Learning">
     <link rel="icon" href="/images/elf_icon.png">
