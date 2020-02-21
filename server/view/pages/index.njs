@@ -2,8 +2,13 @@
 
 
 {% block morehead %}
+
+{% if lang === "ja" %}
+  <link rel="canonical" href="https://mjsaldanha.com/ja"/>
+{% else %}
   <link rel="canonical" href="https://mjsaldanha.com"/>
-  
+{% endif %}
+
   <link rel="alternate" hreflang="en" href="https://mjsaldanha.com" />
   <link rel="alternate" hreflang="ja" href="https://mjsaldanha.com/ja" />
   <link rel="alternate" hreflang="x-default" href="https://mjsaldanha.com" />
