@@ -81,6 +81,12 @@ function prepare(query, args){
   return new Stmt(stmt);
 }
 
+/** It appears that the MySQL library connects to the database in a "lazy" manner,
+ *    so errors are not spotted upon starting the server.
+ *  We add this query here to trigger the errors early.
+ */
+all("SELECT username FROM users;");
+
 module.exports = {
   all,
   prepare
