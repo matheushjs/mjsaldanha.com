@@ -1,7 +1,7 @@
 ' Title: R Package 'ggamma'
 ' Date: December 7th 2019
 
-Here we give details regarding the `ggamma` package that we developed.
+Here we give details regarding the `ggamma` package that we developed (package <a href="https://CRAN.R-project.org/package=ggamma" target="_blank">here</a>).
 Our main objective is to provide an efficient implementation of the generalized gamma in its original parametrization,
   which is currently provided solely by the `flexsurv` package under the name of `dgengamma.orig`,
 	but as we will argue later it does not have very good performance.

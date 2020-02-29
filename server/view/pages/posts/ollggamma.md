@@ -1,7 +1,7 @@
 ' Title: R Package 'ollggamma'
 ' Date: January 25th 2020
 
-Here we give a few details regarding the `ollggamma` package that we developed.
+Here we give a few details regarding the `ollggamma` package that we developed (package <a href="https://CRAN.R-project.org/package=ollggamma" target="_blank">here</a>).
 
 Note that the source code can be found in the [GitHub repository](https://github.com/matheushjs/ollggamma).
 
