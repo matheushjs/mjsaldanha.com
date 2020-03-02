@@ -207,10 +207,11 @@
               <tr>
                 <th scope="row" style="vertical-align: middle;">{{ trans.raw.interests }}</th>
                 <td>
-                  <div>High-Performance Computing</div>
-                  <div>Computer Organization and Architecture</div>
-                  <div>Operating Systems</div>
+                  <div>Statistical Learning Theory</div>
+                  <div>Time Series Forecasting</div>
+                  <div>Applied Statistics & Mathematics</div>
                   <div>Machine Learning & Deep Learning</div>
+                  <div>High-Performance Computing</div>
                   <div>Web Development</div>
                 </td>
               </tr>

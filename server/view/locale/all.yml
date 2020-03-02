@@ -22,7 +22,7 @@ home:
           so that I can face a large number of problems without feeling completely ignorant.
       </p>
       <p>
-        I'm currently researching about High-Performance Computing applied to Deep Neural Networks.
+        I'm currently researching about Statistical Learning Theory applied to chaotic time series prediction.
         Since I've been enjoying to do science, I'm currently arranging things so that I can <strong>research for the rest of my life</strong>.
       </p>
     ja: |
@@ -38,7 +38,7 @@ home:
         　その理由は無知に感じることなく、多くの問題を直面する能力が欲しいことです。
       </p>
       <p>
-        現在、深い学習に高性能計算を適用することについて研究しています。
+        現在、カオティック時系列（chaotic time series）に統計的学習理論を適用することについて研究しています。
         　私は科学を行うことをすごく楽しんでいるので、いま<strong>ずっと研究する</strong>ことができるようにしようとしています。
       </p>
   sidetitle1:
@@ -78,19 +78,6 @@ home:
     occup:
       en: Occupation
       ja: 役目
-    interests_text:
-      en: |
-        <div>High-Performance Computing</div>
-        <div>Computer Organization and Architecture</div>
-        <div>Operating Systems</div>
-        <div>Machine Learning & Deep Learning</div>
-        <div>Web Development</div>
-      ja: |
-        <div>High-Performance Computing</div>
-        <div>Computer Organization and Architecture</div>
-        <div>Operating Systems</div>
-        <div>Machine Learning & Deep Learning</div>
-        <div>Web Development</div>
   research:
     init:
       en: |
