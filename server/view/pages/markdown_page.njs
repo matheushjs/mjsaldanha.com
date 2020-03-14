@@ -25,6 +25,9 @@ Parameters:
 
 {% block header %}
   <h2>{{ mdMetadata.title if mdMetadata.title else "Post Without Title" }}</h2>
+  {% if mdMetadata.subtitle %}
+    <p>{{mdMetadata.subtitle}}</p>
+  {% endif %}
   <p>{{ mdMetadata.date if mdMetadata.date else "" }}</p>
 {% endblock %}
 
