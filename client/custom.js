@@ -240,7 +240,8 @@ function textFlowAnimation(){
  */
 function showEmail(){
   var elems = $(".elf-email");
-  elems.text(decodeURIComponent("mhjsaldanha" + "%40" + "gmail" + "." + "com"));
+  var email = encodeURIComponent("!mh#j$sa&l*d(a)n!h!a#@$gmyoulose&a*i(l).!c&o#m$");
+  elems.text(decodeURIComponent(email).replace(/[!#$&*()]/g, "").replace("youlose", ""));
 }
 
 $(window).on("scroll", function(){
