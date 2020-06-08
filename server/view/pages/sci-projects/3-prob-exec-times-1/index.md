@@ -1,25 +1,7 @@
-{% extends "partials/main.njs" %}
+' Title: Computer Science Course Conclusion Project I
+' Subtitle: Probabilistic Models for the Execution Time of Individual Tasks in Stochastic Scheduling
+' Date: June 7th 2020
 
-
-{% block morehead %}
-<style>
-  h1 {
-    margin-bottom: 0.5em;
-    padding-top: 1em;
-  }
-</style>
-{% endblock %}
-
-
-{% block header %}
-  <div class="container">
-    <h2>Computer Science Course Conclusion Project I</h2>
-    <h2>Probabilistic Models for the Execution Time of Individual Tasks in Stochastic Scheduling</h2>
-  </div>
-{% endblock %}
-
-
-{% block body %}
 <div class="container text-justify">
   <h1>Objectives</h1>
   <p>
@@ -63,7 +45,9 @@
 <div class="container">
   <h1>Results</h1>
   <ul>
-    <li><a target="_blank" href="https://cran.r-project.org/web/packages/elfDistr/index.html">R Package "elfDistr"</a></li>
+    <li><a target="_blank" href="https://cran.r-project.org/package=elfDistr">R Package "elfDistr"</a></li>
+    <li><a target="_blank" href="https://cran.r-project.org/package=ggamma">R Package "ggamma"</a></li>
+    <li><a target="_blank" href="https://cran.r-project.org/package=ollggamma">R Package "ollggamma"</a></li>
     <li><a target="_blank" href="https://github.com/matheushjs/ElfProbTET">Project GitHub Repository</a></li>
   </ul>
   <h1>Experimental Data</h1>
@@ -87,4 +71,81 @@
     </li>
   </ul>
 </div>
-{% endblock %}
+
+
+Machines' Specs
+---
+
+| Name | CPU | Memory | Disk | Motherboard |
+| --- | --- | --- | --- | --- |
+| Andromeda | AMD FX(tm)-8350 Eight-Core Processor | 4x Corsair 8GB DIMM DDR3 Synchronous 800 MHz | Seagate HD 2TB ST2000DM001-1ER1 | Gigabyte 970A-D3 |
+| HalleyHD | Intel Core i7-4790 CPU 3.60GHz | 4x AMI 8GB DIMM DDR3 Synchronous 1600 MHz | Seagate HD 2TB ST2000DM001-1CH1 | Gigabyte Z97X-SLI-CF |
+| HalleySSD | Intel Core i7-4790 CPU 3.60GHz | 4x AMI 8GB DIMM DDR3 Synchronous 1600 MHz | Kingston SSD 240GB SA400S3 | Gigabyte Z97X-SLI-CF |
+| Helix | Intel Core i5-4440 CPU 3.10GHz | 4x Kingston 4GB DIMM DDR3 Synchronous 1333 MHz | Kingston SSD 240GB SA400S3 | Gigabyte Z87-D3HP-CF |
+
+Histogram Collection
+---
+
+#### **Standard Inference Method**
+
+<div class="container" style="margin-bottom: 3em;">
+  <p>Can't see the file? Download the <a href="/images/articles/histograms-standard.pdf">PDF here</a>.</p>
+  <div style="height: 80vh;" class="shadow">
+    <embed src="/images/articles/histograms-standard.pdf" style="width: 100%; height: 100%;" type="application/pdf">
+  </div>
+</div>
+
+#### Using $\hat{c}_1$
+
+<div class="container" style="margin-bottom: 3em;">
+  <p>Can't see the file? Download the <a href="/images/articles/histograms-c1.pdf">PDF here</a>.</p>
+  <div style="height: 80vh;" class="shadow">
+    <embed src="/images/articles/histograms-c1.pdf" style="width: 100%; height: 100%;" type="application/pdf">
+  </div>
+</div>
+
+#### Using $\hat{c}_2$
+
+<div class="container" style="margin-bottom: 3em;">
+  <p>Can't see the file? Download the <a href="/images/articles/histograms-c2.pdf">PDF here</a>.</p>
+  <div style="height: 80vh;" class="shadow">
+    <embed src="/images/articles/histograms-c2.pdf" style="width: 100%; height: 100%;" type="application/pdf">
+  </div>
+</div>
+
+#### Using $\hat{c}_3$
+
+<div class="container" style="margin-bottom: 3em;">
+  <p>Can't see the file? Download the <a href="/images/articles/histograms-c3.pdf">PDF here</a>.</p>
+  <div style="height: 80vh;" class="shadow">
+    <embed src="/images/articles/histograms-c3.pdf" style="width: 100%; height: 100%;" type="application/pdf">
+  </div>
+</div>
+
+#### Using $\hat{c}_4$
+
+<div class="container" style="margin-bottom: 3em;">
+  <p>Can't see the file? Download the <a href="/images/articles/histograms-c4.pdf">PDF here</a>.</p>
+  <div style="height: 80vh;" class="shadow">
+    <embed src="/images/articles/histograms-c4.pdf" style="width: 100%; height: 100%;" type="application/pdf">
+  </div>
+</div>
+
+#### Adding $c$ as parameter to be inferred
+
+<div class="container" style="margin-bottom: 3em;">
+  <p>Can't see the file? Download the <a href="/images/articles/histograms-inferC.pdf">PDF here</a>.</p>
+  <div style="height: 80vh;" class="shadow">
+    <embed src="/images/articles/histograms-inferC.pdf" style="width: 100%; height: 100%;" type="application/pdf">
+  </div>
+</div>
+
+#### Using the proposed iterative method
+
+<div class="container" style="margin-bottom: 3em;">
+  <p>Can't see the file? Download the <a href="/images/articles/histograms-iteratedC.pdf">PDF here</a>.</p>
+  <div style="height: 80vh;" class="shadow">
+    <embed src="/images/articles/histograms-iteratedC.pdf" style="width: 100%; height: 100%;" type="application/pdf">
+  </div>
+</div>
+
