@@ -65,6 +65,10 @@
 }
 */
 
+.elf-markdown li:not(:first-child) {
+  margin-top: 0.7rem;
+}
+
 .elf-markdown code {
   border-radius: 5px;
 }
