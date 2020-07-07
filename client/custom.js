@@ -263,4 +263,6 @@ $(document).ready(function(){
 
   textFlowAnimation();
   showEmail();
+
+  $(".elf-markdown a").attr("target", "_blank");
 });

@@ -36,14 +36,14 @@ If it is not true, the reasons thereof will be investigated, and the hypothesis 
 
 # Results
 
-* <a target="_blank" href="https://cran.r-project.org/package=elfDistr">R Package "elfDistr"</a>
-* <a target="_blank" href="https://cran.r-project.org/package=ggamma">R Package "ggamma"</a>
-* <a target="_blank" href="https://cran.r-project.org/package=ollggamma">R Package "ollggamma"</a>
-* <a target="_blank" href="https://github.com/matheushjs/ElfProbTET">Project GitHub Repository</a>
+* [R Package "elfDistr"](https://cran.r-project.org/package=elfDistr)
+* [R Package "ggamma"](https://cran.r-project.org/package=ggamma)
+* [R Package "ollggamma"](https://cran.r-project.org/package=ollggamma)
+* [Project GitHub Repository](https://github.com/matheushjs/ElfProbTET)
 
 # Experimental Data
 
-<a target="_blank" href="/public/data/3-prob-exec-times-1/">The experimental data can be found here</a>. File naming is on the format
+[The experimental data can be found here](/public/data/3-prob-exec-times-1/). File naming is on the format
 `[algorithm]-[machine]-[problem-size1]-...-[problem-sizeN].txt`, and the file has 1000 samples for each of these problem
 sizes, in the same order that they appear in the file name.
 
