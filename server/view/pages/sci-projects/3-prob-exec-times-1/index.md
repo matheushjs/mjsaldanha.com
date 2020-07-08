@@ -1,38 +1,23 @@
-' Title: Computer Science Course Conclusion Project I
+' Title: Computer Science Course Conclusion Project
 ' Subtitle: Probabilistic Models for the Execution Time of Individual Tasks in Stochastic Scheduling
 ' Date: June 7th 2020
 
+### I have published my thesis here: https://arxiv.org/abs/2006.09864 . Check it out!
+
+# Abstract
+
+The execution time of programs is a key element in many areas of computer science, mainly those where achieving good performance (e.g., scheduling in cloud computing) or a predictable one (e.g., meeting deadlines in embedded systems) is the objective. Despite being random variables, execution times are most often treated as deterministic in the literature, with few works taking advantage of their randomness; even in those, the underlying distributions are assumed as being normal or uniform for no particular reason. In this work we investigate these distributions in various machines and algorithms. A mathematical problem arises when dealing with samples whose populational minimum is unknown, so a significant portion of this monograph is dedicated to such problem. We propose several different effective or computationally cheap ways to overcome the problem, which also apply to execution times. These methods are tested experimentally, and results point to the superiority of our proposed inference methods. We demonstrate the existence of execution time distributions with long tails, and also conclude that two particular probability distributions were the most suitable for modelling all execution times. While we do not discuss direct applications to stochastic scheduling, we hope to promote the usage of probabilistic execution times to yield better results in, for example, task scheduling. 
+
 # Objectives
 
-The objective of this project focuses on the scheduling problem, but in a way that may also contribute to the two other areas mentioned in the previous section.
-More specifically, focus on the problem of *DAG scheduling*[1],
-  in which tasks are organized as a dependency graph and the objective is to find the best order for their execution on the available computational resources,
-  aiming to achieve the lowest overall execution time (also called *makespan*).
-The problem is made more complicated because, as often happens, the DAG being scheduled will be executed alongside multiple other DAGs (varying with time),
-  and these will make use of the same available resources.
+In this project we investigate the underlying distribution of execution times of programs, attempting to reason about:
 
-The scheduling problem has often been approached in a deterministic way, using the average execution time of tasks to perform the scheduling.
-Some probabilistic models have also been proposed for the problem (in this case it is called *stochastic scheduling*),
-  mostly under the assumption that the probability distribution of tasks is known,
-  such as done by Li and Antonio[2] and Zheng and Sakellariou[1].
-In both of these papers, in order to validate their results, the authors performed simulations where the the distributions of tasks are somewhat arbitrarily chosen to be either normal or uniform.
-In this project, we would like to further investigate whether these are reasonable choices of distributions for execution times.
-Under this light, we propose the following:
+1. the suitability of varied probabilistic models for execution times;
+2. the causes for the observed randomness;
+3. which shapes of probability distributions are observed and how this affects scheduling; and
+4. methods to deal with problems faced while investigating the previous points.
 
-**Hypothesis 1.**
-Given a computer architecture, it is possible to determine a minimal probability model that can be fit to the execution time of any program for a fixed input.
-
-In order to investigate this hypothesis, a set of programs will be implemented and will undergo experiments to generate samples of execution times.
-Based on these samples, suitable probability models will be determined, and inference (conventional and/or bayesian) will be performed to find the parameters of these distributions for each sample of execution times.
-
-If Hypothesis 1 is true, simulations will be performed to validate or reproduce the results given in existing studies regarding stochastic scheduling.
-If it is not true, the reasons thereof will be investigated, and the hypothesis will be narrowed down to more specific classes of programs and machine circumstances,
-  which will undergo the same procedure exposed above.
-
-[1] - ZHENG, W.; SAKELLARIOU, R. Stochastic dag scheduling using a monte carlo approach. Journal of Parallel and Distributed Computing, Elsevier, v. 73, n. 12, p. 1673–1689, 2013.
-<br/>
-[2] - LI, Y. A.; ANTONIO, J. K. Estimating the execution time distribution for a task graph in a heterogeneous computing system.
-  In: IEEE. Proceedings Sixth Heterogeneous Computing Workshop (HCW’97). [S.l.], 1997. p. 172–184.
+The main hindrance we found was performing maximum likelihood estimation over variables whose ``location'' (or populational minimum) is large and unknown, which we have thoroughly investigated and thus far proposed six inference methods that are discussed and justified in the thesis. On top of that, experiments were performed to test the capacity of a specified set of distribution families to fit samples of execution times obtained experimentally. Results demonstrate the existence of execution time distributions with heavy tails on either side, which could indeed have significant impact in scheduling decisions. We show that the exponentiated Weibull and the odd log-logistic generalized gamma distributions achieve very good performance when fitting samples of execution times.
 
 # Results
 
