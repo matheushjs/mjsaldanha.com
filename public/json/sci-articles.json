@@ -1,5 +1,14 @@
 [
   {
+    "harvardRef": "Saldanha, M.H.J., 2020. Probabilistic Models for the Execution Time in Stochastic Scheduling. arXiv preprint arXiv:2006.09864.",
+    "title": "Probabilistic Models for the Execution Time in Stochastic Scheduling",
+    "year": 2020,
+    "publishedAt": "Arxiv",
+    "rankEra": "None",
+    "rankQualis": "None",
+    "href": "/sci-projects/3-prob-exec-times-1/"
+  },
+  {
     "harvardRef": "Saldanha, M.H.J. and de Souza, P.S.L., 2019, June. High performance algorithms for counting collisions and pairwise interactions. In International Conference on Computational Science (pp. 182-196). Springer, Cham.",
     "title": "High Performance Algorithms for Counting Collisions and Pairwise Interactions",
     "year": 2019,
@@ -12,9 +21,9 @@
     "harvardRef": "Saldanha, M.H.J. and Suzuki, A.K., 2019. On the Execution Time of Programs in Stochastic Scheduling. Submitted.",
     "title": "On the Execution Time of Programs in Stochastic Scheduling",
     "year": 2020,
-    "publishedAt": "Submitted",
-    "rankEra": "",
-    "rankQualis": "",
+    "publishedAt": "REIC",
+    "rankEra": "?",
+    "rankQualis": "C",
     "href": "/articles/2-exec-time"
   },
   {

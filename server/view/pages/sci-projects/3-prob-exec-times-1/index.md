@@ -1,8 +1,8 @@
-' Title: Computer Science Course Conclusion Project
+' Title: Computer Science Bachelor Thesis
 ' Subtitle: Probabilistic Models for the Execution Time of Individual Tasks in Stochastic Scheduling
 ' Date: June 7th 2020
 
-### I have published my thesis here: https://arxiv.org/abs/2006.09864 . Check it out!
+### I have published my bachelor thesis here: https://arxiv.org/abs/2006.09864 . Check it out!
 
 # Abstract
 
