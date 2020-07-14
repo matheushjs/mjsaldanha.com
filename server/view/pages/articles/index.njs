@@ -18,9 +18,6 @@
   <p>
     Each article written has its own page, with information that should be publicly available for the readers.
   </p>
-  <p>
-    Information about rankings can be found <a href="http://www.conferenceranks.com/" target="_blank">here</a>.
-  </p>
 </div>
 
 <div id="spinner-container" class="container text-center mb-5">
