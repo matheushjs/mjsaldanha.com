@@ -8,7 +8,7 @@
 
 {% block header %}
 <div class="container">
-  <h2>Post List</h2>
+  <h2>{{ title }}</h2>
 </div>
 {% endblock %}
 
