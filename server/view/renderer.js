@@ -152,13 +152,26 @@ class Renderer {
     });
   }
 
-  postList(items){
+  postList(items, title = "Post List"){
     this.res.render("posts/index.njs", {
       callname: this.callname,
       specialUser: this.specialUser,
       lang: this.language,
       trans: this.translations,
+      title: title,
       items
+    });
+  }
+
+  imageDisplay(filepath, title, description){
+    this.res.render("artistic.njs", {
+      callname: this.callname,
+      specialUser: this.specialUser,
+      lang: this.language,
+      trans: this.translations,
+      title: title,
+      filepath: filepath,
+      description: description
     });
   }
 

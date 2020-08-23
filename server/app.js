@@ -36,6 +36,7 @@ const sciProjectsRoutes = require("./routes/sci-projects");
 const articlesRoutes    = require("./routes/articles");
 const postsRoutes       = require("./routes/posts");
 const nihongoRoutes     = require("./routes/elf-nihongo");
+const artisticRoutes    = require("./routes/artistic");
 const modelRoutes       = require("./model/db_routes");
 
 /* Configure nunjucks not to escape anything by default. This can be changed in the template itself. */
@@ -250,6 +251,7 @@ app.use("/sci-projects", sciProjectsRoutes);
 app.use("/articles", articlesRoutes);
 app.use("/posts", postsRoutes);
 app.use("/elf-nihongo", nihongoRoutes);
+app.use("/artistic", artisticRoutes);
 app.use("/model", modelRoutes);
 
 // Handle page not found
