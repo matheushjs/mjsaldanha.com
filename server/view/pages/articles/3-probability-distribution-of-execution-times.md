@@ -1,6 +1,6 @@
 ' Title: Determining the Probability Distribution of Execution Times
 ' Subtitle: Matheus Henrique Junqueira Saldanha and Adriano Kamimura Suzuki
-' Date: May 2020
+' Date: May 2021
 
 Machines' Specs
 ---
