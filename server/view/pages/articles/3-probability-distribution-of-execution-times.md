@@ -27,7 +27,7 @@ Code
 
 ##### Inference over the execution times dataset
 
-* Download here: <a href="https://www.kaggle.com/matheushjs/inference-code.zip" target="_blank">ZIP File</a>
+* Download here: <a href="/public/data/3-prob-exec-times-1/inference-code.zip" target="_blank">ZIP File</a>
 * Run with:
 ```bash
 $ cd /tmp/inference-code/
