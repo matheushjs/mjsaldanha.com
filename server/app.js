@@ -38,6 +38,7 @@ const postsRoutes       = require("./routes/posts");
 const nihongoRoutes     = require("./routes/elf-nihongo");
 const artisticRoutes    = require("./routes/artistic");
 const modelRoutes       = require("./model/db_routes");
+const redirectsRoutes   = require("./routes/redirects");
 
 /* Configure nunjucks not to escape anything by default. This can be changed in the template itself. */
 njs.configure("server/view/", { autoescape: false });
@@ -253,6 +254,7 @@ app.use("/posts", postsRoutes);
 app.use("/elf-nihongo", nihongoRoutes);
 app.use("/artistic", artisticRoutes);
 app.use("/model", modelRoutes);
+app.use("/r", redirectsRoutes);
 
 // Handle page not found
 app.get("*", (req, res) => {
