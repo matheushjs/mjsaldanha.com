@@ -188,8 +188,8 @@
               <tr>
                 <th scope="row" style="vertical-align: middle;">{{ trans.home.acadinfo.instit }}</th>
                 <td>
-                  <div><a class="elf-dark-a" href="https://www.icmc.usp.br" target="_blank">ICMC - USP</a></div>
-                  <div>Institute of Mathematics and Computer Sciences - University of São Paulo</div>
+                  <!-- <div><a class="elf-dark-a" href="https://www.icmc.usp.br" target="_blank">ICMC - USP</a></div> -->
+                  <div>Graduate School of Science and Technology - University of Tsukuba</div>
                 </td>
               </tr>
               <tr>
