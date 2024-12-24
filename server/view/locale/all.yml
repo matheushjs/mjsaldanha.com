@@ -17,12 +17,12 @@ home:
           but I hope it also serves for publishing information about <strong>myself and my research</strong>.
       </p>
       <p>
-        I'm currently a <strong>Computer Science</strong> undergraduate student, with research interest in low level aspects of a computer, close to the hardware level.
-        In general, however, I like gathering smaller chunks of knowledge on a broad range of areas of Computer Science,
+        I'm currently a <strong>Computer Science</strong> PhD candidate, with research interest in machine learning, in particular neural networks, and its applications to contribute to impactful, real-world applications, such as earthquake forecasting.
+        In general, however, I like gathering smaller chunks of knowledge on a broad range of areas of Computer Science, Mathematics and Statistics,
           so that I can face a large number of problems without feeling completely ignorant.
       </p>
       <p>
-        I'm currently researching about Statistical Learning Theory applied to chaotic time series prediction.
+        I'm currently researching about hierarchical neural network architectures applied to earthquake and wildfire forecasting.
         Since I've been enjoying to do science, I'm currently arranging things so that I can <strong>research for the rest of my life</strong>.
       </p>
     ja: |
@@ -33,13 +33,12 @@ home:
         元々このページはウェブ開発の能力を鍛えるために作られたけど、<strong>現在自分自身と私の研究</strong>に関する情報を公開することにもしています。
       </p>
       <p>
-        私は今<strong>計算機科学の大学生</strong>で、ハードウェアレベルに近いそのコンピュータの低レベルの側面に興味を持っています。
-        　しかし、一般的には、コンピュータの様々な方面にいろいろな知識を集めることが多く行います。
+        僕は今<strong>計算機科学の博士2年生</strong>で、研究分野は機械学習、特にニューラルネットワークに焦点を当てています。また、それを地震予測のような現実世界において影響力のある応用に貢献することを目指しています。
+          しかし、一般的には、コンピュータの様々な方面にいろいろな知識を集めることが多く行います。
         　その理由は無知に感じることなく、多くの問題を直面する能力が欲しいことです。
       </p>
       <p>
-        現在、カオティック時系列（chaotic time series）に統計的学習理論を適用することについて研究しています。
-        　私は科学を行うことをすごく楽しんでいるので、いま<strong>ずっと研究する</strong>ことができるようにしようとしています。
+        現在、地震や山火事の予測に応用される階層型ニューラルネットワークアーキテクチャについて研究しています。 科学に携わることを楽しんでいるため、<strong>一生研究を続けられるように</strong>準備を進めています。
       </p>
   sidetitle1:
     en: Welcome
